@@ -1,15 +1,36 @@
-import 'styled-components';
+import "styled-components";
 
-declare module 'styled-components' {
+type ColorBlack = {
+  c100: string;
+  c200: string;
+};
+
+type ColorGray = {
+  c000?: string;
+  c100?: string;
+  c200?: string;
+  c300?: string;
+  c400?: string;
+  c500?: string;
+};
+
+declare module "styled-components" {
   export interface DefaultTheme {
-    breakPoint: string;
-
-    colors: {
-      black: string;
-      yellow: string;
-      orange: string;
-      gray: string;
-      gray_background: string;
+    dark: {
+      primary: string;
+      bg: string;
+      black: ColorBlack;
+      warning: string;
+      white: string;
+      gray: ColorGray;
+    };
+    light: {
+      primary: string;
+      bg: string;
+      black: ColorBlack;
+      warning: string;
+      white: string;
+      gray: ColorGray;
     };
   }
 }

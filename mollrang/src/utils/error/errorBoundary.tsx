@@ -64,16 +64,16 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
     if (error) {
       const {redirectUrl, notFound} = error;
       if (notFound) return <Error404Page / >;
-      if (redirectUrl) window.location.href = redirectUrl;
-      return <Error404Page / >;
-    }
+        if (redirectUrl) window.location.href = redirectUrl;
+        return <Error404Page / >;
+          }
 
-    // if (isInstanceOfApiError(error)) {
-    //   const {redirectUrl, notFound} = error;
-    //   if (notFound) return <Error404Page/>;
-    //   if (redirectUrl) window.location.href = redirectUrl;
-    //   return <Error404Page/>;
-    // }
-    return this.props.children;
-  }
-}
+          // if (isInstanceOfApiError(error)) {
+            //   const {redirectUrl, notFound} = error;
+            //   if (notFound) return <Error404Page/>;
+            //   if (redirectUrl) window.location.href = redirectUrl;
+            //   return <Error404Page/>;
+            // }
+            return this.props.children;
+          }
+          };
