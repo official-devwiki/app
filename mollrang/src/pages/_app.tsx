@@ -7,6 +7,9 @@ import {QueryClientProvider, Hydrate} from '@tanstack/react-query';
 import {LayoutComponent} from '@components/layout/LayoutComponent';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {wrapper} from '@store/index';
+import {GlobalStyle} from "@styles/global-style";
+import { ThemeProvider } from 'styled-components';
+import {theme} from "@styles/theme";
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
                                                                          Component,
@@ -19,9 +22,12 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
       <ErrorBoundary>
         <QueryClientProvider client={queryState}>
           <Hydrate state={pageProps.dehydratedState}>
-            <LayoutComponent>
-              <Component {...pageProps} />
-            </LayoutComponent>
+            <ThemeProvider theme={theme}>
+              <GlobalStyle />
+              <LayoutComponent>
+                <Component {...pageProps} />
+              </LayoutComponent>
+            </ThemeProvider>
             <ReactQueryDevtools initialIsOpen={false} />
           </Hydrate>
         </QueryClientProvider>
