@@ -64,7 +64,7 @@ module.exports = {
     '^@hooks/(.*)$': '<rootDir>/hooks/$1',
     '^@styles/(.*)$': '<rootDir>/styles/$1',
     '^@interfaces/(.*)$': '<rootDir>/interfaces/$1',
-    '^@images/(.*)$': '<rootDir>/images/$1',
+    '^@images/(.*)$': '<rootDir>/public/mages/$1',
     '^@assets/(.*)$': '<rootDir>/assets/$1',
     '^@containers/(.*)$': '<rootDir>/containers/$1',
     '^@config/(.*)$': '<rootDir>/config/$1',

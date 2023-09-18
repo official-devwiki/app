@@ -91,7 +91,7 @@
         "interfaces/*"
       ],
       "@images/*": [
-        "../../public/images/*"
+        "../public/images/*"
       ],
       "@assets/*": [
         "assets/*"

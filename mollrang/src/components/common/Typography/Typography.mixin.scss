@@ -1,0 +1,81 @@
+$notoSans: 'Noto Sans KR';
+
+@mixin default() {
+  font-family: $notoSans;
+}
+
+@mixin h1 {
+  @include default();
+  font-size: min(4vw, 22px);
+  line-height: 1.5rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin h2 {
+  @include default();
+  font-size: min(4vw, 20px);
+  line-height: 1.5rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin h3 {
+  @include default();
+  font-size: min(4vw, 18px);
+  line-height: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin h4 {
+  @include default();
+  font-size: min(4vw, 16px);
+  line-height: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin h5 {
+  @include default();
+  font-size: min(4vw, 14px);
+  line-height: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin body1 {
+  @include default();
+  font-size: min(4vw, 18px);
+  line-height: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin body2 {
+  @include default();
+  font-size: min(4vw, 16px);
+  line-height: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin caption {
+  @include default();
+  font-size: min(4vw, 12px);
+  line-height: 1.25rem;
+  letter-spacing: 0.15px;
+}
+
+@mixin thin {
+  font-weight: 100;
+}
+
+@mixin light {
+  font-weight: 300;
+}
+
+@mixin regular {
+  font-weight: 400;
+}
+
+@mixin medium {
+  font-weight: 500;
+}
+
+@mixin bold {
+  font-weight: 700;
+}

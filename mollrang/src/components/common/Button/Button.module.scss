@@ -1,0 +1,29 @@
+@import "Button.mixin";
+
+.primary {
+  @include buttonDefaultOptions();
+  background-color: var(--primary);
+
+  span {
+    color: var(--white);
+  }
+}
+
+.primary-rounded {
+  @include buttonDefaultOptions();
+  background-color: var(--primary);
+  border-radius: 50px;
+
+  span {
+    color: var(--white);
+  }
+}
+
+.icon {
+  @include buttonDefaultOptions();
+  background-color: transparent;
+  width: fit-content;
+  height: auto;
+  box-shadow: inherit;
+  padding: 0;
+}

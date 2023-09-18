@@ -60,8 +60,15 @@ export const GlobalStyle = createGlobalStyle`
     display: block;
   }
 
+  html {
+    width: 100%;
+    height: 100%;
+  }
+
   body {
     line-height: 1;
+    width: 100%;
+    height: calc(100% - 66px);
   }
 
   ol, ul {
@@ -90,6 +97,10 @@ export const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
 
+  :root {
+    --white: #fff;
+  }
+
   body[data-theme="light"] {
     // major(theme)
     --primary: #00C7AE;
@@ -101,6 +112,7 @@ export const GlobalStyle = createGlobalStyle`
    */
     --blub: #FFC700;
     --check_box: #B8B8B8;
+    --intro_icon: #FFC700;
 
     // TEXT
     --major-text: #444343;
@@ -120,6 +132,7 @@ export const GlobalStyle = createGlobalStyle`
      */
     --blub: #ECECEC;
     --check_box: #B8B8B8;
+    --intro_icon: #D6D6D6;
 
     --major-text: #fff;
     --caption-text: #6D6D6;
