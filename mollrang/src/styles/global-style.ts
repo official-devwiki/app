@@ -24,44 +24,39 @@ export const GlobalStyle = createGlobalStyle`
 
   body[data-theme="light"] {
     // major(theme)
-    --major-main: #BA1628;
-    --major-second: #8E041A;
+    --primary: #00C7AE;
+    --blockquote: #FFE588;
+    --warning: #FF5050;
 
-    // text(common)
-    --text-title: #111111;
-    --text-subTitle: #1D1D1D;
-    --text-main: #1E1E1E;
-    --text-second: #575757;
-    --text-third: #989999;
-    --text-fourth: #A8A5A3;
-    // text(individual)
-    --text-input: #333333;
-    --text-rating: #A26F01;
-    --text-label: #DBA969;
-    --text-label2: #d5A184;
-
-    // background(common)
-    --bg-main: #FFFFFF;
-    --bg-second: #FAFAFA;
-    --bg-third: #F7F3F0;
-    // background(individual)
-    --bg-progressBar: #E9E9E9;
-    --bg-button: #02A78B;
-    --bg-rating: #F9F7D6;
-    --bg-ratingStar: #EFA000;
-    --bg-label: #333333;
-
-    // border(common)
-    --border-main: #DEDEDE solid 1px;
-    --border-second: #E4E4E4 solid 1px;
-    --border-third: #EAE0DA solid 1px;
+    /**
+      ICON
+   */
+    --blub: #FFC700;
+    --check_box: #B8B8B8;
+    
+    // TEXT
+    --major-text: #444343;
+    --caption-text: #D6D6D6;
+    
+    --bg: #fff;
+    --bg_modal: #fff;
   }
 
   body[data-theme="dark"] {
-    --text-title: #FFFFFF;
-    --text-subTitle: #FFFFFF;
-    --text-main: #FFFFFF;
-    --bg-main: #1C1C1F;
-    --border-main: #DEDEDE solid 1px;
+    --primary: #778C86;
+    --blockquote: #282828;
+    --waning: #FF533B;
+    
+    /**
+      ICON
+     */
+    --blub: #ECECEC;
+    --check_box: #B8B8B8;
+
+    --major-text: #fff;
+    --caption-text: #6D6D6;
+    
+    --bg: #383838;
+    --bg_modal: #272727;
   }
 `;
