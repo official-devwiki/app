@@ -12,6 +12,10 @@ interface Props {
   children: ReactNode;
 }
 
+const Layout = styled.div`
+  padding-bottom: 74px;
+`;
+
 export const LayoutComponent = (props: Props): ReactElement => {
   const {children} = props;
   const {sideBarIsOpen, isLoading, bottomModalShow} = useAppSelector(
@@ -27,11 +31,13 @@ export const LayoutComponent = (props: Props): ReactElement => {
     <>
       <MetaComponent />
       <Header />
-      <Main>{children}</Main>
+      <Layout>
+        <Main>{children}</Main>
+        <Footer />
+      </Layout>
       <BottomSlideModal isOpen={bottomModalShow} onRequestClose={modalClose}>
         <p>SHOW</p>
       </BottomSlideModal>
-      <Footer />
       <BottomNavigation />
     </>
   );

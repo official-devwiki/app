@@ -7,7 +7,7 @@ import {setBottomModalShow} from '@store/slice/utilSlice';
 import {useAppDispatch} from '@hooks/useRedux';
 
 const BottomNavigationLayout = styled.nav`
-  position: absolute;
+  position: fixed;
   left: 0;
   bottom: 0;
   background-color: var(--primary);
