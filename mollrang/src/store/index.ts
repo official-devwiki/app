@@ -7,14 +7,10 @@ import {
 import {createWrapper, HYDRATE} from 'next-redux-wrapper';
 import logger from 'redux-logger';
 import {UtilSlice, UtilState} from '@store/slice/utilSlice';
-import {AuthSlice, AuthState} from '@store/slice/authSlice';
 import {QuizSlice, QuizState} from '@store/slice/quizSlice';
-
-// import {isProduction} from '@utils/common';
 
 export interface RootState {
   utils: UtilState;
-  auth: AuthState;
   quiz: QuizState;
 }
 
@@ -22,7 +18,6 @@ const RootReducer = (state: RootState, action: AnyAction): CombinedState<RootSta
   if (action.type === HYDRATE) return {...state, ...action.payload};
   const combinedReducer = combineReducers({
     [UtilSlice.name]: UtilSlice.reducer,
-    [AuthSlice.name]: AuthSlice.reducer,
     [QuizSlice.name]: QuizSlice.reducer,
   });
   return combinedReducer(state, action);

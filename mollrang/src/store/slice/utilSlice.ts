@@ -18,7 +18,6 @@ export const UtilSlice = createSlice({
   name: 'utils',
   initialState,
   reducers: {
-    // Action to set the authentication status
     setSideBarIsOpen(state: UtilState, action: PayloadAction<boolean>) {
       state.sideBarIsOpen = action.payload;
     },
