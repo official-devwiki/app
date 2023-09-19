@@ -4,7 +4,7 @@ export const IntroContainer = styled.div`
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 2.25em 1em;
+  padding: 2.25em 0;
   max-width: 426px;
   margin: auto;
 `;
