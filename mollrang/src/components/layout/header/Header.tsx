@@ -21,11 +21,11 @@ export const Header = (): ReactElement => {
 
 const HeaderContainer = styled.header`
   width: 100%;
+  min-width: 300px;
   height: 66px;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: $white;
   z-index: 1;
 `;
 

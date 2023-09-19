@@ -2,6 +2,7 @@ import {ReactElement, ReactNode} from 'react';
 import styled from 'styled-components';
 import {MetaComponent} from '@components/layout/header/MetaComponent';
 import {Header} from './header/Header';
+import {BottomNavigation} from '@components/layout/navigation/BottomNavigation';
 
 interface Props {
   children: ReactNode;
@@ -15,6 +16,7 @@ export const LayoutComponent = (props: Props): ReactElement => {
       <MetaComponent />
       <Header />
       <Main>{children}</Main>
+      <BottomNavigation />
     </>
   );
 };
