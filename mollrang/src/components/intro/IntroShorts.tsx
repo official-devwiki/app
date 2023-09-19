@@ -45,7 +45,7 @@ export const IntroShorts = () => {
   return (
     <ShortsLayout>
       <FlexBox>
-        <Typography>
+        <Typography variant={'body2'} weight={'medium'} color={'default'}>
           피식
         </Typography>
         <EmoticonIcon />

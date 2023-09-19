@@ -5,6 +5,7 @@ import {Button} from '@components/common/Button';
 import {OpenBookIcon} from '@components/common/icons/OpenBookIcon';
 import * as S from './style';
 import {IntroBanner, IntroShorts} from '@components/intro';
+import {AttendanceCheck} from '@components/attendance/AttendanceCheck';
 
 const Home: NextPage = (): ReactElement => {
   return (
@@ -16,6 +17,7 @@ const Home: NextPage = (): ReactElement => {
           <Typography as={'span'} color={'white'}>오늘의 퀴즈</Typography>
         </Button>
         <IntroShorts />
+        <AttendanceCheck />
       </S.HomeBox>
     </S.HomeLayout>
   );

@@ -1,11 +1,9 @@
 import {ReactElement} from 'react';
 import * as iconType from '@images/icons/index';
-import Image from 'next/image';
 import styled from 'styled-components';
-import icon from '@images/icons/setting.svg';
 
 
-type IconType = 'home' | 'setting' | 'guide' | 'open-book' | 'chart';
+type IconType = 'home' | 'setting' | 'guide' | 'open-book' | 'chart' | 'check-red';
 
 interface Props {
   type: IconType;
@@ -25,12 +23,12 @@ export const Icons = (props: Props): ReactElement => {
         return iconType.OpenBook;
       case 'chart':
         return iconType.Chart;
+      case 'check-red':
+        return iconType.CheckRed;
     }
   };
 
-  const IconSpan = styled(icon())`
-    
-  `;
+  const IconSpan = styled(icon())``;
 
   return (
     <IconSpan />

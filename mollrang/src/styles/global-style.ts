@@ -120,6 +120,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --bg: #fff;
     --bg_modal: #fff;
+    --bg_footer: #EFEFEF;
   }
 
   body[data-theme="dark"] {
@@ -139,5 +140,6 @@ export const GlobalStyle = createGlobalStyle`
 
     --bg: #383838;
     --bg_modal: #272727;
+    --bg_footer: #505050;
   }
 `;

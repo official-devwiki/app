@@ -23,6 +23,7 @@ export type FontColor =
   | 'primary'
   | 'default'
   | 'white'
+  | 'sub_text'
 
 export const Typography = (props: Props): ReactElement => {
   const {
