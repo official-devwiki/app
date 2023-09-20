@@ -28,9 +28,9 @@ export const Icons = (props: Props): ReactElement => {
     }
   };
 
-  const IconSpan = styled(icon())``;
+  const Icon = styled(icon())``;
 
   return (
-    <IconSpan />
+    <Icon />
   );
 };

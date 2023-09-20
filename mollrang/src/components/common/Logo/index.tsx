@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import {ReactElement} from 'react';
+import Dark from '@images/logo_dark.svg';
+import Light from '@images/logo_light.svg';
+import styled from "styled-components";
 
 interface Props {
   mode: boolean;
@@ -8,6 +11,12 @@ interface Props {
 export const Logo = (props: Props): ReactElement => {
   const {mode} = props;
   const url =
-    mode ? '/images/logo_dark.svg' : '/images/logo_light.svg';
-  return <Image src={url} alt='mollrang-logo' width={70} height={35} />;
+    mode ? Dark : Light;
+
+  const LogoIcon = styled(url)`
+    width: 49px;
+    height: 49px;
+  `;
+
+  return <LogoIcon />;
 };

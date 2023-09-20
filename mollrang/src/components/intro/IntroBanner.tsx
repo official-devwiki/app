@@ -4,17 +4,17 @@ import Image from 'next/image';
 import {NoteIcon} from '@components/common/icons/NoteIcon';
 import {Typography} from '@components/common/Typography';
 import {QuestionIcon} from '@components/common/icons/QuestionIcon';
+import BannerSvg from '@images/banner.svg';
+import styled from "styled-components";
 
 export const IntroBanner = (): ReactElement => {
+
+  const Banner = styled(BannerSvg)`width: 220px; height: 190px`;
+
   return (
     <S.IntroContainer>
       <div>
-        <Image
-          priority={true}
-          src={'/images/banner.svg'}
-          alt={'banner'}
-          width={216}
-          height={190}
+        <Banner
         />
       </div>
       <S.IntroTextBox>
