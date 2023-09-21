@@ -115,6 +115,9 @@ export const GlobalStyle = createGlobalStyle`
     --day_border_active: #00C7AE;
     --day_text_active: #00C7AE;
 
+    --correct_border: #EDEDED;
+
+
     /**
       ICON
    */
@@ -143,6 +146,8 @@ export const GlobalStyle = createGlobalStyle`
     --day_bg_active: #778C86;
     --day_border_active: #fff;
     --day_text_active: #fff;
+
+    --correct_border: #d6d6d6;
 
     /**
       ICON
