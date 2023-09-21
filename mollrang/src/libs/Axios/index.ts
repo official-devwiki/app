@@ -5,10 +5,9 @@ import {
   NotAllowedMethodException,
   NotFoundException,
 } from '@utils/error/errorHandler';
-import {isProduction} from '@utils/common';
-import {LOCAL_HOST_API, PRODUCT_HOST_API} from '@constants/config';
+import {LOCAL_HOST_API, PRODUCT_HOST_API, IS_PRODUCTION} from '@config/index';
 
-const baseURL = isProduction() ? PRODUCT_HOST_API : LOCAL_HOST_API;
+const baseURL = IS_PRODUCTION ? PRODUCT_HOST_API : LOCAL_HOST_API;
 const instance: AxiosInstance = axios.create({
   baseURL,
   headers: {

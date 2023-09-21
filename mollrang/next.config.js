@@ -66,7 +66,7 @@ module.exports = {
     '^@interfaces/(.*)$': '<rootDir>/interfaces/$1',
     '^@images/(.*)$': '<rootDir>/public/mages/$1',
     '^@assets/(.*)$': '<rootDir>/assets/$1',
-    '^@containers/(.*)$': '<rootDir>/containers/$1',
+    '^@services/(.*)$': '<rootDir>/services/$1',
     '^@config/(.*)$': '<rootDir>/config/$1',
   },
   trailingSlash: true,
