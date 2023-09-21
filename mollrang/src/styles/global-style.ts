@@ -107,6 +107,12 @@ export const GlobalStyle = createGlobalStyle`
     --blockquote: #FFE588;
     --warning: #FF5050;
 
+    // 출석 체크 요일
+    --day_circle: #CACACA;
+    --day_bg: #F4F4F4;
+    --day_bg_active: #fff;
+    --day_border_active: #00C7AE;
+    --day_text_active: #00C7AE;
     /**
       ICON
    */
@@ -127,6 +133,13 @@ export const GlobalStyle = createGlobalStyle`
     --primary: #778C86;
     --blockquote: #282828;
     --waning: #FF533B;
+
+    // 출석 체크 요일
+    --day_circle: #606060;
+    --day_bg: #383838;
+    --day_bg_active: #778C86;
+    --day_border_active: #fff;
+    --day_text_active: #fff;
 
     /**
       ICON

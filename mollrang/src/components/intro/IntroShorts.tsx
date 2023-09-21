@@ -38,6 +38,10 @@ const EmptyBox = styled.div`
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
+
+  .shorts-title {
+    margin-right: 8px;
+  }
 `;
 
 export const IntroShorts = () => {
@@ -45,7 +49,7 @@ export const IntroShorts = () => {
   return (
     <ShortsLayout>
       <FlexBox>
-        <Typography variant={'body2'} weight={'medium'} color={'default'}>
+        <Typography variant={'body2'} weight={'medium'} color={'default'} className={'shorts-title'}>
           피식
         </Typography>
         <EmoticonIcon />
