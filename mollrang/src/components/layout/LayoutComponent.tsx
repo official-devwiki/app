@@ -6,7 +6,6 @@ import {BottomNavigation} from '@components/layout/navigation/BottomNavigation';
 import {BottomSlideModal} from '@components/common/modal/BottomSlide';
 import {useAppDispatch, useAppSelector} from '@hooks/useRedux';
 import {setBottomModalShow} from '@store/slice/utilSlice';
-import {Footer} from '@components/layout/footer/Footer';
 
 interface Props {
   children: ReactNode;

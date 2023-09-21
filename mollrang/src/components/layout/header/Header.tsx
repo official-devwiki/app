@@ -3,6 +3,7 @@ import {ReactElement} from 'react';
 import {styled} from 'styled-components';
 import useTheme from '@hooks/useTheme';
 import {BulbIcon} from '@components/common/icons/BulbIcon';
+import Link from 'next/link';
 
 export const Header = (): ReactElement => {
   const {toggleTheme, isDarkMode} = useTheme();
@@ -10,7 +11,9 @@ export const Header = (): ReactElement => {
   return (
     <HeaderContainer>
       <HeaderBox>
-        <Logo mode={isDarkMode} />
+        <Link href={'/'}>
+          <Logo mode={isDarkMode} />
+        </Link>
         <button type='button' onClick={toggleTheme}>
           <BulbIcon />
         </button>

@@ -5,6 +5,7 @@ import {Typography} from '@components/common/Typography';
 import {Button} from '@components/common/Button';
 import {setBottomModalShow} from '@store/slice/utilSlice';
 import {useAppDispatch} from '@hooks/useRedux';
+import {useRouter} from 'next/router';
 
 const BottomNavigationLayout = styled.nav`
   position: fixed;
@@ -47,27 +48,40 @@ const NavItem = styled.li`
 
 export const BottomNavigation = (): ReactElement => {
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
-  const onclick = () => {
+  const guideOpen = (): void => {
     dispatch(setBottomModalShow(true));
+  };
+
+  const statisticsOpen = (): void => {
+    dispatch(setBottomModalShow(true));
+  };
+
+  const goToHome = async (): Promise<void> => {
+    await router.push('/');
   };
 
   return (
     <BottomNavigationLayout>
       <NavList>
         <NavItem>
-          <Icons type={'home'} />
-          <Typography variant={'caption'} as={'span'} color={'white'}>홈</Typography>
+          <Button variant={'icon'} onClick={goToHome}>
+            <Icons type={'home'} />
+            <Typography variant={'caption'} as={'span'} color={'white'}>홈</Typography>
+          </Button>
         </NavItem>
         <NavItem>
-          <Button variant={'icon'} onClick={onclick}>
+          <Button variant={'icon'} onClick={guideOpen}>
             <Icons type={'guide'} />
             <Typography variant={'caption'} as={'span'} color={'white'}>가이드</Typography>
           </Button>
         </NavItem>
         <NavItem>
-          <Icons type={'chart'} />
-          <Typography variant={'caption'} as={'span'} color={'white'}>통계</Typography>
+          <Button variant={'icon'} onClick={statisticsOpen}>
+            <Icons type={'chart'} />
+            <Typography variant={'caption'} as={'span'} color={'white'}>통계</Typography>
+          </Button>
         </NavItem>
         <NavItem>
           <Icons type={'setting'} />
