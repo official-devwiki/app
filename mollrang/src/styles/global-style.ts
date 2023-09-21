@@ -111,8 +111,10 @@ export const GlobalStyle = createGlobalStyle`
     --day_circle: #CACACA;
     --day_bg: #F4F4F4;
     --day_bg_active: #fff;
+    --day_sub_text: #989898;
     --day_border_active: #00C7AE;
     --day_text_active: #00C7AE;
+
     /**
       ICON
    */
@@ -137,6 +139,7 @@ export const GlobalStyle = createGlobalStyle`
     // 출석 체크 요일
     --day_circle: #606060;
     --day_bg: #383838;
+    --day_sub_text: #A6A6A6;
     --day_bg_active: #778C86;
     --day_border_active: #fff;
     --day_text_active: #fff;

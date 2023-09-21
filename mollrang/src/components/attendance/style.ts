@@ -21,6 +21,7 @@ export const AttendanceTitleWrapper = styled.h2`
 
     span:nth-child(1) {
       margin-right: 6px;
+      color: var(--day_sub_text)
     }
 
   }
