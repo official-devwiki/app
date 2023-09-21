@@ -124,6 +124,7 @@ export const GlobalStyle = createGlobalStyle`
     --blub: #FFC700;
     --check_box: #B8B8B8;
     --intro_icon: #FFC700;
+    --share_icon: #444343;
 
     // TEXT
     --major-text: #444343;
@@ -155,6 +156,7 @@ export const GlobalStyle = createGlobalStyle`
     --blub: #ECECEC;
     --check_box: #B8B8B8;
     --intro_icon: #D6D6D6;
+    --share_icon: #fff;
 
     --major-text: #fff;
     --caption-text: #6D6D6;

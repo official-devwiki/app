@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {Typography} from '@components/common/Typography';
 
 const CorrectAnswerLayout = styled.div`
+  margin-top: 40px;
   border-top: 1px solid var(--correct_border);
   border-bottom: 1px solid var(--correct_border);
   width: 100%;
