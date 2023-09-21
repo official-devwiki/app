@@ -125,6 +125,7 @@ export const GlobalStyle = createGlobalStyle`
     --check_box: #B8B8B8;
     --intro_icon: #FFC700;
     --share_icon: #444343;
+    --check_circle_icon: #B8B8B8;
 
     // TEXT
     --major-text: #444343;
@@ -133,6 +134,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg: #fff;
     --bg_modal: #fff;
     --bg_footer: #EFEFEF;
+    --bg_input: #FDFDFD;
   }
 
   body[data-theme="dark"] {
@@ -157,6 +159,7 @@ export const GlobalStyle = createGlobalStyle`
     --check_box: #B8B8B8;
     --intro_icon: #D6D6D6;
     --share_icon: #fff;
+    --check_circle_icon: #B8B8B8;
 
     --major-text: #fff;
     --caption-text: #6D6D6;
@@ -164,5 +167,6 @@ export const GlobalStyle = createGlobalStyle`
     --bg: #383838;
     --bg_modal: #272727;
     --bg_footer: #505050;
+    --bg_input: #FDFDFD;
   }
 `;

@@ -6,6 +6,7 @@ export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonVariant =
   | 'primary'
   | 'primary-rounded'
+  | 'secondary'
   | 'icon';
 
 interface ButtonProps extends ComponentProps<'button'> {

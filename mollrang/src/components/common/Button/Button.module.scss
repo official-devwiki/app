@@ -9,6 +9,16 @@
   }
 }
 
+.secondary {
+  @include buttonDefaultOptions();
+  border-color: #A4A4A4;
+  background-color: #F0F0F0;
+
+  span {
+    color: #A4A4A4;
+  }
+}
+
 .primary-rounded {
   @include buttonDefaultOptions();
   background-color: var(--primary);

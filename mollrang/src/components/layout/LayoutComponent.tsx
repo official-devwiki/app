@@ -33,7 +33,6 @@ export const LayoutComponent = (props: Props): ReactElement => {
       <Header />
       <Layout>
         <Main>{children}</Main>
-        <Footer />
       </Layout>
       <BottomSlideModal isOpen={bottomModalShow} onRequestClose={modalClose}>
         <p>SHOW</p>
