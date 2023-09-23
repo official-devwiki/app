@@ -161,7 +161,7 @@ export const GlobalStyle = createGlobalStyle`
     --share_icon: #fff;
     --check_circle_icon: #B8B8B8;
 
-    --major-text: #fff;
+    --major-text: #E6E6E6;
     --caption-text: #6D6D6;
 
     --bg: #383838;

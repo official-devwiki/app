@@ -2,13 +2,23 @@ import {Typography} from '@components/common/Typography';
 import {EmoticonIcon} from '@components/common/icons/EmoticonIcon';
 import {SkeletonUi} from '@components/ui/skeleton/SkeletonUi';
 import * as S from './style';
-import {useTodayShortsQuery} from '../../../services/queries/shortsQuery';
+import {useTodayShortsQuery} from '@services/queries/shortsQuery';
+import {useEffect, useState} from 'react';
 
 export const IntroShorts = () => {
   const {data, isLoading} = useTodayShortsQuery();
+  const [solution, setSolution] = useState('');
+
+  useEffect(() => {
+    removeSolution();
+  }, [data]);
 
   const removeSolution = (): void => {
-    const {answer, solution} = data[0];
+    if (data) {
+      const {answer, solution} = data[0];
+      const text = answer.replace(solution, '');
+      setSolution(text);
+    }
   };
 
   return (
@@ -28,7 +38,7 @@ export const IntroShorts = () => {
           {isLoading ? (<SkeletonUi theme={{height: 20, width: 80, borderRadius: 4}} />) : (
             <>
               <S.EmptyBox />
-              <Typography>{data && data[0].answer}</Typography>
+              <Typography>{solution}</Typography>
             </>
           )}
         </S.AnswerBox>

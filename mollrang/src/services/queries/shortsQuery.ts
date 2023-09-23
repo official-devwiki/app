@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import {getTodayShorts} from '@apis/shorts';
-import {QueryKeys} from '../keys/queryKeys';
+import {QueryKeys} from '@services/keys/queryKeys';
 
 export const useTodayShortsQuery = () => {
   const result = useQuery({

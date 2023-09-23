@@ -9,6 +9,7 @@ export const ShortsBlockContainer = styled.div`
 `;
 export const ShortsBlock = styled.div`
   background-color: var(--blockquote);
+  color: var(--major-text);
   width: 100%;
   min-height: 40px;
   padding: 0.4em 0.8em;
@@ -30,6 +31,7 @@ export const EmptyBox = styled.div`
   border-radius: 4px;
   width: 38px;
   height: 20px;
+  margin-right: 8px;
 `;
 
 export const FlexBox = styled.div`
