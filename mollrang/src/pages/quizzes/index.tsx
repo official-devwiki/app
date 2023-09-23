@@ -32,6 +32,11 @@ const FlexBox = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin-top: 20px;
+
+  button:nth-child(1) {
+    margin-right: 1em;
+  }
 `;
 
 

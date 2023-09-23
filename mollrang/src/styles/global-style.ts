@@ -140,7 +140,7 @@ export const GlobalStyle = createGlobalStyle`
   body[data-theme="dark"] {
     --primary: #778C86;
     --blockquote: #282828;
-    --waning: #FF533B;
+    --warning: #FF533B;
 
     // 출석 체크 요일
     --day_circle: #606060;
