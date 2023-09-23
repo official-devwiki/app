@@ -30,6 +30,8 @@ const HeaderContainer = styled.header`
   top: 0;
   left: 0;
   z-index: 1;
+  background-color: var(--bg);
+  transition: background 0.2s ease-in, color 0.2s ease-in;
 `;
 
 const HeaderBox = styled.div`

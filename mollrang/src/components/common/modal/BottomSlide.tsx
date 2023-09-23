@@ -5,38 +5,16 @@ import styles from './Modal.module.scss';
 import {XIcon} from '@components/common/icons/XIcon';
 import {Button} from '@components/common/Button';
 
-const ModalContainer = styled.div`
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: rgba(#a9a9a9, 0.44);
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  z-index: 199;
-`;
-
-const ModalBox = styled.div`
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: flex-end;
-`;
-
 const ModalBody = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: rgb(255, 255, 255);
   width: 100%;
-  height: 200px;
-  font-size: 4vmin;
-  border-radius: 14px 14px 0 0;
-  box-shadow: 1px 10px 10px -4px rgba(0, 0, 0, 0.1);
 `;
 
+const ModalCloseButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0.8em 1em;
+`;
 
 interface Props {
   isOpen: boolean;
@@ -95,10 +73,14 @@ export const BottomSlideModal = (props: Props): ReactElement => {
             className={styles.motion_modal_wrapper}
           >
             <div className={styles.motion_modal_body} ref={ele}>
-              <Button variant={'icon'} onClick={modalClose}>
-                <XIcon />
-              </Button>
-              {children}
+              <ModalCloseButtonWrapper>
+                <Button variant={'icon'} onClick={modalClose}>
+                  <XIcon />
+                </Button>
+              </ModalCloseButtonWrapper>
+              <ModalBody>
+                {children}
+              </ModalBody>
             </div>
           </motion.div>
         </motion.div>

@@ -6,6 +6,7 @@ import {BottomNavigation} from '@components/layout/navigation/BottomNavigation';
 import {BottomSlideModal} from '@components/common/modal/BottomSlide';
 import {useAppDispatch, useAppSelector} from '@hooks/useRedux';
 import {setBottomModalShow} from '@store/slice/utilSlice';
+import {IntegratedStatistics} from '@components/ratio/IntegratedStatistics';
 
 interface Props {
   children: ReactNode;
@@ -34,7 +35,7 @@ export const LayoutComponent = (props: Props): ReactElement => {
         <Main>{children}</Main>
       </Layout>
       <BottomSlideModal isOpen={bottomModalShow} onRequestClose={modalClose}>
-        <p>SHOW</p>
+        <IntegratedStatistics />
       </BottomSlideModal>
       <BottomNavigation />
     </>
