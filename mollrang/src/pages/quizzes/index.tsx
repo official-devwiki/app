@@ -8,6 +8,7 @@ import {Typography} from '@components/common/Typography';
 const QuizLayout = styled.div`
   width: 100%;
   height: 100%;
+  padding: 4em 1.5em 0;
 `;
 
 const QuizContainer = styled.div`
@@ -17,15 +18,15 @@ const QuizContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
-
+ 
 `;
 
 const QuizBox = styled.div`
-  min-width: 323px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin: auto;
+  width: 100%;
 `;
 
 const FlexBox = styled.div`

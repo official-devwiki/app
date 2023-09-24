@@ -16,6 +16,10 @@ const Layout = styled.div`
   padding-bottom: 74px;
 `;
 
+const Main = styled.main`
+  margin-top: 66px;
+`;
+
 export const LayoutComponent = (props: Props): ReactElement => {
   const {children} = props;
   const {sideBarIsOpen, isLoading, bottomModalShow} = useAppSelector(
@@ -42,6 +46,4 @@ export const LayoutComponent = (props: Props): ReactElement => {
   );
 };
 
-const Main = styled.main`
-  margin-top: 66px;
-`;
+
