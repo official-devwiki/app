@@ -1,6 +1,8 @@
-import {ReactElement} from 'react';
+import {ReactElement, useEffect} from 'react';
 import {Typography} from '@components/common/Typography';
 import styled from 'styled-components';
+import * as d3 from 'd3';
+import {PieChart} from '@components/chart/PieChart';
 
 const IntegratedStatisticsLayout = styled.div`
   width: 100%;
@@ -8,6 +10,7 @@ const IntegratedStatisticsLayout = styled.div`
 `;
 
 export const IntegratedStatistics = (): ReactElement => {
+
   return (
     <IntegratedStatisticsLayout>
       <div>
@@ -31,28 +34,7 @@ export const IntegratedStatistics = (): ReactElement => {
 
       <div>
         <Typography>도전 분포</Typography>
-        <ul>
-          <li>
-            <Typography>1 번째 성공</Typography>
-            <Typography>1 번</Typography>
-          </li>
-          <li>
-            <Typography>2 번째 성공</Typography>
-            <Typography>1 번</Typography>
-          </li>
-          <li>
-            <Typography>3 번째 성공</Typography>
-            <Typography>1 번</Typography>
-          </li>
-          <li>
-            <Typography>4 번째 성공</Typography>
-            <Typography>1 번</Typography>
-          </li>
-          <li>
-            <Typography>5 번째 성공</Typography>
-            <Typography>1 번</Typography>
-          </li>
-        </ul>
+        <PieChart />
       </div>
 
     </IntegratedStatisticsLayout>

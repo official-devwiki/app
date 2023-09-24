@@ -37,7 +37,7 @@ module.exports = {
     minimumCacheTTL: 60,
     formats: ['image/webp'],
   },
-  reactStrictMode: true,
+  reactStrictMode: false,
   typescript: {
     ignoreBuildErrors: true, // TEST Deploy
   },
