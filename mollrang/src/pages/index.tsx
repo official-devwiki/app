@@ -12,8 +12,23 @@ import {Footer} from '@components/layout/footer/Footer';
 import styled from 'styled-components';
 
 const PlayQuizBox = styled.div`
+  width: 100%;
   svg {
     margin-right: 0.5em;
+  }
+  hr {
+    background: var(--bg_line);
+    height: 2px;
+    border: 0;
+    margin: 0;
+    z-index: 0;
+    position: relative;
+    top: 24px;
+  }
+  button {
+    position: relative;
+    z-index: 2;
+    margin: auto;
   }
 `;
 
@@ -39,6 +54,7 @@ const Home: NextPage = (): ReactElement => {
       <S.HomeBox>
         <IntroBanner />
         <PlayQuizBox>
+          <hr />
           <Button type={'button'} variant={'primary-rounded'} onClick={playQuizButton}>
             <OpenBookIcon />
             <Typography as={'span'} color={'white'}>오늘의 퀴즈</Typography>

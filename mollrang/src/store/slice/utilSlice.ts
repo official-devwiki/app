@@ -2,13 +2,23 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 
 // Type for our state
 export interface UtilState {
+  modal: ModalState;
   sideBarIsOpen: boolean;
   bottomModalShow: boolean;
   isLoading: boolean;
 }
 
+type ModalState = {
+  type: string;
+  isOpen: boolean;
+}
+
 // Initial state
 const initialState: UtilState = {
+  modal: {
+    type: '',
+    isOpen: false,
+  },
   sideBarIsOpen: false,
   bottomModalShow: false,
   isLoading: false,
@@ -27,6 +37,9 @@ export const UtilSlice = createSlice({
     setIsLoading(state: UtilState, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
+    setModalType(state: UtilState, action: PayloadAction<ModalState>) {
+      state.modal = action.payload;
+    }
   },
 });
 

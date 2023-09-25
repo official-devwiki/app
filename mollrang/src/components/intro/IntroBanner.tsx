@@ -10,6 +10,7 @@ import {ShareIcon} from '@components/common/icons/ShareIcon';
 import {Button} from '@components/common/Button';
 
 export const FlexBox = styled.div`
+  
   button {
     width: 100%;
     display: flex;

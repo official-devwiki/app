@@ -135,6 +135,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg_modal: #fff;
     --bg_footer: #EFEFEF;
     --bg_input: #FDFDFD;
+    --bg_line: #f1f1f1;
   }
 
   body[data-theme="dark"] {
@@ -168,5 +169,6 @@ export const GlobalStyle = createGlobalStyle`
     --bg_modal: #272727;
     --bg_footer: #505050;
     --bg_input: #FDFDFD;
+    --bg_line: #575757;
   }
 `;

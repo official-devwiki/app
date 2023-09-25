@@ -7,6 +7,8 @@ import {BottomSlideModal} from '@components/common/modal/BottomSlide';
 import {useAppDispatch, useAppSelector} from '@hooks/useRedux';
 import {setBottomModalShow} from '@store/slice/utilSlice';
 import {IntegratedStatistics} from '@components/ratio/IntegratedStatistics';
+import {GuidePopupButton} from "@components/quizzes/guide/GuidePopupButton";
+import {FadeModal} from "@components/common/modal/FadeModal";
 
 interface Props {
   children: ReactNode;
@@ -37,10 +39,14 @@ export const LayoutComponent = (props: Props): ReactElement => {
       <Header />
       <Layout>
         <Main>{children}</Main>
+        <GuidePopupButton />
       </Layout>
-      <BottomSlideModal isOpen={bottomModalShow} onRequestClose={modalClose}>
-        <IntegratedStatistics />
-      </BottomSlideModal>
+      <FadeModal isOpen={bottomModalShow} onRequestClose={modalClose}>
+        롸
+      </FadeModal>
+      {/*<BottomSlideModal isOpen={bottomModalShow} onRequestClose={modalClose}>*/}
+      {/*  <IntegratedStatistics />*/}
+      {/*</BottomSlideModal>*/}
       <BottomNavigation />
     </>
   );
