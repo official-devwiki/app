@@ -14,7 +14,7 @@ export const AttendanceCheck = (): ReactElement => {
           <S.IconWrapper>
             <Icons type={'check-red'} />
           </S.IconWrapper>
-          <Typography as={'span'} variant={'body2'} weight={'medium'} color={'default'}>
+          <Typography variant={'body2'} weight={'bold'} color={'default'}>
             출석 체크
           </Typography>
         </div>

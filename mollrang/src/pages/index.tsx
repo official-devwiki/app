@@ -17,6 +17,17 @@ const PlayQuizBox = styled.div`
   }
 `;
 
+const SubItemsLayout = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+  
+  @media screen and (max-width: 767px) {
+    flex-direction: column;
+  }
+`;
+
 const Home: NextPage = (): ReactElement => {
   const router = useRouter();
 
@@ -34,12 +45,17 @@ const Home: NextPage = (): ReactElement => {
           </Button>
         </PlayQuizBox>
         <IntroShorts />
-        <CorrectAnswer />
-        <AttendanceCheck />
+        <SubItemsLayout>
+          <AttendanceCheck />
+          <CorrectAnswer />
+        </SubItemsLayout>
+
       </S.HomeBox>
       <Footer />
     </S.HomeLayout>
   );
 };
+
+
 
 export default Home;

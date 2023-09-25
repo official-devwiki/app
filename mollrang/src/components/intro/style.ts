@@ -13,7 +13,7 @@ export const IntroTextBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  min-width: 110px;
+  min-width: 125px;
 `;
 
 export const IntroTextIconWrapper1 = styled.div`

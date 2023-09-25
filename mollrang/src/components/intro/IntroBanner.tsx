@@ -34,7 +34,7 @@ export const IntroBanner = (): ReactElement => {
         <div>
           <S.IntroTextIconWrapper1>
             <NoteIcon />
-            <Typography>
+            <Typography weight={'bold'} variant={'body2'} color={"default"}>
               너 그거 알아?
             </Typography>
           </S.IntroTextIconWrapper1>
@@ -49,13 +49,11 @@ export const IntroBanner = (): ReactElement => {
           <FlexBox>
             <Button variant={'icon'}>
               <ShareIcon />
-              <Typography weight={'medium'}>
-                퀴즈 공유하기
+              <Typography weight={'bold'} variant={'body2'} color={"default"}>
+                몰랑 공유하기
               </Typography>
             </Button>
-
           </FlexBox>
-
         </div>
       </S.IntroTextBox>
     </S.IntroContainer>

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ShortsLayout = styled.div`
   width: 100%;
+  margin-top: 2em;
 `;
 export const ShortsBlockContainer = styled.div`
   width: 100%;

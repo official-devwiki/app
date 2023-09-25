@@ -16,10 +16,14 @@ const BottomNavigationLayout = styled.nav`
   min-width: 300px;
   height: 74px;
   border-radius: 10px 10px 0 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: none;
   z-index: 10;
+  
+  @media screen and (max-width: 767px) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
 `;
 
 const NavList = styled.ul`
@@ -43,6 +47,10 @@ const NavItem = styled.li`
   &:hover {
     filter: brightness(90%);
     cursor: pointer;
+  }
+  
+  @media screen and (max-width: 767px) {
+    
   }
 `;
 

@@ -24,7 +24,7 @@ export const IntroShorts = () => {
   return (
     <S.ShortsLayout>
       <S.FlexBox>
-        <Typography variant={'body2'} weight={'medium'} color={'default'} className={'shorts-title'}>
+        <Typography variant={'body2'} weight={'bold'} color={'default'} className={'shorts-title'}>
           피식
         </Typography>
         <EmoticonIcon />
