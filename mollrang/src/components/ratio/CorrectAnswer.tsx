@@ -1,6 +1,8 @@
 import {ReactElement} from 'react';
 import styled from 'styled-components';
 import {Typography} from '@components/common/Typography';
+import {SkeletonUi} from '@components/ui/skeleton/SkeletonUi';
+import {useGetMyAnswersQuery} from "@services/queries/ratioQuery";
 
 const CorrectAnswerLayout = styled.div`
   margin-top: 40px;
@@ -23,22 +25,23 @@ const CorrectAnswerBox = styled.div`
   justify-content: space-between;
   align-items: flex-end;
   width: 100%;
-
-  
 `;
 
 
-
 export const CorrectAnswer = (): ReactElement => {
+  const {data, isLoading} = useGetMyAnswersQuery('uuid');
+
   return (
     <CorrectAnswerLayout>
       <CorrectAnswerBox>
         <Typography weight={'bold'} variant={'body1'}>
           나의 정답률
         </Typography>
-        <Typography weight={'bold'} variant={'body1'}>
-          10 %
-        </Typography>
+        {isLoading ? (<SkeletonUi theme={{height: 20, width: 30, borderRadius: 4}} />) : (
+          <Typography weight={'bold'} variant={'body1'}>
+            {data && data[0].ratio} %
+          </Typography>
+        )}
       </CorrectAnswerBox>
     </CorrectAnswerLayout>
   );

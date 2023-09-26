@@ -15,7 +15,11 @@ interface Props {
 }
 
 const Layout = styled.div`
-  padding-bottom: 74px;
+  padding-bottom: 0;
+  
+  @media screen and (max-width: 767px) {
+    padding-bottom: 74px;
+  }
 `;
 
 const Main = styled.main`

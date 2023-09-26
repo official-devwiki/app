@@ -7,7 +7,7 @@ import {useEffect, useState} from 'react';
 
 export const IntroShorts = () => {
   const {data, isLoading} = useTodayShortsQuery();
-  const [solution, setSolution] = useState('');
+  const [solution, setSolution] = useState<string>('');
 
   useEffect(() => {
     removeSolution();
@@ -15,7 +15,7 @@ export const IntroShorts = () => {
 
   const removeSolution = (): void => {
     if (data) {
-      const {answer, solution} = data[0];
+      const {answer, solution} = data[0] as {answer: string, solution: string};
       const text = answer.replace(solution, '');
       setSolution(text);
     }
