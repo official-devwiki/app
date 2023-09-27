@@ -8,15 +8,20 @@ export interface UtilState {
   isLoading: boolean;
 }
 
+type ModalType = 'fade' | 'bottom-slide';
+
 type ModalState = {
   type: string;
+  modalType: ModalType;
   isOpen: boolean;
 }
+
 
 // Initial state
 const initialState: UtilState = {
   modal: {
     type: '',
+    modalType: 'fade',
     isOpen: false,
   },
   sideBarIsOpen: false,
@@ -34,6 +39,9 @@ export const UtilSlice = createSlice({
     setBottomModalShow(state: UtilState, action: PayloadAction<boolean>) {
       state.bottomModalShow = action.payload;
     },
+    setModalOpen(state: UtilState, action: PayloadAction<ModalState>) {
+      state.modal = action.payload;
+    },
     setIsLoading(state: UtilState, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
@@ -43,4 +51,4 @@ export const UtilSlice = createSlice({
   },
 });
 
-export const {setSideBarIsOpen, setBottomModalShow, setIsLoading} = UtilSlice.actions;
+export const {setSideBarIsOpen, setModalOpen, setBottomModalShow, setIsLoading} = UtilSlice.actions;

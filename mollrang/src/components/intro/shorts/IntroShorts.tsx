@@ -24,21 +24,21 @@ export const IntroShorts = () => {
   return (
     <S.ShortsLayout>
       <S.FlexBox>
-        <Typography variant={'body2'} weight={'bold'} color={'default'} className={'shorts-title'}>
+        <Typography variant={'body2'} weight={'bold'} color={'default'} className={'shorts-title'} >
           피식
         </Typography>
         <EmoticonIcon />
       </S.FlexBox>
       <S.ShortsBlockContainer>
         {isLoading ? (<SkeletonUi theme={{height: 40, borderRadius: 4}} />) : (
-          <S.ShortsBlock>
+          <S.ShortsBlock data-testid={"shorts-question"}>
             {data && data[0].question}
           </S.ShortsBlock>)}
         <S.AnswerBox>
           {isLoading ? (<SkeletonUi theme={{height: 20, width: 80, borderRadius: 4}} />) : (
             <>
               <S.EmptyBox />
-              <Typography>{solution}</Typography>
+              <Typography data-testid={"shorts-answer"}>{solution}</Typography>
             </>
           )}
         </S.AnswerBox>

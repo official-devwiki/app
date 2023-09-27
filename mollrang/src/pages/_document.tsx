@@ -50,6 +50,7 @@ class MyDocument extends Document {
         <body>
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <Main />
+        <div id="modal" />
         <NextScript />
         </body>
       </Html>

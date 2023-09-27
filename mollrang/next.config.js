@@ -68,6 +68,7 @@ module.exports = {
     '^@assets/(.*)$': '<rootDir>/assets/$1',
     '^@services/(.*)$': '<rootDir>/services/$1',
     '^@config/(.*)$': '<rootDir>/config/$1',
+    '^@tests/(.*)$': '<rootDir>/__tests_/$1',
   },
   trailingSlash: true,
   swcMinify: true,

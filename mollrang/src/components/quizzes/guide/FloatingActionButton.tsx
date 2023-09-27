@@ -4,7 +4,7 @@ import {Icons} from "@components/common/icons/Icons";
 import {Typography} from "@components/common/Typography";
 import {Button} from "@components/common/Button";
 import {useAppDispatch} from "@hooks/useRedux";
-import {setBottomModalShow} from "@store/slice/utilSlice";
+import {setModalOpen} from "@store/slice/utilSlice";
 
 const GuidePopupLayout = styled.div`
   position: absolute;
@@ -13,7 +13,8 @@ const GuidePopupLayout = styled.div`
   display: inline-block;
   
   button {
-    border: 1px solid gray;
+    background-color: var(--primary);
+    border: 1px solid var(--correct_border);
     border-radius: 50%;
     width: 60px;
     height: 60px;
@@ -26,17 +27,22 @@ const GuidePopupLayout = styled.div`
   }
 `;
 
-export const GuidePopupButton = (): ReactElement => {
+export const FloatingActionButton = (): ReactElement => {
   const dispatch = useAppDispatch();
   const guideOpen = (): void => {
-    dispatch(setBottomModalShow(true));
+    const payload = {
+      type: 'guide',
+      modalType: 'fade',
+      isOpen: true,
+    }
+    dispatch(setModalOpen(payload));
   };
 
   return (
     <GuidePopupLayout>
       <Button variant={'icon'} onClick={guideOpen}>
-        <Icons variant={'black'} type={'guide'} />
-        <Typography variant={'caption'} as={'span'} color={'default'}>가이드</Typography>
+        <Icons variant={'white'} type={'guide'} />
+        <Typography variant={'caption'} as={'span'} color={'white'}>가이드</Typography>
       </Button>
     </GuidePopupLayout>
   )
