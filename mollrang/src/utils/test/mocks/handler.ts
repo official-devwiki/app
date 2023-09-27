@@ -1,8 +1,9 @@
 import {rest} from 'msw';
 import {LOCAL_HOST_API} from '@config/index';
+import {Url} from "@apis/url";
 
 export const handlers = [
-  rest.get(`${LOCAL_HOST_API}/shorts`, (req, res, ctx) => {
+  rest.get(`${LOCAL_HOST_API}${Url.Shorts.findOneShorts}`, (req, res, ctx) => {
     return res(
       ctx.json([
         {

@@ -6,7 +6,7 @@ import {OpenBookIcon} from '@components/common/icons/OpenBookIcon';
 import * as S from './style';
 import {IntroBanner, IntroShorts} from '@components/intro';
 import {AttendanceCheck} from '@components/attendance/AttendanceCheck';
-import {CorrectAnswer} from '@components/ratio/CorrectAnswer';
+import {CorrectAnswer} from '@components/statistics/CorrectAnswer';
 import {useRouter} from 'next/router';
 import {Footer} from '@components/layout/footer/Footer';
 import styled from 'styled-components';
