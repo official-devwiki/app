@@ -6,10 +6,10 @@
     "@typescript-eslint"
   ],
   "extends": [
-    "plugin:react/recommended",
-    "plugin:tailwindcss/recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended"
+//    "plugin:react/recommended",
+//    "plugin:tailwindcss/recommended",
+//    "plugin:prettier/recommended",
+//    "plugin:@typescript-eslint/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "rules": {
