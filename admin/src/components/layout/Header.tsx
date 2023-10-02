@@ -1,6 +1,7 @@
 import {ReactElement} from "react";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
+import {Typography} from "../common/typography/Typography";
 
 interface Props {
   height: number;
@@ -17,19 +18,20 @@ const MenuList = styled.ul`
   justify-content: space-between;
   padding: 0 1em;
 `;
-const MenuItem = styled.li`
-`;
-export const Header = (props: Props): ReactElement => {
-  const {height} = props;
-  const router = useNavigate();
-  const HeaderLayout = styled.header`
+const MenuItem = styled.li``;
+
+const HeaderLayout = styled.header<{height: number}>`
     width: 100%;
-    height: ${height}px;
+    height: ${(props) => props.height}px;
     padding-right: 1em;
     display: flex;
     align-items: center;
-    
 `;
+
+export const Header = (props: Props): ReactElement => {
+  const {height} = props;
+  const router = useNavigate();
+
 
   const signOut = async (): Promise<void> => {
     try {
@@ -40,11 +42,13 @@ export const Header = (props: Props): ReactElement => {
   }
 
   return (
-    <HeaderLayout>
+    <HeaderLayout height={height}>
       <HeaderMenu>
         <MenuList>
           <MenuItem>
-            페이지 경로에 따라 제목 보여주기
+            <Typography variant={'h1'} color={'black'} weight={'bold'}>
+              페이지 경로에 따라 제목 보여주기
+            </Typography>
             ex ) <b>몰랑 관리 페이지</b> * 상태 관리 사용
           </MenuItem>
           <MenuItem>
