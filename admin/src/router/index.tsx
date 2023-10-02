@@ -4,8 +4,9 @@ import {
   Route,
 } from 'react-router-dom';
 import {Layout} from '../components/layout/Layout';
-import {MainPage} from '../pages/MainPage';
-import {SignInPage} from '../pages/SignInPage';
+import {HomePage} from '../pages/home/HomePage';
+import {SignInPage} from '../pages/index/SignInPage';
+import {MollrangPage} from "../pages/mollrang/IndexPage";
 
 //TODO: 라우터 가드 (로그인 권한 검사)
 export const Router = () =>
@@ -14,7 +15,10 @@ export const Router = () =>
       <Route>
         <Route path="sign-in" index element={<SignInPage />} />
         <Route element={<Layout />}>
-          <Route index element={<MainPage />} />
+          <Route index element={<HomePage />} />
+        </Route>
+        <Route path={'mollrang'} element={<Layout />}>
+          <Route index element={<MollrangPage />} />
         </Route>
       </Route>,
     ),
