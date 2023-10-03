@@ -1,14 +1,46 @@
-import {ReactElement} from 'react';
+import React, {ReactElement, useState} from 'react';
 import styled from 'styled-components';
+import {useNavigate} from 'react-router-dom';
 
 const SignInForm = styled.form`
   display: flex;
   flex-direction: column;
 `;
 
+interface SignInState {
+  id: string;
+  password: string;
+}
+
 export const SignIn = (): ReactElement => {
+  const router = useNavigate();
+  const [inputState, setInputState] = useState<SignInState>({
+    id: '',
+    password: '',
+  });
+  const {id, password} = inputState;
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const {name, value} = e.target;
+    setInputState({
+      ...inputState,
+      [name]: value,
+    });
+  };
+
+  const onSubmitFormAction = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    try {
+      e.preventDefault();
+      router('/', {replace: true});
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   return (
-    <SignInForm>
+    <SignInForm onSubmit={onSubmitFormAction}>
       데브위키 로고
       <div className="mb-6">
         <label
@@ -20,6 +52,9 @@ export const SignIn = (): ReactElement => {
         <input
           type="email"
           id="email"
+          name="id"
+          value={id}
+          onChange={onChangeInput}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="name@flowbite.com"
           required
@@ -35,6 +70,9 @@ export const SignIn = (): ReactElement => {
         <input
           type="password"
           id="password"
+          name="password"
+          value={password}
+          onChange={onChangeInput}
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           required
         />
