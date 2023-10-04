@@ -30,7 +30,7 @@ const HeaderLayout = styled.header<{height: number}>`
 `;
 
 export const Header = (props: Props): ReactElement => {
-  const {pageTitle} = usePageStore();
+  const pageTitle = usePageStore((state) => state.pageTitle);
   const {height} = props;
   const router = useNavigate();
 

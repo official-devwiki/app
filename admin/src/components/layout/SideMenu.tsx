@@ -1,7 +1,8 @@
 import {ReactElement} from 'react';
 import styled from 'styled-components';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import usePageStore from "../../store/page.store";
+
 const SideMenuLayout = styled.aside`
   background-color: #1f2937;
   width: 256px;
@@ -25,7 +26,7 @@ const SideMenuItem = styled.li`
 `;
 
 export const SideMenu = (): ReactElement => {
-  const {setCurrentPageTitle} = usePageStore();
+  const setCurrentPageTitle = usePageStore(state => state.setCurrentPageTitle);
   const router = useNavigate();
 
   const redirectHome = () => {

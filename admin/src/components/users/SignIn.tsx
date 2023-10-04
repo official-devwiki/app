@@ -1,6 +1,7 @@
 import React, {ReactElement, useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
+import {Typography} from "../common/typography/Typography";
 
 const SignInForm = styled.form`
   display: flex;
@@ -41,7 +42,9 @@ export const SignIn = (): ReactElement => {
 
   return (
     <SignInForm onSubmit={onSubmitFormAction}>
-      데브위키 로고
+      <Typography variant={'h1'} weight={'bold'} color={'white'}>
+        데브위키
+      </Typography>
       <div className="mb-6">
         <label
           htmlFor="email"
