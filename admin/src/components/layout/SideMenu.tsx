@@ -1,7 +1,7 @@
 import {ReactElement} from 'react';
 import styled from 'styled-components';
-import {Link} from "react-router-dom";
-
+import {Link, useNavigate} from "react-router-dom";
+import usePageStore from "../../store/page.store";
 const SideMenuLayout = styled.aside`
   background-color: #1f2937;
   width: 256px;
@@ -25,13 +25,26 @@ const SideMenuItem = styled.li`
 `;
 
 export const SideMenu = (): ReactElement => {
+  const {setCurrentPageTitle} = usePageStore();
+  const router = useNavigate();
+
+  const redirectHome = () => {
+    setCurrentPageTitle('데브위키');
+    router('/')
+  }
+
+  const redirectMollrangManagement = () => {
+    setCurrentPageTitle('몰랑');
+    router('/mollrang')
+  }
+
   return (
     <SideMenuLayout>
       <SideMenuBox>
         <SideMenuLists>
           <SideMenuItem>
-            <Link
-              to="/"
+            <button
+              onClick={redirectHome}
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -45,11 +58,11 @@ export const SideMenu = (): ReactElement => {
                 <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z" />
               </svg>
               <span className="ml-3 text">Dashboard</span>
-            </Link>
+            </button>
           </SideMenuItem>
           <SideMenuItem>
-            <Link
-              to="/mollrang"
+            <button
+              onClick={redirectMollrangManagement}
               className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
             >
               <svg
@@ -64,7 +77,7 @@ export const SideMenu = (): ReactElement => {
                 <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
               </svg>
               <span className="flex-1 ml-3 whitespace-nowrap text">몰랑</span>
-            </Link>
+            </button>
           </SideMenuItem>
         </SideMenuLists>
       </SideMenuBox>

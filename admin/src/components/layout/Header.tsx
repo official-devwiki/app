@@ -2,6 +2,7 @@ import {ReactElement} from "react";
 import styled from "styled-components";
 import {useNavigate} from "react-router-dom";
 import {Typography} from "../common/typography/Typography";
+import usePageStore from "../../store/page.store";
 
 interface Props {
   height: number;
@@ -29,9 +30,9 @@ const HeaderLayout = styled.header<{height: number}>`
 `;
 
 export const Header = (props: Props): ReactElement => {
+  const {pageTitle} = usePageStore();
   const {height} = props;
   const router = useNavigate();
-
 
   const signOut = async (): Promise<void> => {
     try {
@@ -47,9 +48,8 @@ export const Header = (props: Props): ReactElement => {
         <MenuList>
           <MenuItem>
             <Typography variant={'h1'} color={'black'} weight={'bold'}>
-              페이지 경로에 따라 제목 보여주기
+              {pageTitle}
             </Typography>
-            ex ) <b>몰랑 관리 페이지</b> * 상태 관리 사용
           </MenuItem>
           <MenuItem>
             <button
