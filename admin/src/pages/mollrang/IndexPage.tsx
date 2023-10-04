@@ -1,6 +1,6 @@
-import {ReactElement} from "react";
-import {QuizLists} from "../../components/mollrang/quiz-lists";
-import {QuizWriteForm} from "../../components/mollrang/quiz-write";
+import {ReactElement} from 'react';
+import {QuizLists} from '@components/mollrang/quiz-lists';
+import {QuizWriteForm} from '@components/mollrang/quiz-write';
 
 export const MollrangPage = (): ReactElement => {
   return (
@@ -8,5 +8,5 @@ export const MollrangPage = (): ReactElement => {
       <QuizLists />
       <QuizWriteForm />
     </div>
-  )
-}
+  );
+};

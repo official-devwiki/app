@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import {useState} from "react";
-import {Typography} from "../common/typography/Typography";
+import styled from 'styled-components';
+import {useState} from 'react';
+import {Typography} from '@components/common/typography/Typography';
 
 
 const QuizForm = styled.form`
@@ -9,17 +9,18 @@ const QuizForm = styled.form`
   flex-direction: column;
   align-items: center;
   padding: 1em;
-  
+
 `;
 
 const InputWrapper = styled.div`
   width: 100%;
+
   label {
     display: flex;
     flex-direction: column;
     margin-bottom: 1em;
   }
-  
+
   label input {
     outline: none;
     border: 1px solid #ededed;
@@ -27,7 +28,7 @@ const InputWrapper = styled.div`
     padding: 0.2em 0.6em;
     height: 36px;
     margin-top: 0.4em;
-    
+
     &:focus {
       border-color: #1f2937;
     }
@@ -74,11 +75,12 @@ export const QuizWriteForm = () => {
           <input name={'suffix'} value={suffix} type={'text'} />
         </label>
       </InputWrapper>
-      <Button type={'submit'} className={'text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'}>
-        <Typography variant={'body2'} color={"white"} weight={'bold'}>
+      <Button type={'submit'}
+              className={'text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700'}>
+        <Typography variant={'body2'} color={'white'} weight={'bold'}>
           저장
         </Typography>
       </Button>
     </QuizForm>
-  )
-}
+  );
+};

@@ -45,9 +45,23 @@
     //컴파일시 주석제거
     "strictFunctionTypes": true,
     //함수파라미터 타입체크 강하게
-    "baseUrl": "./src",
+    "baseUrl": "./src/",
+    "paths": {
+      "@components/*": [
+        "components/*"
+      ],
+      "@pages/*": [
+        "pages/*"
+      ],
+      "@libs/*": [
+        "libs/*"
+      ],
+      "@store/*": [
+        "store/*"
+      ]
+    },
     // 절대 경로 모듈이 아닌, 모듈이 기본적으로 위치한 디렉토리 설정 (예: './modules-name')
-    "strict": false,
+    "strict": false
   },
   "include": [
     "src"
