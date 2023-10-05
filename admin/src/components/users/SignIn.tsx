@@ -40,11 +40,14 @@ export const SignIn = (): ReactElement => {
     }
   };
 
+  const logo = () => {
+    const url = '/logo.svg';
+    return <img src={url} width={180} alt={'devwiki-logo'} />
+  }
+
   return (
     <SignInForm onSubmit={onSubmitFormAction}>
-      <Typography variant={'h1'} weight={'bold'} color={'white'}>
-        데브위키
-      </Typography>
+      {logo()}
       <div className='mb-6'>
         <label
           htmlFor='email'

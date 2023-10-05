@@ -3,6 +3,8 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {Typography} from '@components/common/typography/Typography';
 import usePageStore from '@store/page.store';
+import {HamburgerIcon} from "@components/common/icons/HamburgerIcon";
+import useUtilsStore from "@store/util.store";
 
 interface Props {
   height: number;
@@ -11,6 +13,10 @@ interface Props {
 const HeaderMenu = styled.nav`
   width: 100%;
   padding-left: 256px;
+  
+  @media screen and (max-width: 768px) {
+    padding-left: 0;
+  }
 `;
 
 const MenuList = styled.ul`
@@ -24,13 +30,13 @@ const MenuItem = styled.li``;
 const HeaderLayout = styled.header<{height: number}>`
   width: 100%;
   height: ${(props) => props.height}px;
-  padding-right: 1em;
   display: flex;
   align-items: center;
 `;
 
 export const Header = (props: Props): ReactElement => {
   const pageTitle = usePageStore((state) => state.pageTitle);
+  const {setIsOpen} = useUtilsStore();
   const {height} = props;
   const router = useNavigate();
 
@@ -41,11 +47,20 @@ export const Header = (props: Props): ReactElement => {
       console.log(e);
     }
   };
-
+  const openSideMenu = () => {
+    setIsOpen(true);
+  }
   return (
     <HeaderLayout height={height}>
       <HeaderMenu>
         <MenuList>
+          <MenuItem>
+            <button type="button"
+                    onClick={openSideMenu}
+                    className="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
+              <HamburgerIcon />
+            </button>
+          </MenuItem>
           <MenuItem>
             <Typography variant={'h1'} color={'black'} weight={'bold'}>
               {pageTitle}

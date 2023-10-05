@@ -79,7 +79,7 @@ export const Modal = (props: Props): ReactElement => {
     <AnimatePresence>
       {isOpen && (
         <ModalLayout
-          key={"fade-modal-key"}
+          key={"slide-modal-key"}
           onClick={outerClickEvent}
           initial={{opacity: 1}}
           animate={{

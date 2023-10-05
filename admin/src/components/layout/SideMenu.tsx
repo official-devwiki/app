@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import usePageStore from '@store/page.store';
 import {WriteIcon} from "@components/common/icons/WriteIcon";
+import useUtilsStore from "@store/util.store";
 
-const SideMenuLayout = styled.aside`
+
+const SideMenuLayout = styled.aside<{isOpen: boolean;}>`
   background-color: #1f2937;
   width: 256px;
   height: 100%;
@@ -12,6 +14,22 @@ const SideMenuLayout = styled.aside`
   left: 0;
   top: 0;
   padding: 1em;
+  animation-duration: 400ms;
+  
+  @media screen and (max-width: 768px) {
+    animation-name: ${(props) => !props.isOpen && 'slideout'};
+    animation-fill-mode: both;
+  }
+
+  @keyframes slideout {
+    from{
+      left: 0%;
+    }
+    to{
+      opacity: 0;
+      left: -100%;
+    }
+  }
 `;
 
 const SideMenuBox = styled.div`
@@ -26,7 +44,11 @@ const SideMenuItem = styled.li`
   }
 `;
 
+
+
 export const SideMenu = (): ReactElement => {
+  const isOpen = useUtilsStore(state => state.isOpen);
+
   const setCurrentPageTitle = usePageStore(state => state.setCurrentPageTitle);
   const router = useNavigate();
 
@@ -41,7 +63,7 @@ export const SideMenu = (): ReactElement => {
   };
 
   return (
-    <SideMenuLayout>
+    <SideMenuLayout isOpen={isOpen}>
       <SideMenuBox>
         <SideMenuLists>
           <SideMenuItem>
