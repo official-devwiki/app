@@ -19,12 +19,12 @@ const SignInBox = styled.div`
   display: flex;
   align-items: center;
 `;
-const SignInFormConteinr = styled.fieldset`
+const SignInFormContainer = styled.fieldset`
   background-color: #161a20;
   border-radius: 4px;
   padding: 1em;
   width: 100%;
-  height: 40vh;
+  height: 30vh;
   box-shadow: 0 1px 10px black;
 `;
 
@@ -33,9 +33,9 @@ export const SignInPage = (): ReactElement => {
     <SignInPageLayout>
       <SignInContainer>
         <SignInBox>
-          <SignInFormConteinr>
+          <SignInFormContainer>
             <SignIn />
-          </SignInFormConteinr>
+          </SignInFormContainer>
         </SignInBox>
       </SignInContainer>
     </SignInPageLayout>

@@ -57,7 +57,7 @@ export const BottomSlideModal = (props: Props): ReactElement => {
           className={styles.motion_modal}
         >
           <motion.div
-            initial={{opacity: 1, y: 50}}
+            initial={{opacity: 1, y: 700}}
             transition={{ease: [0.17, 0.67, 0.83, 1]}}
             animate={{
               opacity: 1,
@@ -65,7 +65,7 @@ export const BottomSlideModal = (props: Props): ReactElement => {
             }}
             exit={{
               opacity: 0,
-              y: 100,
+              y: 700,
               transitionEnd: {
                 display: 'none',
               },
