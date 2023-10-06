@@ -27,7 +27,7 @@ const Main = styled.main`
 export const LayoutComponent = (props: Props): ReactElement => {
   const {children} = props;
   const type = useAppSelector(
-    (state) => state.modal.modal.type,
+    (state) => state.modalStore.modal.type,
   );
 
   return (

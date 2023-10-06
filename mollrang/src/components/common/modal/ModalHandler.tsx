@@ -1,45 +1,51 @@
-import {useAppDispatch, useAppSelector} from "@hooks/useRedux";
-import React, {ReactElement, ReactNode} from "react";
+import {useAppSelector} from "@hooks/useRedux";
+import React, {ReactElement, ReactNode, useEffect, useRef} from "react";
 import {BottomSlideModal} from "@components/common/modal/slide/BottomSlide";
 import {FadeModal} from "@components/common/modal/fade/FadeModal";
-import {setModalOpen} from "@store/slice/modalSlice";
+import ReactDOM from "react-dom";
 
-interface Props {
+interface Modal {
   children: ReactNode;
 }
 
-export const ModalHandler: React.FunctionComponent<Props> = (props): ReactElement => {
+export interface ModalProps extends Modal{
+  isOpen: boolean;
+  ele: any;
+}
+
+export const ModalHandler: React.FunctionComponent<Modal> = (props): ReactElement => {
   const {children} = props;
   const {modal} = useAppSelector(
     (state) => state.modalStore,
   );
-  const {isOpen, type, modalType} = modal;
-  const dispatch = useAppDispatch();
+  const {isOpen, modalType} = modal;
 
-  const modalClose = (payload: boolean) => {
-    const action = {
-      type,
-      modalType: 'fade',
-      isOpen: payload,
+  const ele = useRef<HTMLDivElement>(null);
+  const element =
+    typeof window !== "undefined" &&
+    (document.querySelector("#modal") as HTMLDivElement);
+
+  if (!element) return null;
+
+  useEffect(() => {
+    const html = document.querySelector("html");
+    if (html) {
+      isOpen ? (html.style.overflow = "hidden") : (html.style.overflow = "");
     }
-    dispatch(setModalOpen(action))
-  };
+  }, [isOpen]);
 
   const modalHandler = (children: ReactNode) => {
     switch (modalType) {
       case 'bottom-slide':
         return (
-          <BottomSlideModal isOpen={isOpen} onRequestClose={modalClose}>
-            {children}
-          </BottomSlideModal>
+          <BottomSlideModal ele={ele} isOpen={isOpen} children={children} />
         );
       default:
         return (
-          <FadeModal isOpen={isOpen} onRequestClose={modalClose}>
-            {children}
-          </FadeModal>
+          <FadeModal ele={ele} isOpen={isOpen} children={children} />
         );
     }
   }
-  return modalHandler(children);
+
+  return <>{ReactDOM.createPortal(modalHandler(children), element)}</>;
 }

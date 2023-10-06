@@ -1,47 +1,20 @@
-import {AnimatePresence, motion} from 'framer-motion';
-import React, {ReactElement, ReactNode, useRef} from 'react';
-import styled from 'styled-components';
-import styles from '../Modal.module.scss';
+import {AnimatePresence,} from 'framer-motion';
+import React, {ReactElement} from 'react';
 import {XIcon} from '@components/common/icons/XIcon';
 import {Button} from '@components/common/Button';
+import * as S from '@components/common/modal/style';
+import * as F from '@components/common/modal/slide/style';
+import {ModalProps} from "@components/common/modal/ModalHandler";
+import useModalHook from "@hooks/useModalHook";
 
-const ModalBody = styled.div`
-  width: 100%;
-`;
-
-const ModalCloseButtonWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-  padding: 0.8em 1em;
-`;
-
-interface Props {
-  isOpen: boolean;
-  onRequestClose: (payload: boolean) => void;
-  children: ReactNode;
-}
-
-export const BottomSlideModal = (props: Props): ReactElement => {
-  const {isOpen, onRequestClose, children} = props;
-  const ele = useRef<HTMLDivElement>(null);
-
-  const modalClose = () => {
-    onRequestClose(false);
-  };
-
-  const outerClickEvent = (e: React.MouseEvent) => {
-    const {target} = e;
-    if (ele && ele.current) {
-      const elements = ele.current.contains(target as Node);
-      if (!elements) modalClose();
-    }
-  };
+export const BottomSlideModal = (props: ModalProps): ReactElement => {
+  const {isOpen, children, ele} = props;
+  const {onRequestClose, outerClickEvent} = useModalHook(ele);
 
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
+        <S.ModalLayout
           key={'bottom-modal-key'}
           onClick={outerClickEvent}
           initial={{opacity: 1}}
@@ -50,13 +23,9 @@ export const BottomSlideModal = (props: Props): ReactElement => {
           }}
           exit={{
             opacity: 0,
-            transitionEnd: {
-              display: 'none',
-            },
           }}
-          className={styles.motion_modal}
         >
-          <motion.div
+          <F.ModalContainer
             initial={{opacity: 1, y: 700}}
             transition={{ease: [0.17, 0.67, 0.83, 1]}}
             animate={{
@@ -66,24 +35,20 @@ export const BottomSlideModal = (props: Props): ReactElement => {
             exit={{
               opacity: 0,
               y: 700,
-              transitionEnd: {
-                display: 'none',
-              },
             }}
-            className={styles.motion_modal_wrapper}
           >
-            <div className={styles.motion_modal_body} ref={ele}>
-              <ModalCloseButtonWrapper>
-                <Button variant={'icon'} onClick={modalClose}>
+            <F.ModalBody ref={ele}>
+              <S.ModalCloseButtonWrapper>
+                <Button variant={'icon'} onClick={onRequestClose}>
                   <XIcon />
                 </Button>
-              </ModalCloseButtonWrapper>
-              <ModalBody>
+              </S.ModalCloseButtonWrapper>
+              <S.ModalContentsBox>
                 {children}
-              </ModalBody>
-            </div>
-          </motion.div>
-        </motion.div>
+              </S.ModalContentsBox>
+            </F.ModalBody>
+          </F.ModalContainer>
+        </S.ModalLayout>
       )}
     </AnimatePresence>
   );
