@@ -17,7 +17,7 @@ const initialState: QuizState = {
 };
 
 export const QuizSlice = createSlice({
-  name: 'quiz',
+  name: 'quizStore',
   initialState,
   reducers: {
     setCurrentStep(state: QuizState, action: PayloadAction<number>) {

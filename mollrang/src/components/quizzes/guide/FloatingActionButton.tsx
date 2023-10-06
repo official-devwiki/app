@@ -4,7 +4,7 @@ import {Icons} from "@components/common/icons/Icons";
 import {Typography} from "@components/common/Typography";
 import {Button} from "@components/common/Button";
 import {useAppDispatch} from "@hooks/useRedux";
-import {setModalOpen} from "@store/slice/utilSlice";
+import {setModalOpen} from "@store/slice/modalSlice";
 
 const GuidePopupLayout = styled.div`
   position: absolute;

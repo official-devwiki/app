@@ -2,11 +2,11 @@ import {ReactElement, ReactNode} from 'react';
 import styled from 'styled-components';
 import {MetaComponent} from '@components/layout/header/MetaComponent';
 import {Header} from './header/Header';
-import {BottomNavigation} from '@components/navigation/BottomNavigation';
-import {useAppDispatch, useAppSelector} from '@hooks/useRedux';
-import {setModalOpen} from '@store/slice/utilSlice';
+import {BottomNavigation} from '@components/navigation/bottom/BottomNavigation';
+import {useAppSelector} from '@hooks/useRedux';
 import {FloatingActionButton} from "@components/quizzes/guide/FloatingActionButton";
-import {FadeModal} from "@components/common/modal/fade/FadeModal";
+import {ModalHandler} from "@components/common/modal/ModalHandler";
+import {IntegratedStatistics} from "@components/statistics/IntegratedStatistics";
 
 interface Props {
   children: ReactNode;
@@ -26,20 +26,9 @@ const Main = styled.main`
 
 export const LayoutComponent = (props: Props): ReactElement => {
   const {children} = props;
-  const {modal} = useAppSelector(
-    (state) => state.utils,
+  const type = useAppSelector(
+    (state) => state.modal.modal.type,
   );
-  const {isOpen, type, modalType} = modal;
-  const dispatch = useAppDispatch();
-
-  const modalClose = (payload: boolean) => {
-    const action = {
-      type,
-      modalType: 'fade',
-      isOpen: payload,
-    }
-    dispatch(setModalOpen(action))
-  };
 
   return (
     <>
@@ -49,13 +38,9 @@ export const LayoutComponent = (props: Props): ReactElement => {
         <Main>{children}</Main>
         <FloatingActionButton />
       </Layout>
-
-      <FadeModal isOpen={isOpen} onRequestClose={modalClose}>
-        롸
-      </FadeModal>
-      {/*<BottomSlideModal isOpen={bottomModalShow} onRequestClose={modalClose}>*/}
-      {/*  <IntegratedStatistics />*/}
-      {/*</BottomSlideModal>*/}
+      <ModalHandler>
+        {type === 'statistics' && (<IntegratedStatistics />)}
+      </ModalHandler>
       <BottomNavigation />
     </>
   );
