@@ -19,7 +19,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   * {
-    font-family: 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+    font-family: 'Noto Sans KR', 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
   }
 
   a {

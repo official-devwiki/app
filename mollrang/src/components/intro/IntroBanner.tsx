@@ -14,8 +14,8 @@ export const FlexBox = styled.div`
   button {
     width: 100%;
     display: flex;
+    justify-content: space-evenly;
     margin-top: 4em;
-    justify-content: space-between;
     align-items: center;
   }
 `;

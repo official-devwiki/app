@@ -2,7 +2,7 @@ import {ReactElement, ReactNode} from 'react';
 import styled from 'styled-components';
 import {MetaComponent} from '@components/layout/header/MetaComponent';
 import {Header} from './header/Header';
-import {BottomNavigation} from '@components/layout/navigation/BottomNavigation';
+import {BottomNavigation} from '@components/navigation/BottomNavigation';
 import {useAppDispatch, useAppSelector} from '@hooks/useRedux';
 import {setModalOpen} from '@store/slice/utilSlice';
 import {FloatingActionButton} from "@components/quizzes/guide/FloatingActionButton";
