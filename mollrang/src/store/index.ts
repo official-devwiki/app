@@ -6,14 +6,14 @@ import {
 } from '@reduxjs/toolkit';
 import {createWrapper, HYDRATE} from 'next-redux-wrapper';
 import logger from 'redux-logger';
-import {UtilSlice, UtilState} from '@store/slice/utilSlice';
-import {QuizSlice, QuizState} from '@store/slice/quizSlice';
-import {ModalSlice, ModalState} from "@store/slice/modalSlice";
+import {UtilSlice, UtilityStore} from '@store/slice/utilSlice';
+import {QuizSlice, QuizStore} from '@store/slice/quizSlice';
+import {ModalSlice, ModalStore} from "@store/slice/modalSlice";
 
 export interface RootState {
-  utilityStore: UtilState;
-  quizStore: QuizState;
-  modalStore: ModalState;
+  utilityStore: UtilityStore;
+  quizStore: QuizStore;
+  modalStore: ModalStore;
 }
 
 const RootReducer = (state: RootState, action: AnyAction): CombinedState<RootState> => {

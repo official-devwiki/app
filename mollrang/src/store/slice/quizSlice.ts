@@ -1,15 +1,9 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {quizAnswerSubmit} from '@store/thunk/quizThunk';
 import {HYDRATE} from 'next-redux-wrapper';
+import {Store} from "@interfaces/store";
 
-export interface QuizState {
-  currentStep: number;
-  hasResult: boolean;
-  timer: number;
-  endOfQuiz: boolean;
-}
-
-const initialState: QuizState = {
+const initialState: QuizStore = {
   currentStep: 1,
   hasResult: false,
   timer: 60,
@@ -20,16 +14,16 @@ export const QuizSlice = createSlice({
   name: 'quizStore',
   initialState,
   reducers: {
-    setCurrentStep(state: QuizState, action: PayloadAction<number>) {
+    setCurrentStep(state: QuizStore, action: PayloadAction<number>) {
       state.currentStep = action.payload;
     },
-    setHasResult(state: QuizState, action: PayloadAction<boolean>) {
+    setHasResult(state: QuizStore, action: PayloadAction<boolean>) {
       state.hasResult = action.payload;
     },
-    setTimer(state: QuizState, action: PayloadAction<number>) {
+    setTimer(state: QuizStore, action: PayloadAction<number>) {
       state.timer = action.payload;
     },
-    setEndOfQuiz(state: QuizState, action: PayloadAction<boolean>) {
+    setEndOfQuiz(state: QuizStore, action: PayloadAction<boolean>) {
       state.endOfQuiz = action.payload;
     },
   },
@@ -54,6 +48,8 @@ export const QuizSlice = createSlice({
       });
   },
 });
+
+export type QuizStore = Store.Quiz.State;
 
 export const {setCurrentStep, setHasResult, setTimer, setEndOfQuiz} =
   QuizSlice.actions;

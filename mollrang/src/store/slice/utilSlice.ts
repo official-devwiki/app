@@ -1,28 +1,25 @@
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
-
-// Type for our state
-export interface UtilState {
-  sideBarIsOpen: boolean;
-  isLoading: boolean;
-}
+import {Store} from "@interfaces/store";
 
 // Initial state
-const initialState: UtilState = {
+const initialState: UtilityStore = {
   sideBarIsOpen: false,
   isLoading: false,
 };
-// Actual Slice
+
 export const UtilSlice = createSlice({
   name: 'utilityStore',
   initialState,
   reducers: {
-    setSideBarIsOpen(state: UtilState, action: PayloadAction<boolean>) {
+    setSideBarIsOpen(state: UtilityStore, action: PayloadAction<boolean>) {
       state.sideBarIsOpen = action.payload;
     },
-    setIsLoading(state: UtilState, action: PayloadAction<boolean>) {
+    setIsLoading(state: UtilityStore, action: PayloadAction<boolean>) {
       state.isLoading = action.payload;
     },
   },
 });
+
+export type UtilityStore = Store.Utility.State;
 
 export const {setSideBarIsOpen, setIsLoading} = UtilSlice.actions;

@@ -1,7 +1,7 @@
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {Store} from "@interfaces/store";
 
-const initialState: Store.Modal.SliceState = {
+const initialState: ModalStore = {
   modal: {
     type: '',
     modalType: 'fade',
@@ -13,12 +13,13 @@ export const ModalSlice = createSlice({
   name: 'modalStore',
   initialState,
   reducers: {
-    setModalOpen(state: Store.Modal.SliceState, action: PayloadAction<Store.Modal.State>) {
+    setModalOpen(state: ModalStore, action: PayloadAction<State>) {
       state.modal = action.payload;
     },
   }
 });
 
-export const {setModalOpen} = ModalSlice.actions;
-
+export type ModalStore = Store.Modal.SliceState;
 export type State = Store.Modal.State;
+
+export const {setModalOpen} = ModalSlice.actions;
