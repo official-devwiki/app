@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom';
 import usePageStore from '@store/page.store';
 import {WriteIcon} from "@components/common/icons/WriteIcon";
 import useUtilsStore from "@store/util.store";
+import {Logo} from "@components/common/icons/Logo";
 
 
 const SideMenuLayout = styled.aside<{isOpen: boolean;}>`
@@ -65,6 +66,7 @@ export const SideMenu = (): ReactElement => {
   return (
     <SideMenuLayout isOpen={isOpen}>
       <SideMenuBox>
+        <Logo />
         <SideMenuLists>
           <SideMenuItem>
             <button

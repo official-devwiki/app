@@ -2,6 +2,7 @@ import React, {ReactElement, useState} from 'react';
 import styled from 'styled-components';
 import {useNavigate} from 'react-router-dom';
 import {Typography} from '@components/common/typography/Typography';
+import {Logo} from "@components/common/icons/Logo";
 
 const SignInForm = styled.form`
   display: flex;
@@ -40,14 +41,11 @@ export const SignIn = (): ReactElement => {
     }
   };
 
-  const logo = () => {
-    const url = '/logo.svg';
-    return <img src={url} width={180} alt={'devwiki-logo'} />
-  }
+
 
   return (
     <SignInForm onSubmit={onSubmitFormAction}>
-      {logo()}
+      <Logo />
       <div className='mb-6'>
         <label
           htmlFor='email'
