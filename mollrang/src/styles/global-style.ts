@@ -107,6 +107,18 @@ export const GlobalStyle = createGlobalStyle`
     --blockquote: #FFE588;
     --warning: #FF5050;
 
+    // Typography - light
+    --textDefault: #444343;
+    --textWhite: #fff;
+    --textPrimary: #00C7AE;
+    --textBlack000: #000;
+    --textBlack100: #222;
+    --textBlack200: #444343;
+    --textGray000: #969696;
+    --textGray100: #989898;
+    --textGray200: #C6C6C6;
+    --textRed000: #FF5050;
+
     // 출석 체크 요일
     --day_circle: #CACACA;
     --day_bg: #F4F4F4;
@@ -142,6 +154,18 @@ export const GlobalStyle = createGlobalStyle`
     --primary: #778C86;
     --blockquote: #282828;
     --warning: #FF533B;
+
+    // Typography - dark
+    --textDefault: #fff;
+    --textWhite: #fff;
+    --textPrimary: #778C86;
+    --textBlack000: #fff;
+    --textBlack100: #f1f1f1;
+    --textBlack200: #f5f5f5;
+    --textGray000: #969696;
+    --textGray100: #A6A6A6;
+    --textGray200: #C6C6C6;
+    --textRed000: #FF5050;
 
     // 출석 체크 요일
     --day_circle: #606060;

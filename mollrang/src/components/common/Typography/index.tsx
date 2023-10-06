@@ -1,64 +1,58 @@
-import classNames from 'classnames';
-import styles from './Typography.module.scss';
-import React, {ComponentProps, ReactElement} from 'react';
+import React, { ComponentProps, ReactElement } from 'react';
+import styled from "styled-components";
+import * as Style from "./style";
 
-interface Props extends ComponentProps<'p'> {
-  variant?: Variant;
-  weight?: FontWeight;
-  color?: FontColor;
+interface Typography extends ComponentProps<'p'> {
+  variant?: Style.Variant;
+  weight?: Style.FontWeightType;
+  color?: Style.FontColorType;
   as?: keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
 }
 
-export type Variant =
-  | 'h1'
-  | 'h2'
-  | 'h3'
-  | 'h4'
-  | 'h5'
-  | 'body1'
-  | 'body2'
-  | 'caption';
-export type FontWeight = 'thin' | 'light' | 'regular' | 'medium' | 'bold';
-export type FontColor =
-  | 'primary'
-  | 'default'
-  | 'white'
-  | 'sub_text'
-  | 'red'
+const element: { [key in Style.Variant]: string } = {
+  h1: 'h1',
+  h2: 'h2',
+  h3: 'h3',
+  h4: 'h4',
+  h5: 'h5',
+  body1: 'p',
+  body2: 'p',
+  caption: 'p',
+};
 
-export const Typography = (props: Props): ReactElement => {
+const StyledComponent = (element: any) => styled(element)<Typography>`
+    letter-spacing: 0.15px;
+    line-height: 1.25rem;
+    color: ${(props) => Style.FontColor[props.color]};
+    font-size: ${(props) => Style.FontSize(props.variant)}px;
+    font-weight: ${(props) => Style.FontWeight(props.weight)};
+  `;
+
+function baseElement (props: Typography) {
   const {
     className,
     variant = 'body1',
     weight = 'regular',
-    color = 'default',
+    color = 'textDefault',
     children,
     as,
     ...rest
   } = props;
 
-  const element: { [key in Variant]: string } = {
-    h1: 'h1',
-    h2: 'h2',
-    h3: 'h3',
-    h4: 'h4',
-    h5: 'h5',
-    body1: 'p',
-    body2: 'p',
-    caption: 'p',
-  };
-
-  return React.createElement(
+  return (React.createElement(
     as || element[variant],
     {
-      className: classNames(
-        styles[variant],
-        styles[weight],
-        styles[color],
-        className,
-      ),
+      className,
       ...rest,
     },
     children,
-  );
+  ))
+}
+
+const styledElement = StyledComponent(baseElement);
+
+export const Typography = (props: Typography): ReactElement => {
+  return React.createElement(styledElement, props);
 };
+
+

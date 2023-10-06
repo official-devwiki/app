@@ -6,10 +6,11 @@ import {OpenBookIcon} from '@components/common/icons/OpenBookIcon';
 import * as S from './style';
 import {IntroBanner, IntroShorts} from '@components/intro';
 import {AttendanceCheck} from '@components/attendance/AttendanceCheck';
-import {CorrectAnswer} from '@components/statistics/CorrectAnswer';
+import {CorrectAnswers} from '@components/statistics/CorrectAnswers';
 import {useRouter} from 'next/router';
 import {Footer} from '@components/layout/footer/Footer';
 import styled from 'styled-components';
+import {ConsecutiveAnswers} from "@components/statistics/ConsecutiveAnswers";
 
 const PlayQuizBox = styled.div`
   width: 100%;
@@ -38,8 +39,22 @@ const SubItemsLayout = styled.div`
   width: 100%;
   height: 100%;
   
+  .answers-container {
+    width: 100%;
+    margin-top: 40px;
+    margin-bottom: 3em;
+    padding: 18px 0;
+
+  }
+  
   @media screen and (max-width: 767px) {
     flex-direction: column;
+
+    .answers-container {
+      border-top: 1px solid var(--correct_border);
+      border-bottom: 1px solid var(--correct_border);
+      margin-top: 1em;
+    }
   }
 `;
 
@@ -57,13 +72,16 @@ const Home: NextPage = (): ReactElement => {
           <hr />
           <Button type={'button'} variant={'primary-rounded'} onClick={playQuizButton}>
             <OpenBookIcon />
-            <Typography as={'span'} color={'white'}>오늘의 퀴즈</Typography>
+            <Typography as={'span'} color={'textWhite'}>오늘의 퀴즈</Typography>
           </Button>
         </PlayQuizBox>
         <IntroShorts />
         <SubItemsLayout>
           <AttendanceCheck />
-          <CorrectAnswer />
+          <div className={'answers-container'}>
+            <CorrectAnswers />
+            <ConsecutiveAnswers />
+          </div>
         </SubItemsLayout>
 
       </S.HomeBox>

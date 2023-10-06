@@ -42,7 +42,7 @@ export const FloatingActionButton = (): ReactElement => {
     <GuidePopupLayout>
       <Button variant={'icon'} onClick={guideOpen}>
         <Icons variant={'white'} type={'guide'} />
-        <Typography variant={'caption'} as={'span'} color={'white'}>가이드</Typography>
+        <Typography variant={'caption'} as={'span'} color={'textWhite'}>가이드</Typography>
       </Button>
     </GuidePopupLayout>
   )

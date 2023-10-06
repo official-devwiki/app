@@ -24,7 +24,7 @@ export const IntroShorts = () => {
   return (
     <S.ShortsLayout>
       <S.FlexBox>
-        <Typography variant={'body2'} weight={'bold'} color={'default'} className={'shorts-title'} >
+        <Typography variant={'body2'} weight={'bold'} color={"textDefault"} className={'shorts-title'} >
           피식
         </Typography>
         <EmoticonIcon />
@@ -38,7 +38,7 @@ export const IntroShorts = () => {
           {isLoading ? (<SkeletonUi theme={{height: 20, width: 80, borderRadius: 4}} />) : (
             <>
               <S.EmptyBox />
-              <Typography data-testid={"shorts-answer"}>{solution}</Typography>
+              <Typography color={"textDefault"} data-testid={"shorts-answer"}>{solution}</Typography>
             </>
           )}
         </S.AnswerBox>

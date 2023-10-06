@@ -76,24 +76,24 @@ export const BottomNavigation = (): ReactElement => {
         <NavItem>
           <Button variant={'icon'} onClick={goToHome}>
             <Icons type={'home'} />
-            <Typography variant={'caption'} as={'span'} color={'white'}>홈</Typography>
+            <Typography variant={'caption'} as={'span'} color={'textWhite'}>홈</Typography>
           </Button>
         </NavItem>
         <NavItem>
           <Button variant={'icon'} onClick={guideOpen}>
             <Icons type={'guide'} />
-            <Typography variant={'caption'} as={'span'} color={'white'}>가이드</Typography>
+            <Typography variant={'caption'} as={'span'} color={'textWhite'}>가이드</Typography>
           </Button>
         </NavItem>
         <NavItem>
           <Button variant={'icon'} onClick={statisticsOpen}>
             <Icons type={'chart'} />
-            <Typography variant={'caption'} as={'span'} color={'white'}>통계</Typography>
+            <Typography variant={'caption'} as={'span'} color={'textWhite'}>통계</Typography>
           </Button>
         </NavItem>
         <NavItem>
           <Icons type={'setting'} />
-          <Typography variant={'caption'} as={'span'} color={'white'}>설정</Typography>
+          <Typography variant={'caption'} as={'span'} color={'textWhite'}>설정</Typography>
         </NavItem>
       </NavList>
     </BottomNavigationLayout>

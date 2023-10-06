@@ -14,16 +14,8 @@ export const AttendanceCheck = (): ReactElement => {
           <S.IconWrapper>
             <Icons type={'check-red'} />
           </S.IconWrapper>
-          <Typography variant={'body2'} weight={'bold'} color={'default'}>
+          <Typography variant={'body2'} weight={'bold'} color={'textDefault'}>
             출석 체크
-          </Typography>
-        </div>
-        <div className={'consecutive_days'}>
-          <Typography as={'span'} variant={'caption'} color={'sub_text'}>
-            연속 출석일
-          </Typography>
-          <Typography as={'span'} variant={'caption'} weight={'bold'} color={'default'}>
-            1 일
           </Typography>
         </div>
       </S.AttendanceTitleWrapper>
