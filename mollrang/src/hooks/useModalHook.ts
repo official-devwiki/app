@@ -2,7 +2,9 @@ import {useAppDispatch, useAppSelector} from "@hooks/useRedux";
 import {setModalOpen} from "@store/slice/modalSlice";
 import React from "react";
 
-export default function useModalHook(ele: any) {
+export type Element = React.MutableRefObject<HTMLDivElement>;
+
+export default function useModalHook(ele: Element) {
   const dispatch = useAppDispatch();
   const {modal} = useAppSelector(
     (state) => state.modalStore,

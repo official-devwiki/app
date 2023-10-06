@@ -3,6 +3,7 @@ import React, {ReactElement, ReactNode, useEffect, useRef} from "react";
 import {BottomSlideModal} from "@components/common/modal/slide/BottomSlide";
 import {FadeModal} from "@components/common/modal/fade/FadeModal";
 import ReactDOM from "react-dom";
+import {Element} from "@hooks/useModalHook";
 
 interface Modal {
   children: ReactNode;
@@ -10,7 +11,7 @@ interface Modal {
 
 export interface ModalProps extends Modal{
   isOpen: boolean;
-  ele: any;
+  ele: Element;
 }
 
 export const ModalHandler: React.FunctionComponent<Modal> = (props): ReactElement => {
