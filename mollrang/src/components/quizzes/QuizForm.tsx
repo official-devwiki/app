@@ -1,6 +1,7 @@
 import {ReactElement} from 'react';
 import {Typography} from '@components/common/Typography';
 import styled from 'styled-components';
+import {QuizIcon} from '@components/common/icons/QuizIcon';
 
 const QuizFormLayout = styled.form`
   width: 100%;
@@ -11,7 +12,7 @@ const QuizSolutionBox = styled.div`
   padding: 20px;
   border: 1px solid #FFC700;
   border-radius: 4px;
-  box-shadow: 0 4px 4px 0 rgba(0,0,0,0.1);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
 
   label {
     margin: 1em 0;
@@ -27,6 +28,7 @@ const EmptyBlock = styled.div`
   height: 20px;
   background-color: #D9D9D9;
   border-radius: 4px;
+  margin-right: 6px;
 `;
 const FlexBox = styled.div`
   display: flex;
@@ -51,28 +53,33 @@ const Input = styled.input`
   border: 1px solid #DFDFDF;
   border-radius: 4px;
   background-color: #fff;
-  
+
   &:focus {
     border-color: #00C7AE;
   }
-  
+
   &:disabled {
     background-color: #EBEBEB;
   }
-  
+
   &.success {
     &:disabled {
       border-color: #00C7AE;
       background-color: #00C7AE;
-    } 
+    }
   }
-  
+
   &.hint {
     &:disabled {
       border-color: #FFC700;
       background-color: #FFC700;
     }
   }
+`;
+
+const QuizFormTitle = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 /*
@@ -83,10 +90,13 @@ export const QuizForm = (): ReactElement => {
   return (
     <QuizFormLayout>
       <QuizSolutionBox>
-        Q.
-        <Typography variant={'body1'} weight={'bold'} color={'textDefault'}>
-          개발자가 다크모드를 좋아하는 이유는?
-        </Typography>
+        <QuizFormTitle>
+          <QuizIcon />
+          <Typography variant={'body1'} weight={'bold'} color={'textDefault'}>
+            개발자가 다크모드를 좋아하는 이유는?
+          </Typography>
+        </QuizFormTitle>
+
         <FlexBox>
           <EmptyBlock />
           <EmptyBlock />
