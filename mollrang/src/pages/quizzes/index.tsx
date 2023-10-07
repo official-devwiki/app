@@ -1,7 +1,7 @@
 import {NextPage} from 'next';
 import {ReactElement} from 'react';
 import styled from 'styled-components';
-import {QuizForm} from '@components/quizzes/QuizForm';
+import {QuizForm} from '@components/quizzes/form/QuizForm';
 import {Button} from '@components/common/Button';
 import {Typography} from '@components/common/Typography';
 
@@ -19,7 +19,7 @@ const QuizContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
- 
+
 `;
 
 const QuizBox = styled.div`
