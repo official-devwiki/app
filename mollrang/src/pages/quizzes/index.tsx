@@ -13,6 +13,7 @@ const QuizLayout = styled.div`
 
 const QuizContainer = styled.div`
   max-width: 900px;
+  margin: auto;
   width: 100%;
   height: 100%;
   display: flex;
@@ -32,7 +33,7 @@ const QuizBox = styled.div`
 const FlexBox = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   margin-top: 20px;
 
   button:nth-child(1) {
@@ -46,7 +47,7 @@ const QuizPage: NextPage = (): ReactElement => {
     <QuizLayout>
       <QuizContainer>
         <QuizBox>
-          <Typography variant={'h1'} weight={'bold'}>
+          <Typography variant={'h1'} weight={'bold'} color={'textDefault'}>
             오늘의 퀴즈
           </Typography>
           <QuizForm />
