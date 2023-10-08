@@ -7,7 +7,7 @@ import {QueryKeys} from '@services/keys/queryKeys';
  */
 export const useTodayShortsQuery = () => {
   const result = useQuery({
-    queryKey: [QueryKeys.Shorts],
+    queryKey: [QueryKeys.Shorts.getShorts],
     queryFn: () => getTodayShorts(),
   });
   return result;

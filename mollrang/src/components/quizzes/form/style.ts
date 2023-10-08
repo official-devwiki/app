@@ -26,7 +26,9 @@ export const FlexBox = styled.div`
   align-items: center;
   justify-content: flex-end;
 `;
-export const InputContainer = styled.div``;
+export const InputContainer = styled.div`
+  margin: 3em auto;
+`;
 
 export const InputLayout = styled.div`
   display: flex;

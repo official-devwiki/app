@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, {ComponentProps, ReactElement} from 'react';
+import classNames from "classnames";
 
 const Input = styled.input`
   outline: none;
@@ -15,7 +16,7 @@ const Input = styled.input`
   }
 
   &:disabled {
-    background-color: #EBEBEB;
+    background-color: #d3d3d3;
   }
 
   &.success {
@@ -33,7 +34,7 @@ const Input = styled.input`
   }
 `;
 
-type InputVariant = '' | 'hint' | 'success'
+type InputVariant = 'hint' | 'success'
 
 interface Props extends ComponentProps<'input'> {
   variant?: InputVariant;
@@ -41,8 +42,8 @@ interface Props extends ComponentProps<'input'> {
 }
 
 export const BlockInput = (props: Props): ReactElement => {
-  const {variant = '', disabled = false, className} = props;
+  const {variant, disabled = false, className} = props;
   return (
-    <Input minLength={1} maxLength={1} tabIndex={10} type={'text'} className={className} disabled={disabled} />
+    <Input minLength={1} maxLength={1} tabIndex={10} type={'text'} className={classNames(className, variant)} disabled={disabled} />
   );
 };

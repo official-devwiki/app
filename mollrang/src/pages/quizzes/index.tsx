@@ -2,7 +2,6 @@ import {NextPage} from 'next';
 import {ReactElement} from 'react';
 import styled from 'styled-components';
 import {QuizForm} from '@components/quizzes/form/QuizForm';
-import {Button} from '@components/common/Button';
 import {Typography} from '@components/common/Typography';
 
 const QuizLayout = styled.div`
@@ -30,16 +29,7 @@ const QuizBox = styled.div`
   width: 100%;
 `;
 
-const FlexBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
 
-  button:nth-child(1) {
-    margin-right: 1em;
-  }
-`;
 
 
 const QuizPage: NextPage = (): ReactElement => {
@@ -51,18 +41,6 @@ const QuizPage: NextPage = (): ReactElement => {
             오늘의 퀴즈
           </Typography>
           <QuizForm />
-          <FlexBox>
-            <Button variant={'secondary'}>
-              <Typography as={'span'}>
-                그만하기
-              </Typography>
-            </Button>
-            <Button variant={'primary'}>
-              <Typography as={'span'}>
-                제출하기
-              </Typography>
-            </Button>
-          </FlexBox>
         </QuizBox>
       </QuizContainer>
     </QuizLayout>
