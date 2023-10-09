@@ -7,27 +7,29 @@ import {EmptyBlock} from '@components/ui/block/EmptyBlock';
 import {SkeletonUi} from '@components/ui/skeleton/SkeletonUi';
 import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
 import {Button} from "@components/common/Button";
-import styled from "styled-components";
 
 interface Chance {
   step: number;
   answer: string;
 }
 
-const FlexBox = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
+const initialStepState: Chance[] = [
+  {step: 1, answer: ''},
+  {step: 2, answer: ''},
+  {step: 3, answer: ''},
+  {step: 4, answer: ''},
+  {step: 5, answer: ''}
+];
 
-  button:nth-child(1) {
-    margin-right: 1em;
-  }
-`;
+interface Answer {
+  key: string;
+  answer: string;
+}
 
 //TODO 1. ServerSidePage로 변경
 export const QuizForm = (): ReactElement => {
-  const [chance, setChance] = useState<Chance[]>([{step: 1, answer: ''},{step: 2, answer: ''},{step: 3, answer: ''},{step: 4, answer: ''},{step: 5, answer: ''},]);
+  const [chance, setChance] = useState<Chance[]>(initialStepState);
+  const [answers, setAnswer] = useState<Answer[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
   const {quiz, isLoading} = useTodayQuizzesQuery();
 
@@ -41,24 +43,34 @@ export const QuizForm = (): ReactElement => {
     return block;
   }
 
+  const todayQuizAnswerSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    // TODO 제출 후 다음 단계로
+    setCurrentStep(+currentStep);
+  }
+
+  const onChangeInputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    const {name, value} = e.target;
+    console.log(e.target)
+    setAnswer([
+      ...answers,
+      {
+        key: name,
+        answer: value
+      }
+    ]);
+    console.log(answers)
+  }
+
   const textInputElementGenerator = (step: number): ReactElement[] => {
     const input = [];
     const disabled = currentStep !== step;
     if (quiz) {
       for (let i = 0; i < quiz.answerLength; i++) {
-        input.push(<BlockInput disabled={disabled} />);
+        input.push(<BlockInput name={String(i+1)} onChange={e => onChangeInputHandler(e)} disabled={disabled} />);
       }
     }
     return input
-  }
-
-  const todayQuizAnswerSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
-    console.log('?1')
-    e.preventDefault();
-    console.log('?2')
-
-    // TODO 제출 후 다음 단계로
-    setCurrentStep(+currentStep);
   }
 
   return (
@@ -84,26 +96,25 @@ export const QuizForm = (): ReactElement => {
       <S.InputContainer>
         {chance.map((value, index) => {
           return (
-            <S.InputLayout key={value.step}>
+            <S.InputLayout key={value.step + index}>
               {textInputElementGenerator(value.step)}
             </S.InputLayout>
           )
         })}
       </S.InputContainer>
 
-      <FlexBox>
+      <S.ButtonFlexBox>
         <Button variant={'secondary'}>
           <Typography as={'span'}>
             그만하기
           </Typography>
         </Button>
-        <button type={'submit'}>Test</button>
         <Button variant={'primary'} type={"submit"}>
           <Typography as={'span'}>
             제출하기
           </Typography>
         </Button>
-      </FlexBox>
+      </S.ButtonFlexBox>
     </S.QuizFormLayout>
   );
 };

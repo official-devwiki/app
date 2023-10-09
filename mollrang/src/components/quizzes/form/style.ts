@@ -19,7 +19,16 @@ export const QuizSolutionBox = styled.div`
     }
   }
 `;
+export const ButtonFlexBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 20px;
 
+  button:nth-child(1) {
+    margin-right: 1em;
+  }
+`;
 
 export const FlexBox = styled.div`
   display: flex;

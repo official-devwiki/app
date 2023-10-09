@@ -1,49 +1,33 @@
-import styled from 'styled-components';
-import React, {ComponentProps, ReactElement} from 'react';
+import React, {ChangeEvent, ComponentProps, ReactElement} from 'react';
 import classNames from "classnames";
+import {BlockInputElement} from "@components/common/Input/style";
 
-const Input = styled.input`
-  outline: none;
-  width: 50px;
-  height: 39px;
-  border: 1px solid #DFDFDF;
-  border-radius: 4px;
-  background-color: #fdfdfd;
-
-  &:focus {
-    background-color: #fff;
-    border-color: #00C7AE;
-  }
-
-  &:disabled {
-    background-color: #d3d3d3;
-  }
-
-  &.success {
-    &:disabled {
-      border-color: #00C7AE;
-      background-color: #00C7AE;
-    }
-  }
-
-  &.hint {
-    &:disabled {
-      border-color: #FFC700;
-      background-color: #FFC700;
-    }
-  }
-`;
-
+type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 type InputVariant = 'hint' | 'success'
 
 interface Props extends ComponentProps<'input'> {
   variant?: InputVariant;
   disabled?: boolean;
+  onChange?: (event: InputChangeEvent) => void;
 }
 
 export const BlockInput = (props: Props): ReactElement => {
-  const {variant, disabled = false, className} = props;
+  const {variant, disabled = false, className, onChange, ...rest} = props;
+
+  const onChangeHandler = (event: InputChangeEvent): void => {
+    onChange && onChange(event);
+  };
+
   return (
-    <Input minLength={1} maxLength={1} tabIndex={10} type={'text'} className={classNames(className, variant)} disabled={disabled} />
+    <BlockInputElement
+      onChange={onChangeHandler}
+      minLength={1}
+      maxLength={1}
+      tabIndex={10}
+      type={'text'}
+      className={classNames(className, variant)}
+      disabled={disabled}
+      {...rest}
+    />
   );
 };
