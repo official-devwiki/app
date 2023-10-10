@@ -1,12 +1,12 @@
-import React, {ReactElement, useState} from 'react';
-import {Typography} from '@components/common/Typography';
-import {QuizIcon} from '@components/common/icons/QuizIcon';
-import {BlockInput} from '@components/common/Input/BlockInpu';
-import * as S from './style';
-import {EmptyBlock} from '@components/ui/block/EmptyBlock';
-import {SkeletonUi} from '@components/ui/skeleton/SkeletonUi';
-import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
-import {Button} from "@components/common/Button";
+import React, { ReactElement, useEffect, useState } from "react";
+import { Typography } from "@components/common/Typography";
+import { QuizIcon } from "@components/common/icons/QuizIcon";
+import { BlockInput as Input } from "@components/common/Input/BlockInpu";
+import * as S from "./style";
+import { EmptyBlock } from "@components/ui/block/EmptyBlock";
+import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
+import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
+import { Button } from "@components/common/Button";
 
 interface Chance {
   step: number;
@@ -14,11 +14,11 @@ interface Chance {
 }
 
 const initialStepState: Chance[] = [
-  {step: 1, answer: ''},
-  {step: 2, answer: ''},
-  {step: 3, answer: ''},
-  {step: 4, answer: ''},
-  {step: 5, answer: ''}
+  { step: 1, answer: "" },
+  { step: 2, answer: "" },
+  { step: 3, answer: "" },
+  { step: 4, answer: "" },
+  { step: 5, answer: "" },
 ];
 
 interface Answer {
@@ -26,70 +26,100 @@ interface Answer {
   answer: string;
 }
 
-//TODO 1. ServerSidePage로 변경
 export const QuizForm = (): ReactElement => {
   const [chance, setChance] = useState<Chance[]>(initialStepState);
   const [answers, setAnswer] = useState<Answer[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
-  const {quiz, isLoading} = useTodayQuizzesQuery();
+
+  const { quiz, isLoading } = useTodayQuizzesQuery();
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
     if (quiz) {
       for (let i = 0; i < quiz.answerLength; i++) {
-        block.push(<EmptyBlock />);
+        block.push(<EmptyBlock key={`empty-box-${i}`} />);
       }
     }
     return block;
-  }
+  };
 
   const todayQuizAnswerSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
-    // TODO 제출 후 다음 단계로
-    setCurrentStep(+currentStep);
-  }
+    // TODO 1. 서버에 값 전송
+    // 2. 전송 후 전달받은 값으로 
+    setCurrentStep(currentStep + 1);
+  };
 
-  const onChangeInputHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    const {name, value} = e.target;
-    console.log(e.target)
-    setAnswer([
-      ...answers,
-      {
-        key: name,
-        answer: value
-      }
-    ]);
-    console.log(answers)
-  }
+  useEffect(() => {
+    let values = [];
+    for (let i = 0; i < quiz.answerLength; i++) {
+      values.push({ key: "", answer: "" });
+    }
+    setAnswer(values);
+  }, []);
 
+  const onChangeInputHandler = (
+    index: number,
+    e: React.ChangeEvent<HTMLInputElement>,
+  ): void => {
+    const { name, value } = e.target;
+    const values: Answer[] = [...answers];
+
+    values[index].key = name;
+    values[index].answer = value;
+
+    setAnswer(values);
+  };
   const textInputElementGenerator = (step: number): ReactElement[] => {
     const input = [];
     const disabled = currentStep !== step;
     if (quiz) {
       for (let i = 0; i < quiz.answerLength; i++) {
-        input.push(<BlockInput name={String(i+1)} onChange={e => onChangeInputHandler(e)} disabled={disabled} />);
+        input.push(
+          <Input
+            name={String(i + 1)}
+            onChange={(e) => onChangeInputHandler(i, e)}
+            disabled={disabled}
+            key={`input-box-${i}`}
+          />,
+        );
       }
     }
-    return input
-  }
+    return input;
+  };
 
   return (
     <S.QuizFormLayout onSubmit={todayQuizAnswerSubmit}>
       <S.QuizSolutionBox>
         <S.QuizFormTitle>
           <QuizIcon />
-          {isLoading ? (<SkeletonUi theme={{height: 40, borderRadius: 4}} />) : (
+          {isLoading ? (
+            <SkeletonUi theme={{ height: 40, borderRadius: 4 }} />
+          ) : (
             <>
-              <Typography variant={'body1'} weight={'bold'} color={'textDefault'}>
+              <Typography
+                variant={"body1"}
+                weight={"bold"}
+                color={"textDefault"}
+              >
                 {quiz.question}
               </Typography>
-            </>)}
+            </>
+          )}
         </S.QuizFormTitle>
 
         <S.FlexBox>
           {emptyBlockElementGenerator()}
-          {quiz.prefixWord && (<Typography variant={'body2'} color={'textPrimary'} weight={'bold'}>{quiz.prefixWord}</Typography>)}
-          {quiz.suffixWord && (<Typography variant={'body2'} color={'textPrimary'} weight={'bold'}>{quiz.suffixWord}</Typography>)}
+          {quiz.prefixWord && (
+            <Typography variant={"body2"} color={"textPrimary"} weight={"bold"}>
+              {quiz.prefixWord}
+            </Typography>
+          )}
+          {quiz.suffixWord && (
+            <Typography variant={"body2"} color={"textPrimary"} weight={"bold"}>
+              {quiz.suffixWord}
+            </Typography>
+          )}
         </S.FlexBox>
       </S.QuizSolutionBox>
 
@@ -99,20 +129,16 @@ export const QuizForm = (): ReactElement => {
             <S.InputLayout key={value.step + index}>
               {textInputElementGenerator(value.step)}
             </S.InputLayout>
-          )
+          );
         })}
       </S.InputContainer>
 
       <S.ButtonFlexBox>
-        <Button variant={'secondary'}>
-          <Typography as={'span'}>
-            그만하기
-          </Typography>
+        <Button variant={"secondary"}>
+          <Typography as={"span"}>그만하기</Typography>
         </Button>
-        <Button variant={'primary'} type={"submit"}>
-          <Typography as={'span'}>
-            제출하기
-          </Typography>
+        <Button variant={"primary"} type={"submit"}>
+          <Typography as={"span"}>제출하기</Typography>
         </Button>
       </S.ButtonFlexBox>
     </S.QuizFormLayout>
