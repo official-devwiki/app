@@ -46,7 +46,7 @@ export const QuizForm = (): ReactElement => {
   const todayQuizAnswerSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     // TODO 1. 서버에 값 전송
-    // 2. 전송 후 전달받은 값으로 
+    // 2. 전송 후 전달
     setCurrentStep(currentStep + 1);
   };
 

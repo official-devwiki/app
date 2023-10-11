@@ -1,5 +1,6 @@
-import {ReactElement} from 'react';
-import styled from 'styled-components';
+import { Typography } from "@components/common/Typography";
+import { ReactElement } from "react";
+import styled from "styled-components";
 
 const FooterLayout = styled.footer`
   width: 100%;
@@ -12,14 +13,16 @@ const FooterLayout = styled.footer`
   //transform: translateY(100%);
 
   @media screen and (max-width: 767px) {
-    //transform: translateY(100%);  
+    //transform: translateY(100%);
   }
 `;
 
 export const Footer = (): ReactElement => {
   return (
-    <FooterLayout className={'footer'}>
-      <p>dahoon06</p>
+    <FooterLayout className={"footer"}>
+      <Typography color={"textGrayAndWhite"} variant={"body2"}>
+        ⓒ 2023. DaHoon06. All rights reserved.
+      </Typography>
     </FooterLayout>
   );
 };

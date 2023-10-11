@@ -1,8 +1,8 @@
-import {ReactElement} from "react";
-import {Typography} from "@components/common/Typography";
+import { ReactElement } from "react";
+import { Typography } from "@components/common/Typography";
 import styled from "styled-components";
-import {useGetMyAnswersQuery} from "@services/queries/ratioQuery";
-import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
+import { useGetMyAnswersQuery } from "@services/queries/ratioQuery";
+import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 
 const CorrectAnswerLayout = styled.div`
   width: 100%;
@@ -23,23 +23,29 @@ const Day = styled.span`
 `;
 
 export const ConsecutiveAnswers = (): ReactElement => {
-  const {data, isLoading} = useGetMyAnswersQuery('uuid');
+  const { data, isLoading } = useGetMyAnswersQuery("uuid");
 
   return (
     <CorrectAnswerLayout>
       <CorrectAnswerBox>
-        <Typography weight={'bold'} variant={'caption'} color={'textGray100'}>
+        <Typography weight={"bold"} variant={"caption"} color={"textGray100"}>
           연속 정답 횟수
         </Typography>
-        {isLoading ? (<SkeletonUi theme={{height: 20, width: 30, borderRadius: 4}} />) : (
-          <Day className={'flex'}>
-            <Typography as={'span'} color={'textPrimary'} weight={'bold'} variant={'body2'}>
-              {data && data[0].ratio}
+        {isLoading ? (
+          <SkeletonUi theme={{ height: 20, width: 30, borderRadius: 4 }} />
+        ) : (
+          <Day className={"flex"}>
+            <Typography
+              as={"span"}
+              color={"textPrimary"}
+              weight={"bold"}
+              variant={"body1"}
+            >
+              {data && data[0].ratio} 일
             </Typography>
-            일
           </Day>
         )}
       </CorrectAnswerBox>
     </CorrectAnswerLayout>
-  )
-}
+  );
+};

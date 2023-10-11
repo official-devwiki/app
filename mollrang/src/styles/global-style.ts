@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -118,6 +118,7 @@ export const GlobalStyle = createGlobalStyle`
     --textGray100: #989898;
     --textGray200: #C6C6C6;
     --textRed000: #FF5050;
+    --textGrayAndWhite: #bdbdbd;
 
     // 출석 체크 요일
     --day_circle: #CACACA;
@@ -166,6 +167,7 @@ export const GlobalStyle = createGlobalStyle`
     --textGray100: #A6A6A6;
     --textGray200: #C6C6C6;
     --textRed000: #FF5050;
+    --textGrayAndWhite: #fff;
 
     // 출석 체크 요일
     --day_circle: #606060;
