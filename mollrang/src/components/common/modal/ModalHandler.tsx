@@ -1,25 +1,25 @@
-import {useAppSelector} from "@hooks/useRedux";
-import React, {ReactElement, ReactNode, useEffect, useRef} from "react";
-import {BottomSlideModal} from "@components/common/modal/slide/BottomSlide";
-import {FadeModal} from "@components/common/modal/fade/FadeModal";
+import { useAppSelector } from "@hooks/useRedux";
+import React, { ReactElement, ReactNode, useEffect, useRef } from "react";
+import { BottomSlideModal } from "@components/common/modal/slide/BottomSlide";
+import { FadeModal } from "@components/common/modal/fade/FadeModal";
 import ReactDOM from "react-dom";
-import {Element} from "@hooks/useModalHook";
+import { Element } from "@hooks/useModalHook";
 
 interface Modal {
   children: ReactNode;
 }
 
-export interface ModalProps extends Modal{
+export interface ModalProps extends Modal {
   isOpen: boolean;
   ele: Element;
 }
 
-export const ModalHandler: React.FunctionComponent<Modal> = (props): ReactElement => {
-  const {children} = props;
-  const {modal} = useAppSelector(
-    (state) => state.modalStore,
-  );
-  const {isOpen, modalType} = modal;
+export const ModalHandler: React.FunctionComponent<Modal> = (
+  props,
+): ReactElement => {
+  const { children } = props;
+  const { modal } = useAppSelector((state) => state.modalStore);
+  const { isOpen, modalType } = modal;
 
   const ele = useRef<HTMLDivElement>(null);
   const element =
@@ -37,16 +37,14 @@ export const ModalHandler: React.FunctionComponent<Modal> = (props): ReactElemen
 
   const modalHandler = (children: ReactNode) => {
     switch (modalType) {
-      case 'bottom-slide':
+      case "bottom-slide":
         return (
           <BottomSlideModal ele={ele} isOpen={isOpen} children={children} />
         );
       default:
-        return (
-          <FadeModal ele={ele} isOpen={isOpen} children={children} />
-        );
+        return <FadeModal ele={ele} isOpen={isOpen} children={children} />;
     }
-  }
+  };
 
   return <>{ReactDOM.createPortal(modalHandler(children), element)}</>;
-}
+};

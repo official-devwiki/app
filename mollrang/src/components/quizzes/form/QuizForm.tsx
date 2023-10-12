@@ -94,7 +94,7 @@ export const QuizForm = (): ReactElement => {
         <S.QuizFormTitle>
           <QuizIcon />
           {isLoading ? (
-            <SkeletonUi theme={{ height: 40, borderRadius: 4 }} />
+            <SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />
           ) : (
             <>
               <Typography
