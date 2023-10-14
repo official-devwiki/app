@@ -10,6 +10,8 @@ import {wrapper} from '@store/index';
 import {GlobalStyle} from "@styles/global-style";
 import { ThemeProvider } from 'styled-components';
 import {theme} from "@styles/theme";
+import { v4 as uuid } from 'uuid';
+import Cookies from 'cookies'
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
                                                                          Component,
@@ -40,6 +42,17 @@ App.getInitialProps = async ({
                                ctx,
                              }: AppContext): Promise<AppInitialProps> => {
   let pageProps = {};
+  const {req, res} = ctx;
+  const cookies = new Cookies(req, res)
+  const user = cookies.get('user');
+
+  if (!user) {
+    const id = uuid();
+    cookies.set('user', id, {
+      httpOnly: true, // true by default
+    })
+  }
+
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);
   }
