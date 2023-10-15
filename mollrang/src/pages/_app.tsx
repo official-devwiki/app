@@ -43,15 +43,21 @@ App.getInitialProps = async ({
                              }: AppContext): Promise<AppInitialProps> => {
   let pageProps = {};
   const {req, res} = ctx;
-  const cookies = new Cookies(req, res)
-  const user = cookies.get('user');
 
-  if (!user) {
-    const id = uuid();
-    cookies.set('user', id, {
-      httpOnly: true, // true by default
-    })
+  // req 존재 -> ssr
+  if (req) {
+    const cookies = new Cookies(req, res)
+    const user = cookies.get('user');
+
+    if (!user) {
+      const id = uuid();
+      cookies.set('user', id, {
+        httpOnly: true, // true by default
+      })
+    }
   }
+
+
 
   if (Component.getInitialProps) {
     pageProps = await Component.getInitialProps(ctx);

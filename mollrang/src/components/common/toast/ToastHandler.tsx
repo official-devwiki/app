@@ -16,7 +16,7 @@ class Toast {
   duration: number; /* 유지 시간  */
 
   constructor() {
-    this.duration = 100000; // 기본 1 초
+    this.duration = 1000; // 기본 1 초
 
     this.element =
       typeof window !== 'undefined' &&

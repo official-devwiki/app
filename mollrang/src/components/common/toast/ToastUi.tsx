@@ -1,12 +1,9 @@
 import {ReactElement} from 'react';
-import styled from 'styled-components';
+import * as S from './style';
 import {Typography} from '../Typography';
 import {ToastVariant} from './ToastHandler';
 
-const ToastLayout = styled.div`
-`;
 
-const ToastBox = styled.div``;
 
 interface Props {
   messages: any[];
@@ -17,18 +14,17 @@ interface Props {
 
 export const ToastUi = (props: Props): ReactElement => {
   const {messages} = props;
+  const active = messages.length > 0;
 
   return (
-    <ToastLayout>
+    <S.ToastLayout className={active && 'active'}>
       {messages.map((toast) => {
         return (
-          <>
-            <ToastBox key={toast.id + 'Toast'}>
-              <Typography>{toast.message}</Typography>
-            </ToastBox>
-          </>
+          <S.ToastBox key={toast.id + 'Toast'}>
+            <Typography>{toast.message}</Typography>
+          </S.ToastBox>
         );
       })}
-    </ToastLayout>
+    </S.ToastLayout>
   );
 };
