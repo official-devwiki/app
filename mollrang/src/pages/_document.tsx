@@ -3,9 +3,8 @@ import Document, {
   Head,
   Main,
   NextScript,
-  DocumentContext,
-  DocumentInitialProps,
 } from 'next/document';
+import type { DocumentContext, DocumentInitialProps } from 'next/document'
 import {ServerStyleSheet} from 'styled-components';
 
 const themeInitializerScript = `
@@ -26,7 +25,7 @@ class MyDocument extends Document {
             sheet.collectStyles(<App {...props} />),
         });
 
-      const initialProps = await Document.getInitialProps(ctx);
+            const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
         styles: (

@@ -2,7 +2,7 @@
  * @description: Store 관련 interface * Type Group
  */
 export namespace Store {
-  /**
+  /** 
    * @description Modal Interface Group
    */
   export namespace Modal {

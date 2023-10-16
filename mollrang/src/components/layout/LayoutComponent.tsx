@@ -4,7 +4,6 @@ import {MetaComponent} from '@components/layout/header/MetaComponent';
 import {Header} from './header/Header';
 import {BottomNavigation} from '@components/navigation/bottom/BottomNavigation';
 import {useAppSelector} from '@hooks/useRedux';
-import {FloatingActionButton} from "@components/quizzes/guide/FloatingActionButton";
 import {ModalHandler} from "@components/common/modal/ModalHandler";
 import {IntegratedStatistics} from "@components/statistics/IntegratedStatistics";
 
@@ -36,7 +35,6 @@ export const LayoutComponent = (props: Props): ReactElement => {
       <Header />
       <Layout>
         <Main>{children}</Main>
-        <FloatingActionButton />
       </Layout>
       <ModalHandler>
         {type === 'statistics' && (<IntegratedStatistics />)}

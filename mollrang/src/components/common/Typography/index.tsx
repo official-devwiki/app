@@ -39,7 +39,6 @@ function baseElement (props: Typography) {
     as,
     ...rest
   } = props;
-
   return (React.createElement(
     as || element[variant],
     {
