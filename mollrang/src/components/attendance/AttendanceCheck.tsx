@@ -14,7 +14,7 @@ export const AttendanceCheck = (): ReactElement => {
           <S.IconWrapper>
             <Icons type={'check-red'} />
           </S.IconWrapper>
-          <Typography variant={'body2'} weight={'bold'} color={'textDefault'}>
+          <Typography $variant={'body2'} $weight={'bold'} $color={'textDefault'}>
             출석 체크
           </Typography>
         </div>
@@ -23,7 +23,7 @@ export const AttendanceCheck = (): ReactElement => {
         {days.map((day, index) => {
           return (
             <S.Days key={index} className={index === 3 && 'active'}>
-              <Typography as={'span'} variant={'body2'} weight={'bold'}>
+              <Typography as={'span'} $variant={'body2'} $weight={'bold'}>
                 {day}
               </Typography>
             </S.Days>

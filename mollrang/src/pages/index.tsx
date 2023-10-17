@@ -29,7 +29,7 @@ const Home: NextPage = (): ReactElement => {
             onClick={playQuizButton}
           >
             <OpenBookIcon />
-            <Typography as={"span"} color={"textWhite"}>
+            <Typography as={"span"} $color={"textWhite"}>
               오늘의 퀴즈
             </Typography>
           </Button>

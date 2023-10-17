@@ -102,9 +102,9 @@ export const QuizForm = (): ReactElement => {
           ) : (
             <>
               <Typography
-                variant={"body1"}
-                weight={"bold"}
-                color={"textDefault"}
+                $variant={"body1"}
+                $weight={"bold"}
+                $color={"textDefault"}
               >
                 {quiz.question}
               </Typography>
@@ -115,12 +115,12 @@ export const QuizForm = (): ReactElement => {
         <S.FlexBox>
           {emptyBlockElementGenerator()}
           {quiz.prefixWord && (
-            <Typography variant={"body2"} color={"textPrimary"} weight={"bold"}>
+            <Typography $variant={"body2"} $color={"textPrimary"} $weight={"bold"}>
               {quiz.prefixWord}
             </Typography>
           )}
           {quiz.suffixWord && (
-            <Typography variant={"body2"} color={"textPrimary"} weight={"bold"}>
+            <Typography $variant={"body2"} $color={"textPrimary"} $weight={"bold"}>
               {quiz.suffixWord}
             </Typography>
           )}

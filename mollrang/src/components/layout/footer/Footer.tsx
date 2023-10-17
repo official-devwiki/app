@@ -20,7 +20,7 @@ const FooterLayout = styled.footer`
 export const Footer = (): ReactElement => {
   return (
     <FooterLayout className={"footer"}>
-      <Typography color={"textGrayAndWhite"} variant={"body2"}>
+      <Typography $color={"textGrayAndWhite"} $variant={"body2"}>
         ⓒ 2023. DaHoon06. All rights reserved.
       </Typography>
     </FooterLayout>

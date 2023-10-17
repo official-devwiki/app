@@ -23,7 +23,7 @@ export const CorrectAnswers = (): ReactElement => {
   return (
     <CorrectAnswerLayout>
       <CorrectAnswerBox>
-        <Typography color={"textDefault"} weight={"bold"} variant={"body1"}>
+        <Typography $color={"textDefault"} $weight={"bold"} $variant={"body1"}>
           나의 정답률
         </Typography>
         {isLoading ? (
@@ -31,9 +31,9 @@ export const CorrectAnswers = (): ReactElement => {
         ) : (
           <Typography
             as={"span"}
-            color={"textPrimary"}
-            weight={"bold"}
-            variant={"body1"}
+            $color={"textPrimary"}
+            $weight={"bold"}
+            $variant={"body1"}
           >
             {data && data[0].ratio} %
           </Typography>

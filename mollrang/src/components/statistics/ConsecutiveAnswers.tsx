@@ -28,7 +28,7 @@ export const ConsecutiveAnswers = (): ReactElement => {
   return (
     <CorrectAnswerLayout>
       <CorrectAnswerBox>
-        <Typography weight={"bold"} variant={"caption"} color={"textGray100"}>
+        <Typography $weight={"bold"} $variant={"caption"} $color={"textGray100"}>
           연속 정답 횟수
         </Typography>
         {isLoading ? (
@@ -37,9 +37,9 @@ export const ConsecutiveAnswers = (): ReactElement => {
           <Day className={"flex"}>
             <Typography
               as={"span"}
-              color={"textPrimary"}
-              weight={"bold"}
-              variant={"body1"}
+              $color={"textPrimary"}
+              $weight={"bold"}
+              $variant={"body1"}
             >
               {data && data[0].ratio} 일
             </Typography>

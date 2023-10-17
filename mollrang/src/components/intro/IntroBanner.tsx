@@ -37,7 +37,7 @@ export const MollrangSharedButton = (): ReactElement => {
     <FlexBox>
       <Button variant={"icon"} onClick={sharedMollrandLink}>
         <ShareIcon />
-        <Typography color={"textDefault"} weight={"bold"} variant={"body2"}>
+        <Typography $color={"textDefault"} $weight={"bold"} $variant={"body2"}>
           몰랑 공유하기
         </Typography>
       </Button>
@@ -55,12 +55,16 @@ export const IntroBanner = (): ReactElement => {
         <div>
           <S.IntroTextIconWrapper1>
             <NoteIcon />
-            <Typography color={"textDefault"} weight={"bold"} variant={"body2"}>
+            <Typography
+              $color={"textDefault"}
+              $weight={"bold"}
+              $variant={"body2"}
+            >
               너 그거 알아?
             </Typography>
           </S.IntroTextIconWrapper1>
           <S.IntroTextIconWrapper2>
-            <Typography color={"textPrimary"} weight={"bold"}>
+            <Typography $color={"textPrimary"} $weight={"bold"}>
               몰랑
             </Typography>
             <S.IntroTextIcon2>
