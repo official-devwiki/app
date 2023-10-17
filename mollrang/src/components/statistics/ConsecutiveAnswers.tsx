@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Typography } from "@components/common/Typography";
 import styled from "styled-components";
-import { useGetMyAnswersQuery } from "@services/queries/ratioQuery";
+import { useGetMyAnswersQuery } from "@services/queries/statisticsQuery";
 import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 
 const CorrectAnswerLayout = styled.div`

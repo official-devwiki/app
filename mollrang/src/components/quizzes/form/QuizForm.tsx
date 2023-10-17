@@ -28,10 +28,20 @@ interface Answer {
 
 export const QuizForm = (): ReactElement => {
   const [chance, setChance] = useState<Chance[]>(initialStepState);
-  const [answers, setAnswer] = useState<Answer[]>([]);
+  const [answers, setAnswers] = useState<Answer[]>([]);
   const [currentStep, setCurrentStep] = useState(1);
+  const [tryCount, setTrtCount] = useState(0);
 
   const { quiz, isLoading } = useTodayQuizzesQuery();
+  useEffect(() => {
+    if (quiz.answerLength > 0) {
+      let values = [];
+      for (let i = 0; i < quiz.answerLength; i++) {
+        values.push({ key: "", answer: "" });
+      }
+      setAnswers(values);
+    }
+  }, [isLoading]);
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
@@ -48,15 +58,8 @@ export const QuizForm = (): ReactElement => {
     // TODO 1. 서버에 값 전송
     // 2. 전송 후 전달
     setCurrentStep(currentStep + 1);
+    console.log(answers);
   };
-
-  useEffect(() => {
-    let values = [];
-    for (let i = 0; i < quiz.answerLength; i++) {
-      values.push({ key: "", answer: "" });
-    }
-    setAnswer(values);
-  }, []);
 
   const onChangeInputHandler = (
     index: number,
@@ -68,8 +71,9 @@ export const QuizForm = (): ReactElement => {
     values[index].key = name;
     values[index].answer = value;
 
-    setAnswer(values);
+    setAnswers(values);
   };
+
   const textInputElementGenerator = (step: number): ReactElement[] => {
     const input = [];
     const disabled = currentStep !== step;
