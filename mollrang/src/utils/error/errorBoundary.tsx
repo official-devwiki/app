@@ -1,7 +1,7 @@
-import Router from 'next/router';
-import {ApiError} from './errorHandler';
-import React from 'react';
-import Error404Page from '@pages/404';
+import Router from "next/router";
+import { ApiError } from "./errorHandler";
+import React from "react";
+import Error404Page from "@pages/404";
 import ServerErrorPage from "@pages/ServerErrorPage";
 
 type ErrorBoundaryProps = React.PropsWithChildren<{}>;
@@ -14,15 +14,17 @@ const errorBoundaryState: ErrorBoundaryState = {
   error: null,
 };
 
-export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, ErrorBoundaryState> {
+export default class ErrorBoundary extends React.Component<
+  ErrorBoundaryProps,
+  ErrorBoundaryState
+> {
   constructor(props: ErrorBoundaryProps) {
     super(props);
     this.state = errorBoundaryState;
   }
 
   static getDerivedStateFromError(error: Error) {
-    console.error(error);
-    return {error};
+    return { error };
   }
 
   private resetState = () => {
@@ -30,9 +32,7 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
   };
 
   private setError = (error: Error) => {
-    console.error(error);
-
-    this.setState({error});
+    this.setState({ error });
   };
 
   // 전역 에러 중 캐치하지 못한 에러
@@ -48,26 +48,30 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
   };
 
   componentDidMount() {
-    window.addEventListener('error', this.handleError);
-    window.addEventListener('unhandledrejection', this.handleRejectedPromise);
-    Router.events.on('routeChangeStart', this.resetState);
+    window.addEventListener("error", this.handleError);
+    window.addEventListener("unhandledrejection", this.handleRejectedPromise);
+    Router.events.on("routeChangeStart", this.resetState);
   }
 
   componentWillUnmount() {
-    window.removeEventListener('error', this.handleError);
-    window.removeEventListener('unhandledrejection', this.handleRejectedPromise);
+    window.removeEventListener("error", this.handleError);
+    window.removeEventListener(
+      "unhandledrejection",
+      this.handleRejectedPromise,
+    );
 
-    Router.events.off('routeChangeStart', this.resetState);
+    Router.events.off("routeChangeStart", this.resetState);
   }
 
   render() {
-    const {error} = this.state as {error: ApiError};
+    const { error } = this.state as { error: ApiError };
     if (error) {
-      const {redirectUrl, notFound} = error;
-      if (notFound) return <Error404Page / >;
-      if (redirectUrl) window.location.href = redirectUrl;
-        return <ServerErrorPage />;
+      const { redirectUrl, notFound } = error;
+      console.log(notFound, "error==================");
+      if (notFound) return <Error404Page />;
+      else if (redirectUrl) window.location.href = redirectUrl;
+      else return <ServerErrorPage />;
     }
-        return this.props.children;
+    return this.props.children;
   }
 }

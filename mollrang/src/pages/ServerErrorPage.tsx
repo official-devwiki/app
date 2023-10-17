@@ -41,12 +41,11 @@ const ServerErrorPage: NextPage = (): ReactElement => {
           variant='caption'
           weight='bold'
           color='textGray200'
-          className='mt-20'
         >
           잠시 후 다시 시도해주세요.
         </Typography>
       </section>
-      <Button variant='primary' className='mt-36' onClick={redirectHome}>
+      <Button variant='primary' onClick={redirectHome}>
         <Typography as='span' weight='bold' color='textDefault'>
           돌아가기
         </Typography>
