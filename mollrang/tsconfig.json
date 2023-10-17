@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     // ECMAScript 목표 버전 설정: 'ES3'(기본), 'ES5', 'ES2015', 'ES2016', 'ES2017','ES2018', 'ES2019', 'ES2020', or 'ESNEXT'.
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     // 컴파일 과정에 사용될 라이브러리 파일 설정
     "module": "ESNext",
     // 생성될 모듈 코드 설정: 'none', 'commonjs', 'amd', 'system', 'umd', 'es2015', 'es2020', or 'ESNext'
@@ -27,10 +23,7 @@
     // json 파일 파서
     "isolatedModules": true,
     // 각 파일을 별도 모듈로 변환 ('ts.transpileModule'과 유사)
-    "types": [
-      "jest",
-      "node"
-    ],
+    "types": ["jest", "node"],
     // 컴파일 시 포함될 유형 선언 파일 입력
     /* ---------------------------------------------------------------------------------------------------------------------------------------------------- */
     "jsx": "preserve",
@@ -54,66 +47,26 @@
     "strict": false,
     // 모든 엄격한 유형 검사 옵션 활성화
     "paths": {
-      "@components/*": [
-        "components/*"
-      ],
-      "@pages/*": [
-        "pages/*"
-      ],
-      "@api/*": [
-        "pages/api/*"
-      ],
-      "@apis/*": [
-        "apis/*"
-      ],
-      "@hooks/*": [
-        "hooks/*"
-      ],
-      "@constants/*": [
-        "constants/*"
-      ],
-      "@libs/*": [
-        "libs/*"
-      ],
-      "@store/*": [
-        "store/*"
-      ],
-      "@utils/*": [
-        "utils/*"
-      ],
-      "@config/*": [
-        "config/*"
-      ],
-      "@styles/*": [
-        "styles/*"
-      ],
-      "@interfaces/*": [
-        "interfaces/*"
-      ],
-      "@images/*": [
-        "../public/images/*"
-      ],
-      "@assets/*": [
-        "assets/*"
-      ],
-      "@services/*": [
-        "services/*"
-      ],
-      "@tests/*": [
-        "__tests__/*"
-      ]
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"],
+      "@api/*": ["pages/api/*"],
+      "@apis/*": ["apis/*"],
+      "@hooks/*": ["hooks/*"],
+      "@constants/*": ["constants/*"],
+      "@libs/*": ["libs/*"],
+      "@store/*": ["store/*"],
+      "@utils/*": ["utils/*"],
+      "@config/*": ["config/*"],
+      "@styles/*": ["styles/*"],
+      "@interfaces/*": ["interfaces/*"],
+      "@images/*": ["../public/images/*"],
+      "@assets/*": ["assets/*"],
+      "@services/*": ["services/*"],
+      "@tests/*": ["__tests__/*"]
     }
   },
-  "include": [
-    "next-env.d.ts",
-    "src",
-    "**/*.ts",
-    "**/*.tsx",
-    "types/**/*.ts"
-  ],
+  "include": ["next-env.d.ts", "src", "**/*.ts", "**/*.tsx", "types/**/*.ts"],
   // 컴파일 포함
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
   // 컴파일 제외
 }
