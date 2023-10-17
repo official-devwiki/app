@@ -17,7 +17,7 @@ const NotFoundPageContainer = styled.div`
 `;
 
 
-const Error404Page: NextPage = (): ReactElement => {
+const ServerErrorPage: NextPage = (): ReactElement => {
   const router = useRouter();
   const redirectHome = async () => {
     await window.location.replace('/');
@@ -28,14 +28,14 @@ const Error404Page: NextPage = (): ReactElement => {
         <Image
           loading='eager'
           src='/images/404.svg'
-          alt='404-error-page'
+          alt='server-error-page'
           width={300}
           height={200}
         />
       </picture>
       <section>
         <Typography variant='h1' weight='bold' color='textBlack000'>
-          페이지를 찾을 수 없습니다.
+          잘못된 요청입니다.
         </Typography>
         <Typography
           variant='caption'
@@ -43,7 +43,7 @@ const Error404Page: NextPage = (): ReactElement => {
           color='textGray200'
           className='mt-20'
         >
-          페이지가 존재하지 않거나, 접근할 수 없는 페이지 입니다.
+          잠시 후 다시 시도해주세요.
         </Typography>
       </section>
       <Button variant='primary' className='mt-36' onClick={redirectHome}>
@@ -55,4 +55,4 @@ const Error404Page: NextPage = (): ReactElement => {
   );
 };
 
-export default Error404Page;
+export default ServerErrorPage;

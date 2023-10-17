@@ -1,7 +1,8 @@
 import Router from 'next/router';
-import {isInstanceOfApiError} from './errorHandler';
+import {ApiError} from './errorHandler';
 import React from 'react';
 import Error404Page from '@pages/404';
+import ServerErrorPage from "@pages/ServerErrorPage";
 
 type ErrorBoundaryProps = React.PropsWithChildren<{}>;
 
@@ -60,20 +61,13 @@ export default class ErrorBoundary extends React.Component<ErrorBoundaryProps, E
   }
 
   render() {
-    const {error} = this.state;
+    const {error} = this.state as {error: ApiError};
     if (error) {
       const {redirectUrl, notFound} = error;
       if (notFound) return <Error404Page / >;
-        if (redirectUrl) window.location.href = redirectUrl;
-        return <Error404Page / >;
-          }
-
-          // if (isInstanceOfApiError(error)) {
-            //   const {redirectUrl, notFound} = error;
-            //   if (notFound) return <Error404Page/>;
-            //   if (redirectUrl) window.location.href = redirectUrl;
-            //   return <Error404Page/>;
-            // }
-            return this.props.children;
-          }
-          };
+      if (redirectUrl) window.location.href = redirectUrl;
+        return <ServerErrorPage />;
+    }
+        return this.props.children;
+  }
+}
