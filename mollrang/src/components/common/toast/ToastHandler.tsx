@@ -1,7 +1,7 @@
-import * as ReactDOM from 'react-dom/client';
-import {ToastUi} from './ToastUi';
+import * as ReactDOM from "react-dom/client";
+import { ToastUi } from "./ToastUi";
 
-export type ToastVariant = 'success' | 'warning' | 'secondary' | 'error';
+export type ToastVariant = "success" | "warning" | "secondary" | "error";
 
 interface Messages {
   id: number;
@@ -16,11 +16,11 @@ class Toast {
   duration: number; /* 유지 시간  */
 
   constructor() {
-    this.duration = 1000; // 기본 1 초
+    this.duration = 1500; // 기본 1 초
 
     this.element =
-      typeof window !== 'undefined' &&
-      (document.querySelector('#toast') as HTMLDivElement);
+      typeof window !== "undefined" &&
+      (document.querySelector("#toast") as HTMLDivElement);
 
     if (!this.element) return;
 
@@ -28,7 +28,11 @@ class Toast {
     this.toast = ReactDOM.createRoot(this.element);
   }
 
-  message(message: string, variant: ToastVariant = 'success', duration?: number) {
+  message(
+    message: string,
+    variant: ToastVariant = "success",
+    duration?: number,
+  ) {
     if (duration) this.duration = duration;
 
     this.messages.push({
