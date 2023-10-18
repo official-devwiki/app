@@ -33,4 +33,5 @@ export const ToastBox = styled.div`
   background: var(--primary_opacity);
   color: #fff;
   box-shadow: 3px 4px 11px 0px #00000040;
+  text-align: center;
 `;

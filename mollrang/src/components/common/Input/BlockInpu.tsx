@@ -1,18 +1,18 @@
-import React, {ChangeEvent, ComponentProps, ReactElement} from 'react';
+import React, { ChangeEvent, ComponentProps, ReactElement } from "react";
 import classNames from "classnames";
-import {BlockInputElement} from "@components/common/Input/style";
+import { BlockInputElement } from "@components/common/Input/style";
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement>;
-type InputVariant = 'hint' | 'success'
+type InputVariant = "hint" | "success";
 
-interface Props extends ComponentProps<'input'> {
+interface Props extends ComponentProps<"input"> {
   variant?: InputVariant;
   disabled?: boolean;
   onChange?: (event: InputChangeEvent) => void;
 }
 
 export const BlockInput = (props: Props): ReactElement => {
-  const {variant, disabled = false, className, onChange, ...rest} = props;
+  const { variant, disabled = false, className, onChange, ...rest } = props;
 
   const onChangeHandler = (event: InputChangeEvent): void => {
     onChange && onChange(event);
@@ -24,7 +24,7 @@ export const BlockInput = (props: Props): ReactElement => {
       minLength={1}
       maxLength={1}
       tabIndex={10}
-      type={'text'}
+      type={"text"}
       className={classNames(className, variant)}
       disabled={disabled}
       {...rest}

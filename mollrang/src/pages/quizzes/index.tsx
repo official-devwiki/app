@@ -1,13 +1,13 @@
-import {GetServerSideProps, NextPage} from 'next';
-import {ReactElement} from 'react';
-import styled from 'styled-components';
-import {QuizForm} from '@components/quizzes/form/QuizForm';
-import {Typography} from '@components/common/Typography';
-import withGetServerSideProps from '@utils/withGetServerSideProps';
-import {queryClient} from '@libs/Tanstack';
-import {QueryKeys} from '@services/keys/queryKeys';
-import {getTodayQuizzes} from '@apis/quizzes';
-import {dehydrate} from '@tanstack/query-core';
+import { GetServerSideProps, NextPage } from "next";
+import { ReactElement } from "react";
+import styled from "styled-components";
+import { QuizForm } from "@components/quizzes/form/QuizForm";
+import { Typography } from "@components/common/Typography";
+import withGetServerSideProps from "@utils/withGetServerSideProps";
+import { queryClient } from "@libs/Tanstack";
+import { QueryKeys } from "@services/keys/queryKeys";
+import { getTodayQuizzes } from "@apis/quizzes";
+import { dehydrate } from "@tanstack/query-core";
 
 const QuizLayout = styled.div`
   width: 100%;
@@ -23,7 +23,6 @@ const QuizContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-
 `;
 
 const QuizBox = styled.div`
@@ -39,7 +38,7 @@ const QuizPage: NextPage = (): ReactElement => {
     <QuizLayout>
       <QuizContainer>
         <QuizBox>
-          <Typography variant={'h1'} weight={'bold'} color={'textDefault'}>
+          <Typography $variant={"h1"} $weight={"bold"} $color={"textDefault"}>
             오늘의 퀴즈
           </Typography>
           <QuizForm />

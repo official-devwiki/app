@@ -12,3 +12,15 @@ export const getTodayQuizzes = async () => {
     throw e;
   }
 };
+
+export const quizSolutionSubmit = async (
+  body: { tryCount: number; result: string },
+): Promise<any> => {
+  try {
+    const url = `/${domain}`;
+    const { data } = await axiosInstance.post(url, body);
+    return data;
+  } catch (e) {
+    throw e;
+  }
+};

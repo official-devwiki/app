@@ -7,6 +7,9 @@ import { EmptyBlock } from "@components/ui/block/EmptyBlock";
 import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
 import { Button } from "@components/common/Button";
+import toast from "@components/common/toast/ToastHandler";
+import { useMutation } from "@tanstack/react-query";
+import { quizSolutionSubmit } from "@apis/quizzes";
 
 interface Chance {
   step: number;
@@ -32,6 +35,14 @@ export const QuizForm = (): ReactElement => {
   const [currentStep, setCurrentStep] = useState(1);
   const [tryCount, setTrtCount] = useState(0);
 
+  // const {
+  //   mutate,
+  //   isLoading: mutationLoading,
+  //   isError,
+  //   error,
+  //   isSuccess,
+  // } = useMutation(quizSolutionSubmit);
+
   const { quiz, isLoading } = useTodayQuizzesQuery();
   useEffect(() => {
     if (quiz.answerLength > 0) {
@@ -53,23 +64,47 @@ export const QuizForm = (): ReactElement => {
     return block;
   };
 
-  const todayQuizAnswerSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const todayQuizAnswerSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
     e.preventDefault();
-    // TODO 1. 서버에 값 전송
+
+    let result = "";
+    let key = "";
+    for (let i = 0; i < answers.length; i++) {
+      if (answers[i].answer === "") {
+        toast.message("정답을 입력해주세요.", "error");
+        return;
+      }
+
+      key = answers[i].key;
+      result += answers[i].answer;
+    }
+    const sendData: any = {
+      tryCount,
+      result,
+    };
+
+    const { data } = await quizSolutionSubmit(sendData);
+    console.log(data);
+
     // 2. 전송 후 전달
     setCurrentStep(currentStep + 1);
-    console.log(answers);
+
+    setAnswers([]);
   };
 
-  const onChangeInputHandler = (
+  const onChangeInputText = (
     index: number,
     e: React.ChangeEvent<HTMLInputElement>,
   ): void => {
     const { name, value } = e.target;
     const values: Answer[] = [...answers];
 
+    if (value.length > 1) e.target.value = value.slice(0, 1);
+
     values[index].key = name;
-    values[index].answer = value;
+    values[index].answer = e.target.value;
 
     setAnswers(values);
   };
@@ -82,7 +117,7 @@ export const QuizForm = (): ReactElement => {
         input.push(
           <Input
             name={String(i + 1)}
-            onChange={(e) => onChangeInputHandler(i, e)}
+            onChange={(e) => onChangeInputText(i, e)}
             disabled={disabled}
             key={`input-box-${i}`}
           />,
@@ -111,16 +146,23 @@ export const QuizForm = (): ReactElement => {
             </>
           )}
         </S.QuizFormTitle>
-
         <S.FlexBox>
           {emptyBlockElementGenerator()}
           {quiz.prefixWord && (
-            <Typography $variant={"body2"} $color={"textPrimary"} $weight={"bold"}>
+            <Typography
+              $variant={"body2"}
+              $color={"textPrimary"}
+              $weight={"bold"}
+            >
               {quiz.prefixWord}
             </Typography>
           )}
           {quiz.suffixWord && (
-            <Typography $variant={"body2"} $color={"textPrimary"} $weight={"bold"}>
+            <Typography
+              $variant={"body2"}
+              $color={"textPrimary"}
+              $weight={"bold"}
+            >
               {quiz.suffixWord}
             </Typography>
           )}
