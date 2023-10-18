@@ -51,7 +51,7 @@ class MyDocument extends Document {
             rel="stylesheet"
           />
         </Head>
-        <body>
+        <body className={'scroll'}>
         <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
         <Main />
         <div id="modal" />

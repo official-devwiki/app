@@ -97,15 +97,53 @@ export const GlobalStyle = createGlobalStyle`
     border-spacing: 0;
   }
 
+  hr {
+    height: 1px;
+    border: none;
+    border-bottom: 1px solid #ededed;
+  }
+
+  .scroll {
+    width: 100%;
+    padding: 0;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: var(--bg_reverse);;
+      border-radius: 2px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    .scroll {
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  }
+
+
   :root {
     --white: #fff;
   }
+
 
   body[data-theme="light"] {
     // major(theme)
     --primary: #00C7AE;
     --blockquote: #FFE588;
     --warning: #FF5050;
+    --primary_opacity: rgba(0, 199, 174, 0.7);
 
     // Typography - light
     --textDefault: #444343;
@@ -145,6 +183,7 @@ export const GlobalStyle = createGlobalStyle`
     --caption-text: #D6D6D6;
 
     --bg: #fff;
+    --bg_reverse: #383838;
     --bg_modal: #fff;
     --bg_footer: #EFEFEF;
     --bg_input: #FDFDFD;
@@ -155,7 +194,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary: #778C86;
     --blockquote: #282828;
     --warning: #FF533B;
-
+    --primary_opacity: rgba(119, 140, 134, 0.7);
     // Typography - dark
     --textDefault: #fff;
     --textWhite: #fff;
@@ -192,6 +231,7 @@ export const GlobalStyle = createGlobalStyle`
     --caption-text: #6D6D6;
 
     --bg: #383838;
+    --bg_reverse: #fff;
     --bg_modal: #272727;
     --bg_footer: #505050;
     --bg_input: #FDFDFD;
