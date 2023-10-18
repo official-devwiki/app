@@ -1,10 +1,11 @@
 import * as ReactDOM from "react-dom/client";
 import { ToastUi } from "./ToastUi";
+import { v4 as uuid } from "uuid";
 
 export type ToastVariant = "success" | "warning" | "secondary" | "error";
 
 interface Messages {
-  id: number;
+  id: string;
   message: string;
   variant: ToastVariant;
 }
@@ -34,9 +35,9 @@ class Toast {
     duration?: number,
   ) {
     if (duration) this.duration = duration;
-
+    const uid = uuid();
     this.messages.push({
-      id: this.messages.length,
+      id: uid,
       message,
       variant,
     });
@@ -47,10 +48,10 @@ class Toast {
         closeMessage={this.closeMessage.bind(this)}
       />,
     );
-    this.autoCloseMessage(this.duration, 1);
+    this.autoCloseMessage(this.duration, uid);
   }
 
-  closeMessage(id: number) {
+  closeMessage(id: string) {
     const index = this.messages.findIndex((value) => value.id === id);
     this.messages.splice(index, 1);
     this.toast.render(
@@ -61,7 +62,7 @@ class Toast {
     );
   }
 
-  autoCloseMessage(duration: number, id: number) {
+  autoCloseMessage(duration: number, id: string) {
     setTimeout(
       () => {
         this.closeMessage(id);
@@ -71,6 +72,5 @@ class Toast {
     );
   }
 }
-
-/* eslint import/no-anonymous-default-export: [2, {"allowNew": true}] */
-export default new Toast();
+const toast = new Toast();
+export default toast;
