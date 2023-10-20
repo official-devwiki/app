@@ -1,6 +1,6 @@
 import {ComponentProps, ReactElement} from 'react';
-import styles from './Button.module.scss';
 import classNames from 'classnames';
+import * as S from './style';
 
 export type ButtonType = 'button' | 'submit' | 'reset';
 export type ButtonVariant =
@@ -15,6 +15,7 @@ interface ButtonProps extends ComponentProps<'button'> {
   type?: ButtonType;
 }
 
+
 export const Button = (props: ButtonProps): ReactElement => {
   const {
     variant = 'primary',
@@ -26,13 +27,13 @@ export const Button = (props: ButtonProps): ReactElement => {
   } = props;
 
   return (
-    <button
-      className={classNames(styles[variant], className)}
+    <S.Button
+      className={classNames(variant, className)}
       {...rest}
       type={type}
     >
       {icon}
       {children}
-    </button>
+    </S.Button>
   );
 };
