@@ -1,15 +1,15 @@
 import React, { ReactElement, useEffect, useState } from "react";
 import { Typography } from "@components/common/Typography";
 import { QuizIcon } from "@components/common/icons/QuizIcon";
-import { BlockInput as Input } from "@components/common/Input/BlockInpu";
 import * as S from "./style";
 import { EmptyBlock } from "@components/ui/block/EmptyBlock";
 import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
-import { useMutation } from "@tanstack/react-query";
 import { quizSolutionSubmit } from "@apis/quizzes";
+import {Input} from "@components/common/Input";
+import {CheckCircleIcon} from "@components/common/icons/CheckCicleIcon";
 
 interface Chance {
   step: number;
@@ -24,14 +24,8 @@ const initialStepState: Chance[] = [
   { step: 5, answer: "" },
 ];
 
-interface Answer {
-  key: string;
-  answer: string;
-}
-
 export const QuizForm = (): ReactElement => {
-  const [chance, setChance] = useState<Chance[]>(initialStepState);
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [answer, setAnswer] = useState<string>('');
   const [currentStep, setCurrentStep] = useState(1);
   const [tryCount, setTrtCount] = useState(0);
 
@@ -44,15 +38,6 @@ export const QuizForm = (): ReactElement => {
   // } = useMutation(quizSolutionSubmit);
 
   const { quiz, isLoading } = useTodayQuizzesQuery();
-  useEffect(() => {
-    if (quiz.answerLength > 0) {
-      let values = [];
-      for (let i = 0; i < quiz.answerLength; i++) {
-        values.push({ key: "", answer: "" });
-      }
-      setAnswers(values);
-    }
-  }, [isLoading]);
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
@@ -69,66 +54,35 @@ export const QuizForm = (): ReactElement => {
   ): Promise<void> => {
     e.preventDefault();
 
-    let result = "";
-    let key = "";
-    for (let i = 0; i < answers.length; i++) {
-      if (answers[i].answer === "") {
-        toast.message("정답을 입력해주세요.", "error");
-        return;
-      }
-
-      key = answers[i].key;
-      result += answers[i].answer;
+    //TODO Input focus
+    //TODO Input Validation Check Logic separation
+    if (answer.length <= 0) {
+      toast.message('정답을 입력해 주세요.', 'error');
+      return;
     }
+
     const sendData: any = {
       tryCount,
-      result,
     };
 
     const { data } = await quizSolutionSubmit(sendData);
     console.log(data);
-
     // 2. 전송 후 전달
     setCurrentStep(currentStep + 1);
-
-    setAnswers([]);
   };
 
-  const onChangeInputText = (
-    index: number,
-    e: React.ChangeEvent<HTMLInputElement>,
-  ): void => {
-    const { name, value } = e.target;
-    const values: Answer[] = [...answers];
-
-    if (value.length > 1) e.target.value = value.slice(0, 1);
-
-    values[index].key = name;
-    values[index].answer = e.target.value;
-
-    setAnswers(values);
-  };
-
-  const textInputElementGenerator = (step: number): ReactElement[] => {
-    const input = [];
-    const disabled = currentStep !== step;
-    if (quiz) {
-      for (let i = 0; i < quiz.answerLength; i++) {
-        input.push(
-          <Input
-            name={String(i + 1)}
-            onChange={(e) => onChangeInputText(i, e)}
-            disabled={disabled}
-            key={`input-box-${i}`}
-          />,
-        );
-      }
-    }
-    return input;
-  };
 
   return (
     <S.QuizFormLayout onSubmit={todayQuizAnswerSubmit}>
+
+      <div>
+        <CheckCircleIcon className={'active'} />
+        <CheckCircleIcon />
+        <CheckCircleIcon />
+        <CheckCircleIcon />
+        <CheckCircleIcon />
+      </div>
+
       <S.QuizSolutionBox>
         <S.QuizFormTitle>
           <QuizIcon />
@@ -170,13 +124,13 @@ export const QuizForm = (): ReactElement => {
       </S.QuizSolutionBox>
 
       <S.InputContainer>
-        {chance.map((value, index) => {
-          return (
-            <S.InputLayout key={value.step + index}>
-              {textInputElementGenerator(value.step)}
-            </S.InputLayout>
-          );
-        })}
+        <Input
+          maxLength={quiz.answerLength && quiz.answerLength}
+          minLength={quiz.answerLength && quiz.answerLength}
+          name={'quizAnswer'}
+          value={answer}
+          onChange={(e) => setAnswer(e.target.value)}
+        />
       </S.InputContainer>
 
       <S.ButtonFlexBox>

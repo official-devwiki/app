@@ -8,7 +8,7 @@ type InputChangeEvent = ChangeEvent<HTMLInputElement>
 type InputVariant = 'default' | 'input_button' | 'checkbox'
 
 interface InputProps extends ComponentProps<'input'> {
-  variant?: InputVariant;
+  $variant?: InputVariant;
   label?: string;
   value?: InputValue;
   onChange?: (event: InputChangeEvent) => void;
@@ -16,7 +16,7 @@ interface InputProps extends ComponentProps<'input'> {
 
 export const Input = (props: InputProps): ReactElement => {
   const {
-    variant = 'default',
+    $variant = 'default',
     label,
     placeholder,
     disabled,
@@ -36,7 +36,7 @@ export const Input = (props: InputProps): ReactElement => {
   return (
     <label className={styles.label} htmlFor={id}>
       <input
-        className={classNames(styles[variant], className)}
+        className={classNames(styles[$variant], className)}
         disabled={disabled}
         id={id}
         placeholder={placeholder}
@@ -48,7 +48,7 @@ export const Input = (props: InputProps): ReactElement => {
         <Typography className={styles.checkbox_label}>{label}</Typography>
       )}
       {label && type !== 'checkbox' && (
-        <Typography className={'pb-8'} weight={'bold'}>
+        <Typography className={'pb-8'} $weight={'bold'}>
           {label}
         </Typography>
       )}
