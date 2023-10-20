@@ -1,7 +1,7 @@
-import {ChangeEvent, ComponentProps, ReactElement, useEffect, useState} from 'react';
-import styles from './Input.module.scss';
+import {ChangeEvent, ComponentProps, ReactElement} from 'react';
 import {Typography} from '@components/common/Typography';
 import classNames from 'classnames';
+import * as S from './style';
 
 type InputValue = string | number | ReadonlyArray<string>
 type InputChangeEvent = ChangeEvent<HTMLInputElement>
@@ -34,9 +34,9 @@ export const Input = (props: InputProps): ReactElement => {
   };
 
   return (
-    <label className={styles.label} htmlFor={id}>
-      <input
-        className={classNames(styles[$variant], className)}
+    <S.Label htmlFor={id}>
+      <S.Input
+        className={classNames($variant, className)}
         disabled={disabled}
         id={id}
         placeholder={placeholder}
@@ -45,13 +45,13 @@ export const Input = (props: InputProps): ReactElement => {
         {...rest}
       />
       {label && type === 'checkbox' && (
-        <Typography className={styles.checkbox_label}>{label}</Typography>
+        <Typography className={'checkbox_label'}>{label}</Typography>
       )}
       {label && type !== 'checkbox' && (
         <Typography className={'pb-8'} $weight={'bold'}>
           {label}
         </Typography>
       )}
-    </label>
+    </S.Label>
   );
 };

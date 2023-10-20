@@ -1,6 +1,6 @@
 import React, { ChangeEvent, ComponentProps, ReactElement } from "react";
 import classNames from "classnames";
-import { BlockInputElement } from "@components/common/Input/style";
+import { BlockInputElement } from "@components/common/input/style";
 
 type InputChangeEvent = ChangeEvent<HTMLInputElement>;
 type InputVariant = "hint" | "success";

@@ -8,7 +8,7 @@ import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
 import { quizSolutionSubmit } from "@apis/quizzes";
-import {Input} from "@components/common/Input";
+import {Input} from "@components/common/input/Input";
 import {CheckCircleIcon} from "@components/common/icons/CheckCicleIcon";
 
 interface Chance {
@@ -54,8 +54,8 @@ export const QuizForm = (): ReactElement => {
   ): Promise<void> => {
     e.preventDefault();
 
-    //TODO Input focus
-    //TODO Input Validation Check Logic separation
+    //TODO input focus
+    //TODO input Validation Check Logic separation
     if (answer.length <= 0) {
       toast.message('정답을 입력해 주세요.', 'error');
       return;
