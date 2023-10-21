@@ -34,20 +34,20 @@ const Error404Page: NextPage = (): ReactElement => {
         />
       </picture>
       <section>
-        <Typography variant='h1' weight='bold' color='textBlack000'>
+        <Typography $variant='h1' $weight='bold' $color='textBlack000'>
           페이지를 찾을 수 없습니다.
         </Typography>
         <Typography
-          variant='caption'
-          weight='bold'
-          color='textGray200'
+          $variant='caption'
+          $weight='bold'
+          $color='textGray200'
 
         >
           페이지가 존재하지 않거나, 접근할 수 없는 페이지 입니다.
         </Typography>
       </section>
       <Button variant='primary' onClick={redirectHome}>
-        <Typography as='span' weight='bold' color='textDefault'>
+        <Typography as='span' $weight='bold' $color='textDefault'>
           돌아가기
         </Typography>
       </Button>

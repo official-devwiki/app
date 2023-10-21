@@ -22,11 +22,26 @@ export const QuizSolutionBox = styled.div`
 export const ButtonFlexBox = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
+  column-gap: 4em;
   margin-top: 20px;
 
   button:nth-child(1) {
     margin-right: 1em;
+  }
+  
+  @media screen and (max-width: 768px) {
+    justify-content: space-between;
+    column-gap: 0;
+  }
+`;
+
+export const CheckBoxContainer = styled.ul`
+  margin-top: 20px;
+  display: flex;
+  
+  li {
+    margin-right: 0.2em;
   }
 `;
 

@@ -25,9 +25,9 @@ const Banner = styled(BannerSvg)`
 `;
 
 export const MollrangSharedButton = (): ReactElement => {
-  const sharedMollrandLink = async (): Promise<void> => {
+  const sharedMollrangLink = async (): Promise<void> => {
     const url = "http://localhost:3000/";
-    navigator.clipboard.writeText(url);
+    await navigator.clipboard.writeText(url);
     toast.message(
       `클립보드에 저장되었습니다. - ${await navigator.clipboard.readText()}`,
     );
@@ -35,7 +35,7 @@ export const MollrangSharedButton = (): ReactElement => {
 
   return (
     <FlexBox>
-      <Button variant={"icon"} onClick={sharedMollrandLink}>
+      <Button variant={"icon"} onClick={sharedMollrangLink}>
         <ShareIcon />
         <Typography $color={"textDefault"} $weight={"bold"} $variant={"body2"}>
           몰랑 공유하기

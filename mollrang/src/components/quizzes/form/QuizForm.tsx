@@ -10,6 +10,7 @@ import toast from "@components/common/toast/ToastHandler";
 import { quizSolutionSubmit } from "@apis/quizzes";
 import {Input} from "@components/common/input/Input";
 import {CheckCircleIcon} from "@components/common/icons/CheckCicleIcon";
+import {CheckBoxContainer} from "./style";
 
 interface Chance {
   step: number;
@@ -75,13 +76,23 @@ export const QuizForm = (): ReactElement => {
   return (
     <S.QuizFormLayout onSubmit={todayQuizAnswerSubmit}>
 
-      <div>
-        <CheckCircleIcon className={'active'} />
-        <CheckCircleIcon />
-        <CheckCircleIcon />
-        <CheckCircleIcon />
-        <CheckCircleIcon />
-      </div>
+      <S.CheckBoxContainer>
+        <li>
+          <CheckCircleIcon className={'active'} />
+        </li>
+        <li>
+          <CheckCircleIcon />
+        </li>
+        <li>
+          <CheckCircleIcon />
+        </li>
+        <li>
+          <CheckCircleIcon />
+        </li>
+        <li>
+          <CheckCircleIcon />
+        </li>
+      </S.CheckBoxContainer>
 
       <S.QuizSolutionBox>
         <S.QuizFormTitle>
