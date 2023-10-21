@@ -12,31 +12,35 @@ import { ThemeProvider } from 'styled-components';
 import {theme} from "@styles/theme";
 import { v4 as uuid } from 'uuid';
 import Cookies from 'cookies'
+import {Provider} from "react-redux";
 
 const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
                                                                          Component,
                                                                          pageProps,
                                                                        }) => {
   const [queryState] = useState(() => queryClient);
-
+  const {store, props} = wrapper.useWrappedStore(pageProps);
   return (
     <>
       <ErrorBoundary>
-        <QueryClientProvider client={queryState}>
-          <Hydrate state={pageProps.dehydratedState}>
-            <ThemeProvider theme={theme}>
-              <GlobalStyle />
-              <LayoutComponent>
-                <Component {...pageProps} />
-              </LayoutComponent>
-            </ThemeProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </Hydrate>
-        </QueryClientProvider>
+        <Provider store={store}>
+          <QueryClientProvider client={queryState}>
+            <Hydrate state={props.dehydratedState}>
+              <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <LayoutComponent>
+                  <Component {...props.pageProps} />
+                </LayoutComponent>
+              </ThemeProvider>
+              <ReactQueryDevtools initialIsOpen={false} />
+            </Hydrate>
+          </QueryClientProvider>
+        </Provider>
       </ErrorBoundary>
     </>
   );
 };
+
 App.getInitialProps = async ({
                                Component,
                                ctx,
@@ -64,4 +68,4 @@ App.getInitialProps = async ({
   }
   return {pageProps};
 };
-export default wrapper.withRedux(App);
+export default App;
