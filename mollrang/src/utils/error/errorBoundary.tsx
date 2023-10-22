@@ -59,7 +59,6 @@ export default class ErrorBoundary extends React.Component<
       "unhandledrejection",
       this.handleRejectedPromise,
     );
-
     Router.events.off("routeChangeStart", this.resetState);
   }
 
@@ -67,7 +66,6 @@ export default class ErrorBoundary extends React.Component<
     const { error } = this.state as { error: ApiError };
     if (error) {
       const { redirectUrl, notFound } = error;
-      console.log(notFound, "error==================");
       if (notFound) return <Error404Page />;
       else if (redirectUrl) window.location.href = redirectUrl;
       else return <ServerErrorPage />;

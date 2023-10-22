@@ -55,8 +55,6 @@ export const QuizForm = (): ReactElement => {
   ): Promise<void> => {
     e.preventDefault();
 
-    //TODO input focus
-    //TODO input Validation Check Logic separation
     if (answer.length <= 0) {
       toast.message('정답을 입력해 주세요.', 'error');
       return;

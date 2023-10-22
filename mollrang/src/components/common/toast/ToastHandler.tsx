@@ -44,6 +44,7 @@ class Toast {
 
     this.toast.render(
       <ToastUi
+        variant={variant}
         messages={this.messages}
         closeMessage={this.closeMessage.bind(this)}
       />,

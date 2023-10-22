@@ -144,6 +144,8 @@ export const GlobalStyle = createGlobalStyle`
     --blockquote: #FFE588;
     --warning: #FF5050;
     --primary_opacity: rgba(0, 199, 174, 0.7);
+    --error_opacity: rgba(255, 80, 80, 0.7);
+    --warning_opacity: rgba(229, 175, 0, 0.7);
 
     // Typography - light
     --textDefault: #444343;
@@ -195,6 +197,9 @@ export const GlobalStyle = createGlobalStyle`
     --blockquote: #282828;
     --warning: #FF533B;
     --primary_opacity: rgba(119, 140, 134, 0.7);
+    --error_opacity: rgba(255, 80, 80, 0.7);
+    --warning_opacity: rgba(255, 199, 0, 0.7);
+
     // Typography - dark
     --textDefault: #fff;
     --textWhite: #fff;

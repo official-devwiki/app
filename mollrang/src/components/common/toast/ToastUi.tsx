@@ -11,14 +11,14 @@ interface Props {
 }
 
 export const ToastUi = (props: Props): ReactElement => {
-  const { messages } = props;
+  const { messages, variant } = props;
   const active = messages.length > 0;
 
   return (
     <S.ToastLayout className={active && "active"}>
       {messages.map((toast) => {
         return (
-          <S.ToastBox key={toast.id + "Toast"}>
+          <S.ToastBox className={variant} key={toast.id + "Toast"}>
             <Typography>{toast.message}</Typography>
           </S.ToastBox>
         );

@@ -30,8 +30,19 @@ export const ToastLayout = styled.div`
 export const ToastBox = styled.div`
   padding: 10px 50px;
   border-radius: 100px;
-  background: var(--primary_opacity);
-  color: #fff;
   box-shadow: 3px 4px 11px 0px #00000040;
   text-align: center;
+  color: #fff;
+
+  &.success {
+    background: var(--primary_opacity);
+  }
+  
+  &.error {
+    background-color: var(--error_opacity);
+  }
+  
+  &.warning {
+    background-color: var(--warning_opacity);
+  }
 `;
