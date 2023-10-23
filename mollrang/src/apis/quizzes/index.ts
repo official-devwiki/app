@@ -14,7 +14,7 @@ export const getTodayQuizzes = async () => {
 };
 
 export const quizSolutionSubmit = async (
-  body: { tryCount: number; result: string },
+  body:  {count: number, answer: string},
 ): Promise<any> => {
   try {
     const url = `/${domain}`;

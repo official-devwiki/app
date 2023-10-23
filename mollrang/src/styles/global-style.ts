@@ -142,6 +142,7 @@ export const GlobalStyle = createGlobalStyle`
     // major(theme)
     --primary: #00C7AE;
     --blockquote: #FFE588;
+    --secondary: #FFC700;
     --warning: #FF5050;
     --primary_opacity: rgba(0, 199, 174, 0.7);
     --error_opacity: rgba(255, 80, 80, 0.7);
@@ -195,6 +196,7 @@ export const GlobalStyle = createGlobalStyle`
   body[data-theme="dark"] {
     --primary: #778C86;
     --blockquote: #282828;
+    --secondary: #FFC700;
     --warning: #FF533B;
     --primary_opacity: rgba(119, 140, 134, 0.7);
     --error_opacity: rgba(255, 80, 80, 0.7);

@@ -37,6 +37,11 @@ export const Input = styled.input`
   height: 40px;
   border-radius: 6px;
 
+  &:disabled {
+    background-color: rgba(122, 122, 122, 0.9);
+    border-color: transparent !important;
+  }
+
   &:focus {
     border-color: var(--primary);
   }
@@ -44,11 +49,11 @@ export const Input = styled.input`
   &::placeholder {
     color: black;
   }
-  
+
   &.default {
     border-color: var(--primary);
   }
-  
+
   &.checkbox {
     display: none;
   }

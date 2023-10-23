@@ -24,7 +24,7 @@ export const Button = styled.button`
   }
 
   &.secondary {
-    border-color: #A4A4A4;
+    border-color: #ededed;
     background-color: #F0F0F0;
 
     span {

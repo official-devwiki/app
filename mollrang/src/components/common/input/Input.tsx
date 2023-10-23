@@ -39,6 +39,7 @@ export const Input = (props: InputProps): ReactElement => {
         className={classNames($variant, className)}
         disabled={disabled}
         id={id}
+        value={value}
         placeholder={placeholder}
         type={type}
         onChange={onChangeHandler}
