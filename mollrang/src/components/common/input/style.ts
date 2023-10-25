@@ -47,11 +47,7 @@ export const Input = styled.input`
   }
 
   &::placeholder {
-    color: black;
-  }
-
-  &.default {
-    border-color: var(--primary);
+    color: #adadad;
   }
 
   &.checkbox {

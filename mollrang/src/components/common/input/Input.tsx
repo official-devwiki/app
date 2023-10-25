@@ -1,4 +1,4 @@
-import {ChangeEvent, ComponentProps, ReactElement} from 'react';
+import {ChangeEvent, ComponentProps, ForwardedRef, forwardRef, ReactElement} from 'react';
 import {Typography} from '@components/common/Typography';
 import classNames from 'classnames';
 import * as S from './style';
@@ -14,7 +14,7 @@ interface InputProps extends ComponentProps<'input'> {
   onChange?: (event: InputChangeEvent) => void;
 }
 
-export const Input = (props: InputProps): ReactElement => {
+export const Input = forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputElement>): ReactElement => {
   const {
     $variant = 'default',
     label,
@@ -36,6 +36,7 @@ export const Input = (props: InputProps): ReactElement => {
   return (
     <S.Label htmlFor={id}>
       <S.Input
+        ref={ref}
         className={classNames($variant, className)}
         disabled={disabled}
         id={id}
@@ -55,4 +56,4 @@ export const Input = (props: InputProps): ReactElement => {
       )}
     </S.Label>
   );
-};
+});

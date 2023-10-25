@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const QuizFormLayout = styled.form`
   width: 100%;
+  min-height: 500px;
 `;
 
 export const QuizSolutionBox = styled.div`
@@ -24,7 +25,7 @@ export const ButtonFlexBox = styled.div`
   display: flex;
   justify-content: center;
   column-gap: 4em;
-  margin-top: 20px;
+  margin-top: 50px;
 
   button:nth-child(1) {
     margin-right: 1em;
@@ -42,6 +43,9 @@ export const CheckBoxContainer = styled.ul`
   
   li {
     margin-right: 0.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 `;
 
