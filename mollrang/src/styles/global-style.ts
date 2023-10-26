@@ -191,6 +191,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg_footer: #EFEFEF;
     --bg_input: #FDFDFD;
     --bg_line: #f1f1f1;
+    --bg_floating_button: #FFC700;
   }
 
   body[data-theme="dark"] {
@@ -201,6 +202,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary_opacity: rgba(119, 140, 134, 0.7);
     --error_opacity: rgba(255, 80, 80, 0.7);
     --warning_opacity: rgba(255, 199, 0, 0.7);
+    
 
     // Typography - dark
     --textDefault: #fff;
@@ -243,5 +245,6 @@ export const GlobalStyle = createGlobalStyle`
     --bg_footer: #505050;
     --bg_input: #FDFDFD;
     --bg_line: #575757;
+    --bg_floating_button: #5f5f5f;
   }
 `;

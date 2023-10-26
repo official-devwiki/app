@@ -4,8 +4,8 @@ import classNames from "classnames";
 
 export const BlockElement = styled.div`
   outline: none;
-  width: 50px;
-  height: 39px;
+  width: 20px;
+  height: 16px;
   border: 1px solid #DFDFDF;
   border-radius: 4px;
   background-color: #fdfdfd;
@@ -25,9 +25,11 @@ export const BlockElement = styled.div`
     background-color: var(--warning);
   }
 `;
+
 interface Props {
   className?: string;
 }
+
 export const HintBlock = (props: Props): ReactElement => {
   const {className} = props;
   return <BlockElement className={classNames(className)} />

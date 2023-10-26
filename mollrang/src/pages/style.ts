@@ -7,8 +7,11 @@ export const HomeLayout = styled.div`
   align-content: space-between;
 
   @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 100%;
-    display: inline-block;
+    min-height: 1000px;
   }
 `;
 

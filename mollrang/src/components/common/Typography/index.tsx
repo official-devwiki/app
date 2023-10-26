@@ -21,7 +21,7 @@ const element: { [key in Style.Variant]: string } = {
 };
 
 const StyledComponent = (element: any) => styled(element)<Typography>`
-  letter-spacing: 0.15px;
+  //letter-spacing: 0.15px;
   line-height: 1.25rem;
   transition: color 0.2s ease-in;
   color: ${(props) => Style.FontColor[props.$color]};

@@ -42,7 +42,13 @@ export const theme: DefaultTheme = {
 const customMediaQuery = (maxWidth: number): string =>
   `@media (max-width: ${maxWidth}px)`;
 
-export const MIXINS = {
+export const mixins = {
+  flexRowsContainer: () => `
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+  `,
   // flex
   flexBox: (direction = 'row', align = 'center', justify = 'center') => `
     display: flex;
