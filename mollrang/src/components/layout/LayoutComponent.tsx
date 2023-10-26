@@ -7,6 +7,9 @@ import {useAppSelector} from '@hooks/useRedux';
 import {ModalHandler} from "@components/common/modal/ModalHandler";
 import {IntegratedStatistics} from "@components/statistics/IntegratedStatistics";
 import {MessageBox} from "@components/quizzes/MessageBox";
+import {QuizGuide} from "@components/quizzes/guide/QuizGuide";
+import Image from "next/image";
+import {Typography} from "@components/common/Typography";
 
 interface Props {
   children: ReactNode;
@@ -32,6 +35,16 @@ const Main = styled.main`
   min-height: 1000px;
 `;
 
+import { EmblaOptionsType } from 'embla-carousel-react'
+const SLIDE_COUNT = 5
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+const OPTIONS: EmblaOptionsType = { loop: true }
+
+const SendBox = styled.div`
+    position: relative;
+    background-color: gray;
+`;
+
 export const LayoutComponent = (props: Props): ReactElement => {
   const {children} = props;
   const type = useAppSelector(
@@ -47,6 +60,25 @@ export const LayoutComponent = (props: Props): ReactElement => {
       </Layout>
       <ModalHandler>
         {type === 'statistics' && (<IntegratedStatistics />)}
+        {type === 'guide' && (
+          <div>
+            <SendBox>
+              <QuizGuide slides={SLIDES} options={OPTIONS} />
+            </SendBox>
+
+           {/* <QuizGuide slides={[*/}
+           {/*   <Typography $color={'textWhite'}>Text1</Typography>,*/}
+           {/*   <Typography $color={'textWhite'}>Text2</Typography>,*/}
+           {/*   <Typography $color={'textWhite'}>Text3</Typography>,*/}
+           {/* ]}*/}
+           {/*options={{*/}
+           {/*  align: "start",*/}
+           {/*  loop: true,*/}
+           {/*  skipSnaps: false,*/}
+           {/*  inViewThreshold: 0.7,*/}
+           {/*}} />*/}
+          </div>
+        )}
         {type === 'quiz-message' && (<MessageBox />)}
       </ModalHandler>
       <BottomNavigation />

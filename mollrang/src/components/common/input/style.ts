@@ -43,13 +43,16 @@ export const Input = styled.input`
   }
 
   &:focus {
-    border-color: var(--primary);
+    border-color: var(--primary) !important;
+    background-color: #fff !important;
   }
 
   &::placeholder {
     color: #adadad;
   }
-
+  &.default {
+    border-color: #ededed;
+  }
   &.checkbox {
     display: none;
   }
