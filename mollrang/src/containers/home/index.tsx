@@ -1,5 +1,5 @@
 import * as S from "@containers/home/style";
-import {IntroBanner, IntroShorts} from "@components/intro";
+import {IntroBanner} from "@components/intro";
 import {Button} from "@components/common/Button";
 import {OpenBookIcon} from "@components/common/icons/OpenBookIcon";
 import {Typography} from "@components/common/Typography";
@@ -8,6 +8,7 @@ import {CorrectAnswers} from "@components/statistics/CorrectAnswers";
 import {ConsecutiveAnswers} from "@components/statistics/ConsecutiveAnswers";
 import {Footer} from "@components/layouts/footer/Footer";
 import {useRouter} from "next/router";
+import {TodayRandomQuiz} from "@components/quizzes/random/TodayRandomQuiz";
 
 export const HomeContainer = () => {
   const router = useRouter();
@@ -33,7 +34,7 @@ export const HomeContainer = () => {
             </Typography>
           </Button>
         </S.PlayQuizBox>
-        <IntroShorts />
+        <TodayRandomQuiz />
         <S.SubItemsLayout>
           <AttendanceCheck />
           <div className={"answers-container"}>

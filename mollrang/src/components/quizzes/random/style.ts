@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 
-export const ShortsLayout = styled.div`
+export const RandomQuizLayout = styled.div`
   width: 100%;
   margin-top: 2em;
 `;
-export const ShortsBlockContainer = styled.div`
+export const RandomQuizContainer = styled.div`
   width: 100%;
   margin-top: 1em;
 `;
-export const ShortsBlock = styled.div`
+export const RandomQuizTitleBlock = styled.div`
   background-color: var(--blockquote);
   color: var(--major-text);
   width: 100%;
@@ -25,14 +25,6 @@ export const AnswerBox = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-top: 1em;
-`;
-
-export const EmptyBox = styled.div`
-  background-color: #D9D9D9;
-  border-radius: 4px;
-  width: 38px;
-  height: 20px;
-  margin-right: 8px;
 `;
 
 export const FlexBox = styled.div`

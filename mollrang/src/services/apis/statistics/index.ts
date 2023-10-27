@@ -26,7 +26,7 @@ export const getMyAnswersRatio = async (userId: string) => {
  */
 export const getChallengeDistribution = async (userId: string) => {
   try {
-    const url = `/${domain}/${Url.Statistics.quizChanllengeCount}/${userId}`;
+    const url = `/${domain}/${Url.Statistics.quizChallengeCount}/${userId}`;
     const {data} = await axiosInstance.get(url);
     return data;
   } catch (e) {
@@ -41,7 +41,7 @@ export const getChallengeDistribution = async (userId: string) => {
  */
 export const getChanllengeCount = async (userId: string) => {
   try {
-    const url = `/${domain}/${Url.Statistics.chanllengeCount}/${userId}`;
+    const url = `/${domain}/${Url.Statistics.challengeCount}/${userId}`;
     const {data} = await axiosInstance.get(url);
     return data;
   } catch (e) {

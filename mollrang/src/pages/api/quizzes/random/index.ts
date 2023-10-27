@@ -1,13 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import * as fs from 'fs';
 
-type Data = {
-  question?: string;
-  answer?: string;
-  solution?: string;
-  message?: string;
-}
-
 export default function handler(
   req: NextApiRequest,
   res: NextApiResponse,

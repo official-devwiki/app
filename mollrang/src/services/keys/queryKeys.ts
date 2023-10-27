@@ -1,9 +1,7 @@
 export const QueryKeys = {
   Quizzes: {
     getTodayQuizzes: "get_today_quiz",
-  },
-  Shorts: {
-    getShorts: "get_shorts",
+    getRandomQuizzes: "get_random_quiz"
   },
   Statistics: {
     getMyAnswers: "get_my_answers",
