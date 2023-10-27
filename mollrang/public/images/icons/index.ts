@@ -6,6 +6,7 @@ import OpenBook from './open-book.svg';
 import CheckRed from './check.svg';
 import PieChart from './pie_chart.svg';
 import CheckSquare from './check_square.svg';
+import Hamburger from './hamburger.svg';
 
 export {
   Chart,
@@ -15,5 +16,6 @@ export {
   OpenBook,
   CheckRed,
   PieChart,
-  CheckSquare
+  CheckSquare,
+  Hamburger
 };

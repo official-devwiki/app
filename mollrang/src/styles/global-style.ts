@@ -142,8 +142,11 @@ export const GlobalStyle = createGlobalStyle`
     // major(theme)
     --primary: #00C7AE;
     --blockquote: #FFE588;
+    --secondary: #FFC700;
     --warning: #FF5050;
     --primary_opacity: rgba(0, 199, 174, 0.7);
+    --error_opacity: rgba(255, 80, 80, 0.7);
+    --warning_opacity: rgba(229, 175, 0, 0.7);
 
     // Typography - light
     --textDefault: #444343;
@@ -188,13 +191,19 @@ export const GlobalStyle = createGlobalStyle`
     --bg_footer: #EFEFEF;
     --bg_input: #FDFDFD;
     --bg_line: #f1f1f1;
+    --bg_floating_button: #FFC700;
   }
 
   body[data-theme="dark"] {
     --primary: #778C86;
     --blockquote: #282828;
+    --secondary: #FFC700;
     --warning: #FF533B;
     --primary_opacity: rgba(119, 140, 134, 0.7);
+    --error_opacity: rgba(255, 80, 80, 0.7);
+    --warning_opacity: rgba(255, 199, 0, 0.7);
+    
+
     // Typography - dark
     --textDefault: #fff;
     --textWhite: #fff;
@@ -236,5 +245,6 @@ export const GlobalStyle = createGlobalStyle`
     --bg_footer: #505050;
     --bg_input: #FDFDFD;
     --bg_line: #575757;
+    --bg_floating_button: #5f5f5f;
   }
 `;

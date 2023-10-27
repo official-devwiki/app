@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const QuizFormLayout = styled.form`
   width: 100%;
+  min-height: 500px;
 `;
 
 export const QuizSolutionBox = styled.div`
@@ -22,15 +23,33 @@ export const QuizSolutionBox = styled.div`
 export const ButtonFlexBox = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-evenly;
-  margin-top: 20px;
+  justify-content: center;
+  column-gap: 4em;
+  margin-top: 50px;
 
   button:nth-child(1) {
     margin-right: 1em;
   }
+
+  ${({theme}) => theme.media.tablet} {
+    justify-content: space-between;
+    column-gap: 0;
+  }
 `;
 
-export const FlexBox = styled.div`
+export const CheckBoxContainer = styled.ul`
+  margin-top: 20px;
+  display: flex;
+  
+  li {
+    margin-right: 0.2em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
+export const QuizAnswerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -56,4 +75,28 @@ export const QuizFormTitle = styled.div`
   svg {
     margin-right: 8px;
   }
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  & > div {
+    margin: 0 4px;
+  }
+`;
+
+export const HintButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const HintButton = styled.button`
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--bg_floating_button);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6)
 `;

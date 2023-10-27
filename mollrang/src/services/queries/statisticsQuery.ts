@@ -1,15 +1,17 @@
 import { useQuery } from "@tanstack/react-query";
 import { QueryKeys } from "@services/keys/queryKeys";
-import { getMyAnswersRatio } from "@apis/statistics";
+import { getMyAnswersRatio } from "@services/apis/statistics";
 
 /**
  * @description: 나의 정답률 구하기
- * @param {string} uuid - 사용자 부여 id
  */
-export const useGetMyAnswersQuery = (uuid: string) => {
-  const result = useQuery({
+export const useGetMyAnswersQuery =<T>(): {isLoading: boolean, data: T} => {
+  const {data, isLoading} = useQuery({
     queryKey: [QueryKeys.Statistics.getMyAnswers],
-    queryFn: () => getMyAnswersRatio(uuid),
+    queryFn: () => getMyAnswersRatio<T>(),
   });
-  return result;
+  return {
+    isLoading,
+    data,
+  };
 };

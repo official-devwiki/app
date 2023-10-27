@@ -6,6 +6,7 @@ import { useAppDispatch } from "@hooks/useRedux";
 import { useRouter } from "next/router";
 import * as S from "./style";
 import { setModalOpen, State } from "@store/slice/modalSlice";
+import {GuideIcon} from "@components/common/icons/GuideIcon";
 
 export const BottomNavigation = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -37,7 +38,7 @@ export const BottomNavigation = (): ReactElement => {
         </S.NavItem>
         <S.NavItem>
           <Button variant={"icon"} onClick={() => openModal("guide")}>
-            <Icons type={"guide"} />
+            <GuideIcon />
             <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
               가이드
             </Typography>

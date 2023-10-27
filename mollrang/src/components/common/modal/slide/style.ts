@@ -11,11 +11,10 @@ export const ModalContainer = styled(motion.div)`
 export const ModalBody = styled(motion.div)`
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   background: var(--bg_modal);
   width: 100%;
-  min-height: 200px;
+  min-height: 550px;
   height: auto;
   font-size: 4vmin;
   border-radius: 14px 14px 0 0;

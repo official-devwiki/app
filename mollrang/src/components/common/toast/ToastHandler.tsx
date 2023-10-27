@@ -4,7 +4,7 @@ import { v4 as uuid } from "uuid";
 
 export type ToastVariant = "success" | "warning" | "secondary" | "error";
 
-interface Messages {
+export interface Messages {
   id: string;
   message: string;
   variant: ToastVariant;
@@ -17,7 +17,7 @@ class Toast {
   duration: number; /* 유지 시간  */
 
   constructor() {
-    this.duration = 1500; // 기본 1 초
+    this.duration = 1500; // 기본 1.5 s
 
     this.element =
       typeof window !== "undefined" &&
@@ -44,6 +44,7 @@ class Toast {
 
     this.toast.render(
       <ToastUi
+        variant={variant}
         messages={this.messages}
         closeMessage={this.closeMessage.bind(this)}
       />,

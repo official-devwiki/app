@@ -33,3 +33,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+./src/__tests__/__snapshots__/*
+*.__snapshots__
+/src/__tests__/**/**/**/__snapshots__/

@@ -1,28 +1,30 @@
 import { ReactElement } from "react";
 import * as S from "./style";
 import { Typography } from "../Typography";
-import { ToastVariant } from "./ToastHandler";
+import {Messages, ToastVariant} from "./ToastHandler";
+import classNames from "classnames";
 
 interface Props {
-  messages: any[];
+  messages: Messages[];
   variant?: ToastVariant;
-  closeBox?: any;
-  closeMessage?: any;
+  closeMessage?: (id: string) => void;
 }
 
 export const ToastUi = (props: Props): ReactElement => {
-  const { messages } = props;
+  const { messages, variant } = props;
   const active = messages.length > 0;
 
   return (
-    <S.ToastLayout className={active && "active"}>
+    <>
       {messages.map((toast) => {
         return (
-          <S.ToastBox key={toast.id + "Toast"}>
-            <Typography>{toast.message}</Typography>
-          </S.ToastBox>
+          <S.ToastLayout className={classNames(variant, active && "active")}>
+            <S.ToastBox key={toast.id + "Toast"}>
+              <Typography $variant={'body2'} $weight={'bold'} $color={'textWhite'}>{toast.message}</Typography>
+            </S.ToastBox>
+          </S.ToastLayout>
         );
       })}
-    </S.ToastLayout>
+    </>
   );
 };

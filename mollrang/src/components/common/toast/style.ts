@@ -10,28 +10,30 @@ export const ToastLayout = styled.div`
   left: 50%;
   transform: translate(-50%, 0);
   transition: all 0.5s;
-
-  &.active {
-    animation: fadeout 4.5s;
-    opacity: 100%;
-    bottom: 150px;
+  border-radius: 100px;
+  box-shadow: 3px 4px 11px 0 #00000040;
+  
+  &.success {
+    background: var(--primary_opacity);
   }
 
-  @keyframes fadeout {
-    from {
-      opacity: 1;
-    }
-    to {
-      opacity: 0.4;
-    }
+  &.error {
+    background-color: var(--error_opacity);
+  }
+
+  &.warning {
+    background-color: var(--warning_opacity);
+  }
+  
+  &.active {
+    opacity: 100%;
+    bottom: 150px;
   }
 `;
 
 export const ToastBox = styled.div`
   padding: 10px 50px;
   border-radius: 100px;
-  background: var(--primary_opacity);
-  color: #fff;
-  box-shadow: 3px 4px 11px 0px #00000040;
+
   text-align: center;
 `;

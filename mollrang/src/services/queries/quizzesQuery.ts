@@ -1,35 +1,29 @@
 import {useQuery} from '@tanstack/react-query';
 import {QueryKeys} from '@services/keys/queryKeys';
-import {getTodayQuizzes} from '@apis/quizzes';
+import {getRandomQuiz, getTodayQuizzes} from '@services/apis/quizzes';
 
-interface Quiz {
-  answerLength: number;
-  prefixWord: string;
-  suffixWord: string;
-  question: string;
-}
-
-export const useTodayQuizzesQuery = () => {
-  let payload: Quiz = {
-    answerLength: 0,
-    prefixWord: '',
-    suffixWord: '',
-    question: '',
-  };
-
-  const {data = [], isLoading} = useQuery({
+export const useTodayQuizzesQuery = <T>(): {isLoading: boolean, data: T} => {
+  const {data, isLoading} = useQuery({
     queryKey: [QueryKeys.Quizzes.getTodayQuizzes],
-    queryFn: () => getTodayQuizzes(),
+    queryFn: () => getTodayQuizzes<T>(),
   });
-
-  if (data.length > 0) {
-    const {result} = data[0];
-    const {data: quizInfo} = result;
-    payload = quizInfo;
-  }
 
   return {
     isLoading,
-    quiz: payload,
+    data,
+  };
+};
+
+/**
+ * @description: 피식 :) 오늘의 랜덤 퀴즈
+ */
+export const useTodayRandomQuizzesQuery = <T>(): {isLoading: boolean, data: T} => {
+  const {data, isLoading} = useQuery({
+    queryKey: [QueryKeys.Quizzes.getRandomQuizzes],
+    queryFn: () => getRandomQuiz<T>(),
+  });
+  return {
+    isLoading,
+    data,
   };
 };

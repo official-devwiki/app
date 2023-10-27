@@ -5,6 +5,7 @@ import {Typography} from "@components/common/Typography";
 import {Button} from "@components/common/Button";
 import {useAppDispatch} from "@hooks/useRedux";
 import {setModalOpen} from "@store/slice/modalSlice";
+import {GuideIcon} from "@components/common/icons/GuideIcon";
 
 const GuidePopupLayout = styled.div`
   position: absolute;
@@ -21,8 +22,8 @@ const GuidePopupLayout = styled.div`
     display: flex;
     flex-direction: column;
   }
-  
-  @media screen and (max-width: 767px) {
+
+  ${({theme}) => theme.media.tablet} {
     display: none;
   }
 `;
@@ -41,7 +42,7 @@ export const FloatingActionButton = (): ReactElement => {
   return (
     <GuidePopupLayout>
       <Button variant={'icon'} onClick={guideOpen}>
-        <Icons variant={'white'} type={'guide'} />
+        <GuideIcon />
         <Typography $variant={'caption'} as={'span'} $color={'textWhite'}>가이드</Typography>
       </Button>
     </GuidePopupLayout>

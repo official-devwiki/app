@@ -17,9 +17,29 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   }
 
   if (req.method === "POST") {
-    return res
-      .status(200)
-      .json({ result: false, data: { first: { answer1: "O", answer2: "X" } } });
+
+    const { count, answer } = req.body;
+    if (count === 1) {
+      return res
+        .status(200)
+        .json({ result: false, data:  [{ answer1: "O", answer2: "y" }] });
+    } else if (count === 2) {
+      return res
+        .status(200)
+        .json({ result: false, data:  [{ answer1: "X", answer2: "X" }] });
+    } else if (count === 3) {
+      return res
+        .status(200)
+        .json({ result: false, data:  [{ answer1: "y", answer2: "O" }] });
+    } else if (count === 4) {
+      return res
+        .status(200)
+        .json({ result: false, data:  [{ answer1: "y", answer2: "X" }] });
+    } else {
+      return res
+        .status(200)
+        .json({ result: false, data:  [{ answer1: "O", answer2: "O" }] });
+    }
   }
 
   // if (req.method !== "GET")

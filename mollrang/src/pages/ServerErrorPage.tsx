@@ -34,19 +34,19 @@ const ServerErrorPage: NextPage = (): ReactElement => {
         />
       </picture>
       <section>
-        <Typography variant='h1' weight='bold' color='textBlack000'>
+        <Typography $variant='h1' $weight='bold' $color='textBlack000'>
           잘못된 요청입니다.
         </Typography>
         <Typography
-          variant='caption'
-          weight='bold'
-          color='textGray200'
+          $variant='caption'
+          $weight='bold'
+          $color='textGray200'
         >
           잠시 후 다시 시도해주세요.
         </Typography>
       </section>
       <Button variant='primary' onClick={redirectHome}>
-        <Typography as='span' weight='bold' color='textDefault'>
+        <Typography as='span' $weight='bold' $color='textDefault'>
           돌아가기
         </Typography>
       </Button>
