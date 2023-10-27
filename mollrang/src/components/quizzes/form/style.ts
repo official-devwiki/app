@@ -49,7 +49,7 @@ export const CheckBoxContainer = styled.ul`
   }
 `;
 
-export const FlexBox = styled.div`
+export const QuizAnswerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -75,4 +75,28 @@ export const QuizFormTitle = styled.div`
   svg {
     margin-right: 8px;
   }
+`;
+
+export const FlexBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  & > div {
+    margin: 0 4px;
+  }
+`;
+
+export const HintButtonWrapper = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+`;
+
+export const HintButton = styled.button`
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--bg_floating_button);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6)
 `;

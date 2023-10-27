@@ -12,3 +12,13 @@ export interface Quiz {
   question: string;
 }
 
+export type Block = {
+  [key: string]: string;
+}
+
+export interface Chance {
+  step: number;
+  answer: boolean;
+  hint: Block[];
+}
+

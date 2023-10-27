@@ -11,47 +11,11 @@ import { quizSolutionSubmit } from "@services/apis/quizzes";
 import {Input} from "@components/common/input/Input";
 import {CheckCircleIcon} from "@components/common/icons/CheckCicleIcon";
 import {HintBlock} from "@components/ui/block/HintBlock";
-import styled from "styled-components";
 import {HamburgerIcon} from "@components/common/icons/HamburgerIcon";
 import {useAppDispatch} from "@hooks/useRedux";
 import {setModalOpen, State} from "@store/slice/modalSlice";
 import {useRouter} from "next/router";
-import {Quiz} from "@interfaces/quizzes";
-
-
-interface Block {
-  [key: string]: string;
-}
-
-interface Chance {
-  step: number;
-  answer: boolean;
-  hint: Block[];
-}
-
-const FlexBox = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  & > div {
-    margin: 0 4px;
-  }
-`;
-
-const HintButtonWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: flex-end;
-`;
-
-const HintButton = styled.button`
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background-color: var(--bg_floating_button);
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.6)
-`;
+import {Block, Chance, Quiz} from "@interfaces/quizzes";
 
 const initialStepState: Chance[] = [
   { step: 1, answer: false, hint: [] },
@@ -173,9 +137,9 @@ export const QuizForm = (): ReactElement => {
               <CheckCircleIcon className={v.answer && 'active'} />
               {v.hint.length > 0 && v.hint.map((block, blockIndex) => {
                 return (
-                  <FlexBox key={`key-${blockIndex}`}>
+                  <S.FlexBox key={`key-${blockIndex}`}>
                     {hintBlockGenerator(block, `key-${blockIndex}`)}
-                  </FlexBox>
+                  </S.FlexBox>
                 )
               })}
             </li>
@@ -200,7 +164,7 @@ export const QuizForm = (): ReactElement => {
             </>
           )}
         </S.QuizFormTitle>
-        <S.FlexBox>
+        <S.QuizAnswerContainer>
           {emptyBlockElementGenerator()}
           {data.prefixWord && (
             <Typography
@@ -220,7 +184,7 @@ export const QuizForm = (): ReactElement => {
               {data.suffixWord}
             </Typography>
           )}
-        </S.FlexBox>
+        </S.QuizAnswerContainer>
       </S.QuizSolutionBox>
 
       <S.InputContainer>
@@ -233,11 +197,11 @@ export const QuizForm = (): ReactElement => {
           onChange={(e) => onChangeHandler(e)}
         />
       </S.InputContainer>
-      <HintButtonWrapper>
-        <HintButton type={'button'} onClick={onClickMessageBoxButton}>
+      <S.HintButtonWrapper>
+        <S.HintButton type={'button'} onClick={onClickMessageBoxButton}>
           <HamburgerIcon />
-        </HintButton>
-      </HintButtonWrapper>
+        </S.HintButton>
+      </S.HintButtonWrapper>
       <S.ButtonFlexBox>
         <Button variant={"secondary"} type={'button'} onClick={goToHome}>
           <Typography as={"span"} $weight={'bold'}>그만하기</Typography>
