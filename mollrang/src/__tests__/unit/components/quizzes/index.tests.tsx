@@ -5,7 +5,7 @@ import {TodayRandomQuiz} from "@components/quizzes/random/TodayRandomQuiz";
 
 // 모킹화
 jest.mock('../../../../services/queries/quizzesQuery.ts');
-const mockShortsQuery = useTodayRandomQuizzesQuery as jest.Mock;
+const mockQuizQuery = useTodayRandomQuizzesQuery as jest.Mock;
 
 const mockData = {
   isLoading: false,
@@ -19,7 +19,7 @@ const mockData = {
 
 describe('TodayRandomQuiz Test Case', () => {
   beforeEach(() => {
-    mockShortsQuery.mockImplementation(jest.fn().mockReturnValue(mockData));
+    mockQuizQuery.mockImplementation(jest.fn().mockReturnValue(mockData));
   }); // beforeEach
   test('rendering test', async () => {
     const component = render(<TodayRandomQuiz />, { wrapper: wrapper });

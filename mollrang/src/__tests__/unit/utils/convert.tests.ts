@@ -48,7 +48,7 @@ describe('Response Data Convert Test', () => {
   })
 
   test('타입과 일치하지 않은 데이터를 넣을 경우', () => {
-    const convertTests = jest.fn(responseDataConvert<Quiz>);
+    const convertTests = jest.fn(responseDataConvert<Quiz[]>);
     expect(convertTests(responseDataArrayObject)).not.toEqual(expectedReturnValueObject)
   })
 });
