@@ -36,11 +36,12 @@ export const TodayRandomQuiz = (): ReactElement => {
         {isLoading ? (
           <SkeletonUi theme={{ height: 40, borderRadius: 4 }} />
         ) : (
-          <S.RandomQuizTitleBlock data-testid={"shorts-question"}>
+          <S.RandomQuizTitleBlock>
             <Typography
               $variant={"body1"}
               $weight={"medium"}
               $color={"textDefault"}
+              data-testid={"random-quiz-question"}
             >
               {quiz && quiz.question}
             </Typography>
