@@ -1,6 +1,6 @@
 import {useQuery} from '@tanstack/react-query';
 import {QueryKeys} from '@services/keys/queryKeys';
-import {getTodayQuizzes} from '@apis/quizzes';
+import {getTodayQuizzes} from '@services/apis/quizzes';
 
 interface Quiz {
   answerLength: number;

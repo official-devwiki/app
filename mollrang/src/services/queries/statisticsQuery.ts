@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { QueryKeys } from "@services/keys/queryKeys";
-import { getMyAnswersRatio } from "@apis/statistics";
+import { getMyAnswersRatio } from "@services/apis/statistics";
 
 /**
  * @description: 나의 정답률 구하기

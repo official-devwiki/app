@@ -1,5 +1,5 @@
 import { axiosInstance } from "@libs/Axios";
-import { Url } from "@apis/url";
+import { Url } from "@services/apis/url";
 
 export const getTodayShorts = async () => {
   try {

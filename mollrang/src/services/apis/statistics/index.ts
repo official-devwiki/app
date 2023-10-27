@@ -1,5 +1,5 @@
 import {axiosInstance} from '@libs/Axios';
-import {Domain, Url} from "@apis/url";
+import {Domain, Url} from "@services/apis/url";
 
 const domain = Domain.Statistics;
 

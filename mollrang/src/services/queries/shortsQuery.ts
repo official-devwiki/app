@@ -1,5 +1,5 @@
 import {useQuery} from '@tanstack/react-query';
-import {getTodayShorts} from '@apis/shorts';
+import {getTodayShorts} from '@services/apis/shorts';
 import {QueryKeys} from '@services/keys/queryKeys';
 
 /**

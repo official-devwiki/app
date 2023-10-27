@@ -62,11 +62,12 @@
       "@images/*": ["../public/images/*"],
       "@assets/*": ["assets/*"],
       "@services/*": ["services/*"],
+      "@containers/*": ["containers/*"],
       "@tests/*": ["__tests__/*"]
     }
   },
   "typeRoots": [
-    "src/types/**/*.d.ts",
+    "./types/**/*.d.ts",
     "node_modules/@types"
   ],
   "include": ["next-env.d.ts", "src", "**/*.ts", "**/*.tsx", "types/**/*.ts"],

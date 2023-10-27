@@ -7,9 +7,9 @@ export const QueryKeys = {
   },
   Statistics: {
     getMyAnswers: "get_my_answers",
-    getChanllengeDistribution: "get_chanllenge_distribution",
-    getChanllengeCount: "get_chanllenge_count",
-    getContinousCorrectCount: "get_continous_correct_count",
-    getMostCotinousCorrectCount: "get_most_continous_correct_count",
+    getChallengeDistribution: "get_challenge_distribution",
+    getChallengeCount: "get_challenge_count",
+    getContinuousCorrectCount: "get_continuous_correct_count",
+    getMostContinuousCorrectCount: "get_most_continuous_correct_count",
   },
 };
