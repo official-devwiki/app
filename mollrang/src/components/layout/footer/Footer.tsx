@@ -12,7 +12,7 @@ const FooterLayout = styled.footer`
   position: relative;
   //transform: translateY(100%);
 
-  @media screen and (max-width: 767px) {
+  ${({theme}) => theme.media.tablet} {
     //transform: translateY(100%);
   }
 `;

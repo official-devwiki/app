@@ -11,8 +11,8 @@ export const BottomNavigationLayout = styled.nav`
   border-radius: 10px 10px 0 0;
   display: none;
   z-index: 10;
-  
-  @media screen and (max-width: 767px) {
+
+  ${({theme}) => theme.media.tablet} {
     display: flex;
     align-items: center;
     justify-content: center;

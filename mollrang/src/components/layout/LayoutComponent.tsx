@@ -8,8 +8,6 @@ import {ModalHandler} from "@components/common/modal/ModalHandler";
 import {IntegratedStatistics} from "@components/statistics/IntegratedStatistics";
 import {MessageBox} from "@components/quizzes/MessageBox";
 import {QuizGuide} from "@components/quizzes/guide/QuizGuide";
-import Image from "next/image";
-import {Typography} from "@components/common/Typography";
 
 interface Props {
   children: ReactNode;
@@ -17,8 +15,8 @@ interface Props {
 
 const Layout = styled.div`
   padding-bottom: 0;
-  
-  @media screen and (max-width: 767px) {
+
+  ${({theme}) => theme.media.tablet} {
     padding-bottom: 74px;
     display: flex;
     flex-direction: column;
@@ -65,18 +63,6 @@ export const LayoutComponent = (props: Props): ReactElement => {
             <SendBox>
               <QuizGuide slides={SLIDES} options={OPTIONS} />
             </SendBox>
-
-           {/* <QuizGuide slides={[*/}
-           {/*   <Typography $color={'textWhite'}>Text1</Typography>,*/}
-           {/*   <Typography $color={'textWhite'}>Text2</Typography>,*/}
-           {/*   <Typography $color={'textWhite'}>Text3</Typography>,*/}
-           {/* ]}*/}
-           {/*options={{*/}
-           {/*  align: "start",*/}
-           {/*  loop: true,*/}
-           {/*  skipSnaps: false,*/}
-           {/*  inViewThreshold: 0.7,*/}
-           {/*}} />*/}
           </div>
         )}
         {type === 'quiz-message' && (<MessageBox />)}

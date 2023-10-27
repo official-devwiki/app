@@ -15,7 +15,6 @@ interface ButtonProps extends ComponentProps<'button'> {
   type?: ButtonType;
 }
 
-
 export const Button = (props: ButtonProps): ReactElement => {
   const {
     variant = 'primary',

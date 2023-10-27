@@ -7,7 +7,7 @@ import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
-import { quizSolutionSubmit } from "@apis/quizzes";
+import { quizSolutionSubmit } from "@services/apis/quizzes";
 import {Input} from "@components/common/input/Input";
 import {CheckCircleIcon} from "@components/common/icons/CheckCicleIcon";
 import {HintBlock} from "@components/ui/block/HintBlock";

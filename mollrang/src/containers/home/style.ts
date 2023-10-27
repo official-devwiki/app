@@ -59,9 +59,8 @@ export const SubItemsLayout = styled.div`
     padding: 18px 0;
   }
 
-  @media screen and (max-width: 767px) {
+  ${({theme}) => theme.media.tablet} {
     flex-direction: column;
-
     .answers-container {
       border-top: 1px solid var(--correct_border);
       border-bottom: 1px solid var(--correct_border);

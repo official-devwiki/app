@@ -22,8 +22,8 @@ const GuidePopupLayout = styled.div`
     display: flex;
     flex-direction: column;
   }
-  
-  @media screen and (max-width: 767px) {
+
+  ${({theme}) => theme.media.tablet} {
     display: none;
   }
 `;

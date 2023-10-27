@@ -30,8 +30,8 @@ export const ButtonFlexBox = styled.div`
   button:nth-child(1) {
     margin-right: 1em;
   }
-  
-  @media screen and (max-width: 768px) {
+
+  ${({theme}) => theme.media.tablet} {
     justify-content: space-between;
     column-gap: 0;
   }
