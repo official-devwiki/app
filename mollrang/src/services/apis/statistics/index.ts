@@ -55,21 +55,21 @@ export const getChallengeCount = async (userId: string) => {
  * @param userId 
  * @description 연속 정답 횟수 조회
  */
-export const getContinuousCorrectCount = async (userId: string) => {
+export const getContinuousCorrectCount = async<T>(): Promise<T> => {
   try {
-    const url = `/${domain}/${Url.Statistics.continuousCount}/${userId}`;
+    const url = `/${domain}/${Url.Statistics.continuousCount}`;
     const {data} = await axiosInstance.get(url);
-    return data;
+    return responseDataConvert<T>(data);
   } catch (e) {
     throw e;
   }
 }
 
-export const getMostContinuousCorrectCount = async (userId: string) => {
+export const getMostContinuousCorrectCount = async<T>(): Promise<T> => {
   try {
-    const url = `/${domain}/${Url.Statistics.mostContinuousCount}/${userId}`;
+    const url = `/${domain}/${Url.Statistics.mostContinuousCount}`;
     const {data} = await axiosInstance.get(url);
-    return data;
+    return responseDataConvert<T>(data);
   } catch (e) {
     throw e;
   }

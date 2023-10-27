@@ -1,7 +1,7 @@
 import { ReactElement } from "react";
 import { Typography } from "@components/common/Typography";
 import styled from "styled-components";
-import { useGetMyAnswersQuery } from "@services/queries/statisticsQuery";
+import { useContinuousCorrectQuery } from "@services/queries/statisticsQuery";
 import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 
 const CorrectAnswerLayout = styled.div`
@@ -23,7 +23,7 @@ const Day = styled.span`
 `;
 
 export const ConsecutiveAnswers = (): ReactElement => {
-  const { data, isLoading } = useGetMyAnswersQuery("uuid");
+  const { data, isLoading } = useContinuousCorrectQuery<{day: number}>();
 
   return (
     <CorrectAnswerLayout>
@@ -41,7 +41,7 @@ export const ConsecutiveAnswers = (): ReactElement => {
               $weight={"bold"}
               $variant={"body1"}
             >
-              {data && data[0].ratio} 일
+              {data && data.day} 일
             </Typography>
           </Day>
         )}
