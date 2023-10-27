@@ -16,6 +16,7 @@ import {HamburgerIcon} from "@components/common/icons/HamburgerIcon";
 import {useAppDispatch} from "@hooks/useRedux";
 import {setModalOpen, State} from "@store/slice/modalSlice";
 import {useRouter} from "next/router";
+import {Quiz} from "@interfaces/quizzes";
 
 
 interface Block {
@@ -68,12 +69,12 @@ export const QuizForm = (): ReactElement => {
   const dispatch = useAppDispatch();
   const router = useRouter();
 
-  const { quiz, isLoading } = useTodayQuizzesQuery();
+  const { data, isLoading } = useTodayQuizzesQuery<Quiz>();
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
-    if (quiz) {
-      for (let i = 0; i < quiz.answerLength; i++) {
+    if (data) {
+      for (let i = 0; i < data.answerLength; i++) {
         block.push(<EmptyBlock key={`empty-box-${i}`} />);
       }
     }
@@ -113,7 +114,7 @@ export const QuizForm = (): ReactElement => {
       toast.message('정답을 입력해 주세요.', 'error');
       if (inputRef.current !== null) inputRef.current.focus();
       return false;
-    } else if (answer.length < quiz.answerLength) {
+    } else if (answer.length < data.answerLength) {
       toast.message('글자 수를 확인해 주세요.', 'error');
       if (inputRef.current !== null) inputRef.current.focus();
       return false;
@@ -127,8 +128,8 @@ export const QuizForm = (): ReactElement => {
 
   const hintBlockGenerator = (v: Block, key: string) => {
     const hintBlock = [];
-    if (quiz) {
-      for (let i = 0; i < quiz.answerLength; i++) {
+    if (data) {
+      for (let i = 0; i < data.answerLength; i++) {
         const styling = v[`answer${i+1}`] === 'O' ? 'success' : v[`answer${i+1}`] === 'y' ? 'hint' : v[`answer${i+1}`] === 'X' && 'wrong';
         hintBlock.push(<HintBlock
           className={styling}
@@ -140,8 +141,8 @@ export const QuizForm = (): ReactElement => {
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
-    if (quiz) {
-      const {answerLength} = quiz;
+    if (data) {
+      const {answerLength} = data;
 
       if (e.target.value.length > answerLength) {
         e.target.value = e.target.value.slice(0, answerLength);
@@ -194,29 +195,29 @@ export const QuizForm = (): ReactElement => {
                 $weight={"bold"}
                 $color={"textDefault"}
               >
-                {quiz.question}
+                {data.question}
               </Typography>
             </>
           )}
         </S.QuizFormTitle>
         <S.FlexBox>
           {emptyBlockElementGenerator()}
-          {quiz.prefixWord && (
+          {data.prefixWord && (
             <Typography
               $variant={"body2"}
               $color={"textPrimary"}
               $weight={"bold"}
             >
-              {quiz.prefixWord}
+              {data.prefixWord}
             </Typography>
           )}
-          {quiz.suffixWord && (
+          {data.suffixWord && (
             <Typography
               $variant={"body2"}
               $color={"textPrimary"}
               $weight={"bold"}
             >
-              {quiz.suffixWord}
+              {data.suffixWord}
             </Typography>
           )}
         </S.FlexBox>
@@ -225,7 +226,7 @@ export const QuizForm = (): ReactElement => {
       <S.InputContainer>
         <Input
           ref={inputRef}
-          placeholder={`${quiz.answerLength} 자`}
+          placeholder={`${data.answerLength} 자`}
           name={'quizAnswer'}
           disabled={currentStep > 5}
           value={answer}

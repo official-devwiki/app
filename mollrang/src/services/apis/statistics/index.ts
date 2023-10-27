@@ -1,5 +1,6 @@
 import {axiosInstance} from '@libs/Axios';
 import {Domain, Url} from "@services/apis/url";
+import {Quiz, ResponseData} from "@interfaces/quizzes";
 
 const domain = Domain.Statistics;
 
@@ -39,7 +40,7 @@ export const getChallengeDistribution = async (userId: string) => {
  * @param userId 
  * @description 전체 도전 횟수 조회
  */
-export const getChanllengeCount = async (userId: string) => {
+export const getChallengeCount = async (userId: string) => {
   try {
     const url = `/${domain}/${Url.Statistics.challengeCount}/${userId}`;
     const {data} = await axiosInstance.get(url);
@@ -54,7 +55,7 @@ export const getChanllengeCount = async (userId: string) => {
  * @param userId 
  * @description 연속 정답 횟수 조회
  */
-export const getContinousCorrectCount = async (userId: string) => {
+export const getContinuousCorrectCount = async (userId: string) => {
   try {
     const url = `/${domain}/${Url.Statistics.continuousCount}/${userId}`;
     const {data} = await axiosInstance.get(url);
@@ -64,7 +65,7 @@ export const getContinousCorrectCount = async (userId: string) => {
   }
 }
 
-export const getMostContinousCorrectCount = async (userId: string) => {
+export const getMostContinuousCorrectCount = async (userId: string) => {
   try {
     const url = `/${domain}/${Url.Statistics.mostContinuousCount}/${userId}`;
     const {data} = await axiosInstance.get(url);

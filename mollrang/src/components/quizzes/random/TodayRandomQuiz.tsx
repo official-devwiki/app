@@ -5,14 +5,15 @@ import * as S from "./style";
 import {Typography} from "@components/common/Typography";
 import {EmoticonIcon} from "@components/common/icons/EmoticonIcon";
 import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
+import {Quiz} from "@interfaces/quizzes";
 
 export const TodayRandomQuiz = (): ReactElement => {
-  const {quiz, isLoading} = useTodayRandomQuizzesQuery();
+  const {data, isLoading} = useTodayRandomQuizzesQuery<Quiz>();
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
-    if (quiz) {
-      for (let i = 0; i < quiz.answerLength; i++) {
+    if (data) {
+      for (let i = 0; i < data.answerLength; i++) {
         block.push(<EmptyBlock key={`empty-box-${i}`} />);
       }
     }
@@ -43,7 +44,7 @@ export const TodayRandomQuiz = (): ReactElement => {
               $color={"textDefault"}
               data-testid={"random-quiz-question"}
             >
-              {quiz && quiz.question}
+              {data && data.question}
             </Typography>
           </S.RandomQuizTitleBlock>
         )}
@@ -53,11 +54,11 @@ export const TodayRandomQuiz = (): ReactElement => {
           ) : (
             <>
               <Typography $color={"textDefault"} data-testid={"shorts-answer"}>
-                {quiz && quiz.prefixWord}
+                {data && data.prefixWord}
               </Typography>
               {emptyBlockElementGenerator()}
               <Typography $color={"textDefault"} data-testid={"shorts-answer"}>
-                {quiz && quiz.suffixWord}
+                {data && data.suffixWord}
               </Typography>
             </>
           )}

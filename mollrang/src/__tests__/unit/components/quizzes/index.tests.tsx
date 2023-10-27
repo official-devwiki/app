@@ -9,7 +9,7 @@ const mockShortsQuery = useTodayRandomQuizzesQuery as jest.Mock;
 
 const mockData = {
   isLoading: false,
-  quiz: {
+  data: {
     "question": "개발자들이 다크 모드를 쓰는 이유는???",
     "answerLength": 2,
     "prefixWord": "",
@@ -32,7 +32,7 @@ describe('TodayRandomQuiz Test Case', () => {
     expect(await screen.findByTestId("random-quiz-question")).toBeInTheDocument();
     const findQuestionByTestId = await screen.findByTestId("random-quiz-question");
     expect(findQuestionByTestId).toBeInTheDocument();
-    expect(findQuestionByTestId.innerHTML).toBe(mockData.quiz.question);
+    expect(findQuestionByTestId.innerHTML).toBe(mockData.data.question);
   });
 }); // describe
 
