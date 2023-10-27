@@ -5,6 +5,12 @@ import * as S from "./style";
 import { useTodayShortsQuery } from "@services/queries/shortsQuery";
 import { useEffect, useState } from "react";
 
+const testFunction = () => {};
+
+function testFunction2 () {
+
+}
+
 export const IntroShorts = () => {
   const { data, isLoading } = useTodayShortsQuery();
   const [solution, setSolution] = useState<string>("");

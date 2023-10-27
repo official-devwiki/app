@@ -1,6 +1,28 @@
 import {DefaultTheme} from 'styled-components';
+export type ColorBlack = {
+  c100: string;
+  c200: string;
+};
 
-export const theme: DefaultTheme = {
+export type ColorGray = {
+  c000?: string;
+  c100?: string;
+  c200?: string;
+  c300?: string;
+  c400?: string;
+  c500?: string;
+};
+
+export type ColorTheme = {
+  primary: string;
+  bg: string;
+  black: ColorBlack;
+  warning: string;
+  white: string;
+  gray: ColorGray;
+}
+
+const colors = {
   dark: {
     primary: '#778C86',
     white: '#fff',
@@ -32,9 +54,15 @@ export const theme: DefaultTheme = {
     },
     warning: '#FF5050'
   },
-};
+}
 
-export const mixins = {
+export interface MixinsTheme {
+  flexRowsContainer: () => string;
+  flexBox: (direction?: string, align?: string, justify?: string) => string;
+  positionCenter: (type?: string) => string;
+}
+
+const mixins: MixinsTheme = {
   flexRowsContainer: () => `
     display: flex;
     align-items: center;
@@ -62,12 +90,25 @@ export const mixins = {
   },
 };
 
+export interface MediaQueryTheme {
+  custom: (width: number) => string;
+  mobile: string;
+  tablet: string;
+  pc: string;
+}
+
 const customMediaQuery = (maxWidth: number): string =>
   `@media (max-width: ${maxWidth}px)`;
 
-export const media = {
+const media: MediaQueryTheme = {
   custom: customMediaQuery,
   pc: customMediaQuery(1440),
   tablet: customMediaQuery(768),
   mobile: customMediaQuery(576),
+};
+
+export const theme: DefaultTheme = {
+  colors,
+  media,
+  mixins
 };

@@ -11,7 +11,7 @@ export const MetaComponent = (): ReactElement => {
         httpEquiv="Page-Enter"
         content="revealtrans(Duration=1,Transition=12)"
       />
-      <meta httpEquiv="Subject" content="IT 퀴즈" />
+      <meta httpEquiv="Subject" content="퀴즈" />
       <meta httpEquiv="Title" content="몰랑" />
       <meta httpEquiv="Author" content="mollrang-dev" />
       <meta httpEquiv="Other Agent" content="mollrang-dev" />
@@ -24,7 +24,7 @@ export const MetaComponent = (): ReactElement => {
         name="description"
         content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"
       />
-      <meta name="keywords" content="O/X 퀴즈, 퀴즈, IT퀴즈, 개발퀴즈, 개발" />
+      <meta name="keywords" content="O/X 퀴즈, 퀴즈, IT퀴즈, 개발 퀴즈, 개발" />
       <meta name="author" content="mollrang-dev" />
 
       <meta content="website" property="og:type" />

@@ -4,7 +4,7 @@ import {useState} from 'react';
 import {NextComponentType} from 'next';
 import ErrorBoundary from '@utils/error/errorBoundary';
 import {QueryClientProvider, Hydrate} from '@tanstack/react-query';
-import {LayoutComponent} from '@components/layout/LayoutComponent';
+import {BaseLayout} from '@components/layouts/BaseLayout';
 import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {wrapper} from '@store/index';
 import {GlobalStyle} from "@styles/global-style";
@@ -28,9 +28,9 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
             <Hydrate state={props.dehydratedState}>
               <ThemeProvider theme={theme}>
                 <GlobalStyle />
-                <LayoutComponent>
+                <BaseLayout>
                   <Component {...props.pageProps} />
-                </LayoutComponent>
+                </BaseLayout>
               </ThemeProvider>
               <ReactQueryDevtools initialIsOpen={false} />
             </Hydrate>

@@ -1,6 +1,6 @@
 import {ReactElement, ReactNode} from 'react';
 import styled from 'styled-components';
-import {MetaComponent} from '@components/layout/header/MetaComponent';
+import {MetaComponent} from '@components/layouts/header/MetaComponent';
 import {Header} from './header/Header';
 import {BottomNavigation} from '@components/navigation/bottom/BottomNavigation';
 import {useAppSelector} from '@hooks/useRedux';
@@ -34,6 +34,7 @@ const Main = styled.main`
 `;
 
 import { EmblaOptionsType } from 'embla-carousel-react'
+
 const SLIDE_COUNT = 5
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
 const OPTIONS: EmblaOptionsType = { loop: true }
@@ -43,7 +44,7 @@ const SendBox = styled.div`
     background-color: gray;
 `;
 
-export const LayoutComponent = (props: Props): ReactElement => {
+export const BaseLayout = (props: Props): ReactElement => {
   const {children} = props;
   const type = useAppSelector(
     (state) => state.modalStore.modal.type,

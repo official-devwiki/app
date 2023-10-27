@@ -6,7 +6,7 @@ import {Typography} from "@components/common/Typography";
 import {AttendanceCheck} from "@components/attendance/AttendanceCheck";
 import {CorrectAnswers} from "@components/statistics/CorrectAnswers";
 import {ConsecutiveAnswers} from "@components/statistics/ConsecutiveAnswers";
-import {Footer} from "@components/layout/footer/Footer";
+import {Footer} from "@components/layouts/footer/Footer";
 import {useRouter} from "next/router";
 
 export const HomeContainer = () => {

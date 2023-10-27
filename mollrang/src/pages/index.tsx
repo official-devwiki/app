@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 import { HomeContainer } from "@containers/home";
 
 const HomePage: NextPage = (): ReactElement => {
-  return<HomeContainer />;
+  return <HomeContainer />;
 };
 
 export default HomePage;
