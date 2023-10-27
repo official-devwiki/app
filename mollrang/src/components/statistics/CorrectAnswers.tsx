@@ -18,7 +18,7 @@ const CorrectAnswerBox = styled.div`
 `;
 
 export const CorrectAnswers = (): ReactElement => {
-  const { data, isLoading } = useGetMyAnswersQuery("uuid");
+  const { data, isLoading } = useGetMyAnswersQuery<{ratio: number}>();
 
   return (
     <CorrectAnswerLayout>
@@ -35,7 +35,7 @@ export const CorrectAnswers = (): ReactElement => {
             $weight={"bold"}
             $variant={"body1"}
           >
-            {data && data[0].ratio} %
+            {data && data.ratio} %
           </Typography>
         )}
       </CorrectAnswerBox>

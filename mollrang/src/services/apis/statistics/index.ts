@@ -1,20 +1,20 @@
 import {axiosInstance} from '@libs/Axios';
 import {Domain, Url} from "@services/apis/url";
 import {Quiz, ResponseData} from "@interfaces/quizzes";
+import {responseDataConvert} from "@utils/convert";
 
 const domain = Domain.Statistics;
 
 /**
- * 
- * @param {string} userId
+ *
  * @returns 
  * @description 나의 정답률 조회
  */
-export const getMyAnswersRatio = async (userId: string) => {
+export const getMyAnswersRatio = async<T>(): Promise<T> => {
   try {
-    const url = `/${domain}/${Url.Statistics.myAnswerCorrectRatio}/${userId}`;
+    const url = `/${domain}/${Url.Statistics.myAnswerCorrectRatio}`;
     const {data} = await axiosInstance.get(url);
-    return data;
+    return responseDataConvert<T>(data);
   } catch (e) {
     throw e;
   }
