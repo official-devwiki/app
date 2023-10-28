@@ -64,7 +64,6 @@ export const BaseLayout = (props: Props): ReactElement => {
             </SendBox>
           </div>
         )}
-        {type === "quiz-message" && <MessageBox />}
       </ModalHandler>
       <BottomNavigation />
     </>

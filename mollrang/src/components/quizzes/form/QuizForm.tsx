@@ -11,9 +11,6 @@ import { quizSolutionSubmit } from "@services/apis/quizzes";
 import { Input } from "@components/common/input/Input";
 import { CheckCircleIcon } from "@components/common/icons/CheckCircleIcon";
 import { HintBlock } from "@components/ui/block/HintBlock";
-import { HamburgerIcon } from "@components/common/icons/HamburgerIcon";
-import { useAppDispatch } from "@hooks/useRedux";
-import { setModalOpen, State } from "@store/slice/modalSlice";
 import { useRouter } from "next/router";
 import { Block, Chance, Quiz } from "@interfaces/quizzes";
 
@@ -30,7 +27,6 @@ export const QuizForm = (): ReactElement => {
   const [answer, setAnswer] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<number>(1);
   const inputRef = useRef<HTMLInputElement>(null);
-  const dispatch = useAppDispatch();
   const router = useRouter();
 
   const { data, isLoading } = useTodayQuizzesQuery<Quiz>();
@@ -119,15 +115,6 @@ export const QuizForm = (): ReactElement => {
     }
   };
 
-  const onClickMessageBoxButton = (): void => {
-    const modalState: State = {
-      type: "quiz-message",
-      modalType: "bottom-slide",
-      isOpen: true,
-    };
-    dispatch(setModalOpen(modalState));
-  };
-
   const goToHome = async (): Promise<void> => {
     await router.push("/");
   };
@@ -202,11 +189,7 @@ export const QuizForm = (): ReactElement => {
           onChange={(e) => onChangeHandler(e)}
         />
       </S.InputContainer>
-      <S.HintButtonWrapper>
-        <S.HintButton type={"button"} onClick={onClickMessageBoxButton}>
-          <HamburgerIcon />
-        </S.HintButton>
-      </S.HintButtonWrapper>
+
       <S.ButtonFlexBox>
         <Button variant={"secondary"} type={"button"} onClick={goToHome}>
           <Typography as={"span"} $weight={"bold"}>
