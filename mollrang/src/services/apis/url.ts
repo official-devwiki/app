@@ -1,6 +1,7 @@
 export const Domain = {
   Quiz: "quizzes",
   Statistics: "statistic",
+  Users: "users"
 } as const;
 
 export const Url = {
@@ -14,4 +15,7 @@ export const Url = {
     continuousCount: "continuous", // 연속 정답 횟수
     mostContinuousCount: "most", // 최다 연속 정답 횟수
   },
+  Users: {
+    attendance: "attendance", // 출석
+  }
 } as const;

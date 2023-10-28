@@ -1,0 +1,35 @@
+{
+  "success": true,
+  "result": {
+    "data": [
+      {
+        "day": "월",
+        "attendance": true
+      },
+      {
+        "day": "화",
+        "attendance": true
+      },
+      {
+        "day": "수",
+        "attendance": true
+      },
+      {
+        "day": "목",
+        "attendance": false
+      },
+      {
+        "day": "금",
+        "attendance": false
+      },
+      {
+        "day": "토",
+        "attendance": false
+      },
+      {
+        "day": "일",
+        "attendance": false
+      }
+    ]
+  }
+}

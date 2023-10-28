@@ -10,4 +10,7 @@ export const QueryKeys = {
     getContinuousCorrectCount: "get_continuous_correct_count",
     getMostContinuousCorrectCount: "get_most_continuous_correct_count",
   },
+  Users: {
+    getAttendance: "get_attendance",
+  }
 };

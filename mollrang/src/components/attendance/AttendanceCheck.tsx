@@ -2,11 +2,16 @@ import {ReactElement} from 'react';
 import {Typography} from '@components/common/Typography';
 import {Icons} from '@components/common/icons/Icons';
 import * as S from './style';
+import {useUserAttendanceQuery} from "@services/queries/usersQuery";
 
-
-const days = ['월', '화', '수', '목', '금', '토', '일'];
+interface Attendance {
+  day: string;
+  attendance: boolean;
+}
 
 export const AttendanceCheck = (): ReactElement => {
+  const {isLoading, data} = useUserAttendanceQuery<Attendance[]>();
+
   return (
     <S.AttendanceLayout>
       <S.AttendanceTitleWrapper>
@@ -20,11 +25,11 @@ export const AttendanceCheck = (): ReactElement => {
         </div>
       </S.AttendanceTitleWrapper>
       <S.WeekDayList>
-        {days.map((day, index) => {
+        {data && data.map((value, index) => {
           return (
-            <S.Days key={index} className={index === 3 && 'active'}>
+            <S.Days key={index} className={value.attendance && 'active'}>
               <Typography as={'span'} $variant={'body2'} $weight={'bold'}>
-                {day}
+                {value.day}
               </Typography>
             </S.Days>
           );
