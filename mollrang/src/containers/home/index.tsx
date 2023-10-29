@@ -1,14 +1,14 @@
 import * as S from "@containers/home/style";
-import {IntroBanner} from "@components/intro";
-import {Button} from "@components/common/Button";
-import {OpenBookIcon} from "@components/common/icons/OpenBookIcon";
-import {Typography} from "@components/common/Typography";
-import {AttendanceCheck} from "@components/attendance/AttendanceCheck";
-import {CorrectAnswers} from "@components/statistics/CorrectAnswers";
-import {ConsecutiveAnswers} from "@components/statistics/ConsecutiveAnswers";
-import {Footer} from "@components/layouts/footer/Footer";
-import {useRouter} from "next/router";
-import {TodayRandomQuiz} from "@components/quizzes/random/TodayRandomQuiz";
+import { IntroBanner } from "@components/intro";
+import { Button } from "@components/common/Button";
+import { OpenBookIcon } from "@components/common/icons/OpenBookIcon";
+import { Typography } from "@components/common/Typography";
+import { AttendanceCheck } from "@components/attendance/AttendanceCheck";
+import { CorrectAnswers } from "@components/statistics/CorrectAnswers";
+import { ConsecutiveAnswers } from "@components/statistics/ConsecutiveAnswers";
+import { Footer } from "@components/layouts/footer/Footer";
+import { useRouter } from "next/router";
+import { TodayRandomQuiz } from "@components/quizzes/random/TodayRandomQuiz";
 
 export const HomeContainer = () => {
   const router = useRouter();
@@ -38,12 +38,14 @@ export const HomeContainer = () => {
         <S.SubItemsLayout>
           <AttendanceCheck />
           <div className={"answers-container"}>
-            <CorrectAnswers />
+            <div className={"correct_anwer_wrapper"}>
+              <CorrectAnswers />
+            </div>
             <ConsecutiveAnswers />
           </div>
         </S.SubItemsLayout>
       </S.HomeBox>
       <Footer />
     </S.HomeLayout>
-  )
-}
+  );
+};

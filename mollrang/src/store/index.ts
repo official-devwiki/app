@@ -32,7 +32,7 @@ const makeStore = () =>
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   });
 
-const store = makeStore();
+export const store = makeStore();
 
 export const wrapper = createWrapper<AppStore>(makeStore, {
   debug: true,

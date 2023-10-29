@@ -1,4 +1,4 @@
-import React, {ReactElement, useRef, useState} from "react";
+import React, { ReactElement, useRef, useState } from "react";
 import { Typography } from "@components/common/Typography";
 import { QuizIcon } from "@components/common/icons/QuizIcon";
 import * as S from "./style";
@@ -8,14 +8,14 @@ import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
 import { quizSolutionSubmit } from "@services/apis/quizzes";
-import {Input} from "@components/common/input/Input";
-import {CheckCircleIcon} from "@components/common/icons/CheckCicleIcon";
-import {HintBlock} from "@components/ui/block/HintBlock";
-import {HamburgerIcon} from "@components/common/icons/HamburgerIcon";
-import {useAppDispatch} from "@hooks/useRedux";
-import {setModalOpen, State} from "@store/slice/modalSlice";
-import {useRouter} from "next/router";
-import {Block, Chance, Quiz} from "@interfaces/quizzes";
+import { Input } from "@components/common/input/Input";
+import { CheckCircleIcon } from "@components/common/icons/CheckCircleIcon";
+import { HintBlock } from "@components/ui/block/HintBlock";
+import { HamburgerIcon } from "@components/common/icons/HamburgerIcon";
+import { useAppDispatch } from "@hooks/useRedux";
+import { setModalOpen, State } from "@store/slice/modalSlice";
+import { useRouter } from "next/router";
+import { Block, Chance, Quiz } from "@interfaces/quizzes";
 
 const initialStepState: Chance[] = [
   { step: 1, answer: false, hint: [] },
@@ -27,7 +27,7 @@ const initialStepState: Chance[] = [
 
 export const QuizForm = (): ReactElement => {
   const [checkBox, setCheckBox] = useState<Chance[]>(initialStepState);
-  const [answer, setAnswer] = useState<string>('');
+  const [answer, setAnswer] = useState<string>("");
   const [currentStep, setCurrentStep] = useState<number>(1);
   const inputRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
@@ -52,16 +52,16 @@ export const QuizForm = (): ReactElement => {
 
     if (!inputValidation()) return;
 
-    const sendData: {count: number, answer: string} = {
+    const sendData: { count: number; answer: string } = {
       count: currentStep,
-      answer
+      answer,
     };
     // 정답 제출
     const { data } = await quizSolutionSubmit(sendData);
     // check box update
     checkBoxUpdate(data);
 
-    setAnswer('');
+    setAnswer("");
     setCurrentStep(currentStep + 1);
   };
 
@@ -71,58 +71,62 @@ export const QuizForm = (): ReactElement => {
     newCheckBox[findIndex].answer = true;
     newCheckBox[findIndex].hint = hintData;
     setCheckBox(newCheckBox);
-  }
+  };
 
   const inputValidation = (): boolean => {
     if (answer.length <= 0) {
-      toast.message('정답을 입력해 주세요.', 'error');
+      toast.message("정답을 입력해 주세요.", "error");
       if (inputRef.current !== null) inputRef.current.focus();
       return false;
     } else if (answer.length < data.answerLength) {
-      toast.message('글자 수를 확인해 주세요.', 'error');
+      toast.message("글자 수를 확인해 주세요.", "error");
       if (inputRef.current !== null) inputRef.current.focus();
       return false;
     }
     if (currentStep > 5) {
-      toast.message('더 이상 정답을 제출할 수 없습니다.', 'error');
+      toast.message("더 이상 정답을 제출할 수 없습니다.", "error");
       return false;
     }
     return true;
-  }
+  };
 
   const hintBlockGenerator = (v: Block, key: string) => {
     const hintBlock = [];
     if (data) {
       for (let i = 0; i < data.answerLength; i++) {
-        const styling = v[`answer${i+1}`] === 'O' ? 'success' : v[`answer${i+1}`] === 'y' ? 'hint' : v[`answer${i+1}`] === 'X' && 'wrong';
-        hintBlock.push(<HintBlock
-          className={styling}
-          key={`hint-box-${i}-${key}`}
-        />);
+        const styling =
+          v[`answer${i + 1}`] === "O"
+            ? "success"
+            : v[`answer${i + 1}`] === "y"
+            ? "hint"
+            : v[`answer${i + 1}`] === "X" && "wrong";
+        hintBlock.push(
+          <HintBlock className={styling} key={`hint-box-${i}-${key}`} />,
+        );
       }
     }
     return hintBlock;
-  }
+  };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (data) {
-      const {answerLength} = data;
+      const { answerLength } = data;
 
       if (e.target.value.length > answerLength) {
         e.target.value = e.target.value.slice(0, answerLength);
       }
       setAnswer(e.target.value);
     }
-  }
+  };
 
   const onClickMessageBoxButton = (): void => {
     const modalState: State = {
-      type: 'quiz-message',
-      modalType: 'bottom-slide',
+      type: "quiz-message",
+      modalType: "bottom-slide",
       isOpen: true,
     };
     dispatch(setModalOpen(modalState));
-  }
+  };
 
   const goToHome = async (): Promise<void> => {
     await router.push("/");
@@ -134,16 +138,17 @@ export const QuizForm = (): ReactElement => {
         {checkBox.map((v, index) => {
           return (
             <li key={index}>
-              <CheckCircleIcon className={v.answer && 'active'} />
-              {v.hint.length > 0 && v.hint.map((block, blockIndex) => {
-                return (
-                  <S.FlexBox key={`key-${blockIndex}`}>
-                    {hintBlockGenerator(block, `key-${blockIndex}`)}
-                  </S.FlexBox>
-                )
-              })}
+              <CheckCircleIcon className={v.answer && "active"} />
+              {v.hint.length > 0 &&
+                v.hint.map((block, blockIndex) => {
+                  return (
+                    <S.FlexBox key={`key-${blockIndex}`}>
+                      {hintBlockGenerator(block, `key-${blockIndex}`)}
+                    </S.FlexBox>
+                  );
+                })}
             </li>
-          )
+          );
         })}
       </S.CheckBoxContainer>
 
@@ -191,23 +196,27 @@ export const QuizForm = (): ReactElement => {
         <Input
           ref={inputRef}
           placeholder={`${data.answerLength} 자`}
-          name={'quizAnswer'}
+          name={"quizAnswer"}
           disabled={currentStep > 5}
           value={answer}
           onChange={(e) => onChangeHandler(e)}
         />
       </S.InputContainer>
       <S.HintButtonWrapper>
-        <S.HintButton type={'button'} onClick={onClickMessageBoxButton}>
+        <S.HintButton type={"button"} onClick={onClickMessageBoxButton}>
           <HamburgerIcon />
         </S.HintButton>
       </S.HintButtonWrapper>
       <S.ButtonFlexBox>
-        <Button variant={"secondary"} type={'button'} onClick={goToHome}>
-          <Typography as={"span"} $weight={'bold'}>그만하기</Typography>
+        <Button variant={"secondary"} type={"button"} onClick={goToHome}>
+          <Typography as={"span"} $weight={"bold"}>
+            그만하기
+          </Typography>
         </Button>
         <Button variant={"primary"} type={"submit"}>
-          <Typography as={"span"} $weight={'bold'}>제출하기</Typography>
+          <Typography as={"span"} $weight={"bold"}>
+            제출하기
+          </Typography>
         </Button>
       </S.ButtonFlexBox>
     </S.QuizFormLayout>

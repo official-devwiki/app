@@ -1,13 +1,13 @@
-import {ReactElement, ReactNode} from 'react';
-import styled from 'styled-components';
-import {MetaComponent} from '@components/layouts/header/MetaComponent';
-import {Header} from './header/Header';
-import {BottomNavigation} from '@components/navigation/bottom/BottomNavigation';
-import {useAppSelector} from '@hooks/useRedux';
-import {ModalHandler} from "@components/common/modal/ModalHandler";
-import {IntegratedStatistics} from "@components/statistics/IntegratedStatistics";
-import {MessageBox} from "@components/quizzes/MessageBox";
-import {QuizGuide} from "@components/quizzes/guide/QuizGuide";
+import { ReactElement, ReactNode } from "react";
+import styled from "styled-components";
+import { MetaComponent } from "@components/layouts/header/MetaComponent";
+import { Header } from "./header/Header";
+import { BottomNavigation } from "@components/navigation/bottom/BottomNavigation";
+import { useAppSelector } from "@hooks/useRedux";
+import { ModalHandler } from "@components/common/modal/ModalHandler";
+import { IntegratedStatistics } from "@components/statistics/IntegratedStatistics";
+import { MessageBox } from "@components/quizzes/MessageBox";
+import { QuizGuide } from "@components/quizzes/guide/QuizGuide";
 
 interface Props {
   children: ReactNode;
@@ -16,7 +16,7 @@ interface Props {
 const Layout = styled.div`
   padding-bottom: 0;
 
-  ${({theme}) => theme.media.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     padding-bottom: 74px;
     display: flex;
     flex-direction: column;
@@ -30,25 +30,23 @@ const Main = styled.main`
   margin-top: 66px;
   height: 100%;
   display: flex;
-  min-height: 1000px;
+  /* min-height: 1000px; */
 `;
 
-import { EmblaOptionsType } from 'embla-carousel-react'
+import { EmblaOptionsType } from "embla-carousel-react";
 
-const SLIDE_COUNT = 5
+const SLIDE_COUNT = 5;
 const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
-const OPTIONS: EmblaOptionsType = { loop: true }
+const OPTIONS: EmblaOptionsType = { loop: true };
 
 const SendBox = styled.div`
-    position: relative;
-    background-color: gray;
+  position: relative;
+  background-color: gray;
 `;
 
 export const BaseLayout = (props: Props): ReactElement => {
-  const {children} = props;
-  const type = useAppSelector(
-    (state) => state.modalStore.modal.type,
-  );
+  const { children } = props;
+  const type = useAppSelector((state) => state.modalStore.modal.type);
 
   return (
     <>
@@ -58,19 +56,17 @@ export const BaseLayout = (props: Props): ReactElement => {
         <Main>{children}</Main>
       </Layout>
       <ModalHandler>
-        {type === 'statistics' && (<IntegratedStatistics />)}
-        {type === 'guide' && (
+        {type === "statistics" && <IntegratedStatistics />}
+        {type === "guide" && (
           <div>
             <SendBox>
               <QuizGuide slides={SLIDES} options={OPTIONS} />
             </SendBox>
           </div>
         )}
-        {type === 'quiz-message' && (<MessageBox />)}
+        {type === "quiz-message" && <MessageBox />}
       </ModalHandler>
       <BottomNavigation />
     </>
   );
 };
-
-

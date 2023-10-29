@@ -59,12 +59,15 @@ export const SubItemsLayout = styled.div`
     padding: 18px 0;
   }
 
-  ${({theme}) => theme.media.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-direction: column;
     .answers-container {
       border-top: 1px solid var(--correct_border);
       border-bottom: 1px solid var(--correct_border);
       margin-top: 1em;
+      .correct_anwer_wrapper {
+        margin-bottom: 1em;
+      }
     }
   }
 `;

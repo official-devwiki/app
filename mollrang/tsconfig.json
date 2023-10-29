@@ -66,10 +66,7 @@
       "@tests/*": ["__tests__/*"]
     }
   },
-  "typeRoots": [
-    "./types/**/*.d.ts",
-    "node_modules/@types"
-  ],
+  "typeRoots": ["./types/**/*.d.ts", "node_modules/@types"],
   "include": ["next-env.d.ts", "src", "**/*.ts", "**/*.tsx", "types/**/*.ts"],
   // 컴파일 포함
   "exclude": ["node_modules"]
