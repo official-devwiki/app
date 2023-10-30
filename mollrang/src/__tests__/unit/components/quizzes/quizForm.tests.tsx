@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@styles/theme";
 import userEvent from "@testing-library/user-event";
+
 /**
  * @description 퀴즈 폼 테스트
  * 테스트 케이스
@@ -31,14 +32,15 @@ const mockQuizQuery = useTodayQuizzesQuery as jest.Mock;
 jest.mock("next/router", () => ({
   useRouter: jest.fn(),
 }));
-
+// Toast mocking
+jest.mock('../../../../components/common/toast/ToastHandler.tsx');
 /**
  * @description form 에 사용된 svg icon mocking
  */
 jest.mock("../../../../components/common/icons/HamburgerIcon.tsx");
 jest.mock("../../../../components/common/icons/CheckCircleIcon.tsx");
 jest.mock("../../../../components/common/icons/QuizIcon.tsx");
-
+jest.mock('../../../../components/common/toast/ToastUi.tsx');
 const ProviderWrapper = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <Provider store={store}>
@@ -78,7 +80,7 @@ describe("QuizForm Component Test", () => {
     expect(component).toMatchSnapshot();
 
     const expectedQuestion = "개발자들이 다크 모드를 쓰는 이유는???";
-    const findQuestion = await component.getByText(expectedQuestion).innerHTML;
+    const findQuestion = component.getByText(expectedQuestion).innerHTML;
     expect(findQuestion).toEqual(expectedQuestion);
   });
 
