@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { ThemeProvider } from "styled-components";
 import { theme } from "@styles/theme";
 import userEvent from "@testing-library/user-event";
+import toast from "@components/common/toast/ToastHandler";
 
 /**
  * @description 퀴즈 폼 테스트
@@ -34,13 +35,15 @@ jest.mock("next/router", () => ({
 }));
 // Toast mocking
 jest.mock('../../../../components/common/toast/ToastHandler.tsx');
+const toastMock = toast;
+
 /**
  * @description form 에 사용된 svg icon mocking
  */
 jest.mock("../../../../components/common/icons/HamburgerIcon.tsx");
 jest.mock("../../../../components/common/icons/CheckCircleIcon.tsx");
 jest.mock("../../../../components/common/icons/QuizIcon.tsx");
-jest.mock('../../../../components/common/toast/ToastUi.tsx');
+
 const ProviderWrapper = ({ children }: PropsWithChildren): ReactElement => {
   return (
     <Provider store={store}>
@@ -125,16 +128,60 @@ describe("QuizForm Component Test", () => {
     await act(async () => {
       await userEvent.clear(input);
       await userAction.click(input);
-
       await userAction.click(submit);
+
+      const errorMsg = "정답을 입력해 주세요.";
+      expect(toastMock.message).toBeCalledWith(errorMsg, 'error');
     });
   });
 
-  test("정답의 길이만큼 입력하지 않고 제출을 했을 경우 에러가 발생되는가?", async () => {});
+  test("정답의 길이만큼 입력하지 않고 제출을 했을 경우 에러가 발생되는가?", async () => {
+    render(<QuizForm />, { wrapper: ProviderWrapper });
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    const submit = screen.getByRole("button", {name: '제출하기'}) as HTMLButtonElement;
 
-  test("정답 입력 기회는 최대 5번까지만 주어지는가?", async () => {});
+    const expectedAnswer = "일";
 
-  test("정답 입력이 5번이 초과되거나 정답을 맞췄을 경우 제출 버튼이 disabled 처리가 되는가?", async () => {});
+    await act(async () => {
+      await userEvent.clear(input);
+      await userAction.click(input);
 
-  test("정답을 맞췄을 경우 통계 모달이 보여지는가?", async () => {});
+      await userAction.type(input, expectedAnswer);
+      await userAction.click(submit);
+
+      const errorMsg = "글자 수를 확인해 주세요.";
+      expect(toastMock.message).toBeCalledWith(errorMsg, 'error');
+    });
+  });
+
+  test("정답 입력 기회는 최대 5번까지만 주어지는가?", async () => {
+    render(<QuizForm />, { wrapper: ProviderWrapper });
+
+    const tryCount = 5;
+    const expectedAnswer = '정답';
+
+    let currentCount = 0;
+
+    const input = screen.getByRole("textbox") as HTMLInputElement;
+    const submit = screen.getByRole("button", {name: '제출하기'}) as HTMLButtonElement;
+
+    await userEvent.clear(input);
+    await userAction.click(input);
+
+    await userAction.type(input, expectedAnswer);
+    await userAction.click(submit);
+    currentCount++;
+
+    expect(currentCount).toEqual(tryCount);
+  });
+
+  test("정답 입력이 5번이 초과되거나 정답을 맞췄을 경우 제출 버튼이 disabled 처리가 되는가?", async () => {
+    render(<QuizForm />, { wrapper: ProviderWrapper });
+    expect(false).toEqual(true); // 임의 Red Test
+  });
+
+  test("정답을 맞췄을 경우 통계 모달이 보여지는가?", async () => {
+    render(<QuizForm />, { wrapper: ProviderWrapper });
+    expect(false).toEqual(true); // 임의 Red Test
+  });
 });
