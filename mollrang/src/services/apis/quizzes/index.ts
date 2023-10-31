@@ -1,7 +1,7 @@
 import { axiosInstance } from "@libs/Axios";
 import { Domain, Url } from "@services/apis/url";
-import {Quiz, ResponseData} from "@interfaces/quizzes";
-import {responseDataConvert} from "@utils/convert";
+import { ResponseData } from "@interfaces/quizzes";
+import { responseDataConvert } from "@utils/convert";
 
 const domain = Domain.Quiz;
 

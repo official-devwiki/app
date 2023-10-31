@@ -8,7 +8,7 @@ export const QuizFormLayout = styled.form`
 export const QuizSolutionBox = styled.div`
   margin-top: 20px;
   padding: 20px;
-  border: 1px solid #ffc700;
+  border: 1px solid var(--textYellow);
   border-radius: 4px;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1);
 
@@ -56,6 +56,11 @@ export const QuizAnswerContainer = styled.div`
 `;
 export const InputContainer = styled.div`
   margin: 3em auto;
+`;
+
+export const HintMessageBlock = styled.div`
+  width: 100%;
+  text-align: center;
 `;
 
 export const InputLayout = styled.div`

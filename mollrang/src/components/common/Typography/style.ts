@@ -19,7 +19,9 @@ export type FontColorType =
   | "textGray100"
   | "textGray200"
   | "textRed000"
-  | "textGrayAndWhite";
+  | "textGrayAndWhite"
+  | 'textYellow'
+  ;
 
 export const FontColor = {
   textDefault: "var(--textDefault)",
@@ -33,6 +35,7 @@ export const FontColor = {
   textGray200: "var(--textGray200)",
   textRed000: "var(--textRed000)",
   textGrayAndWhite: "var(--textGrayAndWhite)",
+  textYellow: "var(--textYellow)",
 };
 
 export function FontSize(variant: string) {

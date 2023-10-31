@@ -6,19 +6,19 @@ export const HomeLayout = styled.div`
   display: grid;
   align-content: space-between;
 
-  @media screen and (max-width: 768px) {
+  ${({ theme }) => theme.media.tablet} {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 100%;
-    min-height: 1000px;
+    //min-height: 1000px;
   }
 `;
 
 export const HomeBox = styled.div`
   max-width: 900px;
   width: 100%;
-  height: 100%;
+  //height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -57,6 +57,10 @@ export const SubItemsLayout = styled.div`
     width: 100%;
     margin: 3em auto;
     padding: 18px 0;
+
+    .correct_answer_wrapper {
+      margin-bottom: 1em;
+    }
   }
 
   ${({ theme }) => theme.media.tablet} {
@@ -65,9 +69,6 @@ export const SubItemsLayout = styled.div`
       border-top: 1px solid var(--correct_border);
       border-bottom: 1px solid var(--correct_border);
       margin-top: 1em;
-      .correct_anwer_wrapper {
-        margin-bottom: 1em;
-      }
     }
   }
 `;

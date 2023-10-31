@@ -1,4 +1,4 @@
-import React, { ReactElement, useRef, useState } from "react";
+import React, {ReactElement, useCallback, useEffect, useRef, useState} from "react";
 import { Typography } from "@components/common/Typography";
 import { QuizIcon } from "@components/common/icons/QuizIcon";
 import * as S from "./style";
@@ -25,6 +25,8 @@ const initialStepState: Chance[] = [
 export const QuizForm = (): ReactElement => {
   const [checkBox, setCheckBox] = useState<Chance[]>(initialStepState);
   const [answer, setAnswer] = useState<string>("");
+  const [message, setMessage] = useState<string>("");
+  const [messageStyling, setMessageStyling] = useState<string>("default");
   const [currentStep, setCurrentStep] = useState<number>(1);
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
@@ -86,6 +88,11 @@ export const QuizForm = (): ReactElement => {
     return true;
   };
 
+  /**
+   * @param v
+   * @param key
+   * @description: Hint Block Element 생성
+   */
   const hintBlockGenerator = (v: Block, key: string) => {
     const hintBlock = [];
     if (data) {
@@ -103,6 +110,36 @@ export const QuizForm = (): ReactElement => {
     }
     return hintBlock;
   };
+
+  useEffect(() => {
+    resultMessage()
+  }, [checkBox])
+
+  const resultMessage = (): void => {
+    if (currentStep > 1) {
+      const currentStepIndex = checkBox.findIndex((v) => v.step === currentStep - 1);
+      const currentStepAnswer = checkBox[currentStepIndex].hint;
+      if (currentStepAnswer.length === 0) return;
+      if (currentStep > 5) {
+        setMessage('퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!');
+        setMessageStyling('default');
+        return;
+      }
+      currentStepAnswer.forEach((value, index) => {
+        if (value[`answer${index + 1}`] === 'O') {
+          setMessage('정답인 글자가 포함되어있어요!');
+          setMessageStyling('default');
+        } else if (value[`answer${index + 1}`] === 'y') {
+          setMessage('글자는 포함되어있지만 위치가 다르네요!');
+          setMessageStyling('hint');
+        } else if (value[`answer${index + 1}`] === 'X') {
+          setMessage('글자가 포함되어있지 않아요!');
+          setMessageStyling('wrong');
+        }
+      })
+    }
+
+  }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (data) {
@@ -158,22 +195,22 @@ export const QuizForm = (): ReactElement => {
         </S.QuizFormTitle>
         <S.QuizAnswerContainer>
           {emptyBlockElementGenerator()}
-          {data.prefixWord && (
+          {data.prefix && (
             <Typography
               $variant={"body2"}
               $color={"textPrimary"}
               $weight={"bold"}
             >
-              {data.prefixWord}
+              {data.prefix}
             </Typography>
           )}
-          {data.suffixWord && (
+          {data.suffix && (
             <Typography
               $variant={"body2"}
               $color={"textPrimary"}
               $weight={"bold"}
             >
-              {data.suffixWord}
+              {data.suffix}
             </Typography>
           )}
         </S.QuizAnswerContainer>
@@ -189,6 +226,12 @@ export const QuizForm = (): ReactElement => {
           onChange={(e) => onChangeHandler(e)}
         />
       </S.InputContainer>
+
+      <S.HintMessageBlock>
+        <Typography $weight={'bold'} $variant={'body1'} $color={messageStyling === 'default' ? "textPrimary" : messageStyling === 'hint' ? 'textYellow' : 'textRed000'}>
+          {message}
+        </Typography>
+      </S.HintMessageBlock>
 
       <S.ButtonFlexBox>
         <Button variant={"secondary"} type={"button"} onClick={goToHome}>

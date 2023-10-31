@@ -7,8 +7,8 @@ export interface ResponseData<T> {
 
 export interface Quiz {
   answerLength: number;
-  prefixWord: string;
-  suffixWord: string;
+  prefix: string;
+  suffix: string;
   question: string;
 }
 

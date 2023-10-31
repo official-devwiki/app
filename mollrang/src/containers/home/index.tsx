@@ -38,7 +38,7 @@ export const HomeContainer = () => {
         <S.SubItemsLayout>
           <AttendanceCheck />
           <div className={"answers-container"}>
-            <div className={"correct_anwer_wrapper"}>
+            <div className={"correct_answer_wrapper"}>
               <CorrectAnswers />
             </div>
             <ConsecutiveAnswers />

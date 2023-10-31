@@ -59,8 +59,8 @@ describe("QuizForm Component Test", () => {
   const quizData: Quiz = {
     question: "개발자들이 다크 모드를 쓰는 이유는???",
     answerLength: 2,
-    prefixWord: "",
-    suffixWord: "꼬여서 :)",
+    prefix: "",
+    suffix: "꼬여서 :)",
   };
 
   let mockData = {

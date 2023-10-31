@@ -70,6 +70,11 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: calc(100% - 66px);
   }
+  
+  body, #__next {
+    width: 100%;
+    height: 100%;
+  }
 
   ol, ul {
     list-style: none;
@@ -160,7 +165,8 @@ export const GlobalStyle = createGlobalStyle`
     --textGray200: #C6C6C6;
     --textRed000: #FF5050;
     --textGrayAndWhite: #bdbdbd;
-
+    --textYellow: #edbe17;
+    
     // 출석 체크 요일
     --day_circle: #CACACA;
     --day_bg: #F4F4F4;
@@ -216,7 +222,7 @@ export const GlobalStyle = createGlobalStyle`
     --textGray200: #C6C6C6;
     --textRed000: #FF5050;
     --textGrayAndWhite: #fff;
-
+    --textYellow: #FFC700;
     // 출석 체크 요일
     --day_circle: #606060;
     --day_bg: #383838;
