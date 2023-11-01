@@ -1,0 +1,12 @@
+{
+  "success": true,
+  "result": {
+    "data": {
+      "challenge1": 3,
+      "challenge2": 0,
+      "challenge3": 10,
+      "challenge4": 4,
+      "challenge5": 2
+    }
+  }
+}
