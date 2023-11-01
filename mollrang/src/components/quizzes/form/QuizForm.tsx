@@ -1,4 +1,4 @@
-import React, {ReactElement, useCallback, useEffect, useRef, useState} from "react";
+import React, {ReactElement, useEffect, useRef, useState} from "react";
 import { Typography } from "@components/common/Typography";
 import { QuizIcon } from "@components/common/icons/QuizIcon";
 import * as S from "./style";
@@ -239,7 +239,7 @@ export const QuizForm = (): ReactElement => {
             그만하기
           </Typography>
         </Button>
-        <Button variant={"primary"} type={"submit"}>
+        <Button variant={"primary"} type={"submit"}  disabled={currentStep > 5}>
           <Typography as={"span"} $weight={"bold"}>
             제출하기
           </Typography>

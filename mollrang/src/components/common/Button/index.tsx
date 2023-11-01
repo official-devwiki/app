@@ -22,12 +22,14 @@ export const Button = (props: ButtonProps): ReactElement => {
     type = 'button',
     icon,
     children,
+    disabled,
     ...rest
   } = props;
 
   return (
     <S.Button
       className={classNames(variant, className)}
+      disabled={disabled}
       {...rest}
       type={type}
     >

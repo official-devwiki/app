@@ -21,8 +21,17 @@ export const Button = styled.button`
     span {
       color: var(--white);
     }
+    
+ 
   }
+  &:disabled {
+    cursor: default;
+    background-color: #ededed;
+    span {
+      color: var(--textGray200);
 
+    }
+  }
   &.secondary {
     border-color: #ededed;
     background-color: #F0F0F0;

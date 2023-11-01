@@ -4,8 +4,8 @@ import { Button } from "@components/common/Button";
 import { OpenBookIcon } from "@components/common/icons/OpenBookIcon";
 import { Typography } from "@components/common/Typography";
 import { AttendanceCheck } from "@components/attendance/AttendanceCheck";
-import { CorrectAnswers } from "@components/statistics/CorrectAnswers";
-import { ConsecutiveAnswers } from "@components/statistics/ConsecutiveAnswers";
+import { CorrectedAnswers } from "@components/statistics/CorrectedAnswers";
+import { ContinuousAnswers } from "@components/statistics/ContinuousAnswers";
 import { Footer } from "@components/layouts/footer/Footer";
 import { useRouter } from "next/router";
 import { TodayRandomQuiz } from "@components/quizzes/random/TodayRandomQuiz";
@@ -39,9 +39,9 @@ export const HomeContainer = () => {
           <AttendanceCheck />
           <div className={"answers-container"}>
             <div className={"correct_answer_wrapper"}>
-              <CorrectAnswers />
+              <CorrectedAnswers />
             </div>
-            <ConsecutiveAnswers />
+            <ContinuousAnswers />
           </div>
         </S.SubItemsLayout>
       </S.HomeBox>

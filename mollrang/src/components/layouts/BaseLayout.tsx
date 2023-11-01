@@ -5,8 +5,7 @@ import { Header } from "./header/Header";
 import { BottomNavigation } from "@components/navigation/bottom/BottomNavigation";
 import { useAppSelector } from "@hooks/useRedux";
 import { ModalHandler } from "@components/common/modal/ModalHandler";
-import { IntegratedStatistics } from "@components/statistics/IntegratedStatistics";
-import { MessageBox } from "@components/quizzes/MessageBox";
+import { IntegratedStatistics } from "@containers/statistics/IntegratedStatistics";
 import { QuizGuide } from "@components/quizzes/guide/QuizGuide";
 
 interface Props {
