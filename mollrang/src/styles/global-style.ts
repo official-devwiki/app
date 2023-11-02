@@ -186,7 +186,7 @@ export const GlobalStyle = createGlobalStyle`
     --intro_icon: #FFC700;
     --share_icon: #444343;
     --check_circle_icon: #B8B8B8;
-
+    --hamburger_icon: #00C7AE;
     // TEXT
     --major-text: #444343;
     --caption-text: #D6D6D6;
@@ -241,7 +241,8 @@ export const GlobalStyle = createGlobalStyle`
     --intro_icon: #D6D6D6;
     --share_icon: #fff;
     --check_circle_icon: #B8B8B8;
-
+    --hamburger_icon: #fff;
+    
     --major-text: #E6E6E6;
     --caption-text: #6D6D6;
 

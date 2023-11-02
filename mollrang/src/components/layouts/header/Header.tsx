@@ -4,7 +4,20 @@ import {styled} from 'styled-components';
 import useTheme from '@hooks/useTheme';
 import {BulbIcon} from '@components/common/icons/BulbIcon';
 import Link from 'next/link';
+import {HamburgerIcon} from "@components/common/icons/HamburgerIcon";
 
+const HamburgerButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ${({theme}) => theme.media.tablet} {
+    display: none;
+  }
+`;
+const FlexBox = styled.div`
+  display: flex;
+`
 export const Header = (): ReactElement => {
   const {toggleTheme, isDarkMode} = useTheme();
 
@@ -14,9 +27,14 @@ export const Header = (): ReactElement => {
         <Link href={'/'}>
           <Logo mode={isDarkMode} />
         </Link>
-        <button type='button' onClick={toggleTheme}>
-          <BulbIcon />
-        </button>
+        <FlexBox>
+          <button type='button' onClick={toggleTheme}>
+            <BulbIcon />
+          </button>
+          <HamburgerButton type='button'>
+            <HamburgerIcon />
+          </HamburgerButton>
+        </FlexBox>
       </HeaderBox>
     </HeaderContainer>
   );

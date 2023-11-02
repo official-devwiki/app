@@ -7,6 +7,7 @@ import { useAppSelector } from "@hooks/useRedux";
 import { ModalHandler } from "@components/common/modal/ModalHandler";
 import { IntegratedStatistics } from "@containers/statistics/IntegratedStatistics";
 import { QuizGuide } from "@components/quizzes/guide/QuizGuide";
+import { EmblaOptionsType } from "embla-carousel-react";
 
 interface Props {
   children: ReactNode;
@@ -31,17 +32,15 @@ const Main = styled.main`
   display: flex;
   /* min-height: 1000px; */
 `;
-
-import { EmblaOptionsType } from "embla-carousel-react";
-
-const SLIDE_COUNT = 5;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
-const OPTIONS: EmblaOptionsType = { loop: true };
-
 const SendBox = styled.div`
   position: relative;
+  height: 100%;
   background-color: gray;
 `;
+
+const SLIDE_COUNT = 4;
+const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
+const OPTIONS: EmblaOptionsType = { loop: true };
 
 export const BaseLayout = (props: Props): ReactElement => {
   const { children } = props;
