@@ -24,7 +24,7 @@ const SignInFormContainer = styled.fieldset`
   border-radius: 4px;
   padding: 1em;
   width: 100%;
-  height: 30vh;
+  height: 40vh;
   box-shadow: 0 1px 10px black;
 `;
 

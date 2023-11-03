@@ -8,6 +8,7 @@ import { ModalHandler } from "@components/common/modal/ModalHandler";
 import { IntegratedStatistics } from "@containers/statistics/IntegratedStatistics";
 import { QuizGuide } from "@components/quizzes/guide/QuizGuide";
 import { EmblaOptionsType } from "embla-carousel-react";
+import { SideNav } from "@components/navigation/side/SideNav";
 
 interface Props {
   children: ReactNode;

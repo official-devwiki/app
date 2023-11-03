@@ -4,6 +4,7 @@ import { BottomSlideModal } from "@components/common/modal/slide/BottomSlide";
 import { FadeModal } from "@components/common/modal/fade/FadeModal";
 import ReactDOM from "react-dom";
 import { Element } from "@hooks/useModalHook";
+import { SideNav } from "@components/navigation/side/SideNav";
 
 interface Modal {
   children: ReactNode;
@@ -37,6 +38,8 @@ export const ModalHandler: React.FunctionComponent<Modal> = (
 
   const modalHandler = (children: ReactNode) => {
     switch (modalType) {
+      case "side-menu":
+        return <SideNav ele={ele} isOpen={isOpen} children={children} />;
       case "bottom-slide":
         return (
           <BottomSlideModal ele={ele} isOpen={isOpen} children={children} />
