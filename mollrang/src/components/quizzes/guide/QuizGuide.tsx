@@ -2,12 +2,8 @@ import {ReactElement} from 'react';
 import React, { ReactNode, useCallback, useEffect, useState } from "react";
 import useEmblaCarousel, { EmblaOptionsType } from "embla-carousel-react";
 import styled from "styled-components";
-
-
-type Props = {
-  options?: EmblaOptionsType;
-  slides: ReactNode[];
-};
+import {Typography} from "@components/common/Typography";
+import Image from 'next/image';
 
 const Embla = styled.div`
   --slide-spacing: 1rem;
@@ -15,8 +11,7 @@ const Embla = styled.div`
   --slide-height: 19rem;
   --brand-primary: rgb(47, 112, 193);
   --brand-secondary: rgb(116, 97, 195);
-  
-    padding: 1.6rem;
+  padding: 1.6rem;
 
   .embla__viewport {
     overflow: hidden;
@@ -73,10 +68,6 @@ const Embla = styled.div`
   }
 `;
 
-
-import {Typography} from "@components/common/Typography";
-
-
 type PropType = {
   slides: number[]
   options?: EmblaOptionsType
@@ -85,6 +76,11 @@ type PropType = {
 export const QuizGuide = (props: PropType): ReactElement => {
   const { options, slides } = props; // props로 가져온 옵션과 슬라이드 리스트
   const [emblaRef] = useEmblaCarousel(options)
+
+  const imageSource = (index: number) => {
+    const type = index !== 4 ? 'jpg' : 'jpeg';
+    return `/images/sample/sample${index}.${type}`;
+  }
 
   return (
     <Embla>
@@ -96,6 +92,7 @@ export const QuizGuide = (props: PropType): ReactElement => {
                 <span>{index + 1}</span>
               </div>
               <Typography>Text{index+1}</Typography>
+              <Image src={imageSource(index+1)} alt={'sample-guide'} width={120} height={80} />
             </div>
           ))}
         </div>

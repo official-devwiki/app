@@ -6,18 +6,6 @@ import {BulbIcon} from '@components/common/icons/BulbIcon';
 import Link from 'next/link';
 import {HamburgerIcon} from "@components/common/icons/HamburgerIcon";
 
-const HamburgerButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  ${({theme}) => theme.media.tablet} {
-    display: none;
-  }
-`;
-const FlexBox = styled.div`
-  display: flex;
-`
 export const Header = (): ReactElement => {
   const {toggleTheme, isDarkMode} = useTheme();
 
@@ -39,6 +27,20 @@ export const Header = (): ReactElement => {
     </HeaderContainer>
   );
 };
+
+const HamburgerButton = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  ${({theme}) => theme.media.tablet} {
+    display: none;
+  }
+`;
+
+const FlexBox = styled.div`
+  display: flex;
+`
 
 const HeaderContainer = styled.header`
   width: 100%;

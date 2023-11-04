@@ -54,11 +54,11 @@ export const TodayRandomQuiz = (): ReactElement => {
           ) : (
             <>
               <Typography $color={"textDefault"} data-testid={"shorts-answer"}>
-                {data && data.prefixWord}
+                {data && data.prefix}
               </Typography>
               {emptyBlockElementGenerator()}
               <Typography $color={"textDefault"} data-testid={"shorts-answer"}>
-                {data && data.suffixWord}
+                {data && data.suffix}
               </Typography>
             </>
           )}
