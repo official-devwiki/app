@@ -214,8 +214,8 @@ export const GlobalStyle = createGlobalStyle`
     --textDefault: #fff;
     --textWhite: #fff;
     --textPrimary: #778C86;
-    --textBlack000: #fff;
-    --textBlack100: #f1f1f1;
+    --textBlack000: #000;
+    --textBlack100: #222;
     --textBlack200: #f5f5f5;
     --textGray000: #969696;
     --textGray100: #A6A6A6;

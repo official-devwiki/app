@@ -31,17 +31,9 @@ const Main = styled.main`
   margin-top: 66px;
   height: 100%;
   display: flex;
-  /* min-height: 1000px; */
-`;
-const SendBox = styled.div`
-  position: relative;
-  height: 100%;
-  background-color: gray;
 `;
 
-const SLIDE_COUNT = 4;
-const SLIDES = Array.from(Array(SLIDE_COUNT).keys());
-const OPTIONS: EmblaOptionsType = { loop: true };
+
 
 export const BaseLayout = (props: Props): ReactElement => {
   const { children } = props;
@@ -56,13 +48,7 @@ export const BaseLayout = (props: Props): ReactElement => {
       </Layout>
       <ModalHandler>
         {type === "statistics" && <IntegratedStatistics />}
-        {type === "guide" && (
-          <div>
-            <SendBox>
-              <QuizGuide slides={SLIDES} options={OPTIONS} />
-            </SendBox>
-          </div>
-        )}
+        {type === "guide" && (<QuizGuide />)}
       </ModalHandler>
       <BottomNavigation />
     </>
