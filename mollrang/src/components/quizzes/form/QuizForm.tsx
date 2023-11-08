@@ -1,4 +1,4 @@
-import React, {ReactElement, useEffect, useRef, useState} from "react";
+import React, { ReactElement, useEffect, useRef, useState } from "react";
 import { Typography } from "@components/common/Typography";
 import { QuizIcon } from "@components/common/icons/QuizIcon";
 import * as S from "./style";
@@ -112,34 +112,35 @@ export const QuizForm = (): ReactElement => {
   };
 
   useEffect(() => {
-    resultMessage()
-  }, [checkBox])
+    resultMessage();
+  }, [checkBox]);
 
   const resultMessage = (): void => {
     if (currentStep > 1) {
-      const currentStepIndex = checkBox.findIndex((v) => v.step === currentStep - 1);
+      const currentStepIndex = checkBox.findIndex(
+        (v) => v.step === currentStep - 1,
+      );
       const currentStepAnswer = checkBox[currentStepIndex].hint;
       if (currentStepAnswer.length === 0) return;
       if (currentStep > 5) {
-        setMessage('퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!');
-        setMessageStyling('default');
+        setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
+        setMessageStyling("default");
         return;
       }
       currentStepAnswer.forEach((value, index) => {
-        if (value[`answer${index + 1}`] === 'O') {
-          setMessage('정답인 글자가 포함되어있어요!');
-          setMessageStyling('default');
-        } else if (value[`answer${index + 1}`] === 'y') {
-          setMessage('글자는 포함되어있지만 위치가 다르네요!');
-          setMessageStyling('hint');
-        } else if (value[`answer${index + 1}`] === 'X') {
-          setMessage('글자가 포함되어있지 않아요!');
-          setMessageStyling('wrong');
+        if (value[`answer${index + 1}`] === "O") {
+          setMessage("정답인 글자가 포함되어있어요!");
+          setMessageStyling("default");
+        } else if (value[`answer${index + 1}`] === "y") {
+          setMessage("글자는 포함되어있지만 위치가 다르네요!");
+          setMessageStyling("hint");
+        } else if (value[`answer${index + 1}`] === "X") {
+          setMessage("글자가 포함되어있지 않아요!");
+          setMessageStyling("wrong");
         }
-      })
+      });
     }
-
-  }
+  };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (data) {
@@ -219,21 +220,32 @@ export const QuizForm = (): ReactElement => {
       </S.QuizSolutionBox>
 
       <S.InputContainer>
-        {isLoading ?
-          (<SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />) : (
-            <Input
-              ref={inputRef}
-              placeholder={`${data.answerLength} 자`}
-              name={"quizAnswer"}
-              disabled={currentStep > 5}
-              value={answer}
-              onChange={(e) => onChangeHandler(e)}
-            />)}
-
+        {isLoading ? (
+          <SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />
+        ) : (
+          <Input
+            ref={inputRef}
+            placeholder={`${data.answerLength} 자`}
+            name={"quizAnswer"}
+            disabled={currentStep > 5}
+            value={answer}
+            onChange={(e) => onChangeHandler(e)}
+          />
+        )}
       </S.InputContainer>
 
       <S.HintMessageBlock>
-        <Typography $weight={'bold'} $variant={'body1'} $color={messageStyling === 'default' ? "textPrimary" : messageStyling === 'hint' ? 'textYellow' : 'textRed000'}>
+        <Typography
+          $weight={"bold"}
+          $variant={"body1"}
+          $color={
+            messageStyling === "default"
+              ? "textPrimary"
+              : messageStyling === "hint"
+              ? "textYellow"
+              : "textRed000"
+          }
+        >
           {message}
         </Typography>
       </S.HintMessageBlock>
@@ -244,7 +256,7 @@ export const QuizForm = (): ReactElement => {
             그만하기
           </Typography>
         </Button>
-        <Button variant={"primary"} type={"submit"}  disabled={currentStep > 5}>
+        <Button variant={"primary"} type={"submit"} disabled={currentStep > 5}>
           <Typography as={"span"} $weight={"bold"}>
             제출하기
           </Typography>

@@ -104,7 +104,7 @@ export const PieChart = (props: Props): ReactElement => {
       .text((d) => d.data.name)
       .attr("font-size", "12px")
       .attr("font-weight", "bold")
-      .attr("fill", "#222")
+      .attr("fill", "var(--textDefault)")
       .attr("text-anchor", "middle");
 
     function onMouseOut(d: any, i: any) {

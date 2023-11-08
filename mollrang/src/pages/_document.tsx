@@ -62,7 +62,10 @@ class MyDocument extends Document {
           <meta httpEquiv="Distribution" content="mollrang-dev" />
           <meta httpEquiv="Imagetoolbar" content="no" />
 
-          {/* <meta name="theme-color" content="#00c7ae" /> */}
+          <meta name="theme-color" content="#00c7ae" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="apple-web-app-capable" content="yes" />
+          
           <meta
             name="description"
             content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"

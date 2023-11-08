@@ -40,6 +40,8 @@ export const ButtonFlexBox = styled.div`
 export const CheckBoxContainer = styled.ul`
   margin-top: 20px;
   display: flex;
+  flex-wrap: wrap;
+  row-gap: 0.4em;
 
   li {
     margin-right: 0.2em;
