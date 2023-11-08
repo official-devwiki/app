@@ -6,10 +6,14 @@ import path from "path";
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const cookies = new Cookies(req, res);
   const userId = cookies.get("user");
-
   if (req.method !== "GET")
     return res.status(405).json({ message: "Only GET requests allowed" });
-  const filePath = path.resolve('./public', 'mock-data','statistics','distribution.json');
+  const filePath = path.resolve(
+    "./public",
+    "mock-data",
+    "statistics",
+    "distribution.json",
+  );
   const data = fs.readFileSync(filePath, {
     encoding: "utf-8",
   });

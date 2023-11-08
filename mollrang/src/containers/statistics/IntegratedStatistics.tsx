@@ -1,15 +1,17 @@
-import {ReactElement} from 'react';
-import {Typography} from '@components/common/Typography';
-import styled from 'styled-components';
-import {PieChart} from '@components/chart/PieChart';
-import {PieChartIcon} from "@components/common/icons/PieChartIcon";
-import {CheckSquareIcon} from "@components/common/icons/CheckSquareIcon";
+import { ReactElement, useState } from "react";
+import { Typography } from "@components/common/Typography";
+import styled from "styled-components";
+import { PieChart } from "@components/chart/PieChart";
+import { PieChartIcon } from "@components/common/icons/PieChartIcon";
+import { CheckSquareIcon } from "@components/common/icons/CheckSquareIcon";
+import { useGetMyDistributionQuery } from "@services/queries/statisticsQuery";
 
 const IntegratedStatisticsLayout = styled.div`
   width: 100%;
   padding: 0 1em;
   height: auto;
-  min-height: 600px;
+  height: 550px;
+  overflow-y: auto;
 `;
 
 const StatisticsItemContainer = styled.div`
@@ -37,7 +39,7 @@ const StatisticsSection1 = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(240,240,240, 0.7);
+  background-color: rgba(240, 240, 240, 0.7);
   border-radius: 10px 0 0 10px;
   width: 45%;
   height: 86px;
@@ -48,7 +50,7 @@ const StatisticsSection2 = styled.section`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgba(240,240,240, 0.7);
+  background-color: rgba(240, 240, 240, 0.7);
   border-radius: 0 10px 10px 0;
   width: 45%;
   height: 86px;
@@ -56,50 +58,111 @@ const StatisticsSection2 = styled.section`
 const FlexBox = styled.div`
   display: flex;
   align-items: center;
-  
+
   .mr-10 {
     margin-right: 10px;
   }
 `;
 
+interface ChallengeData {
+  challenge1: number;
+  challenge2: number;
+  challenge3: number;
+  challenge4: number;
+  challenge5: number;
+}
+
 export const IntegratedStatistics = (): ReactElement => {
+  const { isLoading, data } = useGetMyDistributionQuery<ChallengeData>();
 
   return (
     <IntegratedStatisticsLayout>
       <FlexBox>
-        <CheckSquareIcon className={'mr-10'} />
-        <Typography $color={'textDefault'} $variant={'body1'} $weight={'bold'}>나의 정답률</Typography>
+        <CheckSquareIcon className={"mr-10"} />
+        <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
+          나의 정답률
+        </Typography>
       </FlexBox>
       <hr />
       <StatisticsItemContainer>
         <StatisticsItemLists>
           <StatisticsSection1>
             <StatisticsItems>
-              <Typography $color={'textDefault'} $variant={'body1'} $weight={'medium'}>참여횟수</Typography>
-              <Typography $color={'textPrimary'} $variant={'body2'} $weight={'medium'}>1 회</Typography>
+              <Typography
+                $color={"textDefault"}
+                $variant={"body1"}
+                $weight={"medium"}
+              >
+                참여횟수
+              </Typography>
+              <Typography
+                $color={"textPrimary"}
+                $variant={"body2"}
+                $weight={"medium"}
+              >
+                1 회
+              </Typography>
             </StatisticsItems>
             <StatisticsItems>
-              <Typography $color={'textDefault'} $variant={'body1'} $weight={'medium'}>최근 연속 정답</Typography>
-              <Typography $color={'textPrimary'} $variant={'body2'} $weight={'medium'}>1 번</Typography>
+              <Typography
+                $color={"textDefault"}
+                $variant={"body1"}
+                $weight={"medium"}
+              >
+                최근 연속 정답
+              </Typography>
+              <Typography
+                $color={"textPrimary"}
+                $variant={"body2"}
+                $weight={"medium"}
+              >
+                1 번
+              </Typography>
             </StatisticsItems>
 
             <StatisticsItems>
-              <Typography $color={'textDefault'} $variant={'body1'} $weight={'medium'}>최근 연속 정답</Typography>
-              <Typography $color={'textPrimary'} $variant={'body2'} $weight={'medium'}>1 번</Typography>
+              <Typography
+                $color={"textDefault"}
+                $variant={"body1"}
+                $weight={"medium"}
+              >
+                최근 연속 정답
+              </Typography>
+              <Typography
+                $color={"textPrimary"}
+                $variant={"body2"}
+                $weight={"medium"}
+              >
+                1 번
+              </Typography>
             </StatisticsItems>
           </StatisticsSection1>
           <StatisticsSection2>
-            <Typography $color={'textDefault'} $variant={'body1'} $weight={'medium'}>정답률</Typography>
-            <Typography $color={'textPrimary'} $variant={'body2'} $weight={'medium'}>12 %</Typography>
+            <Typography
+              $color={"textDefault"}
+              $variant={"body1"}
+              $weight={"medium"}
+            >
+              정답률
+            </Typography>
+            <Typography
+              $color={"textPrimary"}
+              $variant={"body2"}
+              $weight={"medium"}
+            >
+              12 %
+            </Typography>
           </StatisticsSection2>
         </StatisticsItemLists>
       </StatisticsItemContainer>
       <FlexBox>
-        <PieChartIcon className={'mr-10'} />
-        <Typography $color={'textDefault'} $variant={'body1'} $weight={'bold'}>도전 분포</Typography>
+        <PieChartIcon className={"mr-10"} />
+        <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
+          도전 분포
+        </Typography>
       </FlexBox>
       <hr />
-      <PieChart />
+      <PieChart data={data} />
     </IntegratedStatisticsLayout>
   );
 };
