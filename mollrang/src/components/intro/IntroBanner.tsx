@@ -8,6 +8,7 @@ import styled from "styled-components";
 import { ShareIcon } from "@components/common/icons/ShareIcon";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
+import { IS_PRODUCTION } from "@config/index";
 
 export const FlexBox = styled.div`
   button {
@@ -26,11 +27,11 @@ const Banner = styled(BannerSvg)`
 
 export const MollrangSharedButton = (): ReactElement => {
   const sharedMollrangLink = async (): Promise<void> => {
-    const url = "http://localhost:3000/";
+    const url = IS_PRODUCTION
+      ? "https://mollrang.netlify.app/"
+      : "http://localhost:3000/";
     await navigator.clipboard.writeText(url);
-    toast.message(
-      `클립보드에 저장되었습니다. - ${await navigator.clipboard.readText()}`,
-    );
+    toast.message(`클립보드에 저장되었습니다.`);
   };
 
   return (
