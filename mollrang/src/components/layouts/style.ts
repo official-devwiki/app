@@ -8,8 +8,10 @@ export const Layout = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
-    min-height: 1000px;
+    /* height: 100%;
+    min-height: 1000px; */
+    height: auto;
+    min-height: 100vh;
   }
 `;
 
