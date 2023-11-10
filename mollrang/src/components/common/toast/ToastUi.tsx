@@ -18,8 +18,8 @@ export const ToastUi = (props: Props): ReactElement => {
     <>
       {messages.map((toast) => {
         return (
-          <S.ToastLayout className={classNames(variant, active && "active")}>
-            <S.ToastBox key={toast.id + "Toast"}>
+          <S.ToastLayout className={classNames(variant, active && "active")} key={toast.id + "Toast"}>
+            <S.ToastBox>
               <Typography $variant={'body2'} $weight={'bold'} $color={'textWhite'}>{toast.message}</Typography>
             </S.ToastBox>
           </S.ToastLayout>

@@ -27,8 +27,6 @@ export const ModalHandler: React.FunctionComponent<Modal> = (
     typeof window !== "undefined" &&
     (document.querySelector("#modal") as HTMLDivElement);
 
-  if (!element) return null;
-
   useEffect(() => {
     const html = document.querySelector("html");
     if (html) {
@@ -36,16 +34,18 @@ export const ModalHandler: React.FunctionComponent<Modal> = (
     }
   }, [isOpen]);
 
+  if (!element) return null;
+
   const modalHandler = (children: ReactNode) => {
     switch (modalType) {
       case "side-menu":
-        return <SideNav ele={ele} isOpen={isOpen} children={children} />;
+        return <SideNav ele={ele} isOpen={isOpen}>{children}</SideNav>;
       case "bottom-slide":
         return (
-          <BottomSlideModal ele={ele} isOpen={isOpen} children={children} />
+          <BottomSlideModal ele={ele} isOpen={isOpen}>{children}</BottomSlideModal>
         );
       default:
-        return <FadeModal ele={ele} isOpen={isOpen} children={children} />;
+        return <FadeModal ele={ele} isOpen={isOpen}>{children}</FadeModal>;
     }
   };
 

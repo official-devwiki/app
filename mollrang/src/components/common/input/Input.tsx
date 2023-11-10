@@ -57,3 +57,5 @@ export const Input = forwardRef((props: InputProps, ref: ForwardedRef<HTMLInputE
     </S.Label>
   );
 });
+
+Input.displayName = 'Input';
