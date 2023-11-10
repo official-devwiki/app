@@ -10,7 +10,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 
   if (req.method === "GET") {
     const filePath = path.resolve('./public', 'mock-data', 'quizzes.json');
-    const data = fs.readFileSync("public/mock-data/quizzes.json", {
+    const data = fs.readFileSync(filePath, {
       encoding: "utf-8",
     });
 
