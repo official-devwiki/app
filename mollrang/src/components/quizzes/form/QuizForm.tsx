@@ -188,14 +188,14 @@ export const QuizForm = (): ReactElement => {
                 $weight={"bold"}
                 $color={"textDefault"}
               >
-                {data.question}
+                {data && data.question}
               </Typography>
             </>
           )}
         </S.QuizFormTitle>
         <S.QuizAnswerContainer>
           {emptyBlockElementGenerator()}
-          {data.prefix && (
+          {data && data.prefix && (
             <Typography
               $variant={"body2"}
               $color={"textPrimary"}
@@ -204,7 +204,7 @@ export const QuizForm = (): ReactElement => {
               {data.prefix}
             </Typography>
           )}
-          {data.suffix && (
+          {data && data.suffix && (
             <Typography
               $variant={"body2"}
               $color={"textPrimary"}
@@ -219,7 +219,7 @@ export const QuizForm = (): ReactElement => {
       <S.InputContainer>
         <Input
           ref={inputRef}
-          placeholder={`${data.answerLength} 자`}
+          placeholder={`${data && data.answerLength} 자`}
           name={"quizAnswer"}
           disabled={currentStep > 5}
           value={answer}
