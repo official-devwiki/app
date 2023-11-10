@@ -16,21 +16,21 @@ const QuizPage: NextPage = (): ReactElement => {
 };
 export default QuizPage;
 
-export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
-  async (ctx) => {
-    try {
-      await queryClient.prefetchQuery([QueryKeys.Quizzes.getTodayQuizzes], () =>
-        getTodayQuizzes(),
-      );
-      return {
-        props: {
-          dehydratedState: dehydrate(queryClient),
-        },
-      };
-    } catch (e) {
-      return {
-        props: {},
-      };
-    }
-  },
-);
+// export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
+//   async (ctx) => {
+//     try {
+//       await queryClient.prefetchQuery([QueryKeys.Quizzes.getTodayQuizzes], () =>
+//         getTodayQuizzes(),
+//       );
+//       return {
+//         props: {
+//           dehydratedState: dehydrate(queryClient),
+//         },
+//       };
+//     } catch (e) {
+//       return {
+//         props: {},
+//       };
+//     }
+//   },
+// );
