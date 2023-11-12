@@ -28,10 +28,18 @@ export const Header = (): ReactElement => {
           <Logo mode={isDarkMode} />
         </Link>
         <FlexBox>
-          <button type="button" onClick={toggleTheme}>
+          <button
+            type="button"
+            onClick={toggleTheme}
+            aria-label="change-background-color-button"
+          >
             <BulbIcon />
           </button>
-          <HamburgerButton type="button" onClick={openModal}>
+          <HamburgerButton
+            type="button"
+            onClick={openModal}
+            aria-label="hamburger-button"
+          >
             <HamburgerIcon />
           </HamburgerButton>
         </FlexBox>
