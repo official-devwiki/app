@@ -38,7 +38,7 @@ export const PlayQuizBox = styled.div`
     margin: 0;
     z-index: 0;
     position: relative;
-    top: 24px;
+    top: 25px;
   }
   button {
     position: relative;

@@ -2,13 +2,17 @@ import {
   combineReducers,
   configureStore,
   ThunkAction,
-  Action, AnyAction, CombinedState, Reducer,
-} from '@reduxjs/toolkit';
-import {createWrapper, HYDRATE} from 'next-redux-wrapper';
-import logger from 'redux-logger';
-import {UtilSlice, UtilityStore} from '@store/slice/utilSlice';
-import {QuizSlice, QuizStore} from '@store/slice/quizSlice';
-import {ModalSlice, ModalStore} from "@store/slice/modalSlice";
+  Action,
+  AnyAction,
+  CombinedState,
+  Reducer,
+} from "@reduxjs/toolkit";
+import { createWrapper, HYDRATE } from "next-redux-wrapper";
+import logger from "redux-logger";
+import { UtilSlice, UtilityStore } from "@store/slice/utilSlice";
+import { QuizSlice, QuizStore } from "@store/slice/quizSlice";
+import { ModalSlice, ModalStore } from "@store/slice/modalSlice";
+import { IS_PRODUCTION } from "@config/index";
 
 export interface RootState {
   utilityStore: UtilityStore;
@@ -16,12 +20,15 @@ export interface RootState {
   modalStore: ModalStore;
 }
 
-const RootReducer = (state: RootState, action: AnyAction): CombinedState<RootState> => {
-  if (action.type === HYDRATE) return {...state, ...action.payload};
+const RootReducer = (
+  state: RootState,
+  action: AnyAction,
+): CombinedState<RootState> => {
+  if (action.type === HYDRATE) return { ...state, ...action.payload };
   const combinedReducer = combineReducers({
     [UtilSlice.name]: UtilSlice.reducer,
     [QuizSlice.name]: QuizSlice.reducer,
-    [ModalSlice.name]: ModalSlice.reducer
+    [ModalSlice.name]: ModalSlice.reducer,
   });
   return combinedReducer(state, action);
 };
@@ -35,12 +42,14 @@ const makeStore = () =>
 export const store = makeStore();
 
 export const wrapper = createWrapper<AppStore>(makeStore, {
-  debug: true,
+  debug: !IS_PRODUCTION,
 });
 
 export type AppStore = ReturnType<typeof makeStore>;
 export type AppDispatch = typeof store.dispatch;
-export type AppThunk<ReturnType = void> = ThunkAction<ReturnType,
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
   RootState,
   unknown,
-  Action>;
+  Action
+>;

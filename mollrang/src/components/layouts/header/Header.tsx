@@ -57,7 +57,7 @@ const FlexBox = styled.div`
 const HeaderContainer = styled.header`
   width: 100%;
   min-width: 300px;
-  height: 66px;
+  height: 76px;
   position: fixed;
   top: 0;
   left: 0;
@@ -71,6 +71,7 @@ const HeaderContainer = styled.header`
 const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 1em;
   align-items: center;
+  padding: 0 1em;
+  height: 100%;
 `;
