@@ -1,5 +1,6 @@
 import type {NextApiRequest, NextApiResponse} from 'next';
 import * as fs from 'fs';
+import path from "path";
 
 export default function handler(
   req: NextApiRequest,
@@ -7,7 +8,8 @@ export default function handler(
 ) {
   if (req.method !== 'GET')
     return res.status(405).json({message: 'Only GET requests allowed'});
-  const data = fs.readFileSync('public/mock-data/shorts.json', {
+  const filePath = path.resolve('./public', 'mock-data', 'shorts.json');
+  const data = fs.readFileSync(filePath, {
     encoding: 'utf-8',
   });
   const dataToJson = JSON.parse(data);

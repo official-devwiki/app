@@ -7,7 +7,7 @@ import CheckRed from './check.svg';
 import PieChart from './pie_chart.svg';
 import CheckSquare from './check_square.svg';
 import Hamburger from './hamburger.svg';
-
+import Exit from './exit.svg';
 export {
   Chart,
   Home,
@@ -17,5 +17,6 @@ export {
   CheckRed,
   PieChart,
   CheckSquare,
-  Hamburger
+  Hamburger,
+  Exit
 };

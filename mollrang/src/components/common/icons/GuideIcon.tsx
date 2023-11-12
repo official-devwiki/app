@@ -5,6 +5,7 @@ type IconVariant = 'white' | 'black'
 
 interface Props {
   $variant?: IconVariant;
+  className?: string;
 }
 
 export const GuideIcon = styled(Guide)<Props>`

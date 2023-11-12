@@ -188,38 +188,40 @@ export const QuizForm = (): ReactElement => {
                 $weight={"bold"}
                 $color={"textDefault"}
               >
-                {data.question}
+                {data && data.question}
               </Typography>
             </>
           )}
         </S.QuizFormTitle>
-        <S.QuizAnswerContainer>
-          {emptyBlockElementGenerator()}
-          {data.prefix && (
-            <Typography
-              $variant={"body2"}
-              $color={"textPrimary"}
-              $weight={"bold"}
-            >
-              {data.prefix}
-            </Typography>
-          )}
-          {data.suffix && (
-            <Typography
-              $variant={"body2"}
-              $color={"textPrimary"}
-              $weight={"bold"}
-            >
-              {data.suffix}
-            </Typography>
-          )}
-        </S.QuizAnswerContainer>
+        {!isLoading && (
+          <S.QuizAnswerContainer>
+            {emptyBlockElementGenerator()}
+            {data && data.prefix && (
+              <Typography
+                $variant={"body2"}
+                $color={"textPrimary"}
+                $weight={"bold"}
+              >
+                {data.prefix}
+              </Typography>
+            )}
+            {data && data.suffix && (
+              <Typography
+                $variant={"body2"}
+                $color={"textPrimary"}
+                $weight={"bold"}
+              >
+                {data.suffix}
+              </Typography>
+            )}
+          </S.QuizAnswerContainer>
+        )}
       </S.QuizSolutionBox>
 
       <S.InputContainer>
         <Input
           ref={inputRef}
-          placeholder={`${data.answerLength} 자`}
+          placeholder={`${!isLoading && data.answerLength} 자`}
           name={"quizAnswer"}
           disabled={currentStep > 5}
           value={answer}

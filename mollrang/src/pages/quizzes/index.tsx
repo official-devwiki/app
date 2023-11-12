@@ -6,6 +6,10 @@ import { QueryKeys } from "@services/keys/queryKeys";
 import { getTodayQuizzes } from "@services/apis/quizzes";
 import { dehydrate } from "@tanstack/query-core";
 import { QuizContainer } from "@containers/quizzes";
+import dynamic from "next/dynamic";
+
+// @ts-ignore
+// const QuizContainer = dynamic(() => import("@containers/quizzes"));
 
 const QuizPage: NextPage = (): ReactElement => {
   return <QuizContainer />;

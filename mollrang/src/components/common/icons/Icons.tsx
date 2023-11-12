@@ -2,10 +2,11 @@ import React, {ReactElement} from 'react';
 import * as iconType from '@images/icons/index';
 import styled from 'styled-components';
 
-type IconType = 'home' | 'setting' | 'guide' | 'open-book' | 'chart' | 'check-red';
+type IconType = 'home' | 'setting' | 'guide' | 'open-book' | 'chart' | 'check-red' | 'exit';
 
 interface Props {
   type: IconType;
+  className?: string;
 }
 
 const StyledComponent = (element: any) => styled(element)<Props>``;
@@ -23,6 +24,8 @@ function baseElement(props: Props): ReactElement {
         return iconType.Chart;
       case 'check-red':
         return iconType.CheckRed;
+      case 'exit':
+        return iconType.Exit;
     }
   };
   return React.createElement(icon(), props);

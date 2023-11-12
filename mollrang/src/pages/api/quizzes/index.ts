@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import * as fs from "fs";
 import Cookies from "cookies";
+import path from "path";
 
 export default function handler(req: NextApiRequest, res: NextApiResponse) {
   const cookies = new Cookies(req, res);
@@ -8,7 +9,8 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
   console.log(userId);
 
   if (req.method === "GET") {
-    const data = fs.readFileSync("public/mock-data/quizzes.json", {
+    const filePath = path.resolve('./public', 'mock-data', 'quizzes.json');
+    const data = fs.readFileSync(filePath, {
       encoding: "utf-8",
     });
 
