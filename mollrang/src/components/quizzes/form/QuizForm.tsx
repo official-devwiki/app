@@ -219,14 +219,17 @@ export const QuizForm = (): ReactElement => {
       </S.QuizSolutionBox>
 
       <S.InputContainer>
-        <Input
-          ref={inputRef}
-          placeholder={`${!isLoading && data.answerLength} 자`}
-          name={"quizAnswer"}
-          disabled={currentStep > 5}
-          value={answer}
-          onChange={(e) => onChangeHandler(e)}
-        />
+        {isLoading ?
+          (<SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />) : (
+            <Input
+              ref={inputRef}
+              placeholder={`${data.answerLength} 자`}
+              name={"quizAnswer"}
+              disabled={currentStep > 5}
+              value={answer}
+              onChange={(e) => onChangeHandler(e)}
+            />)}
+
       </S.InputContainer>
 
       <S.HintMessageBlock>
