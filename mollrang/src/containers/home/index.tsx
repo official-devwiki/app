@@ -10,10 +10,7 @@ import { Footer } from "@components/layouts/footer/Footer";
 import { useRouter } from "next/router";
 import { TodayRandomQuiz } from "@components/quizzes/random/TodayRandomQuiz";
 
-interface Props {
-  homeData?: any;
-}
-export const HomeContainer = (props: Props) => {
+export const HomeContainer = () => {
   const router = useRouter();
 
   const playQuizButton = async (): Promise<void> => {
