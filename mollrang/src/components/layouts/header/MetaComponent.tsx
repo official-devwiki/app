@@ -5,7 +5,10 @@ export const MetaComponent = (): ReactElement => {
   return (
     <Head>
       <title>몰랑</title>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1, user-scalable=0"
+      />
 
       <meta
         httpEquiv="Page-Enter"
@@ -19,7 +22,11 @@ export const MetaComponent = (): ReactElement => {
       <meta httpEquiv="Distribution" content="mollrang-dev" />
       <meta httpEquiv="Imagetoolbar" content="no" />
 
-      <meta name="theme-color" content="#00c7ae" />
+      <meta name="mobile-web-app-capable" content="yes" />
+      <meta name="apple-web-app-capable" content="yes" />
+
+      <meta name="color-scheme" content="dark light" />
+      {/* <meta name="theme-color" content="var(--primary)" /> */}
       <meta
         name="description"
         content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"

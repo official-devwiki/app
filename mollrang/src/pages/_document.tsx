@@ -61,8 +61,9 @@ class MyDocument extends Document {
           <meta httpEquiv="Copyright" content="mollrang-dev" />
           <meta httpEquiv="Distribution" content="mollrang-dev" />
           <meta httpEquiv="Imagetoolbar" content="no" />
-
-          <meta name="theme-color" content="#00c7ae" />
+          
+          <meta name="color-scheme" content="dark light" />
+          {/* <meta name="theme-color" content="#00c7ae" /> */}
           <meta name="mobile-web-app-capable" content="yes" />
           <meta name="apple-web-app-capable" content="yes" />
           
