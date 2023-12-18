@@ -1,7 +1,6 @@
-import { ReactElement, useState } from "react";
+import { ReactElement } from "react";
 import { Typography } from "@components/common/Typography";
 import styled from "styled-components";
-import { PieChart } from "@components/chart/PieChart";
 import { PieChartIcon } from "@components/common/icons/PieChartIcon";
 import { CheckSquareIcon } from "@components/common/icons/CheckSquareIcon";
 import { useGetMyDistributionQuery } from "@services/queries/statisticsQuery";
@@ -9,7 +8,6 @@ import { useGetMyDistributionQuery } from "@services/queries/statisticsQuery";
 const IntegratedStatisticsLayout = styled.div`
   width: 100%;
   padding: 0 1em;
-  height: auto;
   height: 550px;
   overflow-y: auto;
 `;
@@ -162,7 +160,6 @@ export const IntegratedStatistics = (): ReactElement => {
         </Typography>
       </FlexBox>
       <hr />
-      <PieChart data={data} />
     </IntegratedStatisticsLayout>
   );
 };
