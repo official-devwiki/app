@@ -38,3 +38,5 @@ export const Button = (props: ButtonProps): ReactElement => {
     </S.Button>
   );
 };
+
+Button.displayName = 'Button';
