@@ -4,13 +4,11 @@ export const Layout = styled.div`
   padding-bottom: 0;
 
   ${({ theme }) => theme.media.tablet} {
-    padding-bottom: 74px;
+    padding-bottom: 80px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    /* height: 100%;
-    min-height: 1000px; */
-    height: auto;
+    height: 100%;
     min-height: 100vh;
   }
 `;

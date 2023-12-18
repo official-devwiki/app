@@ -21,23 +21,21 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   const [queryState] = useState(() => queryClient);
   const { store, props } = wrapper.useWrappedStore(pageProps);
   return (
-    <>
-      <ErrorBoundary>
-        <Provider store={store}>
-          <QueryClientProvider client={queryState}>
-            <Hydrate state={props.dehydratedState}>
-              <ThemeProvider theme={theme}>
-                <GlobalStyle />
-                <BaseLayout>
-                  <Component {...props.pageProps} />
-                </BaseLayout>
-              </ThemeProvider>
-              <ReactQueryDevtools initialIsOpen={false} />
-            </Hydrate>
-          </QueryClientProvider>
-        </Provider>
-      </ErrorBoundary>
-    </>
+    <ErrorBoundary>
+      <Provider store={store}>
+        <QueryClientProvider client={queryState}>
+          <Hydrate state={props.dehydratedState}>
+            <ThemeProvider theme={theme}>
+              <GlobalStyle />
+              <BaseLayout>
+                <Component {...props.pageProps} />
+              </BaseLayout>
+            </ThemeProvider>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </Hydrate>
+        </QueryClientProvider>
+      </Provider>
+    </ErrorBoundary>
   );
 };
 

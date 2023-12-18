@@ -27,13 +27,13 @@ export const Header = (): ReactElement => {
           <Logo mode={isDarkMode} />
         </Link>
         <FlexBox>
-          <button
+          <BulbButton
             type="button"
             onClick={toggleTheme}
             aria-label="change-background-color-button"
           >
             <BulbIcon />
-          </button>
+          </BulbButton>
           <HamburgerButton
             type="button"
             onClick={openModal}
@@ -46,7 +46,7 @@ export const Header = (): ReactElement => {
     </HeaderContainer>
   );
 };
-
+const BulbButton = styled.button``;
 const HamburgerButton = styled.button`
   display: flex;
   align-items: center;

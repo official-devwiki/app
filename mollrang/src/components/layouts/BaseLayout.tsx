@@ -1,16 +1,17 @@
-import { ReactElement, ReactNode } from "react";
+import {PropsWithChildren, ReactElement} from "react";
 import { MetaComponent } from "@components/layouts/header/MetaComponent";
 import { Header } from "./header/Header";
 import { BottomNavigation } from "@components/navigation/bottom/BottomNavigation";
 import { ModalContainer } from "@containers/modal";
 import * as S from "./style";
 
-interface Props {
-  children: ReactNode;
-}
+
+type Props = PropsWithChildren;
 
 export const BaseLayout = (props: Props): ReactElement => {
   const { children } = props;
+
+  if (typeof window !== 'undefined') return null;
 
   return (
     <>

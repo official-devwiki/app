@@ -71,11 +71,16 @@ export const GlobalStyle = createGlobalStyle`
     height: calc(100% - 66px);
   }
   
-  body, #__next {
+  body{
     width: 100%;
     height: 100%;
   }
-
+  
+  #__next {
+    width: 100%;
+    //height: 100vh;
+  }
+  
   ol, ul {
     list-style: none;
   }

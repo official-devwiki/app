@@ -57,9 +57,6 @@ export const MetaComponent = (): ReactElement => {
       />
       <meta property="twitter:image" content="" />
       <meta property="twitter:url" content="https://mollrang.netlify.app/" />
-
-      <link rel="icon" href="/favicon.ico" />
-      <link rel="manifest" href="/manifest.json" />
     </Head>
   );
 };
