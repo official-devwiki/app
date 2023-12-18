@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
-import { Icons } from "@components/common/icons/Icons";
 import { Typography } from "@components/common/Typography";
 import { Button } from "@components/common/Button";
 import { useAppDispatch } from "@hooks/useRedux";
 import { useRouter } from "next/router";
 import * as S from "./style";
 import { setModalOpen, State } from "@store/slice/modalSlice";
-import {GuideIcon} from "@components/common/icons/GuideIcon";
+import { TiHome, TiChartPie } from "react-icons/ti";
+import { IoSettingsSharp, IoBook } from "react-icons/io5";
 
 export const BottomNavigation = (): ReactElement => {
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ export const BottomNavigation = (): ReactElement => {
       <S.NavList>
         <S.NavItem>
           <Button variant={"icon"} onClick={goToHome}>
-            <Icons type={"home"} />
+            <TiHome color={'#fff'} size={26} />
             <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
               홈
             </Typography>
@@ -38,7 +38,7 @@ export const BottomNavigation = (): ReactElement => {
         </S.NavItem>
         <S.NavItem>
           <Button variant={"icon"} onClick={() => openModal("guide")}>
-            <GuideIcon />
+            <IoBook color={'#fff'} size={26} />
             <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
               가이드
             </Typography>
@@ -46,14 +46,14 @@ export const BottomNavigation = (): ReactElement => {
         </S.NavItem>
         <S.NavItem>
           <Button variant={"icon"} onClick={() => openModal("statistics")}>
-            <Icons type={"chart"} />
+            <TiChartPie color={'#fff'} size={30} />
             <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
               통계
             </Typography>
           </Button>
         </S.NavItem>
         <S.NavItem>
-          <Icons type={"setting"} />
+          <IoSettingsSharp color={'#fff'} size={26} />
           <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
             설정
           </Typography>

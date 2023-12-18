@@ -1,9 +1,9 @@
 import { ReactElement } from "react";
 import { Typography } from "@components/common/Typography";
 import styled from "styled-components";
-import { PieChartIcon } from "@components/common/icons/PieChartIcon";
 import { CheckSquareIcon } from "@components/common/icons/CheckSquareIcon";
 import { useGetMyDistributionQuery } from "@services/queries/statisticsQuery";
+import { TiChartPie } from "react-icons/ti";
 
 const IntegratedStatisticsLayout = styled.div`
   width: 100%;
@@ -154,7 +154,7 @@ export const IntegratedStatistics = (): ReactElement => {
         </StatisticsItemLists>
       </StatisticsItemContainer>
       <FlexBox>
-        <PieChartIcon className={"mr-10"} />
+        <TiChartPie color={'var(--primary)'} size={28} className={'mr-10'} />
         <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
           도전 분포
         </Typography>

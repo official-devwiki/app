@@ -1,11 +1,10 @@
 import {ReactElement} from "react";
 import styled from "styled-components";
-import {Icons} from "@components/common/icons/Icons";
 import {Typography} from "@components/common/Typography";
 import {Button} from "@components/common/Button";
 import {useAppDispatch} from "@hooks/useRedux";
 import {setModalOpen} from "@store/slice/modalSlice";
-import {GuideIcon} from "@components/common/icons/GuideIcon";
+import { IoBook } from "react-icons/io5";
 
 const GuidePopupLayout = styled.div`
   position: absolute;
@@ -42,7 +41,7 @@ export const FloatingActionButton = (): ReactElement => {
   return (
     <GuidePopupLayout>
       <Button variant={'icon'} onClick={guideOpen}>
-        <GuideIcon />
+        <IoBook color={'#fff'} size={26} />
         <Typography $variant={'caption'} as={'span'} $color={'textWhite'}>가이드</Typography>
       </Button>
     </GuidePopupLayout>

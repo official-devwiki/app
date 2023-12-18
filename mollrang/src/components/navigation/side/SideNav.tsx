@@ -3,11 +3,10 @@ import { AnimatePresence } from "framer-motion";
 import { ModalProps } from "@components/common/modal/ModalHandler";
 import useModalHook from "@hooks/useModalHook";
 import { Button } from "@components/common/Button";
-import {GuideIcon} from "@components/common/icons/GuideIcon";
 import {Typography} from "@components/common/Typography";
 import {Icons} from "@components/common/icons/Icons";
 import * as S from './style';
-
+import { IoBook } from "react-icons/io5";
 
 export const SideNav = (props: ModalProps): ReactElement => {
   const { isOpen, ele } = props;
@@ -73,7 +72,7 @@ export const SideNav = (props: ModalProps): ReactElement => {
             <S.MenuLists>
               <S.MenuItems>
                 <Button variant={"icon"}>
-                  <GuideIcon className={'icon'} />
+                  <IoBook color={'#fff'} size={26} />
                   <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
                     가이드
                   </Typography>

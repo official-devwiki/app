@@ -2,13 +2,13 @@ import { ReactElement } from "react";
 import * as S from "./style";
 import { NoteIcon } from "@components/common/icons/NoteIcon";
 import { Typography } from "@components/common/Typography";
-import { QuestionIcon } from "@components/common/icons/QuestionIcon";
 import BannerSvg from "@images/banner.svg";
 import styled from "styled-components";
-import { ShareIcon } from "@components/common/icons/ShareIcon";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
 import { IS_PRODUCTION } from "@config/index";
+import { IoMdShare } from "react-icons/io";
+import { BsQuestionLg } from "react-icons/bs";
 
 export const FlexBox = styled.div`
   button {
@@ -37,7 +37,7 @@ export const MollrangSharedButton = (): ReactElement => {
   return (
     <FlexBox>
       <Button variant={"icon"} onClick={sharedMollrangLink}>
-        <ShareIcon />
+        <IoMdShare color={'#fff'} size={22} />
         <Typography $color={"textDefault"} $weight={"bold"} $variant={"body2"}>
           몰랑 공유하기
         </Typography>
@@ -69,7 +69,7 @@ export const IntroBanner = (): ReactElement => {
               몰랑
             </Typography>
             <S.IntroTextIcon2>
-              <QuestionIcon />
+              <BsQuestionLg size={24} color={'var(--intro_icon)'} />
             </S.IntroTextIcon2>
           </S.IntroTextIconWrapper2>
           <MollrangSharedButton />

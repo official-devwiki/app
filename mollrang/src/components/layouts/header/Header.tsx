@@ -4,10 +4,9 @@ import { styled } from "styled-components";
 import useTheme from "@hooks/useTheme";
 import { BulbIcon } from "@components/common/icons/BulbIcon";
 import Link from "next/link";
-import { HamburgerIcon } from "@components/common/icons/HamburgerIcon";
 import { State, setModalOpen } from "@store/slice/modalSlice";
 import { useAppDispatch } from "@hooks/useRedux";
-
+import { FiAlignJustify } from 'react-icons/fi';
 export const Header = (): ReactElement => {
   const { toggleTheme, isDarkMode } = useTheme();
   const dispatch = useAppDispatch();
@@ -40,7 +39,7 @@ export const Header = (): ReactElement => {
             onClick={openModal}
             aria-label="hamburger-button"
           >
-            <HamburgerIcon />
+            <FiAlignJustify size={24} color={'var(--hamburger_icon)'} />
           </HamburgerButton>
         </FlexBox>
       </HeaderBox>

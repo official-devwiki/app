@@ -7,7 +7,7 @@ export const BottomNavigationLayout = styled.nav`
   background-color: var(--primary);
   width: 100%;
   min-width: 300px;
-  height: 74px;
+  height: 80px;
   border-radius: 10px 10px 0 0;
   display: none;
   z-index: 10;
@@ -23,6 +23,7 @@ export const NavList = styled.ul`
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 `;
 
 export const NavItem = styled.li`

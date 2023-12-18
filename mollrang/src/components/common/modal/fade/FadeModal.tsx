@@ -1,11 +1,11 @@
 import {AnimatePresence} from 'framer-motion';
 import React, {ReactElement} from 'react';
 import {Button} from "@components/common/Button";
-import {XIcon} from "@components/common/icons/XIcon";
 import * as S from '@components/common/modal/style';
 import * as F from '@components/common/modal/fade/style';
 import {ModalProps} from "@components/common/modal/ModalHandler";
 import useModalHook from "@hooks/useModalHook";
+import { IoClose } from "react-icons/io5";
 
 export const FadeModal = (props: ModalProps): ReactElement => {
   const {isOpen, children, ele} = props;
@@ -25,7 +25,7 @@ export const FadeModal = (props: ModalProps): ReactElement => {
             <F.ModalBody ref={ele}>
               <S.ModalCloseButtonWrapper>
                 <Button variant={'icon'} onClick={onRequestClose}>
-                  <XIcon />
+                  <IoClose color={'#fff'} size={24} />
                 </Button>
               </S.ModalCloseButtonWrapper>
               <S.ModalContentsBox ref={ele}>

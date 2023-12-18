@@ -40,7 +40,6 @@ const toastMock = toast;
 /**
  * @description form 에 사용된 svg icon mocking
  */
-jest.mock("../../../../components/common/icons/HamburgerIcon.tsx");
 jest.mock("../../../../components/common/icons/CheckCircleIcon.tsx");
 jest.mock("../../../../components/common/icons/QuizIcon.tsx");
 

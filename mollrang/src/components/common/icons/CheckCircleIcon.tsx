@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import CheckCircle from '@images/icons/check_circle.svg';
-import React, {CSSProperties, ReactElement} from "react";
+import {CSSProperties} from "react";
 
 interface Props {
   className?: CSSProperties

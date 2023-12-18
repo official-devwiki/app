@@ -1,7 +1,6 @@
 import * as S from "@containers/home/style";
 import { IntroBanner } from "@components/intro";
 import { Button } from "@components/common/Button";
-import { OpenBookIcon } from "@components/common/icons/OpenBookIcon";
 import { Typography } from "@components/common/Typography";
 import { AttendanceCheck } from "@components/attendance/AttendanceCheck";
 import { CorrectedAnswers } from "@components/statistics/CorrectedAnswers";
@@ -9,6 +8,7 @@ import { ContinuousAnswers } from "@components/statistics/ContinuousAnswers";
 import { Footer } from "@components/layouts/footer/Footer";
 import { useRouter } from "next/router";
 import { TodayRandomQuiz } from "@components/quizzes/random/TodayRandomQuiz";
+import { BsBook } from "react-icons/bs";
 
 export const HomeContainer = () => {
   const router = useRouter();
@@ -28,7 +28,7 @@ export const HomeContainer = () => {
             variant={"primary-rounded"}
             onClick={playQuizButton}
           >
-            <OpenBookIcon />
+            <BsBook color={'#fff'} size={20} />
             <Typography as={"span"} $color={"textWhite"}>
               오늘의 퀴즈
             </Typography>
