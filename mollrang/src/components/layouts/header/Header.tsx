@@ -12,7 +12,7 @@ export const Header = (): ReactElement => {
   const dispatch = useAppDispatch();
 
   const openModal = (): void => {
-    const modalState: State = {
+    const modalState: State = { 
       type: "side-menu",
       modalType: "side-menu",
       isOpen: true,
