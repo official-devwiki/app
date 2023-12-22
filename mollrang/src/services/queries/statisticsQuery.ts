@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { QueryKeys } from "@services/keys/queryKeys";
+import {QueryKeyType, QueryKeys} from "@services/keys/queryKeys";
 import {
   getMyAnswersRatio,
   getContinuousCorrectCount,
@@ -7,31 +7,37 @@ import {
   getChallengeDistribution,
   getChallengeCount,
 } from "@services/apis/statistics";
+import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
 
 /**
  * @description: 나의 정답률 구하기
  */
-export const useGetMyAnswersQuery = <T>(): { isLoading: boolean; data: T } => {
-  const { data, isLoading } = useQuery({
-    queryKey: [QueryKeys.Statistics.getMyAnswers],
-    queryFn: () => getMyAnswersRatio<T>(),
-  });
-  return {
-    isLoading,
-    data,
-  };
+export const useGetMyAnswersQuery = (): { isLoading: boolean; data: { corrected: number } } => {
+  try {
+    const {data, isLoading} = useQuery<{ corrected: number }, Error, { corrected: number }, any>({
+      queryKey: [QueryKeys.Statistics.getMyAnswers],
+      queryFn: (userId: string) => getMyAnswersRatio(userId),
+    });
+
+    return {
+      isLoading,
+      data,
+    }
+  } catch (e) {
+    console.log(e);
+  }
 };
 
 /**
  * @description 연속 정답 회수 구하기
  */
-export const useContinuousCorrectQuery = <T>(): {
+export const useContinuousCorrectQuery = (): {
   isLoading: boolean;
-  data: T;
+  data: {continuous: number};
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getContinuousCorrectCount],
-    queryFn: () => getContinuousCorrectCount<T>(),
+    queryFn: () => getContinuousCorrectCount(''),
   });
   return {
     isLoading,
@@ -42,13 +48,13 @@ export const useContinuousCorrectQuery = <T>(): {
 /**
  * @description: 도전 분포 구하기
  */
-export const useGetMyDistributionQuery = <T>(): {
+export const useGetMyDistributionQuery = (): {
   isLoading: boolean;
-  data: T;
+  data: ChallengeData;
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getChallengeDistribution],
-    queryFn: () => getChallengeDistribution<T>(),
+    queryFn: () => getChallengeDistribution(''),
   });
   return {
     isLoading,
@@ -65,7 +71,7 @@ export const useMyTotalChallengeQuery = <T>(): {
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getChallengeCount],
-    queryFn: () => getChallengeCount<T>(),
+    queryFn: () => getChallengeCount<T>(''),
   });
   return {
     isLoading,
@@ -82,7 +88,7 @@ export const useMostContinuousCountQuery = <T>(): {
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getMostContinuousCorrectCount],
-    queryFn: () => getMostContinuousCorrectCount<T>(),
+    queryFn: () => getMostContinuousCorrectCount<T>(''),
   });
   return {
     isLoading,

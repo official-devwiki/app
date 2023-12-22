@@ -4,7 +4,9 @@ import { useGetMyAnswersQuery } from "@services/queries/statisticsQuery";
 import {LabelBox} from "@components/ui/label/LabelBox";
 
 export const CorrectedAnswers = (): ReactElement => {
-  const { data, isLoading } = useGetMyAnswersQuery<{corrected: number}>();
+  const {data, isLoading} = useGetMyAnswersQuery();
+
+  if (isLoading) return (<div>로딩중</div>)
 
   return (
     <>

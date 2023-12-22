@@ -1,3 +1,9 @@
+export type QueryKeyType = {
+  Quizzes: Record<string, string>,
+  Statistics: Record<string, string>,
+  Users: Record<string, string>
+}
+
 export const QueryKeys = {
   Quizzes: {
     getTodayQuizzes: "get_today_quiz",

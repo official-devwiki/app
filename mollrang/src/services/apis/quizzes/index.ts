@@ -1,18 +1,18 @@
 import { axiosInstance } from "@libs/Axios";
 import { Domain, Url } from "@services/apis/url";
-import { ResponseData } from "@interfaces/quizzes";
+import {Quiz, ResponseData} from "@interfaces/quizzes";
 import { responseDataConvert } from "@utils/convert";
 
-const domain = Domain.Quiz;
+const quizzes = Domain.Quiz;
 
 /**
  * @description 퀴즈 가져오기
  */
-export const getTodayQuizzes = async <T>(): Promise<T> => {
+export const getTodayQuizzes = async (): Promise<Quiz> => {
   try {
-    const url = `/${domain}`;
-    const { data } = await axiosInstance.get<ResponseData<T>>(url);
-    return responseDataConvert<T>(data);
+    const url = `/${quizzes}`;
+    const { data } = await axiosInstance.get<ResponseData<Quiz>>(url);
+    return responseDataConvert<Quiz>(data);
   } catch (e) {
     throw e;
   }
@@ -27,23 +27,10 @@ export const quizSolutionSubmit = async (body: {
   answer: string;
 }): Promise<any> => {
   try {
-    const url = `/${domain}`;
+    const url = `/${quizzes}`;
     const { data } = await axiosInstance.post(url, body);
     return data;
   } catch (e) {
     throw e;
   }
 };
-
-// /**
-//  * @description 퀴즈 랜덤으로 가져오기
-//  */
-// export const getRandomQuiz = async <T>(): Promise<any> => {
-//   try {
-//     const url = `/${domain}`;
-//     const {data}  = await axiosInstance.get<ResponseData<T>>(url);
-//     return responseDataConvert<T>(data);
-//   } catch (e) {
-//     throw e;
-//   }
-// };

@@ -4,7 +4,7 @@ import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 import {LabelBox} from "@components/ui/label/LabelBox";
 
 export const ContinuousAnswers = (): ReactElement => {
-  const { data, isLoading } = useContinuousCorrectQuery<{continuous: number}>();
+  const { data, isLoading } = useContinuousCorrectQuery();
 
   return (
     <>

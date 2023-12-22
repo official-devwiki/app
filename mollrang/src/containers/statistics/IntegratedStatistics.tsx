@@ -62,7 +62,7 @@ const FlexBox = styled.div`
   }
 `;
 
-interface ChallengeData {
+export interface ChallengeData {
   challenge1: number;
   challenge2: number;
   challenge3: number;
@@ -71,7 +71,7 @@ interface ChallengeData {
 }
 
 export const IntegratedStatistics = (): ReactElement => {
-  const { isLoading, data } = useGetMyDistributionQuery<ChallengeData>();
+  const { isLoading, data } = useGetMyDistributionQuery();
 
   return (
     <IntegratedStatisticsLayout>

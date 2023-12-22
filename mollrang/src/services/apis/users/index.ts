@@ -1,15 +1,16 @@
 import {axiosInstance} from "@libs/Axios";
-import {Domain, Url} from "@services/apis/url";
+import {Domain} from "@services/apis/url";
 import {responseDataConvert} from "@utils/convert";
 import {ResponseData} from "@interfaces/quizzes";
+import {Attendance} from "@components/attendance/AttendanceCheck";
 
-const domain = Domain.Users;
+const users = Domain.Users;
 
-export const getUserAttendance = async <T>(): Promise<T> => {
+export const getUserAttendance = async (userId: string): Promise<Attendance[]> => {
   try {
-    const url = `/${domain}/${Url.Users.attendance}`;
-    const { data } = await axiosInstance.get<ResponseData<T>>(url);
-    return responseDataConvert<T>(data);
+    const url = `/${users}/attendance/${userId}`;
+    const { data } = await axiosInstance.get<ResponseData<Attendance[]>>(url);
+    return responseDataConvert<Attendance[]>(data);
   } catch (e) {
     throw e;
   }
