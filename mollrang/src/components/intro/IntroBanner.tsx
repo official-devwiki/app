@@ -12,11 +12,13 @@ import { BsQuestionLg } from "react-icons/bs";
 
 export const FlexBox = styled.div`
   button {
-    width: 100%;
+    width: 100%!important;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
     margin-top: 4em;
     align-items: center;
+    border: 1px solid transparent;
+
   }
 `;
 
@@ -37,7 +39,7 @@ export const MollrangSharedButton = (): ReactElement => {
   return (
     <FlexBox>
       <Button variant={"icon"} onClick={sharedMollrangLink}>
-        <IoMdShare color={'#fff'} size={22} />
+        <IoMdShare color={'var(--intro_icon)'} size={22} />
         <Typography $color={"textDefault"} $weight={"bold"} $variant={"body2"}>
           몰랑 공유하기
         </Typography>

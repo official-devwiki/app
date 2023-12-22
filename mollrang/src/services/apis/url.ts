@@ -1,12 +1,12 @@
 export const Domain = {
   Quiz: "quizzes",
-  Statistics: "statistic",
+  Statistics: "statistics",
   Users: "users"
 } as const;
 
 export const Url = {
   Quizzes: {
-    RandomQuiz: "random",
+    RandomQuiz: "",
   },
   Statistics: {
     myAnswerCorrectRatio: "corrected", // 나의 정답률

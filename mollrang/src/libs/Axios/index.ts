@@ -32,8 +32,10 @@ function AxiosAuthInterceptor<T>(response: AxiosResponse<T>): AxiosResponse {
 }
 
 instance.interceptors.request.use((config) => {
+  config.headers['Content-type'] = 'application/json; charset=UTF-8';
+  config.headers['Accept'] = 'application/json';
   return config;
-});
+}, (error) => Promise.reject(error));
 
 instance.interceptors.response.use(
   (response) => {

@@ -2,6 +2,14 @@ const path = require('path');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  async rewrites() {
+    return [
+      {
+        source: '/api/:path*',
+        destination: 'https://api.mollrang.com/api/:path*'
+      }
+    ]
+  },
   compiler: {
     styledComponents: true,
   },
@@ -52,27 +60,8 @@ const nextConfig = {
     });
     return config;
   },
-  // moduleNameMapper: {
-  //   '^@pages/(.*)$': '<rootDir>/src/pages/$1',
-  //   '^@components/(.*)$': '<rootDir>/src/components/$1',
-  //   '^@api/(.*)$': '<rootDir>/api/$1',
-  //   '^@apis/(.*)$': '<rootDir>/apis/$1',
-  //   '^@constants/(.*)$': '<rootDir>/constants/$1',
-  //   '^@libs/(.*)$': '<rootDir>/libs/$1',
-  //   '^@store/(.*)$': '<rootDir>/store/$1',
-  //   '^@utils/(.*)$': '<rootDir>/utils/$1',
-  //   '^@hooks/(.*)$': '<rootDir>/hooks/$1',
-  //   '^@styles/(.*)$': '<rootDir>/styles/$1',
-  //   '^@interfaces/(.*)$': '<rootDir>/interfaces/$1',
-  //   '^@images/(.*)$': '<rootDir>/public/mages/$1',
-  //   '^@assets/(.*)$': '<rootDir>/assets/$1',
-  //   '^@services/(.*)$': '<rootDir>/services/$1',
-  //   '^@config/(.*)$': '<rootDir>/config/$1',
-  //   '^@tests/(.*)$': '<rootDir>/__tests_/$1',
-  // },
   trailingSlash: true,
   swcMinify: true,
-  // forceSwcTransforms: true,
 };
 
 module.exports = nextConfig

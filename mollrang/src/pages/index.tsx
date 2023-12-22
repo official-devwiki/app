@@ -5,7 +5,7 @@ import {dehydrate, QueryClient} from "@tanstack/react-query";
 import {QueryKeys} from "@services/keys/queryKeys";
 import {getUserAttendance} from "@services/apis/users";
 import {Attendance} from "@components/attendance/AttendanceCheck";
-import {getRandomQuiz} from "@services/apis/quizzes";
+import {getTodayQuizzes} from "@services/apis/quizzes";
 import {Quiz} from "@interfaces/quizzes";
 import {getContinuousCorrectCount, getMyAnswersRatio} from "@services/apis/statistics";
 import withGetServerSideProps from "@utils/withGetServerSideProps";
@@ -19,7 +19,7 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
     try {
       const queryClient = new QueryClient();
       await queryClient.prefetchQuery([QueryKeys.Users.getAttendance], getUserAttendance<Attendance[]>);
-      await queryClient.prefetchQuery([QueryKeys.Quizzes.getRandomQuizzes], getRandomQuiz<Quiz>);
+      await queryClient.prefetchQuery([QueryKeys.Quizzes.getRandomQuizzes], getTodayQuizzes<Quiz>);
       await queryClient.prefetchQuery([QueryKeys.Statistics.getMyAnswers], getMyAnswersRatio<{corrected: number}>);
       await queryClient.prefetchQuery([QueryKeys.Statistics.getContinuousCorrectCount], getContinuousCorrectCount<{continuous: number}>);
       return {
