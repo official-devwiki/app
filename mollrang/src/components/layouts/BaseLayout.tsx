@@ -11,8 +11,6 @@ type Props = PropsWithChildren;
 export const BaseLayout = (props: Props): ReactElement => {
   const { children } = props;
 
-  if (typeof window !== 'undefined') return null;
-
   return (
     <>
       <MetaComponent />
