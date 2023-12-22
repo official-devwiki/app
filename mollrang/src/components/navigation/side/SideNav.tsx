@@ -4,9 +4,9 @@ import { ModalProps } from "@components/common/modal/ModalHandler";
 import useModalHook from "@hooks/useModalHook";
 import { Button } from "@components/common/Button";
 import {Typography} from "@components/common/Typography";
-import {Icons} from "@components/common/icons/Icons";
 import * as S from './style';
-import { IoBook } from "react-icons/io5";
+import { TiChartPie } from "react-icons/ti";
+import { IoSettingsSharp, IoBook, IoExit } from "react-icons/io5";
 
 export const SideNav = (props: ModalProps): ReactElement => {
   const { isOpen, ele } = props;
@@ -64,15 +64,15 @@ export const SideNav = (props: ModalProps): ReactElement => {
             ref={ele}
           >
             <S.ButtonWrapper>
-              <Button variant={"icon"} onClick={onRequestClose}>
-                <Icons className={'icon'} type={"exit"} />
+              <Button variant={"icon"} onClick={onRequestClose} aria-label={'side-menu-close-button'}>
+                <IoExit className={'icon'} size={24} color={'#fff'} />
               </Button>
             </S.ButtonWrapper>
 
             <S.MenuLists>
               <S.MenuItems>
                 <Button variant={"icon"}>
-                  <IoBook color={'#fff'} size={26} />
+                  <IoBook className={'icon'} color={'#fff'} size={26} />
                   <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
                     가이드
                   </Typography>
@@ -80,14 +80,14 @@ export const SideNav = (props: ModalProps): ReactElement => {
               </S.MenuItems>
               <S.MenuItems>
                 <Button variant={"icon"} >
-                  <Icons className={'icon'} type={"chart"} />
+                  <TiChartPie className={'icon'} color={'#fff'} size={26} />
                   <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
                     통계
                   </Typography>
                 </Button>
               </S.MenuItems>
               <S.MenuItems>
-                <Icons className={'icon'} type={"setting"} />
+                <IoSettingsSharp className={'icon'} color={'#fff'} size={26} />
                 <Typography $variant={"caption"} as={"span"} $color={"textWhite"}>
                   설정
                 </Typography>

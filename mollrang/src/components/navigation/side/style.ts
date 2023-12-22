@@ -41,6 +41,7 @@ export const MenuItems = styled.li`
     margin-right: 0.5em;
   }
   
+  
   &:hover {
     background-color: white;
     cursor: pointer;
