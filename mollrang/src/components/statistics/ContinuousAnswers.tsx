@@ -1,10 +1,10 @@
-import { ReactElement } from "react";
+import {FunctionComponent, ReactElement} from "react";
 import { useContinuousCorrectQuery } from "@services/queries/statisticsQuery";
 import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 import {LabelBox} from "@components/ui/label/LabelBox";
 
-export const ContinuousAnswers = (): ReactElement => {
-  const { data, isLoading } = useContinuousCorrectQuery();
+export const ContinuousAnswers: FunctionComponent<{ userId: string }> = ({ userId }): ReactElement => {
+  const { data, isLoading } = useContinuousCorrectQuery(userId);
 
   return (
     <>

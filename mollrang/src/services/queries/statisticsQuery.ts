@@ -12,11 +12,11 @@ import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
 /**
  * @description: 나의 정답률 구하기
  */
-export const useGetMyAnswersQuery = (): { isLoading: boolean; data: { corrected: number } } => {
+export const useGetMyAnswersQuery = (userId: string): { isLoading: boolean; data: { corrected: number } } => {
   try {
     const {data, isLoading} = useQuery<{ corrected: number }, Error, { corrected: number }, any>({
       queryKey: [QueryKeys.Statistics.getMyAnswers],
-      queryFn: (userId: string) => getMyAnswersRatio(userId),
+      queryFn: () => getMyAnswersRatio(userId),
     });
 
     return {
@@ -31,13 +31,13 @@ export const useGetMyAnswersQuery = (): { isLoading: boolean; data: { corrected:
 /**
  * @description 연속 정답 회수 구하기
  */
-export const useContinuousCorrectQuery = (): {
+export const useContinuousCorrectQuery = (userId: string): {
   isLoading: boolean;
   data: {continuous: number};
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getContinuousCorrectCount],
-    queryFn: () => getContinuousCorrectCount(''),
+    queryFn: () => getContinuousCorrectCount(userId),
   });
   return {
     isLoading,
@@ -48,7 +48,7 @@ export const useContinuousCorrectQuery = (): {
 /**
  * @description: 도전 분포 구하기
  */
-export const useGetMyDistributionQuery = (): {
+export const useGetMyDistributionQuery = (userId: string): {
   isLoading: boolean;
   data: ChallengeData;
 } => {

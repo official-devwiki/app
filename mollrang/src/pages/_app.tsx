@@ -1,6 +1,6 @@
 import type { AppContext, AppInitialProps, AppProps } from "next/app";
 import { queryClient } from "@libs/Tanstack";
-import { useState } from "react";
+import React, {useState} from "react";
 import { NextComponentType } from "next";
 import ErrorBoundary from "@utils/error/errorBoundary";
 import { QueryClientProvider, Hydrate } from "@tanstack/react-query";
@@ -20,21 +20,22 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
 }) => {
   const [queryState] = useState(() => queryClient);
   const { store, props } = wrapper.useWrappedStore(pageProps);
+
   return (
     <ErrorBoundary>
-      <Provider store={store}>
-        <QueryClientProvider client={queryState}>
-          <Hydrate state={props.dehydratedState}>
-            <ThemeProvider theme={theme}>
-              <GlobalStyle />
-              <BaseLayout>
-                <Component {...props.pageProps} />
-              </BaseLayout>
-            </ThemeProvider>
-            <ReactQueryDevtools initialIsOpen={false} />
-          </Hydrate>
-        </QueryClientProvider>
-      </Provider>
+        <Provider store={store}>
+          <QueryClientProvider client={queryState}>
+            <Hydrate state={pageProps.dehydratedState}>
+              <ThemeProvider theme={theme}>
+                <GlobalStyle />
+                <BaseLayout>
+                  <Component {...pageProps} />
+                </BaseLayout>
+              </ThemeProvider>
+              <ReactQueryDevtools initialIsOpen={false} />
+            </Hydrate>
+          </QueryClientProvider>
+        </Provider>
     </ErrorBoundary>
   );
 };

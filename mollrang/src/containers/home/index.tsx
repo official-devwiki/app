@@ -9,8 +9,9 @@ import { Footer } from "@components/layouts/footer/Footer";
 import { useRouter } from "next/router";
 import { TodayRandomQuiz } from "@components/quizzes/random/TodayRandomQuiz";
 import { BsBook } from "react-icons/bs";
+import {FunctionComponent} from "react";
 
-export const HomeContainer = () => {
+export const HomeContainer: FunctionComponent<{ userId: string }> = ({ userId }) => {
   const router = useRouter();
 
   const playQuizButton = async (): Promise<void> => {
@@ -35,15 +36,15 @@ export const HomeContainer = () => {
           </Button>
         </S.PlayQuizBox>
         <TodayRandomQuiz />
-        {/*<S.SubItemsLayout>*/}
-        {/*  <AttendanceCheck />*/}
-        {/*  <div className={"answers-container"}>*/}
-        {/*    <div className={"correct_answer_wrapper"}>*/}
-        {/*      <CorrectedAnswers />*/}
-        {/*    </div>*/}
-        {/*    <ContinuousAnswers />*/}
-        {/*  </div>*/}
-        {/*</S.SubItemsLayout>*/}
+        <S.SubItemsLayout>
+          <AttendanceCheck userId={userId} />
+          <div className={"answers-container"}>
+            <div className={"correct_answer_wrapper"}>
+              <CorrectedAnswers userId={userId} />
+            </div>
+            <ContinuousAnswers userId={userId} />
+          </div>
+        </S.SubItemsLayout>
       </S.HomeBox>
       <Footer />
     </S.HomeLayout>

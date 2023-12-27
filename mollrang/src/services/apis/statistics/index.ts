@@ -14,8 +14,8 @@ export const getMyAnswersRatio = async (userId: string): Promise<{corrected: num
   try {
     const url = `/${statistics}/corrected/${userId}`;
     const { data } = await axiosInstance.get(url);
-    if (data.result) {
-      return responseDataConvert<{corrected: number}>(data)}
+    if (data.success)
+      return responseDataConvert<{corrected: number}>(data)
     return { corrected: 0 }
   } catch (e) {
     throw e;
@@ -58,7 +58,8 @@ export const getContinuousCorrectCount = async (userId: string): Promise<{contin
   try {
     const url = `/${statistics}/continuous/${userId}`;
     const { data } = await axiosInstance.get(url);
-    return responseDataConvert<{continuous: number}>(data);
+    if (data.success) return responseDataConvert<{continuous: number}>(data);
+    return {continuous: 0}
   } catch (e) {
     throw e;
   }

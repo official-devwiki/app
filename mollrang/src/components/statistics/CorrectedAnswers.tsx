@@ -1,10 +1,10 @@
-import { ReactElement } from "react";
+import {FunctionComponent, ReactElement} from "react";
 import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 import { useGetMyAnswersQuery } from "@services/queries/statisticsQuery";
 import {LabelBox} from "@components/ui/label/LabelBox";
 
-export const CorrectedAnswers = (): ReactElement => {
-  const {data, isLoading} = useGetMyAnswersQuery();
+export const CorrectedAnswers: FunctionComponent<{ userId: string }>  = ({ userId }): ReactElement => {
+  const {data, isLoading} = useGetMyAnswersQuery(userId);
 
   if (isLoading) return (<div>로딩중</div>)
 
