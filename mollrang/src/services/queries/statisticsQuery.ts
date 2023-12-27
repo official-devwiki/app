@@ -15,22 +15,14 @@ import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
 export const useGetMyAnswersQuery = (
   userId: string,
 ): { isLoading: boolean; data: { corrected: number } } => {
-  try {
-    const {data, isLoading} = useQuery<{ corrected: number },
-      Error,
-      { corrected: number },
-      any>({
-      queryKey: [QueryKeys.Statistics.getMyAnswers],
-      queryFn: () => getMyAnswersRatio(userId),
-    });
-
-    return {
-      isLoading,
-      data,
-    };
-  } catch (e) {
-    console.log(e);
-  }
+  const {data, isLoading} = useQuery({
+    queryKey: [QueryKeys.Statistics.getMyAnswers],
+    queryFn: () => getMyAnswersRatio(userId),
+  });
+  return {
+    isLoading,
+    data,
+  };
 };
 
 /**
