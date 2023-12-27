@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import {QueryKeyType, QueryKeys} from "@services/keys/queryKeys";
+import { QueryKeyType, QueryKeys } from "@services/keys/queryKeys";
 import {
   getMyAnswersRatio,
   getContinuousCorrectCount,
@@ -7,14 +7,21 @@ import {
   getChallengeDistribution,
   getChallengeCount,
 } from "@services/apis/statistics";
-import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
+import { ChallengeData } from "@containers/statistics/IntegratedStatistics";
 
 /**
  * @description: 나의 정답률 구하기
  */
-export const useGetMyAnswersQuery = (userId: string): { isLoading: boolean; data: { corrected: number } } => {
+export const useGetMyAnswersQuery = (
+  userId: string,
+): { isLoading: boolean; data: { corrected: number } } => {
   try {
-    const {data, isLoading} = useQuery<{ corrected: number }, Error, { corrected: number }, any>({
+    const { data, isLoading } = useQuery<
+      { corrected: number },
+      Error,
+      { corrected: number },
+      any
+    >({
       queryKey: [QueryKeys.Statistics.getMyAnswers],
       queryFn: () => getMyAnswersRatio(userId),
     });
@@ -22,7 +29,7 @@ export const useGetMyAnswersQuery = (userId: string): { isLoading: boolean; data
     return {
       isLoading,
       data,
-    }
+    };
   } catch (e) {
     console.log(e);
   }
@@ -31,9 +38,11 @@ export const useGetMyAnswersQuery = (userId: string): { isLoading: boolean; data
 /**
  * @description 연속 정답 회수 구하기
  */
-export const useContinuousCorrectQuery = (userId: string): {
+export const useContinuousCorrectQuery = (
+  userId: string,
+): {
   isLoading: boolean;
-  data: {continuous: number};
+  data: { continuous: number };
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getContinuousCorrectCount],
@@ -48,13 +57,15 @@ export const useContinuousCorrectQuery = (userId: string): {
 /**
  * @description: 도전 분포 구하기
  */
-export const useGetMyDistributionQuery = (userId: string): {
+export const useGetMyDistributionQuery = (
+  userId: string,
+): {
   isLoading: boolean;
   data: ChallengeData;
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getChallengeDistribution],
-    queryFn: () => getChallengeDistribution(''),
+    queryFn: () => getChallengeDistribution(userId),
   });
   return {
     isLoading,
@@ -71,7 +82,7 @@ export const useMyTotalChallengeQuery = <T>(): {
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getChallengeCount],
-    queryFn: () => getChallengeCount<T>(''),
+    queryFn: () => getChallengeCount<T>(""),
   });
   return {
     isLoading,
@@ -88,7 +99,7 @@ export const useMostContinuousCountQuery = <T>(): {
 } => {
   const { data, isLoading } = useQuery({
     queryKey: [QueryKeys.Statistics.getMostContinuousCorrectCount],
-    queryFn: () => getMostContinuousCorrectCount<T>(''),
+    queryFn: () => getMostContinuousCorrectCount<T>(""),
   });
   return {
     isLoading,

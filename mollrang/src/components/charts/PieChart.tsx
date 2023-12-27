@@ -1,131 +1,113 @@
-import { ReactElement } from 'react';
-import { ResponsivePie } from '@nivo/pie';
-interface PieChartProps {
+import React, { ReactElement } from "react";
+import { ResponsivePie } from "@nivo/pie";
+import styled from "styled-components";
+
+export interface PieChartProps {
   id: string;
   label: string;
   value: number;
   color: string;
 }
 
+const ChartWrapper = styled.article`
+  width: 100%;
+  height: 400px;
+`;
+
 type DataType = { data: PieChartProps[] };
-export const PieChart = ({ data }: DataType): ReactElement => {
-  return (
-    <ResponsivePie
-      data={data}
-      margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
-      innerRadius={0.5}
-      padAngle={0.7}
-      cornerRadius={3}
-      activeOuterRadiusOffset={8}
-      borderWidth={1}
-      borderColor={{
-        from: 'color',
-        modifiers: [['darker', 0.2]],
-      }}
-      arcLinkLabelsSkipAngle={10}
-      arcLinkLabelsTextColor="#333333"
-      arcLinkLabelsThickness={2}
-      arcLinkLabelsColor={{ from: 'color' }}
-      arcLabelsSkipAngle={10}
-      arcLabelsTextColor={{
-        from: 'color',
-        modifiers: [['darker', 2]],
-      }}
-      defs={[
-        {
-          id: 'dots',
-          type: 'patternDots',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          size: 4,
-          padding: 1,
-          stagger: true,
-        },
-        {
-          id: 'lines',
-          type: 'patternLines',
-          background: 'inherit',
-          color: 'rgba(255, 255, 255, 0.3)',
-          rotation: -45,
-          lineWidth: 6,
-          spacing: 10,
-        },
-      ]}
-      fill={[
-        {
-          match: {
-            id: 'ruby',
-          },
-          id: 'dots',
-        },
-        {
-          match: {
-            id: 'c',
-          },
-          id: 'dots',
-        },
-        {
-          match: {
-            id: 'go',
-          },
-          id: 'dots',
-        },
-        {
-          match: {
-            id: 'python',
-          },
-          id: 'dots',
-        },
-        {
-          match: {
-            id: 'scala',
-          },
-          id: 'lines',
-        },
-        {
-          match: {
-            id: 'lisp',
-          },
-          id: 'lines',
-        },
-        {
-          match: {
-            id: 'elixir',
-          },
-          id: 'lines',
-        },
-        {
-          match: {
-            id: 'javascript',
-          },
-          id: 'lines',
-        },
-      ]}
-      legends={[
-        {
-          anchor: 'bottom',
-          direction: 'row',
-          justify: false,
-          translateX: 0,
-          translateY: 56,
-          itemsSpacing: 0,
-          itemWidth: 100,
-          itemHeight: 18,
-          itemTextColor: '#999',
-          itemDirection: 'left-to-right',
-          itemOpacity: 1,
-          symbolSize: 18,
-          symbolShape: 'circle',
-          effects: [
+
+const PieChart = React.forwardRef(
+  (
+    { data }: DataType,
+    ref: React.ForwardedRef<HTMLDivElement>,
+  ): ReactElement => {
+    return (
+      <ChartWrapper ref={ref}>
+        <ResponsivePie
+          data={data}
+          animate={false}
+          isInteractive={false}
+          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+          innerRadius={0.5}
+          padAngle={0.7}
+          cornerRadius={3}
+          activeOuterRadiusOffset={8}
+          colors={{ scheme: "green_blue" }}
+          borderWidth={1}
+          borderColor={{
+            from: "color",
+            modifiers: [["darker", 1]],
+          }}
+          arcLinkLabelsSkipAngle={10}
+          arcLinkLabelsTextColor="#333333"
+          arcLinkLabelsThickness={2}
+          arcLinkLabelsColor={{ from: "color" }}
+          arcLabelsSkipAngle={10}
+          arcLabelsTextColor={{
+            from: "color",
+            modifiers: [["darker", 2]],
+          }}
+          fill={[
             {
-              on: 'hover',
-              style: {
-                itemTextColor: '#000',
+              match: {
+                id: "1번쩨",
               },
+              id: "dots",
             },
-          ],
-        },
-      ]}
-    />
-  );
-};
+            {
+              match: {
+                id: "2번째",
+              },
+              id: "dots",
+            },
+            {
+              match: {
+                id: "3번째",
+              },
+              id: "dots",
+            },
+            {
+              match: {
+                id: "4번째",
+              },
+              id: "dots",
+            },
+            {
+              match: {
+                id: "5번째",
+              },
+              id: "lines",
+            },
+          ]}
+          legends={[
+            {
+              anchor: "bottom",
+              direction: "row",
+              justify: false,
+              translateX: 0,
+              translateY: 56,
+              itemsSpacing: 0,
+              itemWidth: 100,
+              itemHeight: 18,
+              itemTextColor: "#999",
+              itemDirection: "left-to-right",
+              itemOpacity: 1,
+              symbolSize: 18,
+              symbolShape: "circle",
+              effects: [
+                {
+                  on: "hover",
+                  style: {
+                    itemTextColor: "#000",
+                  },
+                },
+              ],
+            },
+          ]}
+        />
+      </ChartWrapper>
+    );
+  },
+);
+
+export default PieChart;

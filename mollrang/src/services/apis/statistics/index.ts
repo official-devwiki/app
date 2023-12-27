@@ -1,7 +1,7 @@
 import { axiosInstance } from "@libs/Axios";
 import { Domain } from "@services/apis/url";
 import { responseDataConvert } from "@utils/convert";
-import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
+import { ChallengeData } from "@containers/statistics/IntegratedStatistics";
 
 const statistics = Domain.Statistics;
 
@@ -10,13 +10,14 @@ const statistics = Domain.Statistics;
  * @returns
  * @description 나의 정답률 조회
  */
-export const getMyAnswersRatio = async (userId: string): Promise<{corrected: number}> => {
+export const getMyAnswersRatio = async (
+  userId: string,
+): Promise<{ corrected: number }> => {
   try {
     const url = `/${statistics}/corrected/${userId}`;
     const { data } = await axiosInstance.get(url);
-    if (data.success)
-      return responseDataConvert<{corrected: number}>(data)
-    return { corrected: 0 }
+    if (data.success) return responseDataConvert<{ corrected: number }>(data);
+    return { corrected: 0 };
   } catch (e) {
     throw e;
   }
@@ -26,11 +27,13 @@ export const getMyAnswersRatio = async (userId: string): Promise<{corrected: num
  *
  * @description 도전 분포 조회
  */
-export const getChallengeDistribution = async (userId: string): Promise<ChallengeData> => {
+export const getChallengeDistribution = async (
+  userId: string,
+): Promise<ChallengeData[]> => {
   try {
     const url = `/${statistics}/distribution/${userId}`;
     const { data } = await axiosInstance.get(url);
-    return responseDataConvert<ChallengeData>(data);
+    return responseDataConvert<ChallengeData[]>(data);
   } catch (e) {
     throw e;
   }
@@ -54,12 +57,14 @@ export const getChallengeCount = async <T>(userId: string): Promise<T> => {
  *
  * @description 연속 정답 횟수 조회
  */
-export const getContinuousCorrectCount = async (userId: string): Promise<{continuous: number}> => {
+export const getContinuousCorrectCount = async (
+  userId: string,
+): Promise<{ continuous: number }> => {
   try {
     const url = `/${statistics}/continuous/${userId}`;
     const { data } = await axiosInstance.get(url);
-    if (data.success) return responseDataConvert<{continuous: number}>(data);
-    return {continuous: 0}
+    if (data.success) return responseDataConvert<{ continuous: number }>(data);
+    return { continuous: 0 };
   } catch (e) {
     throw e;
   }
@@ -68,7 +73,9 @@ export const getContinuousCorrectCount = async (userId: string): Promise<{contin
 /**
  * @description: 최다 연속 정답 횟수 조회
  */
-export const getMostContinuousCorrectCount = async <T>(userId: string): Promise<T> => {
+export const getMostContinuousCorrectCount = async <T>(
+  userId: string,
+): Promise<T> => {
   try {
     const url = `/${statistics}/most/${userId}`;
     const { data } = await axiosInstance.get(url);
