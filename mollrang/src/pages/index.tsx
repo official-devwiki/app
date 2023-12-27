@@ -1,6 +1,6 @@
 import {GetServerSideProps, GetServerSidePropsContext, InferGetServerSidePropsType, NextPage} from "next";
 import {ReactElement} from "react";
-import { HomeContainer } from "@containers/home";
+import {HomeContainer} from "@containers/home";
 import {dehydrate, QueryClient} from "@tanstack/react-query";
 import {QueryKeys} from "@services/keys/queryKeys";
 import {getUserAttendance} from "@services/apis/users";
@@ -12,7 +12,7 @@ import {queryClient} from "@libs/Tanstack";
 // import {queryClient} from "@libs/Tanstack";
 
 const HomePage: NextPage<InferGetServerSidePropsType<GetServerSideProps>> = ({userId}): ReactElement => {
-  return <HomeContainer userId={userId} />;
+  return <HomeContainer userId={userId}/>;
 };
 
 export const getServerSideProps: GetServerSideProps = withGetServerSideProps(

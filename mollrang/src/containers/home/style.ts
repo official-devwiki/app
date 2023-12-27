@@ -6,12 +6,10 @@ export const HomeLayout = styled.div`
   display: grid;
   align-content: space-between;
 
-  ${({ theme }) => theme.media.tablet} {
+  ${({theme}) => theme.media.tablet} {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 100%;
-    //min-height: 1000px;
   }
 `;
 
@@ -22,15 +20,17 @@ export const HomeBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: auto;
+  margin: 1em auto auto auto;
   padding: 0 1.5em;
 `;
 
 export const PlayQuizBox = styled.div`
   width: 100%;
+
   svg {
     margin-right: 0.5em;
   }
+
   hr {
     background: var(--bg_line);
     height: 2px;
@@ -40,6 +40,7 @@ export const PlayQuizBox = styled.div`
     position: relative;
     top: 25px;
   }
+
   button {
     position: relative;
     z-index: 2;
@@ -63,8 +64,9 @@ export const SubItemsLayout = styled.div`
     }
   }
 
-  ${({ theme }) => theme.media.tablet} {
+  ${({theme}) => theme.media.tablet} {
     flex-direction: column;
+
     .answers-container {
       border-top: 1px solid var(--correct_border);
       border-bottom: 1px solid var(--correct_border);

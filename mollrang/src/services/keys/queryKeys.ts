@@ -6,6 +6,7 @@ export type QueryKeyType = {
 
 export const QueryKeys = {
   Quizzes: {
+    submitAnswer: "SUBMIT_ANSWER_KEY",
     getTodayQuizzes: "get_today_quiz",
     getRandomQuizzes: "get_random_quiz"
   },
@@ -19,4 +20,4 @@ export const QueryKeys = {
   Users: {
     getAttendance: "get_attendance",
   }
-};
+} as const;

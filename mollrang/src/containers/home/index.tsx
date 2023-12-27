@@ -29,14 +29,14 @@ export const HomeContainer: FunctionComponent<{ userId: string }> = ({ userId })
             variant={"primary-rounded"}
             onClick={playQuizButton}
           >
-            <BsBook color={'#fff'} size={20} />
+            <BsBook color={"#fff"} size={20} />
             <Typography as={"span"} $color={"textWhite"}>
               오늘의 퀴즈
             </Typography>
           </Button>
         </S.PlayQuizBox>
         <TodayRandomQuiz />
-        <S.SubItemsLayout>
+        {/* <S.SubItemsLayout>
           <AttendanceCheck userId={userId} />
           <div className={"answers-container"}>
             <div className={"correct_answer_wrapper"}>
@@ -44,7 +44,7 @@ export const HomeContainer: FunctionComponent<{ userId: string }> = ({ userId })
             </div>
             <ContinuousAnswers userId={userId} />
           </div>
-        </S.SubItemsLayout>
+        </S.SubItemsLayout> */}
       </S.HomeBox>
       <Footer />
     </S.HomeLayout>

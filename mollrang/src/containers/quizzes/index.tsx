@@ -1,8 +1,9 @@
-import { Typography } from "@components/common/Typography";
-import { QuizForm } from "@components/quizzes/form/QuizForm";
+import {Typography} from "@components/common/Typography";
+import {QuizForm} from "@components/quizzes/form/QuizForm";
 import * as S from "./index.style";
+import {FunctionComponent} from "react";
 
-export const QuizContainer = () => {
+export const QuizContainer: FunctionComponent<{ userId: string }> = ({userId}) => {
   return (
     <S.QuizLayout>
       <S.QuizBox>
@@ -10,7 +11,7 @@ export const QuizContainer = () => {
           <Typography $variant={"h1"} $weight={"bold"} $color={"textDefault"}>
             오늘의 퀴즈
           </Typography>
-          <QuizForm />
+          <QuizForm userId={userId}/>
         </S.QuizWrapper>
       </S.QuizBox>
     </S.QuizLayout>
