@@ -5,7 +5,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
+        source: '/api/:path*/',
         destination: 'https://api.mollrang.com/api/:path*'
       }
     ]

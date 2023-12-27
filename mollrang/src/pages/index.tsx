@@ -21,10 +21,10 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
       const cookies = new Cookies(req, res);
       const userId = cookies.get("user");
       if (userId) {
-        await queryClient.prefetchQuery([QueryKeys.Users.getAttendance], () => getUserAttendance(userId));
-        await queryClient.prefetchQuery([QueryKeys.Quizzes.getRandomQuizzes], getTodayQuizzes);
-        await queryClient.prefetchQuery([QueryKeys.Statistics.getMyAnswers], () => getMyAnswersRatio(userId));
-        await queryClient.prefetchQuery([QueryKeys.Statistics.getContinuousCorrectCount], () => getContinuousCorrectCount(userId));
+        // await queryClient.prefetchQuery([QueryKeys.Users.getAttendance], () => getUserAttendance(userId));
+        // await queryClient.prefetchQuery([QueryKeys.Quizzes.getRandomQuizzes], getTodayQuizzes);
+        // await queryClient.prefetchQuery([QueryKeys.Statistics.getMyAnswers], () => getMyAnswersRatio(userId));
+        // await queryClient.prefetchQuery([QueryKeys.Statistics.getContinuousCorrectCount], () => getContinuousCorrectCount(userId));
       }
       return {
         props: {

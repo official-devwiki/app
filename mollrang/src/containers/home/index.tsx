@@ -35,15 +35,15 @@ export const HomeContainer = () => {
           </Button>
         </S.PlayQuizBox>
         <TodayRandomQuiz />
-        <S.SubItemsLayout>
-          <AttendanceCheck />
-          <div className={"answers-container"}>
-            <div className={"correct_answer_wrapper"}>
-              <CorrectedAnswers />
-            </div>
-            <ContinuousAnswers />
-          </div>
-        </S.SubItemsLayout>
+        {/*<S.SubItemsLayout>*/}
+        {/*  <AttendanceCheck />*/}
+        {/*  <div className={"answers-container"}>*/}
+        {/*    <div className={"correct_answer_wrapper"}>*/}
+        {/*      <CorrectedAnswers />*/}
+        {/*    </div>*/}
+        {/*    <ContinuousAnswers />*/}
+        {/*  </div>*/}
+        {/*</S.SubItemsLayout>*/}
       </S.HomeBox>
       <Footer />
     </S.HomeLayout>

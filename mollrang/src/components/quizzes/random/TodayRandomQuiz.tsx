@@ -1,14 +1,13 @@
 import React, {ReactElement} from "react";
-import {useTodayRandomQuizzesQuery} from "@services/queries/quizzesQuery";
+import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
 import {EmptyBlock} from "@components/ui/block/EmptyBlock";
 import * as S from "./style";
 import {Typography} from "@components/common/Typography";
 import {EmoticonIcon} from "@components/common/icons/EmoticonIcon";
 import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
-import {Quiz} from "@interfaces/quizzes";
 
 export const TodayRandomQuiz = (): ReactElement => {
-  const {data, isLoading} = useTodayRandomQuizzesQuery<Quiz>();
+  const {data, isLoading} = useTodayQuizzesQuery();
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];

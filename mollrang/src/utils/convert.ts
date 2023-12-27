@@ -12,3 +12,4 @@ export const responseDataConvert = <T>(payload: ResponseData<T>): T => {
     return result.data;
   }
 }
+
