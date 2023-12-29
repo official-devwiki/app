@@ -1,5 +1,5 @@
 import Head from "next/head";
-import React, { ReactElement } from "react";
+import React, {ReactElement} from "react";
 
 export const MetaComponent = (): ReactElement => {
   return (
@@ -14,49 +14,50 @@ export const MetaComponent = (): ReactElement => {
         httpEquiv="Page-Enter"
         content="revealtrans(Duration=1,Transition=12)"
       />
-      <meta httpEquiv="Subject" content="퀴즈" />
-      <meta httpEquiv="Title" content="몰랑" />
-      <meta httpEquiv="Author" content="mollrang-dev" />
-      <meta httpEquiv="Other Agent" content="mollrang-dev" />
-      <meta httpEquiv="Copyright" content="mollrang-dev" />
-      <meta httpEquiv="Distribution" content="mollrang-dev" />
-      <meta httpEquiv="Imagetoolbar" content="no" />
+      <meta httpEquiv="Subject" content="퀴즈"/>
+      <meta httpEquiv="Title" content="몰랑"/>
+      <meta httpEquiv="Author" content="mollrang-dev"/>
+      <meta httpEquiv="Other Agent" content="mollrang-dev"/>
+      <meta httpEquiv="Copyright" content="mollrang-dev"/>
+      <meta httpEquiv="Distribution" content="mollrang-dev"/>
+      <meta httpEquiv="Imagetoolbar" content="no"/>
 
-      <meta name="mobile-web-app-capable" content="yes" />
-      <meta name="apple-web-app-capable" content="yes" />
+      <meta name="mobile-web-app-capable" content="yes"/>
+      <meta name="apple-web-app-capable" content="yes"/>
 
-      <meta name="color-scheme" content="dark light" />
-      {/* <meta name="theme-color" content="var(--primary)" /> */}
+      <meta name="color-scheme" content="dark light"/>
+
       <meta
         name="description"
-        content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"
+        content="하루에 한 문제, 퀴즈 몰랑"
       />
-      <meta name="keywords" content="O/X 퀴즈, 퀴즈, IT퀴즈, 개발 퀴즈, 개발" />
-      <meta name="author" content="mollrang-dev" />
+      <meta name="keywords" content="퀴즈, 몰랑"/>
+      <meta name="author" content="mollrang-dev"/>
 
-      <meta content="website" property="og:type" />
-      <meta content="몰랑" property="og:site_name" />
-      <meta content="몰랑" property="og:title" />
+      <meta content="website" property="og:type"/>
+      <meta content="몰랑" property="og:site_name"/>
+      <meta content="몰랑" property="og:title"/>
       <meta
         name="og:description"
-        content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"
+        content="하루에 한 문제, 퀴즈 몰랑"
       />
-      <meta name="og:image" content="" />
-      <meta content="ko_KR" property="og:locale" />
-      <meta content="en_US" property="og:locale:alternate" />
-      <meta content="https://mollrang.netlify.app/" property="og:url" />
+      <meta name="og:image" content={'/assets/images/logo_light.svg'}/>
+      <meta content="ko_KR" property="og:locale"/>
+      <meta content="en_US" property="og:locale:alternate"/>
+      <meta content="https://www.mollrang.com" property="og:url"/>
 
-      <meta property="twitter:title" content="몰랑" />
+      <meta property="twitter:title" content="몰랑"/>
       <meta
         property="twitter:card"
-        content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"
+        content="하루에 한 문제, 퀴즈 몰랑"
       />
       <meta
         property="twitter:description"
-        content="간단한 O/X 퀴즈를 통해 내 지식이 쑥쑥"
+        content="하루에 한 문제, 퀴즈 몰랑"
       />
-      <meta property="twitter:image" content="" />
-      <meta property="twitter:url" content="https://mollrang.netlify.app/" />
+      <meta property="twitter:image" content={'/assets/images/logo_light.svg'}/>
+      <meta property="twitter:url" content="https://www.mollrang.com"/>
     </Head>
   );
 };
+

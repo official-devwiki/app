@@ -16,7 +16,7 @@ export const getMyAnswersRatio = async (
   try {
     const url = `/${statistics}/corrected/${userId}`;
     const {data} = await axiosInstance.get(url);
-    if (data.success) return await responseDataConvert<{ corrected: number }>(data);
+    if (data.success) return responseDataConvert<{ corrected: number }>(data);
     return {corrected: 0};
   } catch (e) {
     throw e;
@@ -33,7 +33,8 @@ export const getChallengeDistribution = async (
   try {
     const url = `/${statistics}/distribution/${userId}`;
     const {data} = await axiosInstance.get(url);
-    return responseDataConvert<ChallengeData[]>(data);
+    if (data.success) return responseDataConvert<ChallengeData[]>(data);
+    return [];
   } catch (e) {
     throw e;
   }
