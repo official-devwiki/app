@@ -1,4 +1,4 @@
-import { ResponseData } from "@interfaces/quizzes";
+import {ResponseData} from "@interfaces/quizzes";
 
 export type ResponseError = {
   success: boolean;
@@ -18,16 +18,9 @@ type ReturnErrorType = {
  */
 export const responseDataConvert = <T>(
   payload: ResponseData<T>,
-): T | ReturnErrorType => {
-  const { success } = payload;
-  const { result } = payload;
+): T => {
+  const {success} = payload;
+  const {result} = payload;
   return result.data;
-  // error
-  // const { result } = payload as any;
-  // return {
-  //   message: result.message,
-  //   result: false,
-  // };
-  // }
 };
 
