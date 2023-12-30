@@ -30,10 +30,12 @@ const initialStepState: Chance[] = [
 
 export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
   const [checkBox, setCheckBox] = useState<Chance[]>(initialStepState);
-  const [answer, setAnswer] = useState<string>("");
-  const [message, setMessage] = useState<string>("");
-  const [messageStyling, setMessageStyling] = useState<string>("default");
-  const [currentStep, setCurrentStep] = useState<number>(1);
+  const [answer, setAnswer] = useState("");
+  const [message, setMessage] = useState("");
+  const [messageStyling, setMessageStyling] = useState("default");
+  const [currentStep, setCurrentStep] = useState(1);
+  const [todayCompleted, setTodayCompleted] = useState(false);
+
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -85,11 +87,13 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
 
   useEffect(() => {
     if (answerSubmitMutate.isSuccess) {
-      console.log(answerSubmitMutate.data);
       if (!answerSubmitMutate.data.result) {
         checkBoxUpdate(answerSubmitMutate.data.hint);
       } else {
         toast.message("정답~!", "success");
+        setTodayCompleted(true);
+        setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
+        setMessageStyling("default");
       }
 
       setAnswer("");
@@ -100,7 +104,6 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
   const checkBoxUpdate = useCallback(
     (hintData: Block[]): void => {
       const findIndex = checkBox.findIndex((v) => v.step === currentStep);
-      console.log(checkBox);
       const newCheckBox = [...checkBox];
       newCheckBox[findIndex].answer = true;
       newCheckBox[findIndex].hint = hintData;
@@ -108,6 +111,10 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
     },
     [currentStep],
   );
+
+  useEffect(() => {
+    resultMessage();
+  }, [checkBox]);
 
   /**
    * @param v
@@ -129,10 +136,6 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
     return hintBlock;
   };
 
-  useEffect(() => {
-    resultMessage();
-  }, [checkBox]);
-
   const resultMessage = (): void => {
     if (currentStep > 1) {
       const currentStepIndex = checkBox.findIndex(
@@ -140,30 +143,24 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
       );
       const currentStepAnswer = checkBox[currentStepIndex].hint;
       if (currentStepAnswer.length === 0) return;
-      if (currentStep > 5) {
-        setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
+
+      const hintExist = currentStepAnswer.filter(
+        (value, index) => value[index + 1] === "O",
+      );
+
+      if (hintExist.length > 0) {
+        setMessage("정답인 글자가 포함되어있어요!");
         setMessageStyling("default");
-        return;
+      } else {
+        setMessage("글자가 포함되어있지 않아요!");
+        setMessageStyling("wrong");
       }
-      currentStepAnswer.forEach((value, index) => {
-        if (value[`answer${index + 1}`] === "O") {
-          setMessage("정답인 글자가 포함되어있어요!");
-          setMessageStyling("default");
-        } else if (value[`answer${index + 1}`] === "y") {
-          setMessage("글자는 포함되어있지만 위치가 다르네요!");
-          setMessageStyling("hint");
-        } else if (value[`answer${index + 1}`] === "X") {
-          setMessage("글자가 포함되어있지 않아요!");
-          setMessageStyling("wrong");
-        }
-      });
     }
   };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (data) {
       const { answerLength } = data;
-
       if (e.target.value.length > answerLength) {
         e.target.value = e.target.value.slice(0, answerLength);
       }
@@ -245,7 +242,7 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
             ref={inputRef}
             placeholder={`${data.answerLength} 자`}
             name={"quizAnswer"}
-            disabled={currentStep > 5}
+            disabled={todayCompleted}
             value={answer}
             onChange={(e) => onChangeHandler(e)}
           />
@@ -274,7 +271,7 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
             그만하기
           </Typography>
         </Button>
-        <Button variant={"primary"} type={"submit"} disabled={currentStep > 5}>
+        <Button variant={"primary"} type={"submit"} disabled={todayCompleted}>
           <Typography as={"span"} $weight={"bold"}>
             제출하기
           </Typography>
