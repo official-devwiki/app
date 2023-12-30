@@ -1,28 +1,34 @@
-import React, {ReactElement, useEffect, useRef, useState} from "react";
-import {Typography} from "@components/common/Typography";
-import {QuizIcon} from "@components/common/icons/QuizIcon";
+import React, {
+  ReactElement,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { Typography } from "@components/common/Typography";
+import { QuizIcon } from "@components/common/icons/QuizIcon";
 import * as S from "./style";
-import {EmptyBlock} from "@components/ui/block/EmptyBlock";
-import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
-import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
-import {Button} from "@components/common/Button";
+import { EmptyBlock } from "@components/ui/block/EmptyBlock";
+import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
+import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
+import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
-import {Input} from "@components/common/input/Input";
-import {CheckCircleIcon} from "@components/common/icons/CheckCircleIcon";
-import {HintBlock} from "@components/ui/block/HintBlock";
-import {useRouter} from "next/router";
-import {Block, Chance} from "@interfaces/quizzes";
-import {useQuizAnswerSubmitMutate} from "@services/mutations/quizzesMutation";
+import { Input } from "@components/common/input/Input";
+import { CheckCircleIcon } from "@components/common/icons/CheckCircleIcon";
+import { HintBlock } from "@components/ui/block/HintBlock";
+import { useRouter } from "next/router";
+import { Block, Chance } from "@interfaces/quizzes";
+import { useQuizAnswerSubmitMutate } from "@services/mutations/quizzesMutation";
 
 const initialStepState: Chance[] = [
-  {step: 1, answer: false, hint: []},
-  {step: 2, answer: false, hint: []},
-  {step: 3, answer: false, hint: []},
-  {step: 4, answer: false, hint: []},
-  {step: 5, answer: false, hint: []},
+  { step: 1, answer: false, hint: [] },
+  { step: 2, answer: false, hint: [] },
+  { step: 3, answer: false, hint: [] },
+  { step: 4, answer: false, hint: [] },
+  { step: 5, answer: false, hint: [] },
 ];
 
-export const QuizForm = ({userId}: { userId: string }): ReactElement => {
+export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
   const [checkBox, setCheckBox] = useState<Chance[]>(initialStepState);
   const [answer, setAnswer] = useState<string>("");
   const [message, setMessage] = useState<string>("");
@@ -31,46 +37,17 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const {data, isLoading} = useTodayQuizzesQuery();
+  const { data, isLoading } = useTodayQuizzesQuery();
   const answerSubmitMutate = useQuizAnswerSubmitMutate();
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
     if (data) {
       for (let i = 0; i < data.answerLength; i++) {
-        block.push(<EmptyBlock key={`empty-box-${i}`}/>);
+        block.push(<EmptyBlock key={`empty-box-${i}`} />);
       }
     }
     return block;
-  };
-
-  const todayQuizAnswerSubmit = async (
-    e: React.FormEvent<HTMLFormElement>,
-  ): Promise<void> => {
-    e.preventDefault();
-
-    if (!inputValidation()) return;
-
-    const sendData: { userId: string, count: number; answer: string } = {
-      count: currentStep,
-      answer,
-      userId
-    };
-    // 정답 제출
-    answerSubmitMutate(sendData);
-    // check box update
-    // checkBoxUpdate(data);
-
-    setAnswer("");
-    setCurrentStep(currentStep + 1);
-  };
-
-  const checkBoxUpdate = (hintData: Block[]): void => {
-    const findIndex = checkBox.findIndex((v) => v.step === currentStep);
-    const newCheckBox = [...checkBox];
-    newCheckBox[findIndex].answer = true;
-    newCheckBox[findIndex].hint = hintData;
-    setCheckBox(newCheckBox);
   };
 
   const inputValidation = (): boolean => {
@@ -90,6 +67,48 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
     return true;
   };
 
+  const todayQuizAnswerSubmit = async (
+    e: React.FormEvent<HTMLFormElement>,
+  ): Promise<void> => {
+    e.preventDefault();
+
+    if (!inputValidation()) return;
+
+    const sendData: { userId: string; count: number; answer: string } = {
+      count: currentStep,
+      answer,
+      userId,
+    };
+    // 정답 제출
+    answerSubmitMutate.mutate(sendData);
+  };
+
+  useEffect(() => {
+    if (answerSubmitMutate.isSuccess) {
+      console.log(answerSubmitMutate.data);
+      if (!answerSubmitMutate.data.result) {
+        checkBoxUpdate(answerSubmitMutate.data.hint);
+      } else {
+        toast.message("정답~!", "success");
+      }
+
+      setAnswer("");
+      setCurrentStep(currentStep + 1);
+    }
+  }, [answerSubmitMutate.isSuccess]);
+
+  const checkBoxUpdate = useCallback(
+    (hintData: Block[]): void => {
+      const findIndex = checkBox.findIndex((v) => v.step === currentStep);
+      console.log(checkBox);
+      const newCheckBox = [...checkBox];
+      newCheckBox[findIndex].answer = true;
+      newCheckBox[findIndex].hint = hintData;
+      setCheckBox(newCheckBox);
+    },
+    [currentStep],
+  );
+
   /**
    * @param v
    * @param key
@@ -97,17 +116,14 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
    */
   const hintBlockGenerator = (v: Block, key: string) => {
     const hintBlock = [];
-    if (data) {
-      for (let i = 0; i < data.answerLength; i++) {
-        const styling =
-          v[`answer${i + 1}`] === "O"
-            ? "success"
-            : v[`answer${i + 1}`] === "y"
-              ? "hint"
-              : v[`answer${i + 1}`] === "X" && "wrong";
-        hintBlock.push(
-          <HintBlock className={styling} key={`hint-box-${i}-${key}`}/>,
-        );
+    if (answerSubmitMutate.isSuccess) {
+      for (let i = 1; i <= data.answerLength; i++) {
+        if (!!v[i]) {
+          const styling = v[i] === "O" ? "success" : "wrong";
+          hintBlock.push(
+            <HintBlock className={styling} key={`hint-box-${i}-${key}`} />,
+          );
+        }
       }
     }
     return hintBlock;
@@ -146,7 +162,7 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (data) {
-      const {answerLength} = data;
+      const { answerLength } = data;
 
       if (e.target.value.length > answerLength) {
         e.target.value = e.target.value.slice(0, answerLength);
@@ -165,15 +181,15 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
         {checkBox.map((v, index) => {
           return (
             <li key={index}>
-              <CheckCircleIcon className={v.answer && "active"}/>
+              <CheckCircleIcon className={v.answer && "active"} />
               {v.hint.length > 0 &&
-              v.hint.map((block, blockIndex) => {
-                return (
-                  <S.FlexBox key={`key-${blockIndex}`}>
-                    {hintBlockGenerator(block, `key-${blockIndex}`)}
-                  </S.FlexBox>
-                );
-              })}
+                v.hint.map((block, blockIndex) => {
+                  return (
+                    <S.FlexBox key={`key-${blockIndex}`}>
+                      {hintBlockGenerator(block, `key-${blockIndex}`)}
+                    </S.FlexBox>
+                  );
+                })}
             </li>
           );
         })}
@@ -181,9 +197,9 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
 
       <S.QuizSolutionBox>
         <S.QuizFormTitle>
-          <QuizIcon/>
+          <QuizIcon />
           {isLoading ? (
-            <SkeletonUi theme={{width: 300, height: 20, borderRadius: 4}}/>
+            <SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />
           ) : (
             <>
               <Typography
@@ -223,7 +239,7 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
 
       <S.InputContainer>
         {isLoading ? (
-          <SkeletonUi theme={{width: 300, height: 20, borderRadius: 4}}/>
+          <SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />
         ) : (
           <Input
             ref={inputRef}
@@ -244,8 +260,8 @@ export const QuizForm = ({userId}: { userId: string }): ReactElement => {
             messageStyling === "default"
               ? "textPrimary"
               : messageStyling === "hint"
-                ? "textYellow"
-                : "textRed000"
+              ? "textYellow"
+              : "textRed000"
           }
         >
           {message}

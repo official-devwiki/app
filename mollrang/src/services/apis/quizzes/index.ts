@@ -29,7 +29,7 @@ export const quizSolutionSubmit = async (
   try {
     const url = `/${quizzes}`;
     const {data} = await axiosInstance.post(url, body);
-    return data;
+    return responseDataConvert<any>(data);
   } catch (e) {
     throw e;
   }

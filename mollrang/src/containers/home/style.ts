@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const HomeLayout = styled.div`
   width: 100%;
-  height: 100vh;
   display: grid;
   align-content: space-between;
 
@@ -45,6 +44,7 @@ export const PlayQuizBox = styled.div`
     position: relative;
     z-index: 2;
     margin: auto;
+    top: 2px;
   }
 `;
 
