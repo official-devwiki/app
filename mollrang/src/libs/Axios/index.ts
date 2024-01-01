@@ -27,16 +27,19 @@ function AxiosAuthInterceptor<T>(response: AxiosResponse<T>): AxiosResponse {
   const status = response.status;
   if (status === 401) throw new AuthorizationException();
   if (status === 403) throw new ForbiddenException();
-  if (status === 404) throw new NotFoundException();
+  // if (status === 404) throw new NotFoundException();
   if (status === 405) throw new NotAllowedMethodException();
   return response;
 }
 
-instance.interceptors.request.use((config) => {
-  config.headers['Content-type'] = 'application/json; charset=UTF-8';
-  config.headers['Accept'] = 'application/json';
-  return config;
-}, (error) => Promise.reject(error));
+instance.interceptors.request.use(
+  (config) => {
+    config.headers["Content-type"] = "application/json; charset=UTF-8";
+    config.headers["Accept"] = "application/json";
+    return config;
+  },
+  (error) => Promise.reject(error),
+);
 
 instance.interceptors.response.use(
   (response) => {

@@ -39,13 +39,23 @@ export const ModalHandler: React.FunctionComponent<Modal> = (
   const modalHandler = (children: ReactNode) => {
     switch (modalType) {
       case "side-menu":
-        return <SideNav ele={ele} isOpen={isOpen}>{children}</SideNav>;
+        return (
+          <SideNav ele={ele} isOpen={isOpen}>
+            {children}
+          </SideNav>
+        );
       case "bottom-slide":
         return (
-          <BottomSlideModal ele={ele} isOpen={isOpen}>{children}</BottomSlideModal>
+          <BottomSlideModal ele={ele} isOpen={isOpen}>
+            {children}
+          </BottomSlideModal>
         );
       default:
-        return <FadeModal ele={ele} isOpen={isOpen}>{children}</FadeModal>;
+        return (
+          <FadeModal ele={ele} isOpen={isOpen}>
+            {children}
+          </FadeModal>
+        );
     }
   };
 

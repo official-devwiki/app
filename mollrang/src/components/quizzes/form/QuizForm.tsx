@@ -19,6 +19,8 @@ import { HintBlock } from "@components/ui/block/HintBlock";
 import { useRouter } from "next/router";
 import { Block, Chance } from "@interfaces/quizzes";
 import { useQuizAnswerSubmitMutate } from "@services/mutations/quizzesMutation";
+import { useAppDispatch } from "@hooks/useRedux";
+import { State, setModalOpen } from "@store/slice/modalSlice";
 
 const initialStepState: Chance[] = [
   { step: 1, answer: false, hint: [] },
@@ -36,6 +38,7 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
   const [currentStep, setCurrentStep] = useState(1);
   const [todayCompleted, setTodayCompleted] = useState(false);
 
+  const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
@@ -94,11 +97,19 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
         setTodayCompleted(true);
         setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
         setMessageStyling("default");
+
+        const modalState: State = {
+          type: "quiz-completed",
+          modalType: "",
+          isOpen: true,
+        };
+        dispatch(setModalOpen(modalState));
       }
 
       setAnswer("");
       setCurrentStep(currentStep + 1);
     }
+    console.log(answerSubmitMutate, "??");
   }, [answerSubmitMutate.isSuccess]);
 
   const checkBoxUpdate = useCallback(

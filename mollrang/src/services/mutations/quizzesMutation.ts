@@ -23,7 +23,12 @@ export const useQuizAnswerSubmitMutate = () => {
     mutationKey: [QueryKeys.Quizzes.submitAnswer],
     mutationFn: (payload: QuizSubmitData) => quizSolutionSubmit(payload),
     onSuccess: async (payload: any) => {
-      await queryClient.invalidateQueries([QueryKeys.Quizzes.submitAnswer]);
+      await queryClient.invalidateQueries([
+        QueryKeys.Quizzes.submitAnswer,
+        QueryKeys.Statistics.getMyAnswers,
+        QueryKeys.Statistics.getContinuousCorrectCount,
+        QueryKeys.Users.getAttendance,
+      ]);
     },
     onError: (e) => {
       toast.message(`퀴즈 등록에 실패하였습니다 - ${e}`, "error");

@@ -1,5 +1,5 @@
-import {useQuery} from "@tanstack/react-query";
-import {QueryKeyType, QueryKeys} from "@services/keys/queryKeys";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeyType, QueryKeys } from "@services/keys/queryKeys";
 import {
   getMyAnswersRatio,
   getContinuousCorrectCount,
@@ -7,18 +7,23 @@ import {
   getChallengeDistribution,
   getChallengeCount,
 } from "@services/apis/statistics";
-import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
+import { ChallengeData } from "@containers/statistics/IntegratedStatistics";
 
 /**
  * @description: 나의 정답률 구하기
  */
 export const useGetMyAnswersQuery = (
   userId: string,
-): { isLoading: boolean; data: { corrected: number } } => {
-  const {data, isLoading} = useQuery({
-    queryKey: [QueryKeys.Statistics.getMyAnswers],
-    queryFn: () => getMyAnswersRatio(userId),
-  });
+): { isLoading: boolean; data: { corrected: string } } => {
+  const { data, isLoading } = useQuery(
+    [QueryKeys.Statistics.getMyAnswers],
+    () => getMyAnswersRatio(userId),
+    {
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  );
   return {
     isLoading,
     data,
@@ -34,10 +39,15 @@ export const useContinuousCorrectQuery = (
   isLoading: boolean;
   data: { continuous: number };
 } => {
-  const {data, isLoading} = useQuery({
-    queryKey: [QueryKeys.Statistics.getContinuousCorrectCount],
-    queryFn: () => getContinuousCorrectCount(userId),
-  });
+  const { data, isLoading } = useQuery(
+    [QueryKeys.Statistics.getContinuousCorrectCount],
+    () => getContinuousCorrectCount(userId),
+    {
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  );
   return {
     isLoading,
     data,
@@ -53,10 +63,15 @@ export const useGetMyDistributionQuery = (
   isLoading: boolean;
   data: ChallengeData[];
 } => {
-  const {data, isLoading} = useQuery({
-    queryKey: [QueryKeys.Statistics.getChallengeDistribution],
-    queryFn: () => getChallengeDistribution(userId),
-  });
+  const { data, isLoading } = useQuery(
+    [QueryKeys.Statistics.getChallengeDistribution],
+    () => getChallengeDistribution(userId),
+    {
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  );
   return {
     isLoading,
     data,
@@ -70,10 +85,15 @@ export const useMyTotalChallengeQuery = <T>(): {
   isLoading: boolean;
   data: T;
 } => {
-  const {data, isLoading} = useQuery({
-    queryKey: [QueryKeys.Statistics.getChallengeCount],
-    queryFn: () => getChallengeCount<T>(""),
-  });
+  const { data, isLoading } = useQuery(
+    [QueryKeys.Statistics.getChallengeCount],
+    () => getChallengeCount<T>(""),
+    {
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  );
   return {
     isLoading,
     data,
@@ -87,10 +107,15 @@ export const useMostContinuousCountQuery = <T>(): {
   isLoading: boolean;
   data: T;
 } => {
-  const {data, isLoading} = useQuery({
-    queryKey: [QueryKeys.Statistics.getMostContinuousCorrectCount],
-    queryFn: () => getMostContinuousCorrectCount<T>(""),
-  });
+  const { data, isLoading } = useQuery(
+    [QueryKeys.Statistics.getMostContinuousCorrectCount],
+    () => getMostContinuousCorrectCount<T>(""),
+    {
+      refetchOnMount: true,
+      refetchOnReconnect: true,
+      refetchOnWindowFocus: true,
+    },
+  );
   return {
     isLoading,
     data,
