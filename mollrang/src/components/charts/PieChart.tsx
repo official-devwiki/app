@@ -1,5 +1,5 @@
-import React, {ReactElement} from "react";
-import {ResponsivePie} from "@nivo/pie";
+import React, { ReactElement } from "react";
+import { ResponsivePie } from "@nivo/pie";
 import styled from "styled-components";
 
 export interface PieChartProps {
@@ -18,7 +18,7 @@ type DataType = { data: PieChartProps[] };
 
 const PieChart = React.forwardRef(
   (
-    {data}: DataType,
+    { data }: DataType,
     ref: React.ForwardedRef<HTMLDivElement>,
   ): ReactElement => {
     return (
@@ -26,13 +26,13 @@ const PieChart = React.forwardRef(
         <ResponsivePie
           data={data}
           animate={false}
-          isInteractive={false}
-          margin={{top: 40, right: 80, bottom: 80, left: 80}}
+          isInteractive={true}
+          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}
           activeOuterRadiusOffset={8}
-          colors={{scheme: "green_blue"}}
+          colors={{ scheme: "green_blue" }}
           borderWidth={1}
           borderColor={{
             from: "color",
@@ -41,58 +41,26 @@ const PieChart = React.forwardRef(
           arcLinkLabelsSkipAngle={10}
           arcLinkLabelsTextColor="#333333"
           arcLinkLabelsThickness={2}
-          arcLinkLabelsColor={{from: "color"}}
+          arcLinkLabelsColor={{ from: "color" }}
           arcLabelsSkipAngle={10}
           arcLabelsTextColor={{
             from: "color",
             modifiers: [["darker", 2]],
           }}
-          fill={[
-            {
-              match: {
-                id: "1번쩨",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "2번째",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "3번째",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "4번째",
-              },
-              id: "dots",
-            },
-            {
-              match: {
-                id: "5번째",
-              },
-              id: "lines",
-            },
-          ]}
           legends={[
             {
-              anchor: "bottom",
-              direction: "row",
+              anchor: "left",
+              direction: "column",
               justify: false,
-              translateX: 0,
-              translateY: 56,
-              itemsSpacing: 0,
-              itemWidth: 100,
+              translateX: -65,
+              translateY: 0,
+              itemsSpacing: 8,
+              itemWidth: 50,
               itemHeight: 18,
-              itemTextColor: "#999",
+              itemTextColor: "#222",
               itemDirection: "left-to-right",
               itemOpacity: 1,
-              symbolSize: 18,
+              symbolSize: 15,
               symbolShape: "circle",
               effects: [
                 {
@@ -109,5 +77,5 @@ const PieChart = React.forwardRef(
     );
   },
 );
-PieChart.displayName = 'PieChart';
+PieChart.displayName = "PieChart";
 export default PieChart;

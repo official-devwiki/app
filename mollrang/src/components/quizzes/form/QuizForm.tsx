@@ -90,13 +90,21 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
 
   useEffect(() => {
     if (answerSubmitMutate.isSuccess) {
-      if (!answerSubmitMutate.data.result) {
+      if (!answerSubmitMutate.data.result && answerSubmitMutate.data.hint) {
         checkBoxUpdate(answerSubmitMutate.data.hint);
       } else {
         toast.message("정답~!", "success");
         setTodayCompleted(true);
         setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
         setMessageStyling("default");
+
+        const findIndex = initialStepState.findIndex(
+          (v) => v.step === currentStep,
+        );
+        const newCheckBox = [...checkBox];
+        newCheckBox[findIndex].answer = true;
+        newCheckBox[findIndex].hint = [];
+        setCheckBox(newCheckBox);
 
         const modalState: State = {
           type: "quiz-completed",
@@ -109,7 +117,6 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
       setAnswer("");
       setCurrentStep(currentStep + 1);
     }
-    console.log(answerSubmitMutate, "??");
   }, [answerSubmitMutate.isSuccess]);
 
   const checkBoxUpdate = useCallback(

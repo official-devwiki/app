@@ -5,6 +5,7 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
     font-size: 62.5%;
     min-width: 320px;
+    color: var(--textDefault);
   }
 
   body {

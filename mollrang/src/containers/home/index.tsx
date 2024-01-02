@@ -10,10 +10,10 @@ import { useRouter } from "next/router";
 import { TodayRandomQuiz } from "@components/quizzes/random/TodayRandomQuiz";
 import { BsBook } from "react-icons/bs";
 import { FunctionComponent } from "react";
+import { useAuth } from "providers/authProvider";
 
-export const HomeContainer: FunctionComponent<{ userId: string }> = ({
-  userId,
-}) => {
+export const HomeContainer: FunctionComponent = () => {
+  const { userId } = useAuth();
   const router = useRouter();
 
   const playQuizButton = async (): Promise<void> => {

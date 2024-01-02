@@ -39,7 +39,7 @@ export const BottomSlideModal = (props: ModalProps): ReactElement => {
             <F.ModalBody ref={ele}>
               <S.ModalCloseButtonWrapper>
                 <Button variant={'icon'} onClick={onRequestClose}>
-                  <IoClose color={'#fff'} size={24} />
+                  <IoClose color={'#222'} size={24} />
                 </Button>
               </S.ModalCloseButtonWrapper>
               <S.ModalContentsBox>

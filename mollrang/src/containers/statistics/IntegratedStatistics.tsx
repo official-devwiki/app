@@ -75,7 +75,7 @@ export interface ChallengeData {
   color: string;
 }
 
-const mockPie: PieChartProps[] = [
+export const mockPie: PieChartProps[] = [
   { id: "1번째", label: "1번째", value: 1, color: "#222" },
   { id: "2번째", label: "2번째", value: 3, color: "#222" },
   { id: "3번째", label: "3번째", value: 11, color: "#222" },

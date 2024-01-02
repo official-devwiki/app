@@ -28,12 +28,12 @@ export const MetaComponent = (): ReactElement => {
       <meta name="color-scheme" content="dark light" />
       <meta
         name={"theme-color"}
-        content={"#00C7AE"}
+        content={"#fff"}
         media={"(prefers-color-scheme: light)"}
       />
       <meta
         name={"theme-color"}
-        content={"#778C86"}
+        content={"#383838"}
         media={"(prefers-color-scheme: dark)"}
       />
 
