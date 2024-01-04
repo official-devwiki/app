@@ -21,6 +21,7 @@ import { Block, Chance } from "@interfaces/quizzes";
 import { useQuizAnswerSubmitMutate } from "@services/mutations/quizzesMutation";
 import { useAppDispatch } from "@hooks/useRedux";
 import { State, setModalOpen } from "@store/slice/modalSlice";
+import { QuizFormState } from "@containers/quizzes/QuizFormContainer";
 
 const initialStepState: Chance[] = [
   { step: 1, answer: false, hint: [] },
@@ -30,7 +31,13 @@ const initialStepState: Chance[] = [
   { step: 5, answer: false, hint: [] },
 ];
 
-export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
+interface Props {
+  quizFormState: QuizFormState[];
+}
+
+export const QuizForm = (props: Props): ReactElement => {
+  const { quizFormState } = props;
+
   const [checkBox, setCheckBox] = useState<Chance[]>(initialStepState);
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
@@ -44,6 +51,10 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
 
   const { data, isLoading } = useTodayQuizzesQuery();
   const answerSubmitMutate = useQuizAnswerSubmitMutate();
+
+  useEffect(() => {
+    console.log(quizFormState);
+  }, [quizFormState]);
 
   const emptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
@@ -78,6 +89,8 @@ export const QuizForm = ({ userId }: { userId: string }): ReactElement => {
     e.preventDefault();
 
     if (!inputValidation()) return;
+
+    const userId = quizFormState[currentStep].userId;
 
     const sendData: { userId: string; count: number; answer: string } = {
       count: currentStep,
