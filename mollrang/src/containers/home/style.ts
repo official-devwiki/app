@@ -4,8 +4,10 @@ export const HomeLayout = styled.div`
   width: 100%;
   display: grid;
   align-content: space-between;
+  min-height: 100vh;
+  height: auto;
 
-  ${({theme}) => theme.media.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -64,7 +66,7 @@ export const SubItemsLayout = styled.div`
     }
   }
 
-  ${({theme}) => theme.media.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     flex-direction: column;
 
     .answers-container {

@@ -71,17 +71,17 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: calc(100% - 66px);
   }
-  
-  body{
+
+  body {
     width: 100%;
     height: 100%;
   }
-  
+
   #__next {
     width: 100%;
-    //height: 100vh;
+    height: 100%;
   }
-  
+
   ol, ul {
     list-style: none;
   }
@@ -172,7 +172,7 @@ export const GlobalStyle = createGlobalStyle`
     --textRed000: #FF5050;
     --textGrayAndWhite: #bdbdbd;
     --textYellow: #edbe17;
-    
+
     // 출석 체크 요일
     --day_circle: #CACACA;
     --day_bg: #F4F4F4;
@@ -214,7 +214,7 @@ export const GlobalStyle = createGlobalStyle`
     --primary_opacity: rgba(119, 140, 134, 0.7);
     --error_opacity: rgba(255, 80, 80, 0.7);
     --warning_opacity: rgba(255, 199, 0, 0.7);
-    
+
 
     // Typography - dark
     --textDefault: #fff;
@@ -248,7 +248,7 @@ export const GlobalStyle = createGlobalStyle`
     --share_icon: #fff;
     --check_circle_icon: #B8B8B8;
     --hamburger_icon: #fff;
-    
+
     --major-text: #E6E6E6;
     --caption-text: #6D6D6;
 
