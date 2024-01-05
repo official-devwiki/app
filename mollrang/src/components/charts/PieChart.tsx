@@ -11,7 +11,8 @@ export interface PieChartProps {
 
 const ChartWrapper = styled.article`
   width: 100%;
-  height: 400px;
+  height: 70vw;
+  max-height: 400px;
 `;
 
 type DataType = { data: PieChartProps[] };
