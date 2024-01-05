@@ -12,19 +12,9 @@ export interface QuizFormState {
   hint: Hint[];
 }
 
-export const QuizFormContainer: FunctionComponent<{ userId: string }> = ({
-  userId,
-}) => {
-  const [quizFormState, setQuizFormState] = useState<QuizFormState[]>([]);
-  const historyCheck = async () => {
-    const result: QuizFormState[] = await quizHistoryCheck(userId);
-    setQuizFormState(result);
-  };
-
-  useEffect(() => {
-    historyCheck();
-  }, []);
-
+export const QuizFormContainer: FunctionComponent<{
+  quizHistory: QuizFormState[];
+}> = ({ quizHistory }) => {
   return (
     <S.QuizLayout>
       <S.QuizBox>
@@ -32,7 +22,7 @@ export const QuizFormContainer: FunctionComponent<{ userId: string }> = ({
           <Typography $variant={"h1"} $weight={"bold"} $color={"textDefault"}>
             오늘의 퀴즈
           </Typography>
-          <QuizForm quizFormState={quizFormState} />
+          <QuizForm quizFormState={quizHistory} />
         </S.QuizWrapper>
       </S.QuizBox>
     </S.QuizLayout>

@@ -3,7 +3,7 @@ import { Domain } from "@services/apis/url";
 import { Quiz, ResponseData } from "@interfaces/quizzes";
 import { responseDataConvert } from "@utils/convert";
 import { QuizSubmitData } from "@services/mutations/quizzesMutation";
-import { QuizFormState } from "@pages/quizzes";
+import { QuizFormState } from "@containers/quizzes/QuizFormContainer";
 
 const quizzes = Domain.Quiz;
 
