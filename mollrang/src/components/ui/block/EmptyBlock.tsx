@@ -1,12 +1,12 @@
-import styled from 'styled-components';
-import {ReactElement} from 'react';
+import styled from "styled-components";
+import { ReactElement } from "react";
 
 export const Block = styled.div`
   width: 20px;
   height: 20px;
-  background-color: #D9D9D9;
+  background-color: #d9d9d9;
   border-radius: 4px;
-  margin-right: 6px;
+  margin: 0 1px;
 `;
 
 export const EmptyBlock = (): ReactElement => {

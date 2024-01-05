@@ -6,19 +6,18 @@ import BannerSvg from "@images/banner.svg";
 import styled from "styled-components";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
-import { IS_PRODUCTION } from "@config/index";
+import { SITE_URL } from "@config/index";
 import { IoMdShare } from "react-icons/io";
 import { BsQuestionLg } from "react-icons/bs";
 
 export const FlexBox = styled.div`
   button {
-    width: 100%!important;
+    width: 100% !important;
     display: flex;
     justify-content: space-between;
     margin-top: 4em;
     align-items: center;
     border: 1px solid transparent;
-
   }
 `;
 
@@ -29,17 +28,14 @@ const Banner = styled(BannerSvg)`
 
 export const MollrangSharedButton = (): ReactElement => {
   const sharedMollrangLink = async (): Promise<void> => {
-    const url = IS_PRODUCTION
-      ? "https://mollrang.netlify.app/"
-      : "http://localhost:3000/";
-    await navigator.clipboard.writeText(url);
+    await navigator.clipboard.writeText(SITE_URL);
     toast.message(`클립보드에 저장되었습니다.`);
   };
 
   return (
     <FlexBox>
       <Button variant={"icon"} onClick={sharedMollrangLink}>
-        <IoMdShare color={'var(--intro_icon)'} size={22} />
+        <IoMdShare color={"var(--intro_icon)"} size={22} />
         <Typography $color={"textDefault"} $weight={"bold"} $variant={"body2"}>
           몰랑 공유하기
         </Typography>
@@ -67,11 +63,15 @@ export const IntroBanner = (): ReactElement => {
             </Typography>
           </S.IntroTextIconWrapper1>
           <S.IntroTextIconWrapper2>
-            <Typography $color={"textPrimary"} $weight={"bold"}>
+            <Typography
+              $color={"textPrimary"}
+              $weight={"bold"}
+              $variant={"body1"}
+            >
               몰랑
             </Typography>
             <S.IntroTextIcon2>
-              <BsQuestionLg size={24} color={'var(--intro_icon)'} />
+              <BsQuestionLg size={28} color={"var(--intro_icon)"} />
             </S.IntroTextIcon2>
           </S.IntroTextIconWrapper2>
           <MollrangSharedButton />

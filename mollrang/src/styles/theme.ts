@@ -1,4 +1,5 @@
-import {DefaultTheme} from 'styled-components';
+import { DefaultTheme } from "styled-components";
+
 export type ColorBlack = {
   c100: string;
   c200: string;
@@ -20,41 +21,41 @@ export type ColorTheme = {
   warning: string;
   white: string;
   gray: ColorGray;
-}
+};
 
 const colors = {
   dark: {
-    primary: '#778C86',
-    white: '#fff',
+    primary: "#778C86",
+    white: "#fff",
     gray: {
-      c000: '#A6A6A6',
-      c200: '#D6D6D6',
+      c000: "#A6A6A6",
+      c200: "#D6D6D6",
     },
-    bg: '#383838',
+    bg: "#383838",
     black: {
-      c100: '#222222',
-      c200: '#282828',
+      c100: "#222222",
+      c200: "#282828",
     },
-    warning: '#FF533B'
+    warning: "#FF533B",
   },
   light: {
-    primary: '#00C7AE',
-    white: '#fff',
+    primary: "#00C7AE",
+    white: "#fff",
     gray: {
-      c100: '#C6C6C6',
-      c200: '#D6D6D6',
-      c300: '#D9D9D9',
-      c400: '#EFEFEF',
-      c500: '#989898',
+      c100: "#C6C6C6",
+      c200: "#D6D6D6",
+      c300: "#D9D9D9",
+      c400: "#EFEFEF",
+      c500: "#989898",
     },
-    bg: '#fff',
-    black:{
-      c100: '#000000',
-      c200: '#444343',
+    bg: "#fff",
+    black: {
+      c100: "#000000",
+      c200: "#444343",
     },
-    warning: '#FF5050'
+    warning: "#FF5050",
   },
-}
+};
 
 export interface MixinsTheme {
   flexRowsContainer: () => string;
@@ -70,7 +71,7 @@ const mixins: MixinsTheme = {
 
   `,
   // flex
-  flexBox: (direction = 'row', align = 'center', justify = 'center') => `
+  flexBox: (direction = "row", align = "center", justify = "center") => `
     display: flex;
     flex-direction: ${direction};
     align-items: ${align};
@@ -78,8 +79,8 @@ const mixins: MixinsTheme = {
   `,
 
   // positions
-  positionCenter: (type = 'absolute') => {
-    if (type === 'absolute' || type === 'fixed')
+  positionCenter: (type = "absolute") => {
+    if (type === "absolute" || type === "fixed")
       return `
         position: ${type};
         left: 50%;
@@ -88,6 +89,33 @@ const mixins: MixinsTheme = {
       `;
     return;
   },
+};
+
+const scroll = {
+  theme: () => `
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+
+    &::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: #cdcdcd;
+      border-radius: 0;
+    }
+
+    &::-webkit-scrollbar-track {
+      background-color: transparent;
+    }
+    
+    @media screen and (max-width: 768px) {
+      &::-webkit-scrollbar {
+        width: 0;
+      }
+    }
+  `,
 };
 
 export interface MediaQueryTheme {
@@ -110,5 +138,6 @@ const media: MediaQueryTheme = {
 export const theme: DefaultTheme = {
   colors,
   media,
-  mixins
-};
+  mixins,
+  scroll,
+} as const;

@@ -16,6 +16,8 @@ const IntegratedStatisticsLayout = styled.div`
   padding: 0 1em;
   height: 550px;
   overflow-y: auto;
+
+  ${({ theme }) => theme.scroll.theme()}
 `;
 
 const StatisticsItemContainer = styled.div`

@@ -70,6 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     width: 100%;
     height: calc(100% - 66px);
+    ${({ theme }) => theme.scroll.theme()}
   }
 
   body {
@@ -113,36 +114,6 @@ export const GlobalStyle = createGlobalStyle`
     border: none;
     border-bottom: 1px solid #ededed;
   }
-
-  .scroll {
-    width: 100%;
-    padding: 0;
-    overflow-y: auto;
-    overflow-x: hidden;
-    box-sizing: border-box;
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-track {
-      background-color: transparent;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background-color: var(--bg_reverse);;
-      border-radius: 2px;
-    }
-  }
-
-  @media screen and (max-width: 768px) {
-    .scroll {
-      &::-webkit-scrollbar {
-        width: 0;
-      }
-    }
-  }
-
 
   :root {
     --white: #fff;

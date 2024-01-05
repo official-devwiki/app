@@ -1,11 +1,6 @@
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-} from 'next/document';
-import type { DocumentContext, DocumentInitialProps } from 'next/document'
-import {ServerStyleSheet} from 'styled-components';
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import type { DocumentContext, DocumentInitialProps } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 import React from "react";
 
 const themeInitializerScript = `
@@ -15,7 +10,9 @@ const themeInitializerScript = `
   `;
 
 class MyDocument extends Document {
-  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+  static async getInitialProps(
+    ctx: DocumentContext,
+  ): Promise<DocumentInitialProps> {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -39,11 +36,11 @@ class MyDocument extends Document {
     } finally {
       sheet.seal();
     }
-  };
+  }
 
   render() {
     return (
-      <Html lang='en'>
+      <Html lang="en">
         <Head>
           <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
@@ -52,12 +49,14 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
         </Head>
-        <body className={'scroll'}>
-        <script dangerouslySetInnerHTML={{ __html: themeInitializerScript }} />
-        <Main />
-        <div id="modal" />
-        <div id="toast" />
-        <NextScript />
+        <body>
+          <script
+            dangerouslySetInnerHTML={{ __html: themeInitializerScript }}
+          />
+          <Main />
+          <div id="modal" />
+          <div id="toast" />
+          <NextScript />
         </body>
       </Html>
     );

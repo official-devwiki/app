@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const RandomQuizLayout = styled.div`
   width: 100%;
@@ -25,6 +25,14 @@ export const AnswerBox = styled.div`
   align-items: center;
   justify-content: flex-end;
   margin-top: 1em;
+
+  .prefix_word {
+    margin-right: 0.3em;
+  }
+
+  .suffix_word {
+    margin-left: 0.3em;
+  }
 `;
 
 export const FlexBox = styled.div`

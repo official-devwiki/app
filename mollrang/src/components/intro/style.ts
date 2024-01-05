@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const IntroContainer = styled.div`
   width: 100%;
@@ -30,10 +30,10 @@ export const IntroTextIconWrapper2 = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
-  transform: rotate(10deg);
+  transform: rotate(8deg);
   gap: 0;
 `;
 
 export const IntroTextIcon2 = styled.div`
-  transform: rotate(40deg);
+  transform: rotate(20deg);
 `;

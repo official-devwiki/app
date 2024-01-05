@@ -1,15 +1,15 @@
-import React, {ReactElement} from "react";
-import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
-import {EmptyBlock} from "@components/ui/block/EmptyBlock";
+import React, { ReactElement } from "react";
+import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
+import { EmptyBlock } from "@components/ui/block/EmptyBlock";
 import * as S from "./style";
-import {Typography} from "@components/common/Typography";
-import {EmoticonIcon} from "@components/common/icons/EmoticonIcon";
-import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
+import { Typography } from "@components/common/Typography";
+import { EmoticonIcon } from "@components/common/icons/EmoticonIcon";
+import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
 
 export const TodayRandomQuiz = (): ReactElement => {
-  const {data, isLoading} = useTodayQuizzesQuery();
+  const { data, isLoading } = useTodayQuizzesQuery();
 
-  const emptyBlockElementGenerator = (): ReactElement[] => {
+  const EmptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
     if (data) {
       for (let i = 0; i < data.answerLength; i++) {
@@ -52,11 +52,21 @@ export const TodayRandomQuiz = (): ReactElement => {
             <SkeletonUi theme={{ height: 20, width: 80, borderRadius: 4 }} />
           ) : (
             <>
-              <Typography $color={"textDefault"} data-testid={"shorts-answer"}>
+              <Typography
+                className={"prefix_word"}
+                as={"span"}
+                $color={"textDefault"}
+                data-testid={"shorts-answer"}
+              >
                 {data && data.prefix}
               </Typography>
-              {emptyBlockElementGenerator()}
-              <Typography $color={"textDefault"} data-testid={"shorts-answer"}>
+              <EmptyBlockElementGenerator />
+              <Typography
+                className={"suffix_word"}
+                as={"span"}
+                $color={"textDefault"}
+                data-testid={"shorts-answer"}
+              >
                 {data && data.suffix}
               </Typography>
             </>
@@ -65,4 +75,4 @@ export const TodayRandomQuiz = (): ReactElement => {
       </S.RandomQuizContainer>
     </S.RandomQuizLayout>
   );
-}
+};
