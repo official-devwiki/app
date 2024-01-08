@@ -21,4 +21,5 @@ export interface Chance {
   answer: boolean;
   userId: string;
   hint: Block[];
+  todayAnswer: string;
 }

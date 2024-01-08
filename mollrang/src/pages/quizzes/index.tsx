@@ -3,43 +3,51 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { ReactElement } from "react";
+import {ReactElement} from "react";
 import {
   QuizFormContainer,
   QuizFormState,
 } from "@containers/quizzes/QuizFormContainer";
-import { dehydrate } from "@tanstack/react-query";
+import {dehydrate} from "@tanstack/react-query";
 import withGetServerSideProps from "@utils/withGetServerSideProps";
-import { queryClient } from "@libs/Tanstack";
+import {queryClient} from "@libs/Tanstack";
 import Cookies from "cookies";
 import axios from "axios";
-import { responseDataConvert } from "@utils/convert";
+import {responseDataConvert} from "@utils/convert";
 
 const QuizPage: NextPage<InferGetServerSidePropsType<GetServerSideProps>> = ({
-  quizHistory,
-}): ReactElement => {
-  return <QuizFormContainer quizHistory={quizHistory} />;
+                                                                               quizHistory,
+                                                                             }): ReactElement => {
+  return <QuizFormContainer quizHistory={quizHistory}/>;
 };
 
 export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
   async (ctx) => {
     try {
-      const { req, res } = ctx;
+      const {req, res} = ctx;
       const cookies = new Cookies(req, res);
       const userId = cookies.get("user");
-      const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
-      const { data } = await axios.get(url);
       let quizHistory = [];
-      if (!data.success) {
-        quizHistory = [
-          {
-            userId,
-            count: 0,
-            hint: [],
-          },
-        ];
-      } else {
-        quizHistory = responseDataConvert<QuizFormState[]>(data);
+
+      if (userId) {
+        const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
+        const {data} = await axios.get(url);
+        const initialState = [{
+          userId,
+          count: 0,
+          hint: [],
+          isCorrected: false,
+        }];
+
+        if (data.success) {
+          if (data.result.data && data.result.data.length === 0) {
+            quizHistory = initialState;
+          } else {
+            quizHistory = responseDataConvert<QuizFormState[]>(data);
+          }
+        } else {
+          quizHistory = initialState;
+        }
       }
       return {
         props: {

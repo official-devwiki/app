@@ -1,34 +1,34 @@
 import React, {
   ReactElement,
-  useCallback,
   useEffect,
   useRef,
   useState,
 } from "react";
-import { Typography } from "@components/common/Typography";
-import { QuizIcon } from "@components/common/icons/QuizIcon";
+import {Typography} from "@components/common/Typography";
+import {QuizIcon} from "@components/common/icons/QuizIcon";
 import * as S from "./style";
-import { EmptyBlock } from "@components/ui/block/EmptyBlock";
-import { SkeletonUi } from "@components/ui/skeleton/SkeletonUi";
-import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
-import { Button } from "@components/common/Button";
+import {EmptyBlock} from "@components/ui/block/EmptyBlock";
+import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
+import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
+import {Button} from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
-import { Input } from "@components/common/input/Input";
-import { CheckCircleIcon } from "@components/common/icons/CheckCircleIcon";
-import { HintBlock } from "@components/ui/block/HintBlock";
-import { useRouter } from "next/router";
-import { Block, Chance } from "@interfaces/quizzes";
-import { useQuizAnswerSubmitMutate } from "@services/mutations/quizzesMutation";
-import { useAppDispatch } from "@hooks/useRedux";
-import { State, setModalOpen } from "@store/slice/modalSlice";
-import { QuizFormState } from "@containers/quizzes/QuizFormContainer";
+import {Input} from "@components/common/input/Input";
+import {CheckCircleIcon} from "@components/common/icons/CheckCircleIcon";
+import {HintBlock} from "@components/ui/block/HintBlock";
+import {useRouter} from "next/router";
+import {Block, Chance} from "@interfaces/quizzes";
+import {useQuizAnswerSubmitMutate} from "@services/mutations/quizzesMutation";
+import {useAppDispatch} from "@hooks/useRedux";
+import {State, setModalOpen} from "@store/slice/modalSlice";
+import {QuizFormState} from "@containers/quizzes/QuizFormContainer";
+import {MODAL_TYPE, Store} from "@interfaces/store";
 
 const initialStepState: Chance[] = [
-  { step: 1, answer: false, hint: [], userId: "" },
-  { step: 2, answer: false, hint: [], userId: "" },
-  { step: 3, answer: false, hint: [], userId: "" },
-  { step: 4, answer: false, hint: [], userId: "" },
-  { step: 5, answer: false, hint: [], userId: "" },
+  {step: 1, answer: false, hint: [], userId: "", todayAnswer: ''},
+  {step: 2, answer: false, hint: [], userId: "", todayAnswer: ''},
+  {step: 3, answer: false, hint: [], userId: "", todayAnswer: ''},
+  {step: 4, answer: false, hint: [], userId: "", todayAnswer: ''},
+  {step: 5, answer: false, hint: [], userId: "", todayAnswer: ''},
 ];
 
 interface Props {
@@ -36,32 +36,43 @@ interface Props {
 }
 
 export const QuizForm = (props: Props): ReactElement => {
-  const { quizFormState } = props; // 퀴즈 히스토리 체크
+  const {quizFormState} = props; // 퀴즈 히스토리 체크
   const [currentStep, setCurrentStep] = useState(initQuizStep()); // 처음에 히스토리 길이 만큼 늘린다.
   const [checkBox, setCheckBox] = useState<Chance[]>(initQuizFormState());
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
   const [messageStyling, setMessageStyling] = useState("default");
-  const [todayCompleted, setTodayCompleted] = useState(false);
+  const [todayCompleted, setTodayCompleted] = useState(
+    initQuizCompletedState(),
+  );
 
   const dispatch = useAppDispatch();
   const inputRef = useRef<HTMLInputElement>(null);
   const router = useRouter();
 
-  const { data, isLoading } = useTodayQuizzesQuery();
+  const {data, isLoading} = useTodayQuizzesQuery();
   const answerSubmitMutate = useQuizAnswerSubmitMutate();
 
   function initQuizStep(): number {
     return quizFormState[quizFormState.length - 1].count; // 최종 제출의 순서 (0은 처음 시작)
   }
 
+  function initQuizCompletedState(): boolean {
+    let result = false;
+    quizFormState.forEach((value) => {
+      const {isCorrected} = value;
+      result = isCorrected || quizFormState.length >= 5;
+    });
+    return result;
+  }
+
   function initQuizFormState() {
     quizFormState.forEach((value, index) => {
-      const { hint = [], count, userId } = value;
+      const {hint = [], count, userId} = value;
       if (initialStepState[index].step === count && count < 5) {
         initialStepState[index].userId = userId;
         initialStepState[index].hint = hint;
-        initialStepState[index].answer = hint.length > 0;
+        initialStepState[index].answer = hint?.length > 0 || true;
       } else if (initialStepState[index].step === count && count === 5) {
         initialStepState[index].hint = [];
         initialStepState[index].userId = userId;
@@ -75,7 +86,7 @@ export const QuizForm = (props: Props): ReactElement => {
     const block = [];
     if (data) {
       for (let i = 0; i < data.answerLength; i++) {
-        block.push(<EmptyBlock key={`empty-box-${i}`} />);
+        block.push(<EmptyBlock key={`empty-box-${i}`}/>);
       }
     }
     return block;
@@ -115,50 +126,59 @@ export const QuizForm = (props: Props): ReactElement => {
 
   useEffect(() => {
     if (answerSubmitMutate.isSuccess) {
-      if (!answerSubmitMutate.data.result && answerSubmitMutate.data.hint) {
-        checkBoxUpdate(answerSubmitMutate.data.hint);
+      // 최종 답안이 존재할 경우 퀴즈 종료로 간주한다.
+      if (answerSubmitMutate.data.todayAnswer && answerSubmitMutate.data.todayAnswer.length > 0) {
+        setAnswer("");
+        toast.message("정답입니다~!", "success");
+        completedSystemMessage();
+        checkBoxUpdate([]);
+        completedModalOpen();
+      } else if (answerSubmitMutate.data.isCorrected) { // 정답 여부 체크 후 정답일 경우 퀴즈 종료로 간주
+        setAnswer("");
+        toast.message("정답입니다~!", "success");
+        completedSystemMessage();
+        checkBoxUpdate([]);
+        completedModalOpen();
       } else {
-        toast.message("정답~!", "success");
-        setTodayCompleted(true);
-        setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
-        setMessageStyling("default");
-
-        const findIndex = initialStepState.findIndex(
-          (v) => v.step === currentStep,
-        );
-        const newCheckBox = [...checkBox];
-        newCheckBox[findIndex].answer = true;
-        newCheckBox[findIndex].hint = [];
-        setCheckBox(newCheckBox);
-
-        const modalState: State = {
-          type: "quiz-completed",
-          modalType: "",
-          isOpen: true,
-        };
-        dispatch(setModalOpen(modalState));
+        checkBoxUpdate(answerSubmitMutate.data.hint);
       }
-
       setAnswer("");
       setCurrentStep(currentStep + 1);
     }
   }, [answerSubmitMutate.isSuccess]);
 
-  const checkBoxUpdate = useCallback(
-    (hintData: Block[]): void => {
-      const step = currentStep === 0 ? 1 : currentStep;
-      const findIndex = checkBox.findIndex((v) => v.step === step);
-      const newCheckBox = [...checkBox];
-      newCheckBox[findIndex].answer = true;
-      newCheckBox[findIndex].hint = hintData;
-      setCheckBox(newCheckBox);
-    },
-    [currentStep],
-  );
+  const checkBoxUpdate = (hintData: Block[]): void => {
+    const step = currentStep === 0 ? 1 : currentStep + 1;
+    const findIndex = checkBox.findIndex((v) => v.step === step);
+    const newCheckBox = [...checkBox];
+    newCheckBox[findIndex].answer = true;
+    newCheckBox[findIndex].hint = hintData;
+    setCheckBox(newCheckBox);
+  };
 
-  useEffect(() => {
-    resultMessage();
-  }, [checkBox]);
+  /**@description 완료 모달 열기*/
+  const completedModalOpen = () => {
+    const modalState: State = {
+      type: "quiz-completed",
+      modalType: MODAL_TYPE.FADE,
+      isOpen: true,
+    };
+    dispatch(setModalOpen(modalState));
+  };
+  /**@description 완료 메세지 출력*/
+  const completedSystemMessage = () => {
+    setTodayCompleted(true);
+    setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
+    setMessageStyling("default");
+  };
+  /**@description 체크 박스 상태 업데이트*/
+  const checkBoxStateUpdate = () => {
+    const findIndex = initialStepState.findIndex((v) => v.step === currentStep);
+    const newCheckBox = [...checkBox];
+    newCheckBox[findIndex].answer = true;
+    newCheckBox[findIndex].hint = [];
+    setCheckBox(newCheckBox);
+  };
 
   /**
    * @param v
@@ -171,7 +191,7 @@ export const QuizForm = (props: Props): ReactElement => {
         if (!!v[i]) {
           const styling = v[i] === "O" ? "success" : "wrong";
           hintBlock.push(
-            <HintBlock className={styling} key={`hint-box-${i}-${key}`} />,
+            <HintBlock className={styling} key={`hint-box-${i}-${key}`}/>,
           );
         }
       }
@@ -184,32 +204,26 @@ export const QuizForm = (props: Props): ReactElement => {
     return checkBox.map((v, index) => {
       return (
         <li key={index}>
-          <CheckCircleIcon className={v.answer && "active"} />
-          {v.hint.length >= 0 &&
-            v.hint.map((block, blockIndex) => {
-              return (
-                <S.FlexBox key={`key-${blockIndex}`}>
-                  {hintBlockGenerator(block, `key-${blockIndex}`)}
-                </S.FlexBox>
-              );
-            })}
+          <CheckCircleIcon className={v.answer && "active"}/>
+          {v.hint?.length >= 0 &&
+          v.hint.map((block, blockIndex) => {
+            return (
+              <S.FlexBox key={`key-${blockIndex}`}>
+                {hintBlockGenerator(block, `key-${blockIndex}`)}
+              </S.FlexBox>
+            );
+          })}
         </li>
       );
     });
   };
 
+  useEffect(() => {
+    resultMessage();
+  }, [checkBox]);
+
   const resultMessage = (): void => {
-    if (!todayCompleted) {
-      setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
-      setMessageStyling("default");
-      const modalState: State = {
-        type: "quiz-completed",
-        modalType: "",
-        isOpen: true,
-      };
-      dispatch(setModalOpen(modalState));
-    }
-    if (currentStep > 1 && todayCompleted) {
+    if (currentStep > 1 && !todayCompleted) {
       const currentStepIndex = checkBox.findIndex(
         (v) => v.step === currentStep - 1,
       );
@@ -219,7 +233,6 @@ export const QuizForm = (props: Props): ReactElement => {
       const hintExist = currentStepAnswer.filter(
         (value, index) => value[index + 1] === "O",
       );
-
       if (hintExist.length > 0) {
         setMessage("정답인 글자가 포함되어있어요!");
         setMessageStyling("default");
@@ -231,16 +244,16 @@ export const QuizForm = (props: Props): ReactElement => {
   };
 
   useEffect(() => {
-    quizEndCheck();
-  }, []);
-
-  const quizEndCheck = (): void => {
-    setTodayCompleted(currentStep >= 5);
-  };
+    if (todayCompleted) {
+      setMessage("퀴즈가 종료되었습니다. 내일 다시 도전 해주세요!");
+      setMessageStyling("default");
+      completedModalOpen();
+    }
+  }, [todayCompleted]);
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>): void => {
     if (data) {
-      const { answerLength } = data;
+      const {answerLength} = data;
       if (e.target.value.length > answerLength) {
         e.target.value = e.target.value.slice(0, answerLength);
       }
@@ -255,14 +268,14 @@ export const QuizForm = (props: Props): ReactElement => {
   return (
     <S.QuizFormLayout onSubmit={todayQuizAnswerSubmit}>
       <S.CheckBoxContainer>
-        <HintBlocks />
+        <HintBlocks/>
       </S.CheckBoxContainer>
 
       <S.QuizSolutionBox>
         <S.QuizFormTitle>
-          <QuizIcon />
+          <QuizIcon/>
           {isLoading ? (
-            <SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />
+            <SkeletonUi theme={{width: 300, height: 20, borderRadius: 4}}/>
           ) : (
             <>
               <Typography
@@ -279,6 +292,7 @@ export const QuizForm = (props: Props): ReactElement => {
           <S.QuizAnswerContainer>
             {data && data.prefix && (
               <Typography
+                className="prefix_word"
                 $variant={"body2"}
                 $color={"textPrimary"}
                 $weight={"bold"}
@@ -286,9 +300,10 @@ export const QuizForm = (props: Props): ReactElement => {
                 {data.prefix}
               </Typography>
             )}
-            <EmptyBlockElementGenerator />
+            <EmptyBlockElementGenerator/>
             {data && data.suffix && (
               <Typography
+                className={"suffix_word"}
                 $variant={"body2"}
                 $color={"textPrimary"}
                 $weight={"bold"}
@@ -302,7 +317,7 @@ export const QuizForm = (props: Props): ReactElement => {
 
       <S.InputContainer>
         {isLoading ? (
-          <SkeletonUi theme={{ width: 300, height: 20, borderRadius: 4 }} />
+          <SkeletonUi theme={{width: 300, height: 20, borderRadius: 4}}/>
         ) : (
           <Input
             ref={inputRef}
@@ -323,8 +338,8 @@ export const QuizForm = (props: Props): ReactElement => {
             messageStyling === "default"
               ? "textPrimary"
               : messageStyling === "hint"
-              ? "textYellow"
-              : "textRed000"
+                ? "textYellow"
+                : "textRed000"
           }
         >
           {message}

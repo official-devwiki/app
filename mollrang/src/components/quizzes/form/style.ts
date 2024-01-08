@@ -55,6 +55,13 @@ export const QuizAnswerContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-end;
+
+  .prefix_word {
+    margin-right: 0.4em;
+  }
+  .suffix_word {
+    margin-left: 0.4em;
+  }
 `;
 export const InputContainer = styled.div`
   margin: 3em auto;
