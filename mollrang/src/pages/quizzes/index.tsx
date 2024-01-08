@@ -14,6 +14,7 @@ import {queryClient} from "@libs/Tanstack";
 import Cookies from "cookies";
 import axios from "axios";
 import {responseDataConvert} from "@utils/convert";
+import {v4 as uuid} from "uuid";
 
 const QuizPage: NextPage<InferGetServerSidePropsType<GetServerSideProps>> = ({
                                                                                quizHistory,
@@ -29,25 +30,31 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
       const userId = cookies.get("user");
       let quizHistory = [];
 
+      const initialState = {
+        userId,
+        count: 0,
+        hint: [],
+        isCorrected: false,
+      };
+
       if (userId) {
         const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
         const {data} = await axios.get(url);
-        const initialState = [{
-          userId,
-          count: 0,
-          hint: [],
-          isCorrected: false,
-        }];
-
         if (data.success) {
           if (data.result.data && data.result.data.length === 0) {
-            quizHistory = initialState;
+            quizHistory = [initialState];
           } else {
             quizHistory = responseDataConvert<QuizFormState[]>(data);
           }
         } else {
-          quizHistory = initialState;
+          initialState.userId = userId;
+          quizHistory = [initialState];
         }
+      } else {
+        const userId = uuid();
+        cookies.set('user', userId);
+        initialState.userId = userId;
+        quizHistory = [initialState];
       }
       return {
         props: {

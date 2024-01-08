@@ -18,7 +18,7 @@ export type QuizSubmitData = {
   unknown
 >
 */
-export const useQuizAnswerSubmitMutate = (): any => {
+export const useQuizAnswerSubmitMutate = () => {
   const {mutate, isSuccess, data} = useMutation({
     mutationKey: [QueryKeys.Quizzes.submitAnswer],
     mutationFn: (payload: QuizSubmitData) => quizSolutionSubmit(payload),

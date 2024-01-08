@@ -125,7 +125,8 @@ export const QuizForm = (props: Props): ReactElement => {
   };
 
   useEffect(() => {
-    if (answerSubmitMutate.isSuccess) {
+
+    if (answerSubmitMutate.isSuccess && answerSubmitMutate.data) {
       // 최종 답안이 존재할 경우 퀴즈 종료로 간주한다.
       if (answerSubmitMutate.data.todayAnswer && answerSubmitMutate.data.todayAnswer.length > 0) {
         setAnswer("");

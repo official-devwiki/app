@@ -1,4 +1,4 @@
-import {useState, useEffect, useMemo, useCallback} from 'react';
+import {useState, useEffect, useMemo, useCallback, useLayoutEffect} from 'react';
 
 type ThemeKey = 'light' | 'dark';
 
@@ -15,11 +15,21 @@ const useTheme = (): ReturnType => {
 
   const initTheme = useCallback(() => {
     // 브라우저 다크 모드 설정 여부 확인 후 변수 할당
-    const preferDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     // 로컬 스토리지에 값 확인 후 없다면 설정값 넣어주기
-    const initialTheme = (localStorage?.getItem('theme') || (preferDarkMode ? 'dark' : 'light')) as ThemeKey;
+    const initialTheme = localStorage?.getItem('theme') as ThemeKey;
     setTheme(initialTheme);
   }, []);
+
+  useEffect(() => {
+    const mode = localStorage.getItem('theme') as ThemeKey;
+    if (mode && ['dark', 'light'].includes(mode)) setTheme(mode);
+
+    if (window !== undefined) {
+      const preferDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+      if (preferDarkMode) setTheme('dark');
+    }
+  }, [])
 
   /*
     @description: 스토리지, 브라우저 설정에 따른 초기 테마 셋업
