@@ -3,7 +3,12 @@ import {ReactElement} from "react";
 import {Typography} from "@components/common/Typography";
 import styled from "styled-components";
 import {CheckSquareIcon} from "@components/common/icons/CheckSquareIcon";
-import {useGetMyDistributionQuery} from "@services/queries/statisticsQuery";
+import {
+  useContinuousCorrectQuery,
+  useGetMyAnswersQuery,
+  useGetMyDistributionQuery, useMostContinuousCountQuery,
+  useMyTotalChallengeQuery
+} from "@services/queries/statisticsQuery";
 import {TiChartPie} from "react-icons/ti";
 import {PieChartProps} from "@components/charts/PieChart";
 import {useAuth} from "../../providers/authProvider";
@@ -79,20 +84,15 @@ export interface ChallengeData {
   color: string;
 }
 
-export const mockPie: PieChartProps[] = [
-  {id: "1번째", label: "1번째", value: 1, color: "#222"},
-  {id: "2번째", label: "2번째", value: 3, color: "#222"},
-  {id: "3번째", label: "3번째", value: 11, color: "#222"},
-  {id: "4번째", label: "4번째", value: 12, color: "#222"},
-  {id: "5번째", label: "5번째", value: 7, color: "#222"},
-];
-
 export const IntegratedStatistics = (): ReactElement => {
   const {userId} = useAuth();
   const distributionData = useGetMyDistributionQuery(userId);
+  const myAnswerRatioData = useGetMyAnswersQuery(userId);
+  const totalChallengeData = useMyTotalChallengeQuery(userId);
+  const continuousCorrectData = useContinuousCorrectQuery(userId);
+  const mostCorrectData = useMostContinuousCountQuery(userId);
 
-  if (distributionData.isLoading) return <SpinnerUi/>;
-
+  if (mostCorrectData.isLoading && continuousCorrectData.isLoading && totalChallengeData.isLoading && distributionData.isLoading && myAnswerRatioData.isLoading) return <SpinnerUi/>;
   return (
     <IntegratedStatisticsLayout>
       <FlexBox>
@@ -108,7 +108,7 @@ export const IntegratedStatistics = (): ReactElement => {
             <StatisticsItems>
               <Typography
                 $color={"textDefault"}
-                $variant={"body1"}
+                $variant={"body2"}
                 $weight={"medium"}
               >
                 참여횟수
@@ -118,30 +118,30 @@ export const IntegratedStatistics = (): ReactElement => {
                 $variant={"body2"}
                 $weight={"medium"}
               >
-                1 회
+                {totalChallengeData.data && totalChallengeData.data.total} 회
               </Typography>
             </StatisticsItems>
             <StatisticsItems>
               <Typography
                 $color={"textDefault"}
-                $variant={"body1"}
+                $variant={"body2"}
                 $weight={"medium"}
               >
-                최근 연속 정답
+                최다 연속 정답
               </Typography>
               <Typography
                 $color={"textPrimary"}
                 $variant={"body2"}
                 $weight={"medium"}
               >
-                1 번
+                {mostCorrectData.data && mostCorrectData.data.most} 번
               </Typography>
             </StatisticsItems>
 
             <StatisticsItems>
               <Typography
                 $color={"textDefault"}
-                $variant={"body1"}
+                $variant={"body2"}
                 $weight={"medium"}
               >
                 최근 연속 정답
@@ -151,7 +151,7 @@ export const IntegratedStatistics = (): ReactElement => {
                 $variant={"body2"}
                 $weight={"medium"}
               >
-                1 번
+                {continuousCorrectData.data && continuousCorrectData.data.continuous} 번
               </Typography>
             </StatisticsItems>
           </StatisticsSection1>
@@ -168,7 +168,7 @@ export const IntegratedStatistics = (): ReactElement => {
               $variant={"body2"}
               $weight={"medium"}
             >
-              12 %
+              {myAnswerRatioData.data.corrected}
             </Typography>
           </StatisticsSection2>
         </StatisticsItemLists>

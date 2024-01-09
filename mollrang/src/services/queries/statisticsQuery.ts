@@ -35,10 +35,7 @@ export const useGetMyAnswersQuery = (
  */
 export const useContinuousCorrectQuery = (
   userId: string,
-): {
-  isLoading: boolean;
-  data: { continuous: number };
-} => {
+) => {
   const {data, isLoading} = useQuery(
     [QueryKeys.Statistics.getContinuousCorrectCount],
     () => getContinuousCorrectCount(userId),
@@ -81,13 +78,10 @@ export const useGetMyDistributionQuery = (
 /**
  * @description 전체 도전 횟수 구하기
  */
-export const useMyTotalChallengeQuery = <T>(): {
-  isLoading: boolean;
-  data: T;
-} => {
+export const useMyTotalChallengeQuery = (userId: string) => {
   const {data, isLoading} = useQuery(
     [QueryKeys.Statistics.getChallengeCount],
-    () => getChallengeCount<T>(""),
+    () => getChallengeCount(userId),
     {
       refetchOnMount: true,
       refetchOnReconnect: true,
@@ -103,13 +97,10 @@ export const useMyTotalChallengeQuery = <T>(): {
 /**
  * @description 최다 연속 정답 횟수 구하기
  */
-export const useMostContinuousCountQuery = <T>(): {
-  isLoading: boolean;
-  data: T;
-} => {
+export const useMostContinuousCountQuery = (userId: string) => {
   const {data, isLoading} = useQuery(
     [QueryKeys.Statistics.getMostContinuousCorrectCount],
-    () => getMostContinuousCorrectCount<T>(""),
+    () => getMostContinuousCorrectCount(userId),
     {
       refetchOnMount: true,
       refetchOnReconnect: true,
