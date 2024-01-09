@@ -1,11 +1,13 @@
 import dynamic from "next/dynamic";
-import { ReactElement } from "react";
-import { Typography } from "@components/common/Typography";
+import {ReactElement} from "react";
+import {Typography} from "@components/common/Typography";
 import styled from "styled-components";
-import { CheckSquareIcon } from "@components/common/icons/CheckSquareIcon";
-import { useGetMyDistributionQuery } from "@services/queries/statisticsQuery";
-import { TiChartPie } from "react-icons/ti";
-import { PieChartProps } from "@components/charts/PieChart";
+import {CheckSquareIcon} from "@components/common/icons/CheckSquareIcon";
+import {useGetMyDistributionQuery} from "@services/queries/statisticsQuery";
+import {TiChartPie} from "react-icons/ti";
+import {PieChartProps} from "@components/charts/PieChart";
+import {useAuth} from "../../providers/authProvider";
+import {SpinnerUi} from "@components/ui/spinner/SpinnerUi";
 
 const PieChart = dynamic(() => import("@components/charts/PieChart"), {
   ssr: false,
@@ -17,7 +19,7 @@ const IntegratedStatisticsLayout = styled.div`
   height: 550px;
   overflow-y: auto;
 
-  ${({ theme }) => theme.scroll.theme()}
+  ${({theme}) => theme.scroll.theme()}
 `;
 
 const StatisticsItemContainer = styled.div`
@@ -78,27 +80,28 @@ export interface ChallengeData {
 }
 
 export const mockPie: PieChartProps[] = [
-  { id: "1번째", label: "1번째", value: 1, color: "#222" },
-  { id: "2번째", label: "2번째", value: 3, color: "#222" },
-  { id: "3번째", label: "3번째", value: 11, color: "#222" },
-  { id: "4번째", label: "4번째", value: 12, color: "#222" },
-  { id: "5번째", label: "5번째", value: 7, color: "#222" },
+  {id: "1번째", label: "1번째", value: 1, color: "#222"},
+  {id: "2번째", label: "2번째", value: 3, color: "#222"},
+  {id: "3번째", label: "3번째", value: 11, color: "#222"},
+  {id: "4번째", label: "4번째", value: 12, color: "#222"},
+  {id: "5번째", label: "5번째", value: 7, color: "#222"},
 ];
 
 export const IntegratedStatistics = (): ReactElement => {
-  // const { isLoading, data } = useGetMyDistributionQuery(
-  //   "a7a50b1f-778e-4c9f-98bb-ea64cd5122e6",
-  // );
+  const {userId} = useAuth();
+  const distributionData = useGetMyDistributionQuery(userId);
+
+  if (distributionData.isLoading) return <SpinnerUi/>;
 
   return (
     <IntegratedStatisticsLayout>
       <FlexBox>
-        <CheckSquareIcon className={"mr-10"} />
+        <CheckSquareIcon className={"mr-10"}/>
         <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
           나의 정답률
         </Typography>
       </FlexBox>
-      <hr />
+      <hr/>
       <StatisticsItemContainer>
         <StatisticsItemLists>
           <StatisticsSection1>
@@ -171,13 +174,13 @@ export const IntegratedStatistics = (): ReactElement => {
         </StatisticsItemLists>
       </StatisticsItemContainer>
       <FlexBox>
-        <TiChartPie color={"var(--primary)"} size={28} className={"mr-10"} />
+        <TiChartPie color={"var(--primary)"} size={28} className={"mr-10"}/>
         <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
           도전 분포
         </Typography>
       </FlexBox>
-      <hr />
-      <PieChart data={mockPie} />
+      <hr/>
+      <PieChart data={distributionData.data}/>
     </IntegratedStatisticsLayout>
   );
 };
