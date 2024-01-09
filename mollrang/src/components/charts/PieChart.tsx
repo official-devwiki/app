@@ -1,6 +1,7 @@
-import React, { ReactElement } from "react";
-import { ResponsivePie } from "@nivo/pie";
+import React, {ReactElement} from "react";
+import {ResponsivePie} from "@nivo/pie";
 import styled from "styled-components";
+import useTheme from "@hooks/useTheme";
 
 export interface PieChartProps {
   id: string;
@@ -19,30 +20,33 @@ type DataType = { data: PieChartProps[] };
 
 const PieChart = React.forwardRef(
   (
-    { data }: DataType,
+    {data}: DataType,
     ref: React.ForwardedRef<HTMLDivElement>,
   ): ReactElement => {
+    const {isDarkMode} = useTheme();
+    const color = isDarkMode ? '#fff' : '#222';
+
     return (
       <ChartWrapper ref={ref}>
         <ResponsivePie
           data={data}
           animate={false}
           isInteractive={true}
-          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
+          margin={{top: 40, right: 80, bottom: 80, left: 80}}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}
           activeOuterRadiusOffset={8}
-          colors={{ scheme: "green_blue" }}
+          colors={{scheme: "green_blue"}}
           borderWidth={1}
           borderColor={{
             from: "color",
             modifiers: [["darker", 1]],
           }}
           arcLinkLabelsSkipAngle={10}
-          arcLinkLabelsTextColor="#333333"
+          arcLinkLabelsTextColor={color}
           arcLinkLabelsThickness={2}
-          arcLinkLabelsColor={{ from: "color" }}
+          arcLinkLabelsColor={{from: "color"}}
           arcLabelsSkipAngle={10}
           arcLabelsTextColor={{
             from: "color",
@@ -58,7 +62,7 @@ const PieChart = React.forwardRef(
               itemsSpacing: 8,
               itemWidth: 50,
               itemHeight: 18,
-              itemTextColor: "#222",
+              itemTextColor: 'var(--textDefault)',
               itemDirection: "left-to-right",
               itemOpacity: 1,
               symbolSize: 15,
@@ -73,7 +77,7 @@ const PieChart = React.forwardRef(
               ],
             },
           ]}
-        />
+          activeId={'pie-chart'}/>
       </ChartWrapper>
     );
   },
