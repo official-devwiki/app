@@ -3,34 +3,35 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import {ReactElement} from "react";
+import { ReactElement } from "react";
 import {
   QuizFormContainer,
   QuizFormState,
 } from "@containers/quizzes/QuizFormContainer";
-import {dehydrate} from "@tanstack/react-query";
+import { dehydrate } from "@tanstack/react-query";
 import withGetServerSideProps from "@utils/withGetServerSideProps";
-import {queryClient} from "@libs/Tanstack";
+import { queryClient } from "@libs/Tanstack";
 import Cookies from "cookies";
 import axios from "axios";
-import {responseDataConvert} from "@utils/convert";
-import {v4 as uuid} from "uuid";
+import { responseDataConvert } from "@utils/convert";
+import { v4 as uuid } from "uuid";
+import { registUserIdApi } from "@services/apis/users";
 
 const QuizPage: NextPage<InferGetServerSidePropsType<GetServerSideProps>> = ({
-                                                                               quizHistory,
-                                                                             }): ReactElement => {
-  return <QuizFormContainer quizHistory={quizHistory}/>;
+  quizHistory,
+}): ReactElement => {
+  return <QuizFormContainer quizHistory={quizHistory} />;
 };
 
 export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
   async (ctx) => {
     try {
-      const {req, res} = ctx;
+      const { req, res } = ctx;
       const cookies = new Cookies(req, res);
       const userId = cookies.get("user");
       let quizHistory = [];
 
-      const initialState = {
+      const initialState: QuizFormState = {
         userId,
         count: 0,
         hint: [],
@@ -39,7 +40,7 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
 
       if (userId) {
         const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
-        const {data} = await axios.get(url);
+        const { data } = await axios.get(url);
         if (data.success) {
           if (data.result.data && data.result.data.length === 0) {
             quizHistory = [initialState];
@@ -52,7 +53,8 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
         }
       } else {
         const userId = uuid();
-        cookies.set('user', userId);
+        const result = await registUserIdApi(userId);
+        if (result) cookies.set("user", userId);
         initialState.userId = userId;
         quizHistory = [initialState];
       }
