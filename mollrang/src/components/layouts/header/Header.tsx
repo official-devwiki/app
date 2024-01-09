@@ -6,13 +6,14 @@ import { BulbIcon } from "@components/common/icons/BulbIcon";
 import Link from "next/link";
 import { State, setModalOpen } from "@store/slice/modalSlice";
 import { useAppDispatch } from "@hooks/useRedux";
-import { FiAlignJustify } from 'react-icons/fi';
+import { FiAlignJustify } from "react-icons/fi";
+
 export const Header = (): ReactElement => {
   const { toggleTheme, isDarkMode } = useTheme();
   const dispatch = useAppDispatch();
 
   const openModal = (): void => {
-    const modalState: State = { 
+    const modalState: State = {
       type: "side-menu",
       modalType: "side-menu",
       isOpen: true,
@@ -39,7 +40,7 @@ export const Header = (): ReactElement => {
             onClick={openModal}
             aria-label="hamburger-button"
           >
-            <FiAlignJustify size={24} color={'var(--hamburger_icon)'} />
+            <FiAlignJustify size={24} color={"var(--hamburger_icon)"} />
           </HamburgerButton>
         </FlexBox>
       </HeaderBox>

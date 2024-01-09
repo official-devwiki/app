@@ -13,6 +13,7 @@ export const getUserAttendance = async (
   try {
     const url = `/${users}/attendance/${userId}`;
     const { data } = await axiosInstance.get<ResponseData<Attendance[]>>(url);
+    console.log(data);
     return responseDataConvert<Attendance[]>(data);
   } catch (e) {
     throw e;

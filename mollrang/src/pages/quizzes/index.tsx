@@ -38,26 +38,27 @@ export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
         isCorrected: false,
       };
 
-      if (userId) {
-        const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
-        const { data } = await axios.get(url);
-        if (data.success) {
-          if (data.result.data && data.result.data.length === 0) {
-            quizHistory = [initialState];
-          } else {
-            quizHistory = responseDataConvert<QuizFormState[]>(data);
-          }
-        } else {
-          initialState.userId = userId;
-          quizHistory = [initialState];
-        }
-      } else {
+      if (!userId) {
         const userId = uuid();
         const result = await registUserIdApi(userId);
         if (result) cookies.set("user", userId);
         initialState.userId = userId;
         quizHistory = [initialState];
       }
+
+      const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
+      const { data } = await axios.get(url);
+      if (data.success) {
+        if (data.result.data && data.result.data.length === 0) {
+          quizHistory = [initialState];
+        } else {
+          quizHistory = responseDataConvert<QuizFormState[]>(data);
+        }
+      } else {
+        initialState.userId = userId;
+        quizHistory = [initialState];
+      }
+
       return {
         props: {
           dehydratedState: dehydrate(queryClient),

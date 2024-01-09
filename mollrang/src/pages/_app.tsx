@@ -23,8 +23,14 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   const [queryState] = useState(() => queryClient);
   const { store, props } = wrapper.useWrappedStore(pageProps);
 
+  useEffect(() => {
+    const user = window.localStorage.getItem("user");
+    if (pageProps.userId !== user)
+      window.localStorage.setItem("user", pageProps.userId);
+  }, []);
+
   const value = {
-    userId: pageProps.userId,
+    userId: pageProps.userId || window.localStorage.getItem("user"),
   };
 
   return (
@@ -54,22 +60,27 @@ App.getInitialProps = async ({
 }: AppContext): Promise<AppInitialProps> => {
   let pageProps = {} as any;
   const { req, res } = ctx;
+  let userId = "";
+  const id = uuid();
+
   // req 존재 -> ssr
-  let userId = uuid();
   if (req) {
     const cookies = new Cookies(req, res);
     const user = cookies.get("user");
 
     if (!user) {
-      const result = await registUserIdApi(userId);
+      const result = await registUserIdApi(id);
       if (result) {
-        cookies.set("user", userId, {
+        cookies.set("user", id, {
           httpOnly: true,
         });
+        userId = id;
       }
     } else {
       userId = user;
     }
+  } else {
+    userId = window.localStorage.getItem("user");
   }
 
   if (Component.getInitialProps) {
