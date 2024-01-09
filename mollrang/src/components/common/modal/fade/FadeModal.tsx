@@ -5,7 +5,8 @@ import * as S from '@components/common/modal/style';
 import * as F from '@components/common/modal/fade/style';
 import {ModalProps} from "@components/common/modal/ModalHandler";
 import useModalHook from "@hooks/useModalHook";
-import { IoClose } from "react-icons/io5";
+import {IoClose} from "react-icons/io5";
+import useTheme from "@hooks/useTheme";
 
 export const FadeModal = (props: ModalProps): ReactElement => {
   const {isOpen, children, ele} = props;
@@ -17,15 +18,15 @@ export const FadeModal = (props: ModalProps): ReactElement => {
         <S.ModalLayout
           key={"fade-modal-key"}
           onClick={outerClickEvent}
-          exit={{ opacity: 0 }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
+          exit={{opacity: 0}}
+          initial={{opacity: 0}}
+          animate={{opacity: 1}}
         >
           <F.ModalContainer>
             <F.ModalBody ref={ele}>
               <S.ModalCloseButtonWrapper>
                 <Button variant={'icon'} onClick={onRequestClose}>
-                  <IoClose color={'#222'} size={24} />
+                  <IoClose color={'var(--icon_default)'} size={24}/>
                 </Button>
               </S.ModalCloseButtonWrapper>
               <S.ModalContentsBox ref={ele}>

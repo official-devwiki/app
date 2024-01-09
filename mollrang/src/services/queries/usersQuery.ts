@@ -1,12 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
-import { QueryKeys } from "@services/keys/queryKeys";
-import { getUserAttendance } from "@services/apis/users";
-import { Attendance } from "@components/attendance/AttendanceCheck";
+import {useQuery} from "@tanstack/react-query";
+import {QueryKeys} from "@services/keys/queryKeys";
+import {getUserAttendance} from "@services/apis/users";
+import {Attendance} from "@components/attendance/AttendanceCheck";
 
 export const useUserAttendanceQuery = (
   userId: string,
-): { isLoading: boolean; data: Attendance[] } => {
-  const { data, isLoading } = useQuery(
+) => {
+  const {data, isLoading} = useQuery(
     [QueryKeys.Users.getAttendance],
     () => getUserAttendance(userId),
     {
@@ -15,5 +15,5 @@ export const useUserAttendanceQuery = (
       refetchOnWindowFocus: true,
     },
   );
-  return { isLoading, data };
+  return {isLoading, data};
 };

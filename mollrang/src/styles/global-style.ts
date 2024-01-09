@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import {createGlobalStyle} from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     width: 100%;
     height: calc(100% - 66px);
-    ${({ theme }) => theme.scroll.theme()}
+    ${({theme}) => theme.scroll.theme()}
   }
 
   body {
@@ -175,6 +175,8 @@ export const GlobalStyle = createGlobalStyle`
     --bg_input: #FDFDFD;
     --bg_line: #f1f1f1;
     --bg_floating_button: #FFC700;
+
+    --icon_default: #222;
   }
 
   body[data-theme="dark"] {
@@ -230,5 +232,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg_input: #FDFDFD;
     --bg_line: #575757;
     --bg_floating_button: #5f5f5f;
+
+    --icon_default: #ededed;
   }
 `;

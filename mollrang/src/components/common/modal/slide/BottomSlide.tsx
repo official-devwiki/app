@@ -5,7 +5,8 @@ import * as S from '@components/common/modal/style';
 import * as F from '@components/common/modal/slide/style';
 import {ModalProps} from "@components/common/modal/ModalHandler";
 import useModalHook from "@hooks/useModalHook";
-import { IoClose } from "react-icons/io5";
+import {IoClose} from "react-icons/io5";
+
 export const BottomSlideModal = (props: ModalProps): ReactElement => {
   const {isOpen, children, ele} = props;
   const {onRequestClose, outerClickEvent} = useModalHook(ele);
@@ -39,7 +40,7 @@ export const BottomSlideModal = (props: ModalProps): ReactElement => {
             <F.ModalBody ref={ele}>
               <S.ModalCloseButtonWrapper>
                 <Button variant={'icon'} onClick={onRequestClose}>
-                  <IoClose color={'#222'} size={24} />
+                  <IoClose color={'var(--icon_default)'} size={24}/>
                 </Button>
               </S.ModalCloseButtonWrapper>
               <S.ModalContentsBox>

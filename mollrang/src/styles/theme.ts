@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import {DefaultTheme} from "styled-components";
 
 export type ColorBlack = {
   c100: string;
@@ -12,15 +12,6 @@ export type ColorGray = {
   c300?: string;
   c400?: string;
   c500?: string;
-};
-
-export type ColorTheme = {
-  primary: string;
-  bg: string;
-  black: ColorBlack;
-  warning: string;
-  white: string;
-  gray: ColorGray;
 };
 
 const colors = {

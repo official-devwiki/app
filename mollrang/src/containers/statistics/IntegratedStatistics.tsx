@@ -29,10 +29,8 @@ const IntegratedStatisticsLayout = styled.div`
 
 const StatisticsItemContainer = styled.div`
   border-radius: 10px;
-  min-width: 315px;
   width: 100%;
-  height: 145px;
-  background-color: var(--primary_opacity);
+  height: auto;
   margin: 20px auto;
 `;
 
@@ -41,32 +39,48 @@ const StatisticsItemLists = styled.ul`
   justify-content: space-around;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 70%;
 `;
 
 const StatisticsItems = styled.li`
   display: flex;
   justify-content: space-between;
+
+  div {
+    display: flex;
+
+    .word {
+      margin-left: 0.5em;
+      margin-right: 0.5em;
+    }
+  }
 `;
 const StatisticsSection1 = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: rgba(240, 240, 240, 0.7);
-  border-radius: 10px 0 0 10px;
-  width: 45%;
+  width: 60%;
   height: 86px;
-  padding: 1em;
 `;
 const StatisticsSection2 = styled.section`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
-  background-color: rgba(240, 240, 240, 0.7);
-  border-radius: 0 10px 10px 0;
-  width: 45%;
+  border: 1px solid #ededed;
+  border-radius: 50%;
+  width: 40%;
   height: 86px;
+
+  box-shadow: 0px 1px 1px 0 rgba(0, 0, 0, 0.4);
+
+  .answer_ratio:nth-child(1) {
+    font-size: 1.4em;
+  }
+
+  .answer_ratio:nth-child(2) {
+    font-size: 1.8em;
+  }
 `;
 const FlexBox = styled.div`
   display: flex;
@@ -113,13 +127,20 @@ export const IntegratedStatistics = (): ReactElement => {
               >
                 참여횟수
               </Typography>
-              <Typography
-                $color={"textPrimary"}
-                $variant={"body2"}
-                $weight={"medium"}
-              >
-                {totalChallengeData.data && totalChallengeData.data.total} 회
-              </Typography>
+              <div>
+                <Typography
+                  $color={"textPrimary"}
+                  $variant={"body2"}
+                  $weight={"medium"}
+                >
+                  {totalChallengeData.data && totalChallengeData.data.total}
+                </Typography>
+
+                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
+                            className={'word'}>
+                  회
+                </Typography>
+              </div>
             </StatisticsItems>
             <StatisticsItems>
               <Typography
@@ -129,13 +150,24 @@ export const IntegratedStatistics = (): ReactElement => {
               >
                 최다 연속 정답
               </Typography>
-              <Typography
-                $color={"textPrimary"}
-                $variant={"body2"}
-                $weight={"medium"}
-              >
-                {mostCorrectData.data && mostCorrectData.data.most} 번
-              </Typography>
+              <div>
+                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
+                            className={'word'}>
+                  최다
+                </Typography>
+                <Typography
+                  $color={"textPrimary"}
+                  $variant={"body2"}
+                  $weight={"bold"}
+                >
+                  {mostCorrectData.data && mostCorrectData.data.most}
+                </Typography>
+                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
+                            className={'word'}>
+                  회
+                </Typography>
+              </div>
+
             </StatisticsItems>
 
             <StatisticsItems>
@@ -146,13 +178,20 @@ export const IntegratedStatistics = (): ReactElement => {
               >
                 최근 연속 정답
               </Typography>
-              <Typography
-                $color={"textPrimary"}
-                $variant={"body2"}
-                $weight={"medium"}
-              >
-                {continuousCorrectData.data && continuousCorrectData.data.continuous} 번
-              </Typography>
+              <div>
+                <Typography
+                  $color={"textPrimary"}
+                  $variant={"body2"}
+                  $weight={"medium"}
+                >
+                  {continuousCorrectData.data && continuousCorrectData.data.continuous}
+                </Typography>
+                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
+                            className={'word'}>
+                  번
+                </Typography>
+              </div>
+
             </StatisticsItems>
           </StatisticsSection1>
           <StatisticsSection2>
@@ -160,15 +199,17 @@ export const IntegratedStatistics = (): ReactElement => {
               $color={"textDefault"}
               $variant={"body1"}
               $weight={"medium"}
+              className={'answer_ratio'}
             >
               정답률
             </Typography>
             <Typography
               $color={"textPrimary"}
-              $variant={"body2"}
-              $weight={"medium"}
+              $variant={"body1"}
+              $weight={"bold"}
+              className={'answer_ratio'}
             >
-              {myAnswerRatioData.data.corrected}
+              {myAnswerRatioData.data && myAnswerRatioData.data.corrected}
             </Typography>
           </StatisticsSection2>
         </StatisticsItemLists>

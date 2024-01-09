@@ -58,7 +58,7 @@ const PieChart = React.forwardRef(
               direction: "column",
               justify: false,
               translateX: -65,
-              translateY: 0,
+              translateY: 5,
               itemsSpacing: 8,
               itemWidth: 50,
               itemHeight: 18,
