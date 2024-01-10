@@ -70,9 +70,8 @@ const StatisticsSection2 = styled.section`
   align-items: center;
   border: 1px solid #ededed;
   border-radius: 50%;
-  width: 40%;
-  height: 86px;
-
+  width: 30%;
+  height: 128px;
   box-shadow: 0px 1px 1px 0 rgba(0, 0, 0, 0.4);
 
   .answer_ratio:nth-child(1) {

@@ -54,14 +54,14 @@ const PieChart = React.forwardRef(
           }}
           legends={[
             {
-              anchor: "left",
+              anchor: "top-left",
               direction: "column",
               justify: false,
-              translateX: -65,
-              translateY: 5,
+              translateX: -70,
+              translateY: 0,
               itemsSpacing: 8,
-              itemWidth: 50,
-              itemHeight: 18,
+              itemWidth: 60,
+              itemHeight: 20,
               itemTextColor: `${color}`,
               itemDirection: "left-to-right",
               itemOpacity: 1,
@@ -71,7 +71,7 @@ const PieChart = React.forwardRef(
                 {
                   on: "hover",
                   style: {
-                    itemTextColor: "#000",
+                    itemTextColor: "#222",
                   },
                 },
               ],
