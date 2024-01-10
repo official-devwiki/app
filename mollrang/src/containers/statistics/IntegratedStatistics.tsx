@@ -1,18 +1,19 @@
 import dynamic from "next/dynamic";
-import {ReactElement} from "react";
-import {Typography} from "@components/common/Typography";
+import { ReactElement } from "react";
+import { Typography } from "@components/common/Typography";
 import styled from "styled-components";
-import {CheckSquareIcon} from "@components/common/icons/CheckSquareIcon";
+import { CheckSquareIcon } from "@components/common/icons/CheckSquareIcon";
 import {
   useContinuousCorrectQuery,
   useGetMyAnswersQuery,
-  useGetMyDistributionQuery, useMostContinuousCountQuery,
-  useMyTotalChallengeQuery
+  useGetMyDistributionQuery,
+  useMostContinuousCountQuery,
+  useMyTotalChallengeQuery,
 } from "@services/queries/statisticsQuery";
-import {TiChartPie} from "react-icons/ti";
-import {PieChartProps} from "@components/charts/PieChart";
-import {useAuth} from "../../providers/authProvider";
-import {SpinnerUi} from "@components/ui/spinner/SpinnerUi";
+import { TiChartPie } from "react-icons/ti";
+import { PieChartProps } from "@components/charts/PieChart";
+import { useAuth } from "../../providers/authProvider";
+import { SpinnerUi } from "@components/ui/spinner/SpinnerUi";
 
 const PieChart = dynamic(() => import("@components/charts/PieChart"), {
   ssr: false,
@@ -24,7 +25,7 @@ const IntegratedStatisticsLayout = styled.div`
   height: 550px;
   overflow-y: auto;
 
-  ${({theme}) => theme.scroll.theme()}
+  ${({ theme }) => theme.scroll.theme()}
 `;
 
 const StatisticsItemContainer = styled.div`
@@ -99,23 +100,31 @@ export interface ChallengeData {
 }
 
 export const IntegratedStatistics = (): ReactElement => {
-  const {userId} = useAuth();
+  const { userId } = useAuth();
   const distributionData = useGetMyDistributionQuery(userId);
   const myAnswerRatioData = useGetMyAnswersQuery(userId);
   const totalChallengeData = useMyTotalChallengeQuery(userId);
   const continuousCorrectData = useContinuousCorrectQuery(userId);
   const mostCorrectData = useMostContinuousCountQuery(userId);
 
-  if (mostCorrectData.isLoading && continuousCorrectData.isLoading && totalChallengeData.isLoading && distributionData.isLoading && myAnswerRatioData.isLoading) return <SpinnerUi/>;
+  if (
+    mostCorrectData.isLoading &&
+    continuousCorrectData.isLoading &&
+    totalChallengeData.isLoading &&
+    distributionData.isLoading &&
+    myAnswerRatioData.isLoading
+  )
+    return <SpinnerUi />;
+
   return (
     <IntegratedStatisticsLayout>
       <FlexBox>
-        <CheckSquareIcon className={"mr-10"}/>
+        <CheckSquareIcon className={"mr-10"} />
         <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
           나의 정답률
         </Typography>
       </FlexBox>
-      <hr/>
+      <hr />
       <StatisticsItemContainer>
         <StatisticsItemLists>
           <StatisticsSection1>
@@ -136,8 +145,13 @@ export const IntegratedStatistics = (): ReactElement => {
                   {totalChallengeData.data && totalChallengeData.data.total}
                 </Typography>
 
-                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
-                            className={'word'}>
+                <Typography
+                  as={"span"}
+                  $color={"textDefault"}
+                  $variant={"caption"}
+                  $weight={"regular"}
+                  className={"word"}
+                >
                   회
                 </Typography>
               </div>
@@ -151,8 +165,13 @@ export const IntegratedStatistics = (): ReactElement => {
                 최다 연속 정답
               </Typography>
               <div>
-                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
-                            className={'word'}>
+                <Typography
+                  as={"span"}
+                  $color={"textDefault"}
+                  $variant={"caption"}
+                  $weight={"regular"}
+                  className={"word"}
+                >
                   최다
                 </Typography>
                 <Typography
@@ -162,12 +181,16 @@ export const IntegratedStatistics = (): ReactElement => {
                 >
                   {mostCorrectData.data && mostCorrectData.data.most}
                 </Typography>
-                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
-                            className={'word'}>
+                <Typography
+                  as={"span"}
+                  $color={"textDefault"}
+                  $variant={"caption"}
+                  $weight={"regular"}
+                  className={"word"}
+                >
                   회
                 </Typography>
               </div>
-
             </StatisticsItems>
 
             <StatisticsItems>
@@ -184,14 +207,19 @@ export const IntegratedStatistics = (): ReactElement => {
                   $variant={"body2"}
                   $weight={"medium"}
                 >
-                  {continuousCorrectData.data && continuousCorrectData.data.continuous}
+                  {continuousCorrectData.data &&
+                    continuousCorrectData.data.continuous}
                 </Typography>
-                <Typography as={'span'} $color={'textDefault'} $variant={'caption'} $weight={'regular'}
-                            className={'word'}>
+                <Typography
+                  as={"span"}
+                  $color={"textDefault"}
+                  $variant={"caption"}
+                  $weight={"regular"}
+                  className={"word"}
+                >
                   번
                 </Typography>
               </div>
-
             </StatisticsItems>
           </StatisticsSection1>
           <StatisticsSection2>
@@ -199,7 +227,7 @@ export const IntegratedStatistics = (): ReactElement => {
               $color={"textDefault"}
               $variant={"body1"}
               $weight={"medium"}
-              className={'answer_ratio'}
+              className={"answer_ratio"}
             >
               정답률
             </Typography>
@@ -207,7 +235,7 @@ export const IntegratedStatistics = (): ReactElement => {
               $color={"textPrimary"}
               $variant={"body1"}
               $weight={"bold"}
-              className={'answer_ratio'}
+              className={"answer_ratio"}
             >
               {myAnswerRatioData.data && myAnswerRatioData.data.corrected}
             </Typography>
@@ -215,13 +243,13 @@ export const IntegratedStatistics = (): ReactElement => {
         </StatisticsItemLists>
       </StatisticsItemContainer>
       <FlexBox>
-        <TiChartPie color={"var(--primary)"} size={28} className={"mr-10"}/>
+        <TiChartPie color={"var(--primary)"} size={28} className={"mr-10"} />
         <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
           도전 분포
         </Typography>
       </FlexBox>
-      <hr/>
-      <PieChart data={distributionData.data}/>
+      <hr />
+      {distributionData.data && <PieChart data={distributionData.data} />}
     </IntegratedStatisticsLayout>
   );
 };
