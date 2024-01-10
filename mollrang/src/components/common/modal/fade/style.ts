@@ -15,11 +15,10 @@ export const ModalBody = styled(motion.div)`
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: var(--bg_modal);
+  background: #fff;
   width: 100%;
   max-width: 800px;
   height: auto;
   border-radius: 14px;
   box-shadow: 1px 10px 10px -4px rgba(0, 0, 0, 0.1);
-  padding-bottom: 2em;
 `;

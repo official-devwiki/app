@@ -1,7 +1,6 @@
 import React, { ReactElement } from "react";
 import { ResponsivePie } from "@nivo/pie";
 import styled from "styled-components";
-import useTheme from "@hooks/useTheme";
 
 export interface PieChartProps {
   id: string;
@@ -12,7 +11,7 @@ export interface PieChartProps {
 
 const ChartWrapper = styled.article`
   width: 100%;
-  height: 70vw;
+  height: 50vw;
   max-height: 400px;
 `;
 
@@ -23,9 +22,6 @@ const PieChart = React.forwardRef(
     { data }: DataType,
     ref: React.ForwardedRef<HTMLDivElement>,
   ): ReactElement => {
-    const { isDarkMode } = useTheme();
-    const color = isDarkMode ? "#fff" : "#222";
-
     return (
       <ChartWrapper ref={ref}>
         <ResponsivePie
@@ -44,7 +40,7 @@ const PieChart = React.forwardRef(
             modifiers: [["darker", 1]],
           }}
           arcLinkLabelsSkipAngle={10}
-          arcLinkLabelsTextColor={color}
+          arcLinkLabelsTextColor="#222"
           arcLinkLabelsThickness={2}
           arcLinkLabelsColor={{ from: "color" }}
           arcLabelsSkipAngle={10}
@@ -62,7 +58,7 @@ const PieChart = React.forwardRef(
               itemsSpacing: 8,
               itemWidth: 60,
               itemHeight: 20,
-              itemTextColor: `${color}`,
+              itemTextColor: `#222`,
               itemDirection: "left-to-right",
               itemOpacity: 1,
               symbolSize: 15,

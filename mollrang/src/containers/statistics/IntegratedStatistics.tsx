@@ -22,7 +22,7 @@ const PieChart = dynamic(() => import("@components/charts/PieChart"), {
 const IntegratedStatisticsLayout = styled.div`
   width: 100%;
   padding: 0 1em;
-  height: 550px;
+  height: auto;
   overflow-y: auto;
 
   ${({ theme }) => theme.scroll.theme()}
@@ -119,7 +119,7 @@ export const IntegratedStatistics = (): ReactElement => {
     <IntegratedStatisticsLayout>
       <FlexBox>
         <CheckSquareIcon className={"mr-10"} />
-        <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
+        <Typography $color={"textBlack100"} $variant={"body1"} $weight={"bold"}>
           나의 정답률
         </Typography>
       </FlexBox>
@@ -129,7 +129,7 @@ export const IntegratedStatistics = (): ReactElement => {
           <StatisticsSection1>
             <StatisticsItems>
               <Typography
-                $color={"textDefault"}
+                $color={"textBlack200"}
                 $variant={"body2"}
                 $weight={"medium"}
               >
@@ -146,7 +146,7 @@ export const IntegratedStatistics = (): ReactElement => {
 
                 <Typography
                   as={"span"}
-                  $color={"textDefault"}
+                  $color={"textBlack200"}
                   $variant={"caption"}
                   $weight={"regular"}
                   className={"word"}
@@ -157,7 +157,7 @@ export const IntegratedStatistics = (): ReactElement => {
             </StatisticsItems>
             <StatisticsItems>
               <Typography
-                $color={"textDefault"}
+                $color={"textBlack200"}
                 $variant={"body2"}
                 $weight={"medium"}
               >
@@ -166,7 +166,7 @@ export const IntegratedStatistics = (): ReactElement => {
               <div>
                 <Typography
                   as={"span"}
-                  $color={"textDefault"}
+                  $color={"textBlack200"}
                   $variant={"caption"}
                   $weight={"regular"}
                   className={"word"}
@@ -182,7 +182,7 @@ export const IntegratedStatistics = (): ReactElement => {
                 </Typography>
                 <Typography
                   as={"span"}
-                  $color={"textDefault"}
+                  $color={"textBlack200"}
                   $variant={"caption"}
                   $weight={"regular"}
                   className={"word"}
@@ -194,7 +194,7 @@ export const IntegratedStatistics = (): ReactElement => {
 
             <StatisticsItems>
               <Typography
-                $color={"textDefault"}
+                $color={"textBlack200"}
                 $variant={"body2"}
                 $weight={"medium"}
               >
@@ -211,7 +211,7 @@ export const IntegratedStatistics = (): ReactElement => {
                 </Typography>
                 <Typography
                   as={"span"}
-                  $color={"textDefault"}
+                  $color={"textBlack200"}
                   $variant={"caption"}
                   $weight={"regular"}
                   className={"word"}
@@ -223,7 +223,7 @@ export const IntegratedStatistics = (): ReactElement => {
           </StatisticsSection1>
           <StatisticsSection2>
             <Typography
-              $color={"textDefault"}
+              $color={"textBlack200"}
               $variant={"body1"}
               $weight={"medium"}
               className={"answer_ratio"}
@@ -243,7 +243,7 @@ export const IntegratedStatistics = (): ReactElement => {
       </StatisticsItemContainer>
       <FlexBox>
         <TiChartPie color={"var(--primary)"} size={28} className={"mr-10"} />
-        <Typography $color={"textDefault"} $variant={"body1"} $weight={"bold"}>
+        <Typography $color={"textBlack100"} $variant={"body1"} $weight={"bold"}>
           도전 분포
         </Typography>
       </FlexBox>

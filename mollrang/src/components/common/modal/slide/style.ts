@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import {motion} from "framer-motion";
+import { motion } from "framer-motion";
 
 export const ModalContainer = styled(motion.div)`
   width: 100%;
@@ -12,7 +12,7 @@ export const ModalBody = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: var(--bg_modal);
+  background: #fff;
   width: 100%;
   min-height: 550px;
   height: auto;

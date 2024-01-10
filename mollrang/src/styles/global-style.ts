@@ -1,4 +1,4 @@
-import {createGlobalStyle} from "styled-components";
+import { createGlobalStyle } from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     width: 100%;
     height: calc(100% - 66px);
-    ${({theme}) => theme.scroll.theme()}
+    ${({ theme }) => theme.scroll.theme()}
   }
 
   body {
@@ -136,7 +136,7 @@ export const GlobalStyle = createGlobalStyle`
     --textPrimary: #00C7AE;
     --textBlack000: #000;
     --textBlack100: #222;
-    --textBlack200: #444343;
+    --textBlack200: #0e0e0e;
     --textGray000: #969696;
     --textGray100: #989898;
     --textGray200: #C6C6C6;
@@ -195,7 +195,7 @@ export const GlobalStyle = createGlobalStyle`
     --textPrimary: #778C86;
     --textBlack000: #000;
     --textBlack100: #222;
-    --textBlack200: #f5f5f5;
+    --textBlack200: #0e0e0e;
     --textGray000: #969696;
     --textGray100: #A6A6A6;
     --textGray200: #C6C6C6;
