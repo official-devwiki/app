@@ -45,6 +45,7 @@ export const IntroBanner = (): ReactElement => {
       <Image
         width={220}
         height={190}
+        priority
         alt="mollrang_banner.svg"
         src={"https://d30ugctgtj8te2.cloudfront.net/assets/banner.svg"}
       />

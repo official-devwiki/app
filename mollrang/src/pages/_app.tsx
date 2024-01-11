@@ -22,15 +22,14 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
 }) => {
   const [queryState] = useState(() => queryClient);
   const { store, props } = wrapper.useWrappedStore(pageProps);
-
   useEffect(() => {
     const user = window.localStorage.getItem("user");
-    if (pageProps.userId !== user)
-      window.localStorage.setItem("user", pageProps.userId);
+    if (props.userId !== user)
+      window.localStorage.setItem("user", props.userId);
   }, []);
 
   const value = {
-    userId: pageProps.userId || window.localStorage.getItem("user"),
+    userId: props.userId || window.localStorage.getItem("user"),
   };
 
   return (
