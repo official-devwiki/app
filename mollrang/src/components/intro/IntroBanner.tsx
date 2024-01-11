@@ -2,13 +2,13 @@ import { ReactElement } from "react";
 import * as S from "./style";
 import { NoteIcon } from "@components/common/icons/NoteIcon";
 import { Typography } from "@components/common/Typography";
-import BannerSvg from "@images/banner.svg";
 import styled from "styled-components";
 import { Button } from "@components/common/Button";
 import toast from "@components/common/toast/ToastHandler";
 import { SITE_URL } from "@config/index";
 import { IoMdShare } from "react-icons/io";
 import { BsQuestionLg } from "react-icons/bs";
+import Image from "next/image";
 
 export const FlexBox = styled.div`
   button {
@@ -19,11 +19,6 @@ export const FlexBox = styled.div`
     align-items: center;
     border: 1px solid transparent;
   }
-`;
-
-const Banner = styled(BannerSvg)`
-  width: 220px;
-  height: 190px;
 `;
 
 export const MollrangSharedButton = (): ReactElement => {
@@ -47,9 +42,12 @@ export const MollrangSharedButton = (): ReactElement => {
 export const IntroBanner = (): ReactElement => {
   return (
     <S.IntroContainer>
-      <div>
-        <Banner />
-      </div>
+      <Image
+        width={220}
+        height={190}
+        alt="mollrang_banner.svg"
+        src={"https://d30ugctgtj8te2.cloudfront.net/assets/banner.svg"}
+      />
       <S.IntroTextBox>
         <div>
           <S.IntroTextIconWrapper1>

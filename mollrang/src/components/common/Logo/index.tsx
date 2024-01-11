@@ -7,7 +7,10 @@ interface Props {
 
 export const Logo = (props: Props): ReactElement => {
   const { mode } = props;
-  const url = mode ? "/images/logo_dark.svg" : "/images/logo_light.svg";
+  const cdnPath = "https://d30ugctgtj8te2.cloudfront.net/assets";
+  const url = mode ? "logo_dark.svg" : "logo_light.svg";
 
-  return <Image src={url} width={46} height={46} alt={"mollrang"} />;
+  return (
+    <Image src={`${cdnPath}/${url}`} width={46} height={46} alt={"mollrang"} />
+  );
 };

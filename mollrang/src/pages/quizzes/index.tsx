@@ -3,7 +3,7 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { ReactElement } from "react";
+import { ReactElement, Suspense } from "react";
 import {
   QuizFormContainer,
   QuizFormState,

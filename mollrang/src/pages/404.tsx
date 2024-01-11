@@ -27,7 +27,7 @@ const Error404Page: NextPage = (): ReactElement => {
       <picture>
         <Image
           loading="eager"
-          src="/images/404.svg"
+          src="https://d30ugctgtj8te2.cloudfront.net/assets/404.svg"
           alt="404-error-page"
           width={300}
           height={200}

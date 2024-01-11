@@ -1,6 +1,6 @@
 import type { AppContext, AppInitialProps, AppProps } from "next/app";
 import { queryClient } from "@libs/Tanstack";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { NextComponentType } from "next";
 import ErrorBoundary from "@utils/error/errorBoundary";
 import { QueryClientProvider, Hydrate } from "@tanstack/react-query";
