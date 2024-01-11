@@ -45,7 +45,12 @@ export const MetaComponent = (): ReactElement => {
       <meta content="몰랑" property="og:site_name" />
       <meta content="몰랑" property="og:title" />
       <meta name="og:description" content="하루에 한 문제, 퀴즈 몰랑" />
-      <meta name="og:image" content={"/assets/images/logo_light.svg"} />
+      <meta
+        name="og:image"
+        content={
+          "https://d30ugctgtj8te2.cloudfront.net/assets/images/logo_light.svg"
+        }
+      />
       <meta content="ko_KR" property="og:locale" />
       <meta content="en_US" property="og:locale:alternate" />
       <meta content="https://www.mollrang.com" property="og:url" />
@@ -58,9 +63,15 @@ export const MetaComponent = (): ReactElement => {
       />
       <meta
         property="twitter:image"
-        content={"/assets/images/logo_light.svg"}
+        content={
+          "https://d30ugctgtj8te2.cloudfront.net/assets/images/logo_light.svg"
+        }
       />
       <meta property="twitter:url" content="https://www.mollrang.com" />
+      <meta
+        name="google-site-verification"
+        content="oPynFAyKw5ulUot2VfkhNP0Fr_z2EEf5zyGShGU9TMo"
+      />
     </Head>
   );
 };
