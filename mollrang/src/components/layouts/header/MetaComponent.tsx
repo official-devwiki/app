@@ -68,7 +68,14 @@ export const MetaComponent = (): ReactElement => {
         }
       />
       <meta property="twitter:url" content="https://www.mollrang.com" />
-      <meta name="google-site-verification" content="NSe76UdRbPJ799HbDpCDvw0uFQXmL0QEOStdbHC1yZ8" />
+      <meta
+        name="google-site-verification"
+        content="NSe76UdRbPJ799HbDpCDvw0uFQXmL0QEOStdbHC1yZ8"
+      />
+      <meta
+        name="naver-site-verification"
+        content="ce63a9fa5800bacd81780d1b3d6e2ea5e09d764a"
+      />
     </Head>
   );
 };

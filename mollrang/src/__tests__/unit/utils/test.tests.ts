@@ -82,3 +82,103 @@ describe("process.env.COLLECTOR_PROJECT_NUMBER CHECK", () => {
     expect(collectorCheckFn(SNUM)).toBeTruthy();
   });
 });
+
+const DB = [
+  {
+    questionIndex: 1,
+    questionNumber: "DESC",
+  },
+  {
+    questionIndex: 2,
+    questionNumber: "SQ1",
+  },
+  {
+    questionIndex: 3,
+    questionNumber: "SQ2",
+  },
+  {
+    questionIndex: 4,
+    questionNumber: "SQ2_RECODE",
+  },
+  {
+    questionIndex: 5,
+    questionNumber: "SQ3",
+  },
+  {
+    questionIndex: 6,
+    questionNumber: "QUOTA_SQ1_SQ2",
+  },
+];
+type InsertQuestionDto = {
+  questionIndex: number;
+  questionNumber: string;
+};
+/**@description 쿼터 모듈 추가 - SQ2 문항 뒤로 순서 바꾸기
+ * @param {InsertQuestionDto[]} question 설문 정보가 담긴 배열 data
+ * @param {string} cursor 이동할 문항의 인덱스가 될 questionNumber
+ * @param {string} target 이동시킬 문항 questionNumber
+ * */
+export const changeQuestionsIndex = (
+  question: InsertQuestionDto[],
+  cursor: string,
+  target: string,
+): InsertQuestionDto[] => {
+  const cursorIndex = question.findIndex((v) => v.questionNumber === cursor);
+  const targetIndex = question.findIndex((v) => v.questionNumber === target);
+
+  function moveValue(
+    array: InsertQuestionDto[],
+    fromIndex: number,
+    toIndex: number,
+  ) {
+    const item = array.splice(fromIndex, 1)[0];
+    array.splice(toIndex, 0, item);
+  }
+
+  moveValue(question, targetIndex, cursorIndex);
+
+  return question
+    .map((value, index) => {
+      return {
+        ...value,
+        questionIndex: index + 1,
+      };
+    })
+    .sort((a, b) => a.questionIndex - b.questionIndex);
+};
+
+describe("유니서베이 문항 순서 변환 테스트", () => {
+  test("쿼터 문항의 위치를 SQ_RECODE 뒤 쪽에 위치하도록 한다.", () => {
+    const expectedValue = [
+      {
+        questionIndex: 1,
+        questionNumber: "DESC",
+      },
+      {
+        questionIndex: 2,
+        questionNumber: "SQ1",
+      },
+      {
+        questionIndex: 3,
+        questionNumber: "SQ2",
+      },
+      {
+        questionIndex: 4,
+        questionNumber: "SQ2_RECODE",
+      },
+      {
+        questionIndex: 5,
+        questionNumber: "QUOTA_SQ1_SQ2",
+      },
+      {
+        questionIndex: 6,
+        questionNumber: "SQ3",
+      },
+    ];
+
+    const mockFunction = jest.fn(changeQuestionsIndex);
+    const target = "QUOTA_SQ1_SQ2";
+    const cursor = "SQ3";
+    expect(mockFunction(DB, cursor, target)).toEqual(expectedValue);
+  });
+});
