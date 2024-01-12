@@ -22,8 +22,7 @@ export const getUserAttendance = async (
 
 export const registUserIdApi = async (userId: string): Promise<boolean> => {
   try {
-    const url = process.env.NEXT_PUBLIC_API_URL;
-    const {data} = await axios.post<ResponseData<any>>(`${url}/api/users`, {
+    const {data} = await axiosInstance.post<ResponseData<any>>(`/users`, {
       userId,
     });
     return responseDataConvert<boolean>(data);
@@ -32,3 +31,13 @@ export const registUserIdApi = async (userId: string): Promise<boolean> => {
     throw e;
   }
 };
+
+export const getUserHistory = async (userId: string) => {
+  try {
+    const {data} = await axiosInstance.get(`/history/quizzes/${userId}`);
+    return data;
+  } catch (e) {
+    console.log(e)
+    throw e;
+  }
+}

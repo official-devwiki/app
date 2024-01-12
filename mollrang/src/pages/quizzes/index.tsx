@@ -3,75 +3,66 @@ import {
   InferGetServerSidePropsType,
   NextPage,
 } from "next";
-import { ReactElement, Suspense } from "react";
+import {ReactElement, useEffect, useState} from "react";
 import {
   QuizFormContainer,
   QuizFormState,
 } from "@containers/quizzes/QuizFormContainer";
-import { dehydrate } from "@tanstack/react-query";
-import withGetServerSideProps from "@utils/withGetServerSideProps";
-import { queryClient } from "@libs/Tanstack";
-import Cookies from "cookies";
 import axios from "axios";
-import { responseDataConvert } from "@utils/convert";
-import { v4 as uuid } from "uuid";
-import { registUserIdApi } from "@services/apis/users";
+import {responseDataConvert} from "@utils/convert";
+import {useAuth} from "@providers/authProvider";
+import {getUserHistory} from "@services/apis/users";
 
-const QuizPage: NextPage<InferGetServerSidePropsType<GetServerSideProps>> = ({
-  quizHistory,
-}): ReactElement => {
-  return <QuizFormContainer quizHistory={quizHistory} />;
+const initialState: QuizFormState = {
+  userId: '',
+  count: 0,
+  hint: [],
+  isCorrected: false,
 };
 
-export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
-  async (ctx) => {
-    try {
-      const { req, res } = ctx;
-      const cookies = new Cookies(req, res);
-      const userId = cookies.get("user");
-      let quizHistory = [];
+const QuizPage: NextPage<InferGetServerSidePropsType<GetServerSideProps>> = (): ReactElement => {
+  const {userInfo} = useAuth();
+  const [quizHistory, setQuizHistory] = useState<QuizFormState[]>([initialState]);
 
-      const initialState: QuizFormState = {
-        userId,
-        count: 0,
-        hint: [],
-        isCorrected: false,
-      };
-
-      if (!userId) {
-        const userId = uuid();
-        const result = await registUserIdApi(userId);
-        if (result) cookies.set("user", userId);
-        initialState.userId = userId;
-        quizHistory = [initialState];
-      }
-
-      const url = `https://api.mollrang.com/api/history/quizzes/${userId}`;
-      const { data } = await axios.get(url);
-      if (data.success) {
-        if (data.result.data && data.result.data.length === 0) {
-          quizHistory = [initialState];
-        } else {
-          quizHistory = responseDataConvert<QuizFormState[]>(data);
-        }
+  const getQuizHistory = async () => {
+    const data = await getUserHistory(userInfo?.id);
+    if (data.success) {
+      if (data.result.data && data.result.data.length === 0) {
+        initialState.userId = userInfo?.id;
+        setQuizHistory([initialState])
       } else {
-        initialState.userId = userId;
-        quizHistory = [initialState];
+        const dataConvert = responseDataConvert<QuizFormState[]>(data);
+        setQuizHistory([...dataConvert]);
       }
-
-      return {
-        props: {
-          dehydratedState: dehydrate(queryClient),
-          quizHistory,
-        },
-      };
-    } catch (e) {
-      console.log(e);
-      return {
-        props: {},
-      };
+    } else {
+      initialState.userId = userInfo?.id;
+      setQuizHistory([initialState]);
     }
-  },
-);
+  }
+
+  useEffect(() => {
+    getQuizHistory();
+  }, [])
+
+  return <QuizFormContainer quizHistory={quizHistory}/>;
+};
+
+// export const getServerSideProps: GetServerSideProps = withGetServerSideProps(
+//   async (ctx) => {
+//     try {
+//
+//       return {
+//         props: {
+//           dehydratedState: dehydrate(queryClient),
+//         },
+//       };
+//     } catch (e) {
+//       console.log(e);
+//       return {
+//         props: {},
+//       };
+//     }
+//   },
+// );
 
 export default QuizPage;
