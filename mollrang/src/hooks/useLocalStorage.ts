@@ -19,6 +19,7 @@ export default function useLocalStorage<T>(): ReturnType<T> {
   const getStorageItems = (key: string): T | null => {
     if (typeof window !== 'undefined') {
       const obj = localStorage.getItem(key);
+    
       if (obj) return JSON.parse(obj);
     }
     return null;

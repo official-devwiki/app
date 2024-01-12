@@ -15,7 +15,7 @@ export const getUserAttendance = async (
     const {data} = await axiosInstance.get<ResponseData<Attendance[]>>(url);
     return responseDataConvert<Attendance[]>(data);
   } catch (e) {
-    console.log(e)
+    console.log(e);
     throw e;
   }
 };
