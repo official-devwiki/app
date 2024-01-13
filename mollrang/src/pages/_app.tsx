@@ -14,7 +14,8 @@ import {v4 as uuid} from "uuid";
 import {Provider} from "react-redux";
 import {registUserIdApi} from "@services/apis/users";
 import useLocalStorage from "@hooks/useLocalStorage";
-import AuthProvider, {useAuth} from "../providers/authProvider";
+import AuthProvider, {USER_KEY} from "../providers/authProvider";
+import {SplashUi} from "@components/ui/splash/SplashUi";
 
 export type User = {
   id: string;
@@ -27,15 +28,22 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   const [queryState] = useState(() => queryClient);
   const {store} = wrapper.useWrappedStore(pageProps);
   const {setStorageItems, getStorageItems} = useLocalStorage<User>();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const userInfo = getStorageItems("user");
+    const userInfo = getStorageItems(USER_KEY);
     if (!userInfo) {
       const id = uuid();
-      setStorageItems("user", {id});
+      setStorageItems(USER_KEY, {id});
       registUserIdApi(id);
     }
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2200)
+
   }, []);
+
+  if (isLoading) return (<SplashUi isOpen={true}/>)
 
   return (
     <ErrorBoundary>

@@ -7,7 +7,7 @@ type AuthContextType = {
   setId: (id: string) => void;
 };
 
-const USER_KEY = 'user';
+export const USER_KEY = 'mollrang';
 
 export const AuthContext = React.createContext<AuthContextType>(null!);
 
