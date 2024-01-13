@@ -15,6 +15,10 @@ export type ColorGray = {
 };
 
 const colors = {
+  primary: 'var(--primary)',
+  bg: {
+    primary: 'var(--bg)'
+  },
   dark: {
     primary: "#778C86",
     white: "#fff",

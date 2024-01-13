@@ -10,13 +10,11 @@ type ReturnType = {
 };
 
 const useTheme = (): ReturnType => {
-  const [theme, setTheme] = useState<ThemeKey>('light');
+  const defaultState = localStorage?.getItem('theme') as ThemeKey;
+  const [theme, setTheme] = useState<ThemeKey>(defaultState || 'light');
   const isDarkMode = useMemo(() => theme === 'dark', [theme]);
 
   const initTheme = useCallback(() => {
-    // 브라우저 다크 모드 설정 여부 확인 후 변수 할당
-
-    // 로컬 스토리지에 값 확인 후 없다면 설정값 넣어주기
     const initialTheme = localStorage?.getItem('theme') as ThemeKey;
     setTheme(initialTheme);
   }, []);

@@ -46,7 +46,7 @@ export const SplashUi = (props: { isOpen: boolean }): ReactElement => {
                 borderRadius: ["20%", "20%", "50%", "50%", "20%"],
               }}
             >
-              <Image className={'title'} src={'/images/splash-title.png'} width={144} height={62}
+              <Image priority className={'title'} src={'/images/splash-title.png'} width={144} height={62}
                      alt={'mollrang-splash-img'}/>
             </motion.div>
             <motion.div
