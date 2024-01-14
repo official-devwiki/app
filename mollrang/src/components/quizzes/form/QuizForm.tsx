@@ -163,7 +163,7 @@ export const QuizForm = (): ReactElement => {
       answer,
       userId,
     };
-    console.log(sendData)
+
     // 정답 제출
     answerSubmitMutate.mutate(sendData);
   };
