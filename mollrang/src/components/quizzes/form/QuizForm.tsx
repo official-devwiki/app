@@ -6,7 +6,6 @@ import {EmptyBlock} from "@components/ui/block/EmptyBlock";
 import {SkeletonUi} from "@components/ui/skeleton/SkeletonUi";
 import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
 import {Button} from "@components/common/Button";
-import toast from "@components/common/toast/ToastHandler";
 import {Input} from "@components/common/input/Input";
 import {CheckCircleIcon} from "@components/common/icons/CheckCircleIcon";
 import {HintBlock} from "@components/ui/block/HintBlock";
@@ -16,7 +15,9 @@ import {useQuizAnswerSubmitMutate} from "@services/mutations/quizzesMutation";
 import {useAppDispatch} from "@hooks/useRedux";
 import {State, setModalOpen} from "@store/slice/modalSlice";
 import {QuizFormState} from "@containers/quizzes/QuizFormContainer";
-import {MODAL_TYPE, Store} from "@interfaces/store";
+import {MODAL_TYPE} from "@interfaces/store";
+import toast, {Toaster} from 'react-hot-toast';
+import ToastOptions from "react-hot-toast";
 
 const initialStepState: Chance[] = [
   {step: 1, answer: false, hint: [], userId: "", todayAnswer: ""},
@@ -88,17 +89,28 @@ export const QuizForm = (props: Props): ReactElement => {
   };
 
   const inputValidation = (): boolean => {
+    const toastOption: ToastOptions = {
+      duration: 1500,
+      style: {
+        backgroundColor: '#ffc2c2'
+      },
+      position: 'top-right',
+      ariaProps: {
+        role: 'status',
+        'aria-live': 'polite',
+      },
+    }
     if (answer.length <= 0) {
-      toast.message("정답을 입력해 주세요.", "error");
+      toast.error("정답을 입력해 주세요.", toastOption);
       if (inputRef.current !== null) inputRef.current.focus();
       return false;
     } else if (answer.length < data.answerLength) {
-      toast.message("글자 수를 확인해 주세요.", "error");
+      toast.error("글자 수를 확인해 주세요.", toastOption);
       if (inputRef.current !== null) inputRef.current.focus();
       return false;
     }
     if (currentStep > 5) {
-      toast.message("더 이상 정답을 제출할 수 없습니다.", "error");
+      toast.error("더 이상 정답을 제출할 수 없습니다.", toastOption);
       return false;
     }
     return true;
@@ -122,19 +134,30 @@ export const QuizForm = (props: Props): ReactElement => {
   useEffect(() => {
     if (answerSubmitMutate.isSuccess && answerSubmitMutate.data) {
       // 최종 답안이 존재할 경우 퀴즈 종료로 간주한다.
+      const toastOption: ToastOptions = {
+        duration: 1500,
+        style: {
+          backgroundColor: '#e0ffde'
+        },
+        position: 'bottom-center',
+        ariaProps: {
+          role: 'status',
+          'aria-live': 'polite',
+        },
+      }
       if (
         answerSubmitMutate.data.todayAnswer &&
         answerSubmitMutate.data.todayAnswer.length > 0
       ) {
         setAnswer("");
-        toast.message("정답입니다~!", "success");
+        toast.success("정답입니다~!", toastOption);
         completedSystemMessage();
         checkBoxUpdate([]);
         completedModalOpen();
       } else if (answerSubmitMutate.data.isCorrected) {
         // 정답 여부 체크 후 정답일 경우 퀴즈 종료로 간주
         setAnswer("");
-        toast.message("정답입니다~!", "success");
+        toast.success("정답입니다~!", toastOption);
         completedSystemMessage();
         checkBoxUpdate([]);
         completedModalOpen();
@@ -351,6 +374,7 @@ export const QuizForm = (props: Props): ReactElement => {
           </Typography>
         </Button>
       </S.ButtonFlexBox>
+      <Toaster/>
     </S.QuizFormLayout>
   );
 };
