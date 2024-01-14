@@ -32,14 +32,14 @@ const StatisticsItemContainer = styled.div`
   border-radius: 10px;
   width: 100%;
   height: auto;
-  margin: 20px auto;
+  margin-bottom: 1em;
 `;
 
 const StatisticsItemLists = styled.ul`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   align-items: center;
-  width: 100%;
+  width: 50%;
   height: 70%;
 `;
 
@@ -60,19 +60,14 @@ const StatisticsSection1 = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 60%;
+  width: 100%;
   height: 86px;
 `;
 const StatisticsSection2 = styled.section`
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
-  border: 1px solid #ededed;
-  border-radius: 50%;
-  width: 30%;
-  height: 128px;
-  box-shadow: 0px 1px 1px 0 rgba(0, 0, 0, 0.4);
+  margin: 2em auto;
 
   .answer_ratio:nth-child(1) {
     font-size: 1.4em;
@@ -165,15 +160,6 @@ export const IntegratedStatistics = (): ReactElement => {
               </Typography>
               <div>
                 <Typography
-                  as={"span"}
-                  $color={"textBlack200"}
-                  $variant={"caption"}
-                  $weight={"regular"}
-                  className={"word"}
-                >
-                  최다
-                </Typography>
-                <Typography
                   $color={"textPrimary"}
                   $variant={"body2"}
                   $weight={"bold"}
@@ -221,25 +207,25 @@ export const IntegratedStatistics = (): ReactElement => {
               </div>
             </StatisticsItems>
           </StatisticsSection1>
-          <StatisticsSection2>
-            <Typography
-              $color={"textBlack200"}
-              $variant={"body1"}
-              $weight={"medium"}
-              className={"answer_ratio"}
-            >
-              정답률
-            </Typography>
-            <Typography
-              $color={"textPrimary"}
-              $variant={"body1"}
-              $weight={"bold"}
-              className={"answer_ratio"}
-            >
-              {myAnswerRatioData.data && myAnswerRatioData.data.corrected}
-            </Typography>
-          </StatisticsSection2>
         </StatisticsItemLists>
+        <StatisticsSection2>
+          <Typography
+            $color={"textBlack200"}
+            $variant={"body1"}
+            $weight={"medium"}
+            className={"answer_ratio"}
+          >
+            나의 정답률
+          </Typography>
+          <Typography
+            $color={"textPrimary"}
+            $variant={"body1"}
+            $weight={"bold"}
+            className={"answer_ratio"}
+          >
+            {myAnswerRatioData.data && myAnswerRatioData.data.corrected}
+          </Typography>
+        </StatisticsSection2>
       </StatisticsItemContainer>
       <FlexBox>
         <TiChartPie color={"var(--primary)"} size={28} className={"mr-10"}/>

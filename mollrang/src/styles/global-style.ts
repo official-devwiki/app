@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import {createGlobalStyle} from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
   html {
@@ -70,7 +70,7 @@ export const GlobalStyle = createGlobalStyle`
     line-height: 1;
     width: 100%;
     height: calc(100% - 66px);
-    ${({ theme }) => theme.scroll.theme()}
+    ${({theme}) => theme.scroll.theme()}
   }
 
   body {
