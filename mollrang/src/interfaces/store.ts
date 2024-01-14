@@ -30,12 +30,8 @@ export namespace Store {
    */
   export namespace Quiz {
     export interface State {
-      currentStep: number;
-      hasResult: boolean;
-      timer: number;
-      endOfQuiz: boolean;
       count: number;
-      formState: QuizFormState[]
+      isCorrected: boolean;
     }
   }
 

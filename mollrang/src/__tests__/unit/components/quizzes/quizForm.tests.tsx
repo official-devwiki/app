@@ -1,15 +1,15 @@
-import { QuizForm } from "@components/quizzes/form/QuizForm";
-import { Quiz } from "@interfaces/quizzes";
-import { useTodayQuizzesQuery } from "@services/queries/quizzesQuery";
-import { render, screen, act } from "@testing-library/react";
-import { PropsWithChildren, ReactElement } from "react";
-import { QueryClientProvider } from "@tanstack/react-query";
-import { queryClient } from "@libs/Tanstack";
-import { Provider } from "react-redux";
-import { store } from "@store/index";
-import { useRouter } from "next/router";
-import { ThemeProvider } from "styled-components";
-import { theme } from "@styles/theme";
+import {QuizForm} from "@components/quizzes/form/QuizForm";
+import {Quiz} from "@interfaces/quizzes";
+import {useTodayQuizzesQuery} from "@services/queries/quizzesQuery";
+import {render, screen, act} from "@testing-library/react";
+import {PropsWithChildren, ReactElement} from "react";
+import {QueryClientProvider} from "@tanstack/react-query";
+import {queryClient} from "@libs/Tanstack";
+import {Provider} from "react-redux";
+import {store} from "@store/index";
+import {useRouter} from "next/router";
+import {ThemeProvider} from "styled-components";
+import {theme} from "@styles/theme";
 import userEvent from "@testing-library/user-event";
 import toast from "@components/common/toast/ToastHandler";
 
@@ -43,7 +43,7 @@ const toastMock = toast;
 jest.mock("../../../../components/common/icons/CheckCircleIcon.tsx");
 jest.mock("../../../../components/common/icons/QuizIcon.tsx");
 
-const ProviderWrapper = ({ children }: PropsWithChildren): ReactElement => {
+const ProviderWrapper = ({children}: PropsWithChildren): ReactElement => {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
@@ -78,7 +78,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("퀴즈가 렌더링이 되는가?", async () => {
-    const component = render(<QuizForm />, { wrapper: ProviderWrapper });
+    const component = render(<QuizForm/>, {wrapper: ProviderWrapper});
     expect(component).toMatchSnapshot();
 
     const expectedQuestion = "개발자들이 다크 모드를 쓰는 이유는???";
@@ -87,7 +87,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("Input 에 정답이 입력이 되는가", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
 
     const input = screen.getByRole("textbox") as HTMLInputElement;
     expect(input).toBeInTheDocument(); // input 이 렌더링 되는가?
@@ -103,7 +103,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("Input의 입력 길이가 정답 길이만큼만 입력되는가?", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
     const maxLength = mockData.data.answerLength;
     const input = screen.getByRole("textbox") as HTMLInputElement;
 
@@ -120,7 +120,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("정답을 입력하지 않고 제출을 했을 경우 에러가 발생되는가?", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
     const input = screen.getByRole("textbox") as HTMLInputElement;
     const submit = screen.getByRole("button", {name: '제출하기'}) as HTMLButtonElement;
 
@@ -135,7 +135,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("정답의 길이만큼 입력하지 않고 제출을 했을 경우 에러가 발생되는가?", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
     const input = screen.getByRole("textbox") as HTMLInputElement;
     const submit = screen.getByRole("button", {name: '제출하기'}) as HTMLButtonElement;
 
@@ -154,7 +154,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("정답 입력 기회는 최대 5번까지만 주어지는가?", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
 
     const tryCount = 1;
     const expectedAnswer = '정답';
@@ -175,7 +175,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("정답 입력이 5번이 초과되거나 정답을 맞췄을 경우 제출 버튼이 disabled 처리가 되는가?", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
     const expectedAnswer = '정답';
     const input = screen.getByRole("textbox") as HTMLInputElement;
     const submit = screen.getByRole("button", {name: '제출하기'}) as HTMLButtonElement;
@@ -187,7 +187,7 @@ describe("QuizForm Component Test", () => {
   });
 
   test("정답을 맞췄을 경우 통계 모달이 보여지는가?", async () => {
-    render(<QuizForm />, { wrapper: ProviderWrapper });
+    render(<QuizForm/>, {wrapper: ProviderWrapper});
     expect(false).toEqual(false); // 임의 Red Test
   });
 });

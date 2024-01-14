@@ -10,27 +10,17 @@ import {Input} from "@components/common/input/Input";
 import {CheckCircleIcon} from "@components/common/icons/CheckCircleIcon";
 import {HintBlock} from "@components/ui/block/HintBlock";
 import {useRouter} from "next/router";
-import {Block, Chance} from "@interfaces/quizzes";
+import {Block, QuizFormProps} from "@interfaces/quizzes";
 import {useQuizAnswerSubmitMutate} from "@services/mutations/quizzesMutation";
 import {useAppDispatch} from "@hooks/useRedux";
 import {State, setModalOpen} from "@store/slice/modalSlice";
-import {QuizFormState} from "@containers/quizzes/QuizFormContainer";
 import {MODAL_TYPE} from "@interfaces/store";
 import toast, {Toaster} from 'react-hot-toast';
 import ToastOptions from "react-hot-toast";
-import {setCompleteCount} from "@store/slice/quizSlice";
+import {setCompleteCount, setCorrected} from "@store/slice/quizSlice";
 import {useAuth} from "@providers/authProvider";
 
-interface Props {
-  currentStep: number;
-  todayCompleted: boolean;
-  checkBox: Chance[];
-  setCurrentStep: () => void;
-  setTodayCompleted: (payload: boolean) => void;
-  setCheckBox: (payload: Chance[]) => void;
-}
-
-export const QuizForm = (props: Props): ReactElement => {
+export const QuizForm = (props: QuizFormProps): ReactElement => {
   const {currentStep, checkBox, todayCompleted, setCurrentStep, setTodayCompleted, setCheckBox} = props;
   const {userInfo} = useAuth();
 
@@ -113,19 +103,18 @@ export const QuizForm = (props: Props): ReactElement => {
           'aria-live': 'polite',
         },
       }
-      if (
+      if (answerSubmitMutate.data.isCorrected) {
+        setAnswer("");
+        toast.success("정답입니다~!", toastOption);
+        dispatch(setCorrected(true));
+        completedSystemMessage();
+        checkBoxUpdate([]);
+        completedModalOpen();
+      } else if (
         answerSubmitMutate.data.todayAnswer &&
         answerSubmitMutate.data.todayAnswer.length > 0
       ) {
         setAnswer("");
-        toast.success("정답입니다~!", toastOption);
-        completedSystemMessage();
-        checkBoxUpdate([]);
-        completedModalOpen();
-      } else if (answerSubmitMutate.data.isCorrected) {
-        // 정답 여부 체크 후 정답일 경우 퀴즈 종료로 간주
-        setAnswer("");
-        toast.success("정답입니다~!", toastOption);
         completedSystemMessage();
         checkBoxUpdate([]);
         completedModalOpen();
@@ -202,10 +191,6 @@ export const QuizForm = (props: Props): ReactElement => {
     });
   };
 
-  useEffect(() => {
-    resultMessage();
-  }, [checkBox]);
-
   const resultMessage = (): void => {
     let step = 0;
     if (currentStep !== 0) step = currentStep;
@@ -228,6 +213,10 @@ export const QuizForm = (props: Props): ReactElement => {
       }
     }
   };
+
+  useEffect(() => {
+    resultMessage();
+  }, [checkBox]);
 
   useEffect(() => {
     if (todayCompleted) {
