@@ -32,6 +32,7 @@ export namespace Store {
       hasResult: boolean;
       timer: number;
       endOfQuiz: boolean;
+      count: number;
     }
   }
 

@@ -67,7 +67,7 @@ const StatisticsSection2 = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 2em auto;
+  margin: 0.5em auto 1.25em;
 
   .answer_ratio:nth-child(1) {
     font-size: 1.4em;

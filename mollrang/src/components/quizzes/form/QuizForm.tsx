@@ -18,6 +18,7 @@ import {QuizFormState} from "@containers/quizzes/QuizFormContainer";
 import {MODAL_TYPE} from "@interfaces/store";
 import toast, {Toaster} from 'react-hot-toast';
 import ToastOptions from "react-hot-toast";
+import {setCompleteCount} from "@store/slice/quizSlice";
 
 const initialStepState: Chance[] = [
   {step: 1, answer: false, hint: [], userId: "", todayAnswer: ""},
@@ -176,6 +177,7 @@ export const QuizForm = (props: Props): ReactElement => {
       modalType: MODAL_TYPE.FADE,
       isOpen: true,
     };
+    dispatch(setCompleteCount(currentStep));
     dispatch(setModalOpen(modalState));
   };
   /**@description 완료 메세지 출력*/

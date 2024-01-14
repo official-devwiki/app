@@ -8,6 +8,7 @@ const initialState: QuizStore = {
   hasResult: false,
   timer: 60,
   endOfQuiz: false,
+  count: 1,
 };
 
 export const QuizSlice = createSlice({
@@ -26,6 +27,9 @@ export const QuizSlice = createSlice({
     setEndOfQuiz(state: QuizStore, action: PayloadAction<boolean>) {
       state.endOfQuiz = action.payload;
     },
+    setCompleteCount(state: QuizStore, action: PayloadAction<number>) {
+      state.count = action.payload;
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -51,5 +55,5 @@ export const QuizSlice = createSlice({
 
 export type QuizStore = Store.Quiz.State;
 
-export const {setCurrentStep, setHasResult, setTimer, setEndOfQuiz} =
+export const {setCurrentStep, setHasResult, setTimer, setEndOfQuiz, setCompleteCount} =
   QuizSlice.actions;
