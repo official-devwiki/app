@@ -15,7 +15,7 @@ import {useQuizAnswerSubmitMutate} from "@services/mutations/quizzesMutation";
 import {useAppDispatch} from "@hooks/useRedux";
 import {State, setModalOpen} from "@store/slice/modalSlice";
 import {MODAL_TYPE} from "@interfaces/store";
-import toast, {Toaster} from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import ToastOptions from "react-hot-toast";
 import {setCompleteCount, setCorrected} from "@store/slice/quizSlice";
 import {useAuth} from "@providers/authProvider";
@@ -333,7 +333,6 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
           </Typography>
         </Button>
       </S.ButtonFlexBox>
-      <Toaster/>
     </S.QuizFormLayout>
   );
 };

@@ -16,6 +16,7 @@ import {registUserIdApi} from "@services/apis/users";
 import useLocalStorage from "@hooks/useLocalStorage";
 import AuthProvider, {USER_KEY} from "../providers/authProvider";
 import {SplashUi} from "@components/ui/splash/SplashUi";
+import {Toaster} from "react-hot-toast";
 
 export type User = {
   id: string;
@@ -56,6 +57,7 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
                 <BaseLayout>
                   <Component {...pageProps} />
                 </BaseLayout>
+                <Toaster/>
               </ThemeProvider>
             </AuthProvider>
             <ReactQueryDevtools initialIsOpen={false}/>
