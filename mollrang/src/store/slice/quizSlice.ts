@@ -2,6 +2,7 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {quizAnswerSubmit} from '@store/thunk/quizThunk';
 import {HYDRATE} from 'next-redux-wrapper';
 import {Store} from "@interfaces/store";
+import {QuizFormState} from "@containers/quizzes/QuizFormContainer";
 
 const initialState: QuizStore = {
   currentStep: 1,
@@ -9,6 +10,7 @@ const initialState: QuizStore = {
   timer: 60,
   endOfQuiz: false,
   count: 1,
+  formState: []
 };
 
 export const QuizSlice = createSlice({
@@ -29,6 +31,9 @@ export const QuizSlice = createSlice({
     },
     setCompleteCount(state: QuizStore, action: PayloadAction<number>) {
       state.count = action.payload;
+    },
+    setQuizState(state: QuizStore, action: PayloadAction<QuizFormState[]>) {
+      state.formState = action.payload;
     }
   },
   extraReducers: (builder) => {
@@ -55,5 +60,5 @@ export const QuizSlice = createSlice({
 
 export type QuizStore = Store.Quiz.State;
 
-export const {setCurrentStep, setHasResult, setTimer, setEndOfQuiz, setCompleteCount} =
+export const {setCurrentStep, setHasResult, setTimer, setEndOfQuiz, setCompleteCount, setQuizState} =
   QuizSlice.actions;

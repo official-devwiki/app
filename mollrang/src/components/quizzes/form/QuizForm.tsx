@@ -19,6 +19,9 @@ import {MODAL_TYPE} from "@interfaces/store";
 import toast, {Toaster} from 'react-hot-toast';
 import ToastOptions from "react-hot-toast";
 import {setCompleteCount} from "@store/slice/quizSlice";
+import {getUserHistory} from "@services/apis/users";
+import {responseDataConvert} from "@utils/convert";
+import {useAuth} from "@providers/authProvider";
 
 const initialStepState: Chance[] = [
   {step: 1, answer: false, hint: [], userId: "", todayAnswer: ""},
@@ -28,19 +31,23 @@ const initialStepState: Chance[] = [
   {step: 5, answer: false, hint: [], userId: "", todayAnswer: ""},
 ];
 
-interface Props {
-  quizFormState: QuizFormState[];
-}
+const initialState: QuizFormState = {
+  userId: '',
+  count: 0,
+  hint: [],
+  isCorrected: false,
+};
 
-export const QuizForm = (props: Props): ReactElement => {
-  const {quizFormState} = props; // 퀴즈 히스토리 체크
-  const [currentStep, setCurrentStep] = useState(initQuizStep()); // 처음에 히스토리 길이 만큼 늘린다.
-  const [checkBox, setCheckBox] = useState<Chance[]>(initQuizFormState());
+export const QuizForm = (): ReactElement => {
+  const {userInfo} = useAuth();
+  const [quizHistory, setQuizHistory] = useState<QuizFormState[]>([]);
+  const [currentStep, setCurrentStep] = useState(0); // 처음에 히스토리 길이 만큼 늘린다.
+  const [checkBox, setCheckBox] = useState<Chance[]>([]);
   const [answer, setAnswer] = useState("");
   const [message, setMessage] = useState("");
   const [messageStyling, setMessageStyling] = useState("default");
   const [todayCompleted, setTodayCompleted] = useState(
-    initQuizCompletedState(),
+    false
   );
 
   const dispatch = useAppDispatch();
@@ -50,22 +57,42 @@ export const QuizForm = (props: Props): ReactElement => {
   const {data, isLoading} = useTodayQuizzesQuery();
   const answerSubmitMutate = useQuizAnswerSubmitMutate();
 
-  function initQuizStep(): number {
-    return quizFormState[quizFormState.length - 1].count; // 최종 제출의 순서 (0은 처음 시작)
+  const getQuizHistory = async () => {
+    const data = await getUserHistory(userInfo?.id);
+    let arr = [];
+    if (data.success) {
+      if (data.result.data && data.result.data.length === 0) {
+        initialState.userId = userInfo?.id;
+        setQuizHistory([initialState])
+        arr = [initialState];
+      } else {
+        const dataConvert = responseDataConvert<QuizFormState[]>(data);
+        arr = dataConvert;
+        setQuizHistory(dataConvert);
+      }
+    } else {
+      initialState.userId = userInfo?.id;
+      setQuizHistory([initialState]);
+      arr = [initialState];
+    }
+    return arr;
   }
 
-  function initQuizCompletedState(): boolean {
-    let result = false;
-    quizFormState.forEach((value) => {
+
+  const dataInitialize = async () => {
+    const state = await getQuizHistory();
+    setCurrentStep(state[state.length - 1].count);
+
+    state.forEach((value) => {
       const {isCorrected} = value;
-      result = isCorrected || quizFormState.length >= 5;
+      if (isCorrected || state.length >= 5) {
+        setTodayCompleted(true);
+      }
     });
-    return result;
-  }
 
-  function initQuizFormState() {
-    quizFormState.forEach((value, index) => {
+    state.forEach((value, index) => {
       const {hint = [], count, userId} = value;
+      initialStepState[index].userId = userId;
       if (initialStepState[index].step === count && count < 5) {
         initialStepState[index].userId = userId;
         initialStepState[index].hint = hint;
@@ -74,10 +101,18 @@ export const QuizForm = (props: Props): ReactElement => {
         initialStepState[index].hint = [];
         initialStepState[index].userId = userId;
         initialStepState[index].answer = true;
+      } else if (count === 0) {
+        initialStepState[index].hint = [];
+        initialStepState[index].answer = false;
       }
     });
-    return initialStepState;
+
+    setCheckBox(initialStepState);
   }
+
+  useEffect(() => {
+    dataInitialize()
+  }, [])
 
   const EmptyBlockElementGenerator = (): ReactElement[] => {
     const block = [];
@@ -122,12 +157,13 @@ export const QuizForm = (props: Props): ReactElement => {
   ): Promise<void> => {
     e.preventDefault();
     if (!inputValidation()) return;
-    const userId = quizFormState[0].userId; // 맨 앞에는 항상 아이디가 존재한다.
+    const userId = quizHistory[0].userId; // 맨 앞에는 항상 아이디가 존재한다.
     const sendData: { userId: string; count: number; answer: string } = {
       count: currentStep + 1,
       answer,
       userId,
     };
+    console.log(sendData)
     // 정답 제출
     answerSubmitMutate.mutate(sendData);
   };
@@ -180,6 +216,7 @@ export const QuizForm = (props: Props): ReactElement => {
     dispatch(setCompleteCount(currentStep));
     dispatch(setModalOpen(modalState));
   };
+
   /**@description 완료 메세지 출력*/
   const completedSystemMessage = () => {
     setTodayCompleted(true);

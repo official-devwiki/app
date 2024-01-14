@@ -1,7 +1,7 @@
 import {Typography} from "@components/common/Typography";
 import {QuizForm} from "@components/quizzes/form/QuizForm";
 import * as S from "./QuizFormContainer.style";
-import {FunctionComponent, useEffect, useState} from "react";
+import {FunctionComponent, ReactElement, useEffect, useState} from "react";
 import {quizHistoryCheck} from "@services/apis/quizzes";
 
 type Hint = Record<string, string>;
@@ -13,9 +13,7 @@ export interface QuizFormState {
   hint: Hint[];
 }
 
-export const QuizFormContainer: FunctionComponent<{
-  quizHistory: QuizFormState[];
-}> = ({quizHistory}) => {
+export const QuizFormContainer = (): ReactElement => {
   return (
     <S.QuizLayout>
       <S.QuizBox>
@@ -23,7 +21,7 @@ export const QuizFormContainer: FunctionComponent<{
           <Typography $variant={"h1"} $weight={"bold"} $color={"textDefault"}>
             오늘의 퀴즈
           </Typography>
-          <QuizForm quizFormState={quizHistory}/>
+          <QuizForm/>
         </S.QuizWrapper>
       </S.QuizBox>
     </S.QuizLayout>

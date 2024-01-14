@@ -1,3 +1,5 @@
+import {QuizFormState} from "@containers/quizzes/QuizFormContainer";
+
 export const MODAL_TYPE = {
   FADE: 'fade',
   BOTTOM_SLIDE: 'bottom-slide'
@@ -33,6 +35,7 @@ export namespace Store {
       timer: number;
       endOfQuiz: boolean;
       count: number;
+      formState: QuizFormState[]
     }
   }
 
