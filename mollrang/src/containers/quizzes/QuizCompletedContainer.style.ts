@@ -9,7 +9,7 @@ export const QuizLabelGroup = styled.div`
 
   .count {
     color: ${({theme}) => theme.colors.primary};
-    font-size: 1.25em;
+    font-size: 1.3em;
     font-weight: bold;
   }
 

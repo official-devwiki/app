@@ -176,7 +176,7 @@ export const GlobalStyle = createGlobalStyle`
     --bg_line: #f1f1f1;
     --bg_floating_button: #FFC700;
 
-    --icon_default: #222;
+    --icon_default: #535353;
   }
 
   body[data-theme="dark"] {
@@ -233,6 +233,6 @@ export const GlobalStyle = createGlobalStyle`
     --bg_line: #575757;
     --bg_floating_button: #5f5f5f;
 
-    --icon_default: #ededed;
+    --icon_default: #535353;
   }
 `;

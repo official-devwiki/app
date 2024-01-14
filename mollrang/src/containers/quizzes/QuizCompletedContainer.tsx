@@ -25,13 +25,13 @@ export const QuizCompletedContainer = (): ReactElement => {
   return (
     <S.QuizCompletedLayout>
       <S.QuizLabelGroup>
-        <Typography className={'completed-description'} $color={'textDefault'} $variant={'body1'} $weight={'bold'}>
+        <Typography className={'completed-description'} $color={'textBlack200'} $variant={'body1'} $weight={'bold'}>
           오늘의 퀴즈가 종료되었습니다.
         </Typography>
-        <Typography className={'completed-description'} $color={'textDefault'} $variant={'body1'} $weight={'bold'}>
+        <Typography className={'completed-description'} $color={'textBlack200'} $variant={'body1'} $weight={'bold'}>
           <span className={'count'}>{completedCount}</span> 번만에 정답을 맞추었네요!!
         </Typography>
-        <Typography className={'completed-description'} $color={'textDefault'} $variant={'body1'} $weight={'bold'}>
+        <Typography className={'completed-description'} $color={'textBlack200'} $variant={'body1'} $weight={'bold'}>
           퀴즈 결과를 자랑해 보세요!
         </Typography>
       </S.QuizLabelGroup>
