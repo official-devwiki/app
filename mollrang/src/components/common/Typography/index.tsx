@@ -1,4 +1,4 @@
-import React, {ComponentProps, ReactElement} from "react";
+import React, { ComponentProps, ReactElement } from "react";
 import styled from "styled-components";
 import * as Style from "./style";
 
@@ -6,6 +6,7 @@ interface Typography extends ComponentProps<"p"> {
   $variant?: Style.Variant;
   $weight?: Style.FontWeightType;
   $color?: Style.FontColorType;
+  $fontFamily?: Style.FontFamily;
   as?: keyof JSX.IntrinsicElements | React.JSXElementConstructor<any>;
 }
 
@@ -21,13 +22,13 @@ const element: { [key in Style.Variant]: string } = {
 };
 
 const StyledComponent = (element: any) => styled(element)<Typography>`
-  //letter-spacing: 0.15px;
   line-height: 1.25rem;
   transition: color 0.2s ease-in;
   color: ${(props) => Style.FontColor[props.$color]};
   font-size: ${(props) => Style.FontSize(props.$variant)}px;
   font-weight: ${(props) => Style.FontWeight(props.$weight)};
-  font-family: 'Noto Sans KR', 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
+  font-family: ${(props) => props.$fontFamily}, "Spoqa Han Sans",
+    "Spoqa Han Sans JP", "Sans-serif";
 `;
 
 function baseElement(props: Typography) {
@@ -36,6 +37,7 @@ function baseElement(props: Typography) {
     $variant = "body1",
     $weight = "regular",
     $color = "textDefault",
+    $fontFamily = "BMJua",
     children,
     as,
     ...rest

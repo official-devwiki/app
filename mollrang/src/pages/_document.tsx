@@ -1,6 +1,6 @@
-import Document, {Html, Head, Main, NextScript} from "next/document";
-import type {DocumentContext, DocumentInitialProps} from "next/document";
-import {ServerStyleSheet} from "styled-components";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import type { DocumentContext, DocumentInitialProps } from "next/document";
+import { ServerStyleSheet } from "styled-components";
 import React from "react";
 
 const themeInitializerScript = `
@@ -46,17 +46,21 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap"
             rel="stylesheet"
           />
-          <link rel="icon" href="/favicon.ico"/>
-          <link rel="manifest" href="/manifest.json"/>
+          <link
+            href="https://webfontworld.github.io/BMJua/BMJua.css"
+            rel="stylesheet"
+          />
+          <link rel="icon" href="/favicon.ico" />
+          <link rel="manifest" href="/manifest.json" />
         </Head>
         <body>
-        <script
-          dangerouslySetInnerHTML={{__html: themeInitializerScript}}
-        />
-        <Main/>
-        <div id="modal"/>
-        <div id="toast"/>
-        <NextScript/>
+          <script
+            dangerouslySetInnerHTML={{ __html: themeInitializerScript }}
+          />
+          <Main />
+          <div id="modal" />
+          <div id="toast" />
+          <NextScript />
         </body>
       </Html>
     );

@@ -21,8 +21,8 @@ export type FontColorType =
   | "textGray300"
   | "textRed000"
   | "textGrayAndWhite"
-  | 'textYellow'
-  ;
+  | "textYellow";
+export type FontFamily = "BMJua" | "Noto Sans KR";
 
 export const FontColor = {
   textDefault: "var(--textDefault)",
@@ -34,7 +34,7 @@ export const FontColor = {
   textGray000: "var(--textGray000)",
   textGray100: "var(--textGray100)",
   textGray200: "var(--textGray200)",
-  textGray300: '#C6C6C6',
+  textGray300: "#C6C6C6",
   textRed000: "var(--textRed000)",
   textGrayAndWhite: "var(--textGrayAndWhite)",
   textYellow: "var(--textYellow)",
