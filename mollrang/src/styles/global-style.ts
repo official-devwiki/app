@@ -52,6 +52,7 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     font-size: 100%;
     font: inherit;
+    font-family: 'BMJua', 'Noto Sans KR', 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
     vertical-align: baseline;
   }
 
@@ -140,6 +141,8 @@ export const GlobalStyle = createGlobalStyle`
     --textGray000: #969696;
     --textGray100: #989898;
     --textGray200: #C6C6C6;
+    --textGray300: #C6C6C6;
+    --textGray400: #818181;
     --textRed000: #FF5050;
     --textGrayAndWhite: #bdbdbd;
     --textYellow: #edbe17;
@@ -199,6 +202,8 @@ export const GlobalStyle = createGlobalStyle`
     --textGray000: #969696;
     --textGray100: #A6A6A6;
     --textGray200: #C6C6C6;
+    --textGray300: #C6C6C6;
+    --textGray400: #818181;
     --textRed000: #FF5050;
     --textGrayAndWhite: #fff;
     --textYellow: #FFC700;

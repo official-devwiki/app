@@ -1,5 +1,5 @@
-import {useQuery} from "@tanstack/react-query";
-import {QueryKeyType, QueryKeys} from "@services/keys/queryKeys";
+import { useQuery } from "@tanstack/react-query";
+import { QueryKeys } from "@services/keys/queryKeys";
 import {
   getMyAnswersRatio,
   getContinuousCorrectCount,
@@ -7,7 +7,7 @@ import {
   getChallengeDistribution,
   getChallengeCount,
 } from "@services/apis/statistics";
-import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
+import { ChallengeData } from "@interfaces/statistics";
 
 /**
  * @description: 나의 정답률 구하기
@@ -15,7 +15,7 @@ import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
 export const useGetMyAnswersQuery = (
   userId: string,
 ): { isLoading: boolean; data: { corrected: string } } => {
-  const {data, isLoading} = useQuery(
+  const { data, isLoading } = useQuery(
     [QueryKeys.Statistics.getMyAnswers],
     () => getMyAnswersRatio(userId),
     {
@@ -33,10 +33,8 @@ export const useGetMyAnswersQuery = (
 /**
  * @description 연속 정답 회수 구하기
  */
-export const useContinuousCorrectQuery = (
-  userId: string,
-) => {
-  const {data, isLoading} = useQuery(
+export const useContinuousCorrectQuery = (userId: string) => {
+  const { data, isLoading } = useQuery(
     [QueryKeys.Statistics.getContinuousCorrectCount],
     () => getContinuousCorrectCount(userId),
     {
@@ -60,7 +58,7 @@ export const useGetMyDistributionQuery = (
   isLoading: boolean;
   data: ChallengeData[];
 } => {
-  const {data, isLoading} = useQuery(
+  const { data, isLoading } = useQuery(
     [QueryKeys.Statistics.getChallengeDistribution],
     () => getChallengeDistribution(userId),
     {
@@ -79,7 +77,7 @@ export const useGetMyDistributionQuery = (
  * @description 전체 도전 횟수 구하기
  */
 export const useMyTotalChallengeQuery = (userId: string) => {
-  const {data, isLoading} = useQuery(
+  const { data, isLoading } = useQuery(
     [QueryKeys.Statistics.getChallengeCount],
     () => getChallengeCount(userId),
     {
@@ -98,7 +96,7 @@ export const useMyTotalChallengeQuery = (userId: string) => {
  * @description 최다 연속 정답 횟수 구하기
  */
 export const useMostContinuousCountQuery = (userId: string) => {
-  const {data, isLoading} = useQuery(
+  const { data, isLoading } = useQuery(
     [QueryKeys.Statistics.getMostContinuousCorrectCount],
     () => getMostContinuousCorrectCount(userId),
     {

@@ -1,7 +1,7 @@
-import {axiosInstance} from "@libs/Axios";
-import {Domain} from "@services/apis/url";
-import {responseDataConvert} from "@utils/convert";
-import {ChallengeData} from "@containers/statistics/IntegratedStatistics";
+import { axiosInstance } from "@libs/Axios";
+import { Domain } from "@services/apis/url";
+import { responseDataConvert } from "@utils/convert";
+import { ChallengeData } from "@interfaces/statistics";
 
 const statistics = Domain.Statistics;
 
@@ -15,9 +15,9 @@ export const getMyAnswersRatio = async (
 ): Promise<{ corrected: string }> => {
   try {
     const url = `/${statistics}/corrected/${userId}`;
-    const {data} = await axiosInstance.get(url);
+    const { data } = await axiosInstance.get(url);
     if (data.success) return responseDataConvert<{ corrected: string }>(data);
-    return {corrected: "0 %"};
+    return { corrected: "0 %" };
   } catch (e) {
     throw e;
   }
@@ -32,7 +32,7 @@ export const getChallengeDistribution = async (
 ): Promise<ChallengeData[]> => {
   try {
     const url = `/${statistics}/distribution/${userId}`;
-    const {data} = await axiosInstance.get(url);
+    const { data } = await axiosInstance.get(url);
     if (data.success) return responseDataConvert<ChallengeData[]>(data);
     return [];
   } catch (e) {
@@ -44,10 +44,12 @@ export const getChallengeDistribution = async (
  *
  * @description 전체 도전 횟수 조회
  */
-export const getChallengeCount = async (userId: string): Promise<{ total: number }> => {
+export const getChallengeCount = async (
+  userId: string,
+): Promise<{ total: number }> => {
   try {
     const url = `/${statistics}/total/${userId}`;
-    const {data} = await axiosInstance.get(url);
+    const { data } = await axiosInstance.get(url);
     return responseDataConvert<{ total: number }>(data);
   } catch (e) {
     throw e;
@@ -63,9 +65,9 @@ export const getContinuousCorrectCount = async (
 ): Promise<{ continuous: number }> => {
   try {
     const url = `/${statistics}/continuous/${userId}`;
-    const {data} = await axiosInstance.get(url);
+    const { data } = await axiosInstance.get(url);
     if (data.success) return responseDataConvert<{ continuous: number }>(data);
-    return {continuous: 0};
+    return { continuous: 0 };
   } catch (e) {
     throw e;
   }
@@ -79,7 +81,7 @@ export const getMostContinuousCorrectCount = async (
 ): Promise<{ most: number }> => {
   try {
     const url = `/${statistics}/most/${userId}`;
-    const {data} = await axiosInstance.get(url);
+    const { data } = await axiosInstance.get(url);
     return responseDataConvert<{ most: number }>(data);
   } catch (e) {
     throw e;
