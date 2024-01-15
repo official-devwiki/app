@@ -1,9 +1,8 @@
-import { ReactElement, useEffect } from "react";
+import { ReactElement } from "react";
 import { Typography } from "@components/common/Typography";
 import { Icons } from "@components/common/icons/Icons";
 import * as S from "./style";
 import { useUserAttendanceQuery } from "@services/queries/usersQuery";
-import { useCookies } from "react-cookie";
 
 export interface Attendance {
   day: string;

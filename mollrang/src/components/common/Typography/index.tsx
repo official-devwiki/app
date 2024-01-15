@@ -27,7 +27,7 @@ const StyledComponent = (element: any) => styled(element)<Typography>`
   color: ${(props) => Style.FontColor[props.$color]};
   font-size: ${(props) => Style.FontSize(props.$variant)}px;
   font-weight: ${(props) => Style.FontWeight(props.$weight)};
-  font-family: ${(props) => props.$fontFamily}, "Spoqa Han Sans",
+  font-family: ${(props) => props?.$fontFamily}, "Spoqa Han Sans",
     "Spoqa Han Sans JP", "Sans-serif";
 `;
 

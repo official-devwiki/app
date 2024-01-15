@@ -25,7 +25,12 @@ export const Header = (): ReactElement => {
     <HeaderContainer>
       <HeaderBox>
         <Link href={"/"}>
-          <Typography $color={"textPrimary"} $weight={"medium"} $variant={"h1"}>
+          <Typography
+            $fontFamily="BMJua"
+            $color={"textPrimary"}
+            $weight={"medium"}
+            $variant={"h1"}
+          >
             몰랑
           </Typography>
         </Link>

@@ -50,6 +50,7 @@ class MyDocument extends Document {
             href="https://webfontworld.github.io/BMJua/BMJua.css"
             rel="stylesheet"
           />
+
           <link rel="icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
         </Head>

@@ -6,6 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 62.5%;
     min-width: 320px;
     color: var(--textDefault);
+    /* -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased; */
   }
 
   body {
@@ -19,20 +21,10 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: inherit;
   }
 
-  * {
-    font-family: 'BMJua', 'Noto Sans KR', 'Spoqa Han Sans', 'Spoqa Han Sans JP', 'Sans-serif';
-  }
-
   a {
     cursor: pointer;
     text-decoration: none;
   }
-
-
-  /* http://meyerweb.com/eric/tools/css/reset/ 
-   v2.0 | 20110126
-   License: none (public domain)
-*/
 
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -72,11 +64,6 @@ export const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: calc(100% - 66px);
     ${({ theme }) => theme.scroll.theme()}
-  }
-
-  body {
-    width: 100%;
-    height: 100%;
   }
 
   #__next {
@@ -120,7 +107,8 @@ export const GlobalStyle = createGlobalStyle`
     --white: #fff;
   }
 
-
+  html, 
+  body, 
   body[data-theme="light"] {
     // major(theme)
     --primary: #00C7AE;
