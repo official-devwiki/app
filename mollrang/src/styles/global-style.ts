@@ -66,6 +66,11 @@ export const GlobalStyle = createGlobalStyle`
     ${({ theme }) => theme.scroll.theme()}
   }
 
+  body {
+    width: 100%;
+    height: 100%;
+  }
+
   #__next {
     width: 100%;
     height: 100%;
@@ -108,8 +113,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   html, 
-  body, 
-  body[data-theme="light"] {
+  body, body[data-theme="light"] {
     // major(theme)
     --primary: #00C7AE;
     --blockquote: #FFE588;
