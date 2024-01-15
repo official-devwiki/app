@@ -45,23 +45,23 @@ export const FontColor = {
 export function FontSize(variant: string) {
   switch (variant) {
     case "h1":
-      return 26;
+      return 30;
     case "h2":
-      return 26;
+      return 28;
     case "h3":
-      return 24;
+      return 26;
     case "h4":
-      return 22;
+      return 24;
     case "h5":
-      return 22;
+      return 24;
     case "body1":
-      return 18;
+      return 20;
     case "body2":
-      return 16;
+      return 18;
     case "caption":
       return 14;
     default:
-      return 16;
+      return 18;
   }
 }
 

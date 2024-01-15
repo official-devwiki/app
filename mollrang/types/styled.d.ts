@@ -1,13 +1,14 @@
-import 'styled-components';
-import {ColorTheme, MediaQueryTheme, MixinsTheme} from "@styles/theme";
+import "styled-components";
+import { ColorTheme, MediaQueryTheme, MixinsTheme } from "@styles/theme";
 
-declare module 'styled-components' {
+declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
-      dark: ColorTheme,
-      light: ColorTheme
-    }
-    media: MediaQueryTheme,
-    mixins: MixinsTheme,
+      dark: ColorTheme;
+      light: ColorTheme;
+      primary: string;
+    };
+    media: MediaQueryTheme;
+    mixins: MixinsTheme;
   }
 }

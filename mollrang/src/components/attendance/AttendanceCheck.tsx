@@ -26,7 +26,7 @@ export const AttendanceCheck = ({
           </S.IconWrapper>
           <Typography
             $variant={"body2"}
-            $weight={"bold"}
+            $weight={"medium"}
             $color={"textDefault"}
           >
             출석 체크
@@ -38,7 +38,7 @@ export const AttendanceCheck = ({
           data.map((value, index) => {
             return (
               <S.Days key={index} className={value.attendance && "active"}>
-                <Typography as={"span"} $variant={"body2"} $weight={"bold"}>
+                <Typography as={"span"} $variant={"body2"}>
                   {value.day}
                 </Typography>
               </S.Days>

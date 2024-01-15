@@ -17,7 +17,8 @@ export const CorrectedAnswers: FunctionComponent<{ userId: string }> = ({
           title={"나의 정답률"}
           contents={`${data.corrected}`}
           contentsColor={"textPrimary"}
-          titleWeight={"bold"}
+          variantTitle={"body2"}
+          titleWeight={"medium"}
           contentsWeight={"bold"}
         />
       )}

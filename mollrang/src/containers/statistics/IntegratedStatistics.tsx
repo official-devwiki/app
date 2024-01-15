@@ -1,7 +1,7 @@
 import dynamic from "next/dynamic";
 import { ReactElement } from "react";
 import { Typography } from "@components/common/Typography";
-import { CheckSquareIcon } from "@components/common/icons/CheckSquareIcon";
+import { TbCheckbox } from "react-icons/tb";
 import {
   useContinuousCorrectQuery,
   useGetMyAnswersQuery,
@@ -42,7 +42,7 @@ export const IntegratedStatistics = (): ReactElement => {
   return (
     <S.IntegratedStatisticsLayout>
       <S.FlexBox>
-        <CheckSquareIcon className={"mr-10"} />
+        <TbCheckbox className={"mr-10"} size={24} color={"var(--primary)"} />
         <Typography $color={"textBlack100"} $variant={"body1"} $weight={"bold"}>
           히스토리
         </Typography>
@@ -163,7 +163,7 @@ export const IntegratedStatistics = (): ReactElement => {
         </Typography>
       </S.FlexBox>
       <hr />
-      <Typography $color={"textGray400"} $variant={"body2"}>
+      <Typography $color={"textGray400"} $variant={"body2"} $weight={"light"}>
         몇 번째에 정답을 맞혔는지 확인해 보세요!!
       </Typography>
       {distributionData.data && <PieChart data={distributionData.data} />}

@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const IntegratedStatisticsLayout = styled.div`
   width: 100%;
-  padding: 0 1em;
+  padding: 0 1.25em;
   height: auto;
   overflow-y: auto;
 
@@ -13,7 +13,7 @@ export const StatisticsItemContainer = styled.div`
   border-radius: 10px;
   width: 100%;
   height: auto;
-  margin-bottom: 1em;
+  margin: 1em 0;
 `;
 
 export const StatisticsItemLists = styled.ul`
@@ -27,6 +27,7 @@ export const StatisticsItemLists = styled.ul`
 export const StatisticsItems = styled.li`
   display: flex;
   justify-content: space-between;
+  margin: 6px 0;
 
   div {
     display: flex;
@@ -48,7 +49,7 @@ export const StatisticsSection2 = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 0.5em auto 1.25em;
+  margin: 2.25em auto;
 
   .answer_ratio:nth-child(1) {
     font-size: 1.4em;
@@ -61,6 +62,7 @@ export const StatisticsSection2 = styled.section`
 export const FlexBox = styled.div`
   display: flex;
   align-items: center;
+  margin: 1em 0;
 
   .mr-10 {
     margin-right: 10px;

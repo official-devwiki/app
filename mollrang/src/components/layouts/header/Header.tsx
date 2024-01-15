@@ -1,4 +1,3 @@
-import { Logo } from "@components/common/Logo";
 import { ReactElement } from "react";
 import { styled } from "styled-components";
 import useTheme from "@hooks/useTheme";
@@ -7,9 +6,10 @@ import Link from "next/link";
 import { State, setModalOpen } from "@store/slice/modalSlice";
 import { useAppDispatch } from "@hooks/useRedux";
 import { FiAlignJustify } from "react-icons/fi";
+import { Typography } from "@components/common/Typography";
 
 export const Header = (): ReactElement => {
-  const { toggleTheme, isDarkMode } = useTheme();
+  const { toggleTheme } = useTheme();
   const dispatch = useAppDispatch();
 
   const openModal = (): void => {
@@ -25,7 +25,9 @@ export const Header = (): ReactElement => {
     <HeaderContainer>
       <HeaderBox>
         <Link href={"/"}>
-          <Logo mode={isDarkMode} />
+          <Typography $color={"textPrimary"} $weight={"medium"} $variant={"h1"}>
+            몰랑
+          </Typography>
         </Link>
         <FlexBox>
           <BulbButton
@@ -80,6 +82,6 @@ const HeaderBox = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1em;
+  padding: 0 1.25em;
   height: 100%;
 `;

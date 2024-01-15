@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const AttendanceLayout = styled.div`
   width: 100%;
@@ -21,9 +21,8 @@ export const AttendanceTitleWrapper = styled.h2`
 
     span:nth-child(1) {
       margin-right: 6px;
-      color: var(--day_sub_text)
+      color: var(--day_sub_text);
     }
-
   }
 `;
 
@@ -57,6 +56,8 @@ export const Days = styled.li`
   }
 
   span {
-    color: #CACACA;
+    position: relative;
+    top: 1px;
+    color: #cacaca;
   }
 `;

@@ -8,9 +8,8 @@ export const QuizLabelGroup = styled.div`
   margin-bottom: 1em;
 
   .count {
-    color: ${({theme}) => theme.colors.primary};
-    font-size: 1.3em;
-    font-weight: bold;
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 1.325em;
   }
 
   .completed-description:nth-child(1) {
@@ -18,12 +17,12 @@ export const QuizLabelGroup = styled.div`
   }
 
   .completed-description {
-    margin: 0.625em auto;
+    margin: 0.525em auto;
   }
 `;
 export const QuizButtonGroup = styled.div`
   button {
-    width: 100%
+    width: 100%;
   }
 
   button:nth-child(1) {

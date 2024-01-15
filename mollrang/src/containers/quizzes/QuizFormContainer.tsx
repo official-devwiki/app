@@ -1,11 +1,13 @@
-import {Typography} from "@components/common/Typography";
-import {QuizForm} from "@components/quizzes/form/QuizForm";
+import { Typography } from "@components/common/Typography";
+import { QuizForm } from "@components/quizzes/form/QuizForm";
 import * as S from "./QuizFormContainer.style";
-import {ReactElement, useEffect, useState} from "react";
-import {useAuth} from "@providers/authProvider";
-import {getUserHistory} from "@services/apis/users";
-import {responseDataConvert} from "@utils/convert";
-import {Chance} from "@interfaces/quizzes";
+import { ReactElement, useEffect, useState } from "react";
+import { useAuth } from "@providers/authProvider";
+import { getUserHistory } from "@services/apis/users";
+import { responseDataConvert } from "@utils/convert";
+import { Chance } from "@interfaces/quizzes";
+import { setCorrected } from "@store/slice/quizSlice";
+import { useAppDispatch } from "@hooks/useRedux";
 
 type Hint = Record<string, string>;
 
@@ -17,25 +19,27 @@ export interface QuizFormState {
 }
 
 const initialStepState: Chance[] = [
-  {step: 1, answer: false, hint: [], userId: "", todayAnswer: ""},
-  {step: 2, answer: false, hint: [], userId: "", todayAnswer: ""},
-  {step: 3, answer: false, hint: [], userId: "", todayAnswer: ""},
-  {step: 4, answer: false, hint: [], userId: "", todayAnswer: ""},
-  {step: 5, answer: false, hint: [], userId: "", todayAnswer: ""},
+  { step: 1, answer: false, hint: [], userId: "", todayAnswer: "" },
+  { step: 2, answer: false, hint: [], userId: "", todayAnswer: "" },
+  { step: 3, answer: false, hint: [], userId: "", todayAnswer: "" },
+  { step: 4, answer: false, hint: [], userId: "", todayAnswer: "" },
+  { step: 5, answer: false, hint: [], userId: "", todayAnswer: "" },
 ];
 
 const initialState: QuizFormState = {
-  userId: '',
+  userId: "",
   count: 0,
   hint: [],
   isCorrected: false,
 };
 
 export const QuizFormContainer = (): ReactElement => {
-  const {userInfo} = useAuth();
+  const { userInfo } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [checkBox, setCheckBox] = useState<Chance[]>([]);
   const [todayCompleted, setTodayCompleted] = useState(false);
+
+  const dispatch = useAppDispatch();
 
   const getQuizHistory = async () => {
     const data = await getUserHistory(userInfo?.id);
@@ -52,21 +56,22 @@ export const QuizFormContainer = (): ReactElement => {
       arr = [initialState];
     }
     return arr;
-  }
+  };
 
   const dataInitialize = async () => {
     const state = await getQuizHistory();
     setCurrentStep(state[state.length - 1].count);
 
     state.forEach((value) => {
-      const {isCorrected} = value;
+      const { isCorrected } = value;
       if (isCorrected || state.length >= 5) {
         setTodayCompleted(true);
+        dispatch(setCorrected(true));
       }
     });
 
     state.forEach((value, index) => {
-      const {hint = [], count, userId} = value;
+      const { hint = [], count, userId } = value;
       initialStepState[index].userId = userId;
       if (initialStepState[index].step === count && count < 5) {
         initialStepState[index].userId = userId;
@@ -83,29 +88,29 @@ export const QuizFormContainer = (): ReactElement => {
     });
 
     setCheckBox(initialStepState);
-  }
+  };
 
   useEffect(() => {
-    dataInitialize()
-  }, [])
+    dataInitialize();
+  }, []);
 
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
-  }
+  };
 
   const completed = (payload: boolean) => {
-    setTodayCompleted(payload)
-  }
+    setTodayCompleted(payload);
+  };
 
   const checkboxUpdate = (payload: Chance[]) => {
-    setCheckBox(payload)
-  }
+    setCheckBox(payload);
+  };
 
   return (
     <S.QuizLayout>
       <S.QuizBox>
         <S.QuizWrapper>
-          <Typography $variant={"h1"} $weight={"bold"} $color={"textDefault"}>
+          <Typography $variant={"h1"} $color={"textDefault"}>
             오늘의 퀴즈
           </Typography>
           <QuizForm
@@ -114,7 +119,8 @@ export const QuizFormContainer = (): ReactElement => {
             currentStep={currentStep}
             setCurrentStep={nextStep}
             setTodayCompleted={completed}
-            setCheckBox={checkboxUpdate}/>
+            setCheckBox={checkboxUpdate}
+          />
         </S.QuizWrapper>
       </S.QuizBox>
     </S.QuizLayout>

@@ -1,5 +1,5 @@
-import React, {ReactElement} from "react";
-import {ResponsivePie} from "@nivo/pie";
+import React, { ReactElement } from "react";
+import { ResponsivePie } from "@nivo/pie";
 import styled from "styled-components";
 
 export interface PieChartProps {
@@ -19,7 +19,7 @@ type DataType = { data: PieChartProps[] };
 
 const PieChart = React.forwardRef(
   (
-    {data}: DataType,
+    { data }: DataType,
     ref: React.ForwardedRef<HTMLDivElement>,
   ): ReactElement => {
     return (
@@ -28,12 +28,12 @@ const PieChart = React.forwardRef(
           data={data}
           animate={false}
           isInteractive={true}
-          margin={{top: 40, right: 80, bottom: 80, left: 80}}
+          margin={{ top: 40, right: 80, bottom: 80, left: 80 }}
           innerRadius={0.5}
           padAngle={0.7}
           cornerRadius={3}
           activeOuterRadiusOffset={8}
-          colors={{scheme: "green_blue"}}
+          colors={{ scheme: "green_blue" }}
           borderWidth={1}
           borderColor={{
             from: "color",
@@ -42,7 +42,7 @@ const PieChart = React.forwardRef(
           arcLinkLabelsSkipAngle={10}
           arcLinkLabelsTextColor="#222"
           arcLinkLabelsThickness={2}
-          arcLinkLabelsColor={{from: "color"}}
+          arcLinkLabelsColor={{ from: "color" }}
           arcLabelsSkipAngle={10}
           arcLinkLabelsStraightLength={10}
           arcLinkLabelsDiagonalLength={6}
