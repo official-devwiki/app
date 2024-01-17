@@ -27,7 +27,7 @@ export const Header = (): ReactElement => {
         <Link href={"/"}>
           <Typography
             $fontFamily="BMJua"
-            $color={"textWhite"}
+            $color={"textPrimary"}
             $weight={"medium"}
             $variant={"h1"}
           >
