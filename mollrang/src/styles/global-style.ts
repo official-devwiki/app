@@ -163,7 +163,7 @@ export const GlobalStyle = createGlobalStyle`
     --major-text: #444343;
     --caption-text: #D6D6D6;
 
-    --bg: #fff;
+    --bg: #00C7AE;
     --bg_reverse: #383838;
     --bg_modal: #fff;
     --bg_footer: #EFEFEF;
@@ -222,7 +222,7 @@ export const GlobalStyle = createGlobalStyle`
     --major-text: #E6E6E6;
     --caption-text: #6D6D6;
 
-    --bg: #383838;
+    --bg: #778C86;
     --bg_reverse: #fff;
     --bg_modal: #272727;
     --bg_footer: #505050;

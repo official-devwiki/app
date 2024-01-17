@@ -10,19 +10,27 @@ export const HomeLayout = styled.div`
   ${({ theme }) => theme.media.tablet} {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+  }
+
+  .home_container {
+    border-radius: 25px 25px 0 0;
+    background-color: #fff;
+    margin-top: 4em;
+    padding-bottom: 9em;
   }
 `;
 
 export const HomeBox = styled.div`
   max-width: 900px;
   width: 100%;
-  //height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1em auto auto auto;
+  margin: auto;
   padding: 0 1.5em;
+  background-color: #fff;
+  border-radius: 25px 25px 0 0;
 `;
 
 export const PlayQuizBox = styled.div`
