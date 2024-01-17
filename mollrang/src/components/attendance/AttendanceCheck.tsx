@@ -20,25 +20,15 @@ export const AttendanceCheck = ({
     <S.AttendanceLayout>
       <S.AttendanceTitleWrapper>
         <div className={"title"}>
-          <div className={"attendance_title"}>
-            <S.IconWrapper>
-              <Icons type={"check-red"} />
-            </S.IconWrapper>
-            <Typography
-              $variant={"body2"}
-              $weight={"medium"}
-              $color={"textDefault"}
-            >
-              출석 체크
-            </Typography>
-          </div>
+          <S.IconWrapper>
+            <Icons type={"check-red"} />
+          </S.IconWrapper>
           <Typography
-            $fontFamily={"Noto Sans KR"}
-            $variant={"caption"}
+            $variant={"body2"}
             $weight={"medium"}
-            $color={"textGray400"}
+            $color={"textDefault"}
           >
-            매일 한 문제, 퀴즈를 풀고 출석 도장을 받아보세요.
+            출석 체크
           </Typography>
         </div>
       </S.AttendanceTitleWrapper>

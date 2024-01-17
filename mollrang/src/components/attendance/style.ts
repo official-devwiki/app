@@ -6,21 +6,14 @@ export const AttendanceLayout = styled.div`
   margin-top: 30px;
 `;
 
-export const AttendanceTitleWrapper = styled.p`
+export const AttendanceTitleWrapper = styled.h2`
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   .title {
     display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-
-    .attendance_title {
-      display: flex;
-      align-items: flex-end;
-      margin-bottom: 0.25em;
-    }
+    align-items: flex-end;
   }
 
   .consecutive_days {
@@ -39,7 +32,7 @@ export const IconWrapper = styled.div`
 
 export const WeekDayList = styled.ul`
   display: flex;
-  margin-top: 0.8em;
+  margin-top: 20px;
 `;
 
 export const Days = styled.li`
