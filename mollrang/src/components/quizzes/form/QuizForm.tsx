@@ -167,15 +167,13 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
    */
   const hintBlockGenerator = (v: Block, key: string) => {
     const hintBlock = [];
-    if (answerSubmitMutate.isSuccess) {
-      for (let i = 1; i <= data.answerLength; i++) {
-        if (!!v[i]) {
-          const styling =
-            v[i] === "O" ? "success" : v[i] === "A" ? "hint" : "wrong";
-          hintBlock.push(
-            <HintBlock className={styling} key={`hint-box-${i}-${key}`} />,
-          );
-        }
+    for (let i = 1; i <= data.answerLength; i++) {
+      if (!!v[i]) {
+        const styling =
+          v[i] === "O" ? "success" : v[i] === "A" ? "hint" : "wrong";
+        hintBlock.push(
+          <HintBlock className={styling} key={`hint-box-${i}-${key}`} />,
+        );
       }
     }
     return hintBlock;
