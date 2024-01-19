@@ -127,6 +127,7 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
         completedModalOpen();
       } else {
         checkBoxUpdate(answerSubmitMutate.data.hint);
+        resultMessage(answerSubmitMutate.data.hint);
       }
       setAnswer("");
       setCurrentStep();
@@ -199,31 +200,19 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
     });
   };
 
-  const resultMessage = (): void => {
-    let step = 0;
-    if (currentStep !== 0) step = currentStep;
-    if (step > 0 && !todayCompleted) {
-      const currentStepIndex = checkBox.findIndex((v) => v.step === step);
-      const currentStepAnswer = checkBox[currentStepIndex].hint;
-      if (currentStepAnswer.length === 0) return;
+  const resultMessage = (hint: Block[]) => {
+    const hintExist = hint.filter(
+      (value, index) => value[index + 1] === "O" || value[index + 1] === "A",
+    );
 
-      const hintExist = currentStepAnswer.filter(
-        (value, index) => value[index + 1] === "O" || value[index + 1] === "A",
-      );
-
-      if (hintExist.length > 0) {
-        setMessage("정답인 글자가 포함되어있어요!");
-        setMessageStyling("default");
-      } else {
-        setMessage("글자가 포함되어있지 않아요!");
-        setMessageStyling("wrong");
-      }
+    if (hintExist.length > 0) {
+      setMessage("정답인 글자가 포함되어있어요!");
+      setMessageStyling("default");
+    } else if (hintExist.length === 0) {
+      setMessage("글자가 포함되어있지 않아요!");
+      setMessageStyling("wrong");
     }
   };
-
-  useEffect(() => {
-    resultMessage();
-  }, [checkBox]);
 
   useEffect(() => {
     if (todayCompleted) {
