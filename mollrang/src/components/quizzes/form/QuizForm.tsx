@@ -53,7 +53,7 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
   };
 
   const inputValidation = (): boolean => {
-    const toastOption: ToastOptions = {
+    const toastOption: any = {
       duration: 1500,
       style: {
         backgroundColor: "#ffc2c2",
@@ -99,7 +99,7 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
   useEffect(() => {
     if (answerSubmitMutate.isSuccess && answerSubmitMutate.data) {
       // 최종 답안이 존재할 경우 퀴즈 종료로 간주한다.
-      const toastOption: ToastOptions = {
+      const toastOption: any = {
         duration: 1500,
         style: {
           backgroundColor: "#e0ffde",
@@ -169,7 +169,8 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
     if (answerSubmitMutate.isSuccess) {
       for (let i = 1; i <= data.answerLength; i++) {
         if (!!v[i]) {
-          const styling = v[i] === "O" ? "success" : "wrong";
+          const styling =
+            v[i] === "O" ? "success" : v[i] === "A" ? "hint" : "wrong";
           hintBlock.push(
             <HintBlock className={styling} key={`hint-box-${i}-${key}`} />,
           );
@@ -207,8 +208,9 @@ export const QuizForm = (props: QuizFormProps): ReactElement => {
       if (currentStepAnswer.length === 0) return;
 
       const hintExist = currentStepAnswer.filter(
-        (value, index) => value[index + 1] === "O",
+        (value, index) => value[index + 1] === "O" || value[index + 1] === "A",
       );
+
       if (hintExist.length > 0) {
         setMessage("정답인 글자가 포함되어있어요!");
         setMessageStyling("default");
