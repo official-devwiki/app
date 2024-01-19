@@ -112,7 +112,7 @@ export const GlobalStyle = createGlobalStyle`
     --white: #fff;
   }
 
-  html, 
+  html,
   body, body[data-theme="light"] {
     // major(theme)
     --primary: #00C7AE;
@@ -135,6 +135,7 @@ export const GlobalStyle = createGlobalStyle`
     --textGray200: #C6C6C6;
     --textGray300: #C6C6C6;
     --textGray400: #818181;
+    --textGray500: #989898;
     --textRed000: #FF5050;
     --textGrayAndWhite: #bdbdbd;
     --textYellow: #edbe17;
@@ -196,6 +197,7 @@ export const GlobalStyle = createGlobalStyle`
     --textGray200: #C6C6C6;
     --textGray300: #C6C6C6;
     --textGray400: #818181;
+    --textGray500: #989898;
     --textRed000: #FF5050;
     --textGrayAndWhite: #fff;
     --textYellow: #FFC700;

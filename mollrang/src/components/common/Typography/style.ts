@@ -20,6 +20,7 @@ export type FontColorType =
   | "textGray200"
   | "textGray300"
   | "textGray400"
+  | "textGray500"
   | "textRed000"
   | "textGrayAndWhite"
   | "textYellow";
@@ -37,6 +38,7 @@ export const FontColor = {
   textGray200: "var(--textGray200)",
   textGray300: "var(--textGray300)",
   textGray400: "var(--textGray400)",
+  textGray500: "var(--textGray500)",
   textRed000: "var(--textRed000)",
   textGrayAndWhite: "var(--textGrayAndWhite)",
   textYellow: "var(--textYellow)",

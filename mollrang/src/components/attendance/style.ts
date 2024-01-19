@@ -13,7 +13,14 @@ export const AttendanceTitleWrapper = styled.h2`
 
   .title {
     display: flex;
-    align-items: flex-end;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .attendance_title {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 4px;
+    }
   }
 
   .consecutive_days {
