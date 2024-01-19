@@ -66,7 +66,7 @@ export const QuizFormContainer = (): ReactElement => {
       const { isCorrected } = value;
       if (isCorrected || state.length >= 5) {
         setTodayCompleted(true);
-        dispatch(setCorrected(true));
+        dispatch(setCorrected(isCorrected));
       }
     });
 
