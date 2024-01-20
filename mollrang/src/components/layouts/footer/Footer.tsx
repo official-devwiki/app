@@ -12,7 +12,7 @@ const FooterLayout = styled.footer`
   position: relative;
   //transform: translateY(100%);
 
-  ${({theme}) => theme.media.tablet} {
+  ${({ theme }) => theme.media.tablet} {
     //transform: translateY(100%);
   }
 `;
@@ -20,8 +20,12 @@ const FooterLayout = styled.footer`
 export const Footer = (): ReactElement => {
   return (
     <FooterLayout className={"footer"}>
-      <Typography $color={"textGrayAndWhite"} $variant={"body2"}>
-        ⓒ 2023. DaHoon06. All rights reserved.
+      <Typography
+        $fontFamily={"Noto Sans KR"}
+        $color={"textGrayAndWhite"}
+        $variant={"caption"}
+      >
+        ⓒ 2024. mollrang. All rights reserved.
       </Typography>
     </FooterLayout>
   );
