@@ -4,10 +4,39 @@ import { Button } from "@components/common/Button";
 import * as S from "./QuizCompletedContainer.style";
 import { useAppDispatch, useAppSelector } from "@hooks/useRedux";
 import { setModalOpen, State } from "@store/slice/modalSlice";
+import { useAuth } from "@providers/authProvider";
+import {
+  useContinuousCorrectQuery,
+  useGetMyAnswersQuery,
+  useMostContinuousCountQuery,
+  useMyTotalChallengeQuery,
+} from "@services/queries/statisticsQuery";
+import { SpinnerUi } from "@components/ui/spinner/SpinnerUi";
+import { dateToString } from "@utils/days";
+import toast from "react-hot-toast";
 
 export const QuizCompletedContainer = (): ReactElement => {
   const { count, isCorrected } = useAppSelector((state) => state.quizStore);
+  const { userInfo } = useAuth();
+
+  const myAnswerRatioData = useGetMyAnswersQuery(userInfo?.id);
+  const totalChallengeData = useMyTotalChallengeQuery(userInfo?.id);
+  const continuousCorrectData = useContinuousCorrectQuery(userInfo?.id);
+  const mostCorrectData = useMostContinuousCountQuery(userInfo?.id);
+
   const dispatch = useAppDispatch();
+
+  if (
+    mostCorrectData.isLoading &&
+    continuousCorrectData.isLoading &&
+    totalChallengeData.isLoading &&
+    myAnswerRatioData.isLoading
+  )
+    return (
+      <S.QuizCompletedLayout>
+        <SpinnerUi />
+      </S.QuizCompletedLayout>
+    );
 
   const onClickShowMyStatistics = () => {
     const modalState: State = {
@@ -18,8 +47,23 @@ export const QuizCompletedContainer = (): ReactElement => {
     dispatch(setModalOpen(modalState));
   };
 
-  const onClickClipBoard = () => {
-    alert("복사");
+  const onClickClipBoard = async () => {
+    const today = dateToString(new Date());
+    const text = `몰랑? (${today})  📈 정답률 1/${totalChallengeData.data.total} (${myAnswerRatioData.data.corrected}) 🔥 ${continuousCorrectData.data.continuous} 일 연속 정답
+create by https://www.mollrang.com`;
+    await navigator.clipboard.writeText(text);
+
+    toast.success(`클립보드에 저장되었습니다.`, {
+      duration: 1500,
+      style: {
+        backgroundColor: "#e0ffde",
+      },
+      position: "top-right",
+      ariaProps: {
+        role: "status",
+        "aria-live": "polite",
+      },
+    });
   };
   return (
     <S.QuizCompletedLayout>

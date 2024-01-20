@@ -8,7 +8,7 @@ import { SITE_URL } from "@config/index";
 import { IoMdShare } from "react-icons/io";
 import { BsQuestionLg } from "react-icons/bs";
 import Image from "next/image";
-import toast, { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 
 export const FlexBox = styled.div`
   button {
