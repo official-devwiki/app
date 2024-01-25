@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 import * as S from "./style";
 import { setModalOpen, State } from "@store/slice/modalSlice";
 import { TiHome, TiChartPie } from "react-icons/ti";
-import { IoSettingsSharp, IoBook } from "react-icons/io5";
+import { IoBook } from "react-icons/io5";
 
 export const BottomNavigation = (): ReactElement => {
   const dispatch = useAppDispatch();

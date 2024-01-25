@@ -14,7 +14,7 @@ export const Block = styled.div`
     font-weight: bold;
     position: relative;
     left: 5.5px;
-    top: 3px;
+    top: 2px;
   }
 `;
 

@@ -18,7 +18,10 @@ export const ModalBody = styled(motion.div)`
   background: #fff;
   width: 100%;
   max-width: 800px;
+  max-height: 550px;
   height: auto;
   border-radius: 14px;
   box-shadow: 1px 10px 10px -4px rgba(0, 0, 0, 0.1);
+
+  ${({ theme }) => theme.scroll.theme}
 `;
