@@ -6,16 +6,15 @@ import {
   getMostContinuousCorrectCount,
   getChallengeDistribution,
   getChallengeCount,
+  getCorrectedAnswerCount,
 } from "@services/apis/statistics";
 import { ChallengeData } from "@interfaces/statistics";
 
 /**
  * @description: 나의 정답률 구하기
  */
-export const useGetMyAnswersQuery = (
-  userId: string,
-): { isLoading: boolean; data: { corrected: string } } => {
-  const { data, isLoading } = useQuery(
+export const useGetMyAnswersQuery = (userId: string) => {
+  return useQuery(
     [QueryKeys.Statistics.getMyAnswers],
     () => getMyAnswersRatio(userId),
     {
@@ -24,17 +23,13 @@ export const useGetMyAnswersQuery = (
       refetchOnWindowFocus: true,
     },
   );
-  return {
-    isLoading,
-    data,
-  };
 };
 
 /**
  * @description 연속 정답 회수 구하기
  */
 export const useContinuousCorrectQuery = (userId: string) => {
-  const { data, isLoading } = useQuery(
+  return useQuery(
     [QueryKeys.Statistics.getContinuousCorrectCount],
     () => getContinuousCorrectCount(userId),
     {
@@ -43,10 +38,6 @@ export const useContinuousCorrectQuery = (userId: string) => {
       refetchOnWindowFocus: true,
     },
   );
-  return {
-    isLoading,
-    data,
-  };
 };
 
 /**
@@ -58,7 +49,7 @@ export const useGetMyDistributionQuery = (
   isLoading: boolean;
   data: ChallengeData[];
 } => {
-  const { data, isLoading } = useQuery(
+  return useQuery(
     [QueryKeys.Statistics.getChallengeDistribution],
     () => getChallengeDistribution(userId),
     {
@@ -67,17 +58,13 @@ export const useGetMyDistributionQuery = (
       refetchOnWindowFocus: true,
     },
   );
-  return {
-    isLoading,
-    data,
-  };
 };
 
 /**
  * @description 전체 도전 횟수 구하기
  */
 export const useMyTotalChallengeQuery = (userId: string) => {
-  const { data, isLoading } = useQuery(
+  return useQuery(
     [QueryKeys.Statistics.getChallengeCount],
     () => getChallengeCount(userId),
     {
@@ -86,17 +73,13 @@ export const useMyTotalChallengeQuery = (userId: string) => {
       refetchOnWindowFocus: true,
     },
   );
-  return {
-    isLoading,
-    data,
-  };
 };
 
 /**
  * @description 최다 연속 정답 횟수 구하기
  */
 export const useMostContinuousCountQuery = (userId: string) => {
-  const { data, isLoading } = useQuery(
+  return useQuery(
     [QueryKeys.Statistics.getMostContinuousCorrectCount],
     () => getMostContinuousCorrectCount(userId),
     {
@@ -105,8 +88,10 @@ export const useMostContinuousCountQuery = (userId: string) => {
       refetchOnWindowFocus: true,
     },
   );
-  return {
-    isLoading,
-    data,
-  };
+};
+
+export const useGetAnswerCountQuery = (userId: string) => {
+  return useQuery([QueryKeys.Statistics.getCorrectedAnswerCount], () =>
+    getCorrectedAnswerCount(userId),
+  );
 };

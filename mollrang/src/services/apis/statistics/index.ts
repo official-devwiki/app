@@ -87,3 +87,9 @@ export const getMostContinuousCorrectCount = async (
     throw e;
   }
 };
+
+export const getCorrectedAnswerCount = async (userId: string) => {
+  const url = `/${statistics}/corrected/count/${userId}`;
+  const { data } = await axiosInstance.get(url);
+  return responseDataConvert<{ correctedCount: number }>(data);
+};

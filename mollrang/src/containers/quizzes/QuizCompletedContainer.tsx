@@ -7,6 +7,7 @@ import { setModalOpen, State } from "@store/slice/modalSlice";
 import { useAuth } from "@providers/authProvider";
 import {
   useContinuousCorrectQuery,
+  useGetAnswerCountQuery,
   useGetMyAnswersQuery,
   useMostContinuousCountQuery,
   useMyTotalChallengeQuery,
@@ -23,6 +24,7 @@ export const QuizCompletedContainer = (): ReactElement => {
   const totalChallengeData = useMyTotalChallengeQuery(userInfo?.id);
   const continuousCorrectData = useContinuousCorrectQuery(userInfo?.id);
   const mostCorrectData = useMostContinuousCountQuery(userInfo?.id);
+  const getCorrectedAnswerCountData = useGetAnswerCountQuery(userInfo?.id);
 
   const dispatch = useAppDispatch();
 
@@ -30,7 +32,8 @@ export const QuizCompletedContainer = (): ReactElement => {
     mostCorrectData.isLoading &&
     continuousCorrectData.isLoading &&
     totalChallengeData.isLoading &&
-    myAnswerRatioData.isLoading
+    myAnswerRatioData.isLoading &&
+    getCorrectedAnswerCountData.isLoading
   )
     return (
       <S.QuizCompletedLayout>
@@ -49,7 +52,7 @@ export const QuizCompletedContainer = (): ReactElement => {
 
   const onClickClipBoard = async () => {
     const today = dateToString(new Date());
-    const text = `몰랑? (${today})  📈 정답률 1/${totalChallengeData.data.total} (${myAnswerRatioData.data.corrected}) 🔥 ${continuousCorrectData.data.continuous} 일 연속 정답
+    const text = `몰랑? (${today})  📈 정답률 ${getCorrectedAnswerCountData.data.correctedCount} / ${totalChallengeData.data.total} (${myAnswerRatioData.data.corrected}) 🔥 ${continuousCorrectData.data.continuous} 일 연속 정답
 create by https://www.mollrang.com`;
     await navigator.clipboard.writeText(text);
 
