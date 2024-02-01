@@ -3,9 +3,13 @@ import {Domain} from "@services/apis/url";
 import {responseDataConvert} from "@utils/convert";
 import {ResponseData} from "@interfaces/quizzes";
 import {Attendance} from "@components/attendance/AttendanceCheck";
-import axios from "axios";
 
 const users = Domain.Users;
+
+export const userIdCheck = async (userId: string): Promise<boolean> => {
+  const { data } = await axiosInstance.get(`/users/${userId}`);
+  return data.success;
+}
 
 export const getUserAttendance = async (
   userId: string,
