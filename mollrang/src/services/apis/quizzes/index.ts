@@ -40,7 +40,7 @@ export const quizSolutionSubmit = async (
 
 export const quizHistoryCheck = async (
   userId: string,
-): Promise<QuizFormState[]> => {
+) => {
   try {
     const url = `/history/quizzes/${userId}`;
     const {data} = await axiosInstance.get(url);

@@ -4,9 +4,10 @@ export const IntegratedStatisticsLayout = styled.div`
   width: 100%;
   padding: 0 1.25em;
   height: auto;
+  max-height: 500px;
   overflow-y: auto;
 
-  ${({ theme }) => theme.scroll.theme()}
+  ${({theme}) => theme.scroll.theme()}
 `;
 
 export const StatisticsItemContainer = styled.div`
