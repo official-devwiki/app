@@ -32,7 +32,6 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
   const {store} = wrapper.useWrappedStore(pageProps);
   const {setStorageItems, getStorageItems} = useLocalStorage<User>();
   const [isLoading, setIsLoading] = useState(true);
-  const isServerSide = typeof window === "undefined";
 
   useEffect(() => {
     const userInfo = getStorageItems(USER_KEY);
@@ -51,12 +50,16 @@ const App: NextComponentType<AppContext, AppInitialProps, AppProps> = ({
     }, 2200);
   }, []);
 
-  if (isLoading) return <SplashUi isOpen={true}/>;
+  if (isLoading) return (
+    <>
+      <MetaHead/>
+      <MetaCommonHead/>
+      <SplashUi isOpen={true}/>
+    </>
+  );
 
   return (
     <ErrorBoundary>
-      <MetaHead/>
-      <MetaCommonHead/>
       <Provider store={store}>
         <QueryClientProvider client={queryState}>
           <Hydrate state={pageProps.dehydratedState}>
