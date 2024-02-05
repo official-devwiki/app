@@ -8,6 +8,7 @@ module.exports = {
     '/quizzes/**', // 하위 주소 전체를 제외시키는 경우
   ], // sitemap 등록 제외 페이지 주소
   robotsTxtOptions: {
+    // additionalSitemaps: [], // 동적 사이트맵을 생성할 경우 해당 배열에 사이트맵 url 추가
     // 정책 설정
     policies: [
       {
