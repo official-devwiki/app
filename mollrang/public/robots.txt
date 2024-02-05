@@ -1,0 +1,10 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /quizzes
+
+# Host
+Host: https://www.mollrang.com
+
+# Sitemaps
+Sitemap: https://www.mollrang.com/sitemap.xml
