@@ -60,13 +60,10 @@ const TableContainer = styled.div`
       border-collapse: collapse;
     }
 
-    th {
-      vertical-align: middle;
-    }
-
     th, td {
       border: 1px solid #ededed;
       padding: 8px 16px;
+      vertical-align: middle;
     }
   }
 `;
