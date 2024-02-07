@@ -23,7 +23,8 @@ export type FontColorType =
   | "textGray500"
   | "textRed000"
   | "textGrayAndWhite"
-  | "textYellow";
+  | "textYellow"
+  | "Primary";
 export type FontFamily = "BMJua" | "Noto Sans KR";
 
 export const FontColor = {
@@ -42,6 +43,7 @@ export const FontColor = {
   textRed000: "var(--textRed000)",
   textGrayAndWhite: "var(--textGrayAndWhite)",
   textYellow: "var(--textYellow)",
+  Primary: "#00C7AE",
 };
 
 export function FontSize(variant: string) {

@@ -3,7 +3,6 @@ import styled from "styled-components";
 import classNames from "classnames";
 
 export const BlockElement = styled.div`
-  outline: none;
   width: 20px;
   height: 16px;
   border: 1px solid #DFDFDF;
@@ -19,7 +18,7 @@ export const BlockElement = styled.div`
     border-color: var(--secondary);
     background-color: var(--secondary);
   }
-  
+
   &.wrong {
     border-color: var(--warning);
     background-color: var(--warning);
@@ -32,5 +31,5 @@ interface Props {
 
 export const HintBlock = (props: Props): ReactElement => {
   const {className} = props;
-  return <BlockElement className={classNames(className)} />
+  return <BlockElement className={classNames(className)}/>
 }
