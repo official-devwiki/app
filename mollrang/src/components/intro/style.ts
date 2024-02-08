@@ -7,6 +7,7 @@ export const IntroContainer = styled.div`
   padding: 1.5em 0 2.25em 0;
   max-width: 426px;
   margin: auto;
+  column-gap: 26px;
 `;
 
 export const IntroTextBox = styled.div`

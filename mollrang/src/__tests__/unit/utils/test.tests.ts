@@ -182,3 +182,76 @@ describe("유니서베이 문항 순서 변환 테스트", () => {
     expect(mockFunction(DB, cursor, target)).toEqual(expectedValue);
   });
 });
+
+const getHashTag = (text: string) => {
+  const value = text.replace("\n", "");
+  return value.match(/#[^\s]+/g) || "";
+};
+
+const getDate = (milliSeconds: number): string => {
+  const days = ["일", "월", "화", "수", "목", "금", "토"];
+  const data = new Date(milliSeconds); //Date객체 생성
+
+  const year = data.getFullYear(); //0000년 가져오기
+  const month = data.getMonth() + 1; //월은 0부터 시작하니 +1하기
+  const date = data.getDate(); //일자 가져오기
+  const day = days[data.getDay()]; //요일 가져오기
+
+  return `${year}.${month}.${date}. (${day})`;
+};
+
+describe("해시태그 뽑아내기", () => {
+  test("주어진 문자열에서 해시태그를 찾아 배열로 반환", () => {
+    const TEXT =
+      "#광고\n" +
+      "인천국제공항을 접수하러 온 KB국민은행?!\n" +
+      "\n" +
+      "인천국제공항 상공에 귀여운 스타프렌즈가 붙은 비행기가 등장하자\n" +
+      "공항이 기다렸다는 듯 천장을 열고,\n" +
+      "낙하산에 매달린 선물 같은 ATM기가 공항 안으로 착륙합니다.\n" +
+      "\n" +
+      "최근 인천국제공항 입점을 기념하여 KB국민은행이 제작한 FOOH (Fake Out Of Home) 영상이 화제인데요 ~ \n" +
+      "2024년 1월부터 인천공항 곳곳에서 KB국민은행의 영업점, 환전소, 그리고 ATM기를 이용할 수 있다고 하니\n" +
+      "3천만 국민은행 주거래 고객에게 반가운 새해 소식이 될 것 같습니다~\n" +
+      "\n" +
+      "#인천공항은행 #KB국민은행 #환전 #국민은행 #FOOH";
+    const expectedValue = [
+      "#광고",
+      "#인천공항은행",
+      "#KB국민은행",
+      "#환전",
+      "#국민은행",
+      "#FOOH",
+    ];
+    const mockFunction = jest.fn(getHashTag);
+    expect(mockFunction(TEXT)).toEqual(expectedValue);
+  });
+
+  test("밀리초를 넘겨 날짜를 반환 받는다.", () => {
+    const millSeconds = 1649772049;
+    const expectedValue = "롸";
+    const mockFunction = jest.fn(getDate);
+    expect(mockFunction(millSeconds)).toEqual(expectedValue);
+  });
+});
+
+interface Pagination {
+  page: number;
+  total_count: number;
+  total_page: number;
+  unit: number;
+}
+
+const paginationFunction = (pagination: Pagination) => {
+  const { page, total_page, total_count, unit } = pagination;
+};
+
+describe("페이지네이션 번호 만들기", () => {
+  test("페이징 처리 case 1 1 ~ 10", () => {
+    const mockFn = jest.fn(paginationFunction);
+  });
+
+  test("페이징 처리 case 2 2 ~ 20", () => {
+    const mockFn = jest.fn(paginationFunction);
+  });
+});

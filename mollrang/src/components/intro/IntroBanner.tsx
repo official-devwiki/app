@@ -7,8 +7,9 @@ import { Button } from "@components/common/Button";
 import { SITE_URL } from "@config/index";
 import { IoMdShare } from "react-icons/io";
 import { BsQuestionLg } from "react-icons/bs";
-import Image from "next/image";
 import toast from "react-hot-toast";
+import Lottie from "react-lottie-player";
+import LottieJson from "@images/lotties/banner.json";
 
 export const FlexBox = styled.div`
   button {
@@ -53,13 +54,11 @@ export const MollrangSharedButton = (): ReactElement => {
 export const IntroBanner = (): ReactElement => {
   return (
     <S.IntroContainer>
-      <Image
-        width={220}
-        height={190}
-        priority
-        sizes="220px"
-        alt="mollrang_banner.svg"
-        src={"https://d30ugctgtj8te2.cloudfront.net/assets/banner.svg"}
+      <Lottie
+        loop
+        animationData={LottieJson}
+        play
+        style={{ width: 200, height: 200 }}
       />
       <S.IntroTextBox>
         <div>
